@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackly — Bakery</title>
+  <meta name="description" content="Artisanal sourdough, flaky viennoiserie, and warm morning pastries baked fresh daily with 100% organic heritage flours.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fb5022'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z'/></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Fraunces -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ==============================================
+       PRELOADER: ARTISAN STONE HEARTH ANIMATION
+       ============================================== -->
+  <div class="site-preloader" id="sitePreloader" role="status" aria-live="polite" aria-label="Loading Stackly Bakery">
+    <div class="preloader-backdrop"></div>
+    <div class="preloader-content">
+      <!-- Animated Oven Hearth & Croissant -->
+      <div class="preloader-icon-wrap">
+        <div class="preloader-glow-ring"></div>
+        <svg class="preloader-croissant" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path class="croissant-body" d="M12 40C10 35 11 29 16 23C22.5 16 34 13 44 16.5C52.5 19.5 57 26 57.5 32C58 37 54.5 41 50 40.5C43 39.5 35.5 35.5 28 35.5C20.5 35.5 14.5 40.5 12 40Z" />
+          <path class="croissant-fold fold-1" d="M21 22.5C23.5 27.5 24 33.5 22.5 38" />
+          <path class="croissant-fold fold-2" d="M33 17C35.5 23 35.5 30.5 33 35.5" />
+          <path class="croissant-fold fold-3" d="M44.5 19.5C46.5 24.5 46 30.5 44 35" />
+        </svg>
+        <div class="preloader-steam-wrap" aria-hidden="true">
+          <span class="steam-particle steam-1"></span>
+          <span class="steam-particle steam-2"></span>
+          <span class="steam-particle steam-3"></span>
+        </div>
+      </div>
+
+      <!-- Brand Identity -->
+      <div class="preloader-brand">
+        <h2 class="preloader-title">Stackly<span class="preloader-dot">.</span></h2>
+        <span class="preloader-subtitle">ARTISAN STONE HEARTH · EST. 2018</span>
+      </div>
+
+      <!-- Animated Progress Line & Status -->
+      <div class="preloader-progress-box">
+        <div class="preloader-progress-track">
+          <div class="preloader-progress-fill" id="preloaderBar"></div>
+        </div>
+        <div class="preloader-status-text" id="preloaderStatus">Warming stone deck hearth...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Header (Exact Figma 1st Image) -->
+  <header class="site-header" id="header">
+    <div class="container header-container">
+      <!-- Logo: Stackly. + Outline Croissant Icon -->
+      <a href="#hero" class="brand-logo" aria-label="Stackly Home">
+        <span class="logo-text">Stackly.</span>
+        <svg class="header-croissant" viewBox="0 0 28 28" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 16.5C4.2 14.8 4.6 12.2 6.8 9.8C9.5 6.8 14.2 5.5 18.5 7C22 8.2 24 11 24.2 13.5C24.4 15.5 23 17.2 21 17C18.2 16.6 15 15 12 15C8.8 15 6.2 16.8 5 16.5Z"/>
+          <path d="M9 9.5C10 11.5 10.2 14 9.5 16"/>
+          <path d="M14 7.2C15 9.8 15 12.8 14 15"/>
+          <path d="M18.8 8.2C19.5 10.2 19.4 12.8 18.5 14.8"/>
+        </svg>
+      </a>
+
+      <!-- Center Nav Links: Home, Catalogue, About us, Visit us, Blog -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#menu" class="nav-link">Catalogue</a></li>
+          <li><a href="#story" class="nav-link">About us</a></li>
+          <li><a href="#visit" class="nav-link">Visit us</a></li>
+          <li><a href="#journal" class="nav-link">Blog</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Header Actions: Shopping Bag + VISIT US Outline Button -->
+      <div class="header-actions">
+        <!-- Shopping Bag Icon Button -->
+        <button class="action-btn-bag" id="cartToggle" aria-label="View shopping basket" title="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="header-bag-icon">
+            <rect x="5" y="6" width="14" height="15" rx="3"></rect>
+            <path d="M9 6V5a3 3 0 0 1 6 0v1"></path>
+            <path d="M9.5 10l2.5 2.5 2.5-2.5"></path>
+          </svg>
+          <span class="cart-badge-dot" id="cartDot"></span>
+        </button>
+
+        <!-- Outline Pill Button: VISIT US -->
+        <a href="#visit" class="btn-visit-outline">VISIT US</a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-nav-drawer" id="mobileDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="#hero" class="mobile-nav-link">Home</a></li>
+        <li><a href="#menu" class="mobile-nav-link">Catalogue</a></li>
+        <li><a href="#story" class="mobile-nav-link">About us</a></li>
+        <li><a href="#visit" class="mobile-nav-link">Visit us</a></li>
+        <li><a href="#journal" class="mobile-nav-link">Blog</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="#visit" class="btn-visit-outline btn-block text-center" style="display:block; text-align:center;">VISIT US</a>
+        <p class="mobile-drawer-hours">Open Daily: 7:00 AM – 6:00 PM</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==============================================
+         SECTION 1: HERO SECTION — THE ARTISAN HEARTH
+         Unique, distinctive & interactive showcase for Stackly Bakery
+         ============================================== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-ambient-glow" aria-hidden="true"></div>
+
+      <div class="container hero-container">
+        <!-- Live Hearth Oven Status Pill -->
+        <div class="hero-status-bar" data-aos="fade-down" data-aos-duration="700">
+          <div class="hero-status-pill">
+            <span class="status-pulse-dot" aria-hidden="true"></span>
+            <span class="status-tag">STONE HEARTH ACTIVE</span>
+            <span class="status-sep" aria-hidden="true">/</span>
+            <span class="status-detail">Fresh Batch #42 Pulled at 6:30 AM · Warm Viennoiserie Available</span>
+            <span class="status-badge-mini">Baking Daily</span>
+          </div>
+        </div>
+
+        <div class="hero-main-grid">
+          <!-- Left Column: Editorial Sensory Content -->
+          <div class="hero-content-col" data-aos="fade-right" data-aos-duration="850">
+            <div class="hero-overline-wrap">
+              <span class="hero-sparkle" aria-hidden="true">✦</span>
+              <span class="hero-overline-text">PARISIAN TRADITION · ORGANIC STONE-GROUND</span>
+            </div>
+
+            <h1 class="hero-title">
+              Baking Smiles,<br>
+              <span class="hero-title-accent">One Pastry</span> At A Time.
+            </h1>
+
+            <p class="hero-lead">
+              Slow-fermented for 72 unhurried hours. Experience the crackle of blistered crusts, buttery 81-layer viennoiserie, and wild French flours baked before dawn in our stone hearth.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="hero-actions-group">
+              <a href="#menu" class="btn btn-primary btn-pill hero-primary-cta">
+                <span>Explore Morning Menu</span>
+                <svg class="cta-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 10h12M11 5l5 5-5 5"/>
+                </svg>
+              </a>
+
+              <a href="#story" class="btn-hero-ghost">
+                <span class="play-circle-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </span>
+                <span>Our 72h Baking Story</span>
+              </a>
+            </div>
+
+            <!-- Artisan Craft Metrics Strip -->
+            <div class="hero-metrics-strip">
+              <div class="hero-metric-item">
+                <div class="metric-top">
+                  <span class="metric-val">72h</span>
+                  <span class="metric-icon" aria-hidden="true"><i class="fa-solid fa-wheat-awn"></i></span>
+                </div>
+                <div class="metric-info">
+                  <span class="metric-label">Wild Cold Ferment</span>
+                  <small class="metric-sub">Airy & easy to digest</small>
+                </div>
+              </div>
+
+              <div class="metric-divider" aria-hidden="true"></div>
+
+              <div class="hero-metric-item">
+                <div class="metric-top">
+                  <span class="metric-val">81</span>
+                  <span class="metric-icon" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></span>
+                </div>
+                <div class="metric-info">
+                  <span class="metric-label">Flaky Layers</span>
+                  <small class="metric-sub">AOP Normandy butter</small>
+                </div>
+              </div>
+
+              <div class="metric-divider" aria-hidden="true"></div>
+
+              <div class="hero-metric-item">
+                <div class="metric-top">
+                  <span class="metric-val">4.9★</span>
+                  <span class="metric-icon" aria-hidden="true"><i class="fa-solid fa-heart"></i></span>
+                </div>
+                <div class="metric-info">
+                  <span class="metric-label">15,000+ Locals</span>
+                  <small class="metric-sub">Loved morning batches</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Showcase Pedestal -->
+          <div class="hero-showcase-col" data-aos="fade-left" data-aos-duration="850">
+            <div class="hero-pedestal-stage">
+              <!-- Hearth Ambient Backlight & Plate -->
+              <div class="pedestal-hearth-glow" aria-hidden="true"></div>
+              <div class="pedestal-plate-rim" aria-hidden="true"></div>
+
+              <!-- Rotating Artisan Heritage Seal -->
+              <div class="hero-artisan-seal" aria-hidden="true">
+                <svg class="seal-svg" viewBox="0 0 120 120">
+                  <path id="sealCurve" fill="none" d="M 60,60 m -45,0 a 45,45 0 1,1 90,0 a 45,45 0 1,1 -90,0"/>
+                  <text class="seal-text">
+                    <textPath href="#sealCurve">✦ STACKLY BAKERY ✦ STONE HEARTH ✦ EST. 2018 ✦</textPath>
+                  </text>
+                </svg>
+                <div class="seal-center-glyph"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></div>
+              </div>
+
+              <!-- Hotspot Floating Badge 1 (Top Left) -->
+              <div class="hero-hotspot hotspot-tl">
+                <div class="hotspot-dot"></div>
+                <div class="hotspot-card">
+                  <span class="hotspot-title" id="hotspot1Title">81 Crisp Layers</span>
+                  <span class="hotspot-sub" id="hotspot1Sub">Beurre Charentes-Poitou AOP</span>
+                </div>
+              </div>
+
+              <!-- Hotspot Floating Badge 2 (Bottom Right) -->
+              <div class="hero-hotspot hotspot-br">
+                <div class="hotspot-dot"></div>
+                <div class="hotspot-card">
+                  <span class="hotspot-title" id="hotspot2Title">Baked at 240°C</span>
+                  <span class="hotspot-sub" id="hotspot2Sub">Natural stone hearth heat</span>
+                </div>
+              </div>
+
+              <!-- Floating Centerpiece Pastry Image -->
+              <div class="hero-pastry-container" id="heroPastryWrapper">
+                <img src="assets/images/figma_hero_croissants_trans.webp"
+                     alt="Freshly baked golden butter croissants"
+                     id="heroPastryImg"
+                     class="hero-pastry-floating-img"
+                     loading="eager">
+              </div>
+
+              <!-- Interactive Floating Tasting & Quick-Add Bar -->
+              <div class="hero-quick-card" id="heroQuickCard">
+                <div class="quick-card-left">
+                  <span class="quick-badge" id="heroCardBadge">FEATURED MORNING SPECIAL</span>
+                  <h3 class="quick-title" id="heroCardTitle">Traditional Butter Croissant</h3>
+                  <p class="quick-meta" id="heroCardMeta">81 layers of French laminated butter dough · Golden crisp</p>
+                </div>
+                <div class="quick-card-right">
+                  <span class="quick-price" id="heroCardPrice">$4.50</span>
+                  <button class="btn-hero-add" id="heroQuickAddBtn" data-id="1" aria-label="Add Traditional Butter Croissant to basket">
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" class="add-icon" aria-hidden="true">
+                      <path d="M10 4v12M4 10h12"/>
+                    </svg>
+                    <span>Add</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Tasting Selector Tabs -->
+            <div class="hero-tasting-nav" role="tablist" aria-label="Select hero featured bake">
+              <button class="tasting-tab active" data-index="0" role="tab" aria-selected="true">
+                <span class="tab-emoji"><i class="fa-solid fa-bread-slice" aria-hidden="true"></i></span>
+                <span class="tab-name">Butter Croissant</span>
+                <span class="tab-price">$4.50</span>
+              </button>
+              <button class="tasting-tab" data-index="1" role="tab" aria-selected="false">
+                <span class="tab-emoji"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></span>
+                <span class="tab-name">Country Sourdough</span>
+                <span class="tab-price">$8.50</span>
+              </button>
+              <button class="tasting-tab" data-index="2" role="tab" aria-selected="false">
+                <span class="tab-emoji"><i class="fa-solid fa-cookie-bite" aria-hidden="true"></i></span>
+                <span class="tab-name">Pain au Chocolat</span>
+                <span class="tab-price">$5.00</span>
+              </button>
+              <button class="tasting-tab" data-index="3" role="tab" aria-selected="false">
+                <span class="tab-emoji"><i class="fa-solid fa-circle-notch" aria-hidden="true"></i></span>
+                <span class="tab-name">Cinnamon Brioche</span>
+                <span class="tab-price">$5.25</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SECTION 2: PRODUCTS CATALOG ("Your next favorite bite.")
+         Exact Figma Layout: Category filters, 4 product cards with badges & quick cart button
+         ============================================== -->
+    <section class="products-section" id="menu">
+      <div class="container">
+        <!-- Products Header -->
+        <div class="section-head products-head" data-aos="fade-up">
+          <div class="head-left">
+            <span class="section-overline">OUR FRESH PICKS</span>
+            <h2 class="section-title text-dark">Your next favorite bite.</h2>
+            
+            <!-- Category Filter Tabs -->
+            <div class="category-tabs" role="tablist">
+              <button class="tab-btn active" data-category="all" role="tab" aria-selected="true">All Pastries</button>
+              <button class="tab-btn" data-category="croissant" role="tab" aria-selected="false">Viennoiserie</button>
+              <button class="tab-btn" data-category="bread" role="tab" aria-selected="false">Sourdough Breads</button>
+              <button class="tab-btn" data-category="sweet" role="tab" aria-selected="false">Sweet Buns</button>
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <div class="carousel-arrows" aria-label="Product navigation">
+            <button class="carousel-arrow prev-btn" id="prodPrev" aria-label="Previous products">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button class="carousel-arrow next-btn" id="prodNext" aria-label="Next products">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div class="product-grid" id="productGrid">
+          <!-- Product Card 1: Traditional Croissant -->
+          <article class="product-card" data-category="croissant" data-id="1" data-name="Traditional Butter Croissant" data-price="4.50" data-img="assets/images/croissant.webp" data-desc="81 delicate layers of flaky laminated French butter dough baked to golden perfection." data-aos="fade-up" data-aos-delay="100">
+            <div class="product-image-container">
+              <span class="product-badge">BESTSELLER</span>
+              <img src="assets/images/croissant.webp" alt="Two golden French butter croissants" class="product-img" loading="lazy">
+              <button class="quick-add-btn" aria-label="Add Traditional Butter Croissant to basket" title="Add to basket">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">Traditional Butter Croissant</h3>
+              <p class="product-desc">81 layers of flaky laminated French butter dough</p>
+              <div class="product-footer">
+                <span class="product-price">$4.50</span>
+                <button class="btn-quickview" aria-label="Quick view product">Details</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product Card 2: Artisan Sourdough Boule -->
+          <article class="product-card" data-category="bread" data-id="2" data-name="Country Sourdough Boule" data-price="8.50" data-img="assets/images/sourdough.webp" data-desc="72-hour cold-fermented wild starter loaf with a caramelized blistered crust and open crumb." data-aos="fade-up" data-aos-delay="200">
+            <div class="product-image-container">
+              <span class="product-badge">SIGNATURE</span>
+              <img src="assets/images/sourdough.webp" alt="Artisan sliced country sourdough boule" class="product-img" loading="lazy">
+              <button class="quick-add-btn" aria-label="Add Country Sourdough Boule to basket" title="Add to basket">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">Country Sourdough Boule</h3>
+              <p class="product-desc">Naturally leavened crunchy blistered crust</p>
+              <div class="product-footer">
+                <span class="product-price">$8.50</span>
+                <button class="btn-quickview" aria-label="Quick view product">Details</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product Card 3: Cinnamon Brioche Roll -->
+          <article class="product-card" data-category="sweet" data-id="3" data-name="Cinnamon Brioche Swirl" data-price="5.25" data-img="assets/images/cinnamon-roll.webp" data-desc="Soft, enriched brioche dough rolled with fragrant Ceylon cinnamon and topped with bourbon glaze." data-aos="fade-up" data-aos-delay="300">
+            <div class="product-image-container">
+              <img src="assets/images/cinnamon-roll.webp" alt="Glazed artisan cinnamon brioche swirls on a plate" class="product-img" loading="lazy">
+              <button class="quick-add-btn" aria-label="Add Cinnamon Brioche Swirl to basket" title="Add to basket">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">Cinnamon Brioche Swirl</h3>
+              <p class="product-desc">Warm spices with bourbon vanilla bean glaze</p>
+              <div class="product-footer">
+                <span class="product-price">$5.25</span>
+                <button class="btn-quickview" aria-label="Quick view product">Details</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product Card 4: Pain au Chocolat -->
+          <article class="product-card" data-category="croissant" data-id="4" data-name="Pain au Chocolat" data-price="5.00" data-img="assets/images/pain-au-chocolat.webp" data-desc="Crispy, golden viennoiserie folded around two batons of premium French Valrhona dark chocolate." data-aos="fade-up" data-aos-delay="400">
+            <div class="product-image-container">
+              <img src="assets/images/pain-au-chocolat.webp" alt="Two baked golden French pain au chocolat" class="product-img" loading="lazy">
+              <button class="quick-add-btn" aria-label="Add Pain au Chocolat to basket" title="Add to basket">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">Pain au Chocolat</h3>
+              <p class="product-desc">Double Valrhona 64% bittersweet chocolate folds</p>
+              <div class="product-footer">
+                <span class="product-price">$5.00</span>
+                <button class="btn-quickview" aria-label="Quick view product">Details</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         NEW SECTION 1: THE 72-HOUR CRAFT ("The 72-hour slow craft.")
+         Step-by-step sourdough & viennoiserie process with visual timeline
+         ============================================== -->
+    <section class="process-section" id="process">
+      <div class="container">
+        <div class="section-head text-center" data-aos="fade-up">
+          <span class="section-overline">HOW WE BAKE</span>
+          <h2 class="section-title text-dark">The 72-hour slow craft.</h2>
+          <p class="section-subtitle">
+            Great bread cannot be rushed. Every loaf and viennoiserie takes three days of patience, wild levain, and French stone-hearth heat.
+          </p>
+        </div>
+
+        <!-- 4 Process Cards Grid -->
+        <div class="process-grid">
+          <!-- Step 1 -->
+          <div class="process-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="process-card-header">
+              <span class="process-step-num">01</span>
+              <span class="process-icon icon-wheat" aria-label="Wild starter wheat fermentation"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></span>
+            </div>
+            <span class="process-time-tag">Day 1 · 06:00 AM</span>
+            <h3 class="process-title">Wild Starter Feeding</h3>
+            <p class="process-desc">
+              Our 10-year-old living sourdough mother is nurtured with organic whole rye and filtered spring water to peak bubbly fermentation.
+            </p>
+            <div class="process-meta-pill">
+              <span>Active Levain: 100% Organic</span>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="process-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="process-card-header">
+              <span class="process-step-num">02</span>
+              <span class="process-icon icon-layers" aria-label="81-layer lamination dough folding"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span>
+            </div>
+            <span class="process-time-tag">Day 2 · 09:00 AM</span>
+            <h3 class="process-title">81-Layer Lamination</h3>
+            <p class="process-desc">
+              Chilled dough is folded by hand with cold Normandy cultured butter in 3 precision turns, creating 81 microscopic buttery pockets.
+            </p>
+            <div class="process-meta-pill">
+              <span>Butter Fat: 84% AOP Cream</span>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="process-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="process-card-header">
+              <span class="process-step-num">03</span>
+              <span class="process-icon icon-cold" aria-label="Overnight cold retard"><i class="fa-solid fa-snowflake" aria-hidden="true"></i></span>
+            </div>
+            <span class="process-time-tag">Day 2 · 08:00 PM</span>
+            <h3 class="process-title">Overnight Cold Retard</h3>
+            <p class="process-desc">
+              Shaped boules and pastries rest in proofing baskets for 24 hours at 4°C, letting lactic acid break down gluten and unlock deep flavor.
+            </p>
+            <div class="process-meta-pill">
+              <span>Temp: 4°C Cold Chamber</span>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="process-card highlight-step" data-aos="fade-up" data-aos-delay="400">
+            <div class="process-card-header">
+              <span class="process-step-num">04</span>
+              <span class="process-icon icon-fire" aria-label="Stone hearth baking heat"><i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i></span>
+            </div>
+            <span class="process-time-tag">Day 3 · 04:30 AM</span>
+            <h3 class="process-title">Stone Hearth Bake</h3>
+            <p class="process-desc">
+              Injected with live steam at 240°C on refractory stone plates. Crusts blister golden, crumb springs open, and the aroma fills the street.
+            </p>
+            <div class="process-meta-pill">
+              <span>Oven Temp: 240°C Stone Hearth</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Process Feature Banner -->
+        <div class="process-feature-banner" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-banner-content">
+            <span class="feature-banner-badge">Why It Matters</span>
+            <h3 class="feature-banner-title">Gentle on digestion. Rich in heritage.</h3>
+            <p class="feature-banner-text">
+              Because our sourdough ferments for 72 hours, natural wild enzymes pre-digest phytic acid and complex wheat proteins. The result is crusty, aromatic bread that won't leave you feeling bloated—just deeply nourished.
+            </p>
+            <div class="feature-banner-action">
+              <a href="#menu" class="btn btn-primary btn-pill">Taste the Difference</a>
+            </div>
+          </div>
+          <div class="feature-banner-image">
+            <img src="assets/images/cinnamon-roll.webp" alt="Artisan rustic sourdough loaves with wheat stalks" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SECTION 3: ABOUT / STORY ("A small bakery. A whole lot of heart.")
+         Exact Figma Layout: Left Arched Baker Photo + Rotating Circular Badge, Right Story & Quote
+         ============================================== -->
+    <section class="story-section" id="story">
+      <div class="container story-container">
+        <!-- Story Left: Arched Baker Photo with Floating Badge -->
+        <div class="story-media-col" data-aos="fade-right" data-aos-duration="850">
+          <div class="arch-image-frame">
+            <img src="assets/images/figma_story_baker.webp" alt="Master baker dusting flour and kneading dough at wooden bakery counter" class="arch-baker-img" loading="lazy">
+            
+            <!-- Circular Rotating Badge (Bottom Right of Arch) -->
+            <div class="story-stamp-badge" aria-hidden="true">
+              <svg class="stamp-svg" viewBox="0 0 100 100">
+                <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+                <text font-size="10.5" font-weight="700" letter-spacing="2.2" fill="#FFFFFF">
+                  <textPath href="#circlePath" startOffset="0%">
+                    • 100% ORGANIC • BAKED FRESH DAILY •
+                  </textPath>
+                </text>
+              </svg>
+              <div class="stamp-center">
+                <span class="stamp-year">EST.</span>
+                <span class="stamp-num">2018</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story Right: Text Content & Founder Quote -->
+        <div class="story-content-col" data-aos="fade-left" data-aos-duration="850">
+          <span class="section-overline text-light-muted">ABOUT OUR BAKERY</span>
+          <h2 class="section-title text-light">
+            A small bakery.<br>
+            A whole lot of heart.
+          </h2>
+          <p class="story-paragraph">
+            We wake up at 3:30 AM so you can start your day with the comforting aroma of browned butter and warm crusts. Every loaf and pastry here is shaped by genuine human hands with unhurried care.
+          </p>
+          <p class="story-paragraph">
+            From our family to your table, we believe real baking starts with locally milled heritage grains, natural wild starters, and patient cold fermentation. Zero preservatives, zero additives, and no shortcuts.
+          </p>
+          
+          <div class="story-quote-box">
+            <blockquote class="founder-quote">
+              “Real bread takes time, honest flour, and genuine care.”
+            </blockquote>
+            <div class="founder-meta">
+              <span class="founder-name">Elena Vance</span>
+              <span class="founder-role">Founder & Master Baker</span>
+            </div>
+          </div>
+
+          <div class="story-cta-row">
+            <a href="#visit" class="story-link">Discover our baking philosophy →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SECTION 4: INFINITE MARQUEE TICKER STRIP
+         Exact Figma Ticker running between sections
+         ============================================== -->
+    <div class="marquee-ticker-bar" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="ticker-item">✦ SOURDOUGH BREAD</span>
+        <span class="ticker-item">✦ CLASSIC FRENCH BAGUETTES</span>
+        <span class="ticker-item">✦ ARTISANAL PASTRIES</span>
+        <span class="ticker-item">✦ FRESH EVERY MORNING</span>
+        <span class="ticker-item">✦ 100% ORGANIC GRAINS</span>
+        <span class="ticker-item">✦ 72-HOUR SLOW FERMENTATION</span>
+        <span class="ticker-item">✦ GRASS-FED NORMANDY BUTTER</span>
+        
+        <!-- Duplicated track for continuous infinite animation -->
+        <span class="ticker-item">✦ SOURDOUGH BREAD</span>
+        <span class="ticker-item">✦ CLASSIC FRENCH BAGUETTES</span>
+        <span class="ticker-item">✦ ARTISANAL PASTRIES</span>
+        <span class="ticker-item">✦ FRESH EVERY MORNING</span>
+        <span class="ticker-item">✦ 100% ORGANIC GRAINS</span>
+        <span class="ticker-item">✦ 72-HOUR SLOW FERMENTATION</span>
+        <span class="ticker-item">✦ GRASS-FED NORMANDY BUTTER</span>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         SECTION 5: VALUE PILLARS ("Goodness in every detail.")
+         Exact Figma Layout: 3 Columns with Clean Line Icons & Typography
+         ============================================== -->
+    <section class="features-section" id="philosophy">
+      <div class="container">
+        <div class="section-head text-center" data-aos="fade-up">
+          <span class="section-overline">OUR PHILOSOPHY</span>
+          <h2 class="section-title text-dark">Goodness in every detail.</h2>
+          <p class="section-subtitle">Handcrafted with respect for time-honored artisanal traditions.</p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Feature 1: Simple Ingredients -->
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v20M12 4c-3 0-5 2.5-5 5.5s3 5.5 5 5.5M12 4c3 0 5 2.5 5 5.5s-3 5.5-5 5.5M12 11c-3.5 0-6 2.5-6 6s3.5 5 6 5M12 11c3.5 0 6 2.5 6 6s-3.5 5-6 5"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Simple, honest ingredients</h3>
+            <p class="feature-desc">
+              100% certified organic stone-ground flours, pure pasture-raised butter, and unrefined gray sea salt. Zero artificial flavors or chemical enhancers.
+            </p>
+          </div>
+
+          <!-- Feature 2: Slow Fermentation -->
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="feature-title">Slow fermentation process</h3>
+            <p class="feature-desc">
+              Our wild sourdough starters undergo up to 72 hours of slow cold proofing, producing rich flavor, a crisp caramelized crust, and natural easy digestibility.
+            </p>
+          </div>
+
+          <!-- Feature 3: Baked Fresh Daily -->
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Baked fresh daily</h3>
+            <p class="feature-desc">
+              Pulled straight from our stone hearth ovens in small batches starting before dawn, ensuring you always experience peak warmth and crispness.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         NEW SECTION 2: INGREDIENTS PROVENANCE ("Nothing hidden. Just pure nature.")
+         Traceable organic ingredients from regenerative farms
+         ============================================== -->
+    <section class="ingredients-section" id="ingredients">
+      <div class="container">
+        <div class="section-head text-center" data-aos="fade-up">
+          <span class="section-overline text-light-muted">HONEST PROVENANCE</span>
+          <h2 class="section-title text-light">Nothing hidden. Just pure nature.</h2>
+          <p class="section-subtitle text-light-muted">
+            No preservatives, no chemical dough conditioners, no industrial yeast blends. We only partner with generational family mills and certified organic farms.
+          </p>
+        </div>
+
+        <div class="ingredients-grid">
+          <!-- Ingredient Card 1: French Flour -->
+          <div class="ingredient-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="ingredient-img-wrapper">
+              <img src="assets/images/sourdough.webp" alt="Organic heritage flour dusted rustic sourdough" loading="lazy">
+              <span class="ingredient-badge">100% Organic</span>
+            </div>
+            <div class="ingredient-body">
+              <span class="ingredient-origin">📍 Auvergne, France</span>
+              <h3 class="ingredient-name">Stone-Ground T65 Wheat</h3>
+              <p class="ingredient-desc">
+                Milled slowly on volcanic granite stones to protect the live germ, natural vitamin E, and rustic golden bran.
+              </p>
+              <div class="ingredient-tag-row">
+                <span class="ing-tag">Non-GMO</span>
+                <span class="ing-tag">Unbleached</span>
+                <span class="ing-tag">Zero Bromate</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ingredient Card 2: Normandy Butter -->
+          <div class="ingredient-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="ingredient-img-wrapper">
+              <img src="assets/images/croissant.webp" alt="Golden butter croissants dusted with powdered sugar" loading="lazy">
+              <span class="ingredient-badge">AOP Certified</span>
+            </div>
+            <div class="ingredient-body">
+              <span class="ingredient-origin">📍 Charentes-Poitou, France</span>
+              <h3 class="ingredient-name">Normandy Cultured Butter</h3>
+              <p class="ingredient-desc">
+                Slowly cultured from grass-fed pasture milk with 84% butterfat. Imparts our signature nutty aroma and golden flake.
+              </p>
+              <div class="ingredient-tag-row">
+                <span class="ing-tag">84% Butterfat</span>
+                <span class="ing-tag">Grass-Fed</span>
+                <span class="ing-tag">Pasture Raised</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ingredient Card 3: 10-Year Wild Starter -->
+          <div class="ingredient-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="ingredient-img-wrapper">
+              <img src="assets/images/baker-woman.webp" alt="Shelves of artisanal crusty sourdough boules" loading="lazy">
+              <span class="ingredient-badge">Live Culture</span>
+            </div>
+            <div class="ingredient-body">
+              <span class="ingredient-origin">📍 Stackly Hearth, Est. 2018</span>
+              <h3 class="ingredient-name">10-Year Wild Starter</h3>
+              <p class="ingredient-desc">
+                Born from whole rye and natural ambient yeasts, fed twice daily with fresh spring water for unmatched complex acidity.
+              </p>
+              <div class="ingredient-tag-row">
+                <span class="ing-tag">Wild Levain</span>
+                <span class="ing-tag">Lactobacilli Rich</span>
+                <span class="ing-tag">Natural Flora</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ingredient Card 4: Valrhona Chocolate & Fruit -->
+          <div class="ingredient-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="ingredient-img-wrapper">
+              <img src="assets/images/raspberry-pie.webp" alt="Artisan raspberry pistachio layered gateau" loading="lazy">
+              <span class="ingredient-badge">Direct Trade</span>
+            </div>
+            <div class="ingredient-body">
+              <span class="ingredient-origin">📍 Tain-l'Hermitage & Local Orchards</span>
+              <h3 class="ingredient-name">Valrhona 64% & Wild Berries</h3>
+              <p class="ingredient-desc">
+                Ethically sourced Grand Cru French chocolate batons and sun-ripened berries delivered weekly from nearby family orchards.
+              </p>
+              <div class="ingredient-tag-row">
+                <span class="ing-tag">64% Cacao</span>
+                <span class="ing-tag">Direct Trade</span>
+                <span class="ing-tag">Pesticide-Free</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SECTION 6: SEASONAL SPECIAL ("Berry sweet. Only for a little while.")
+         Exact Figma Layout: Left Editorial Text + Right Round Tart Photo
+         ============================================== -->
+    <section class="seasonal-section" id="seasonal">
+      <div class="container seasonal-container">
+        <!-- Left: Seasonal Description -->
+        <div class="seasonal-content" data-aos="fade-right" data-aos-duration="850">
+          <span class="section-overline text-light-muted">SEASONAL LIMITED RELEASE</span>
+          <h2 class="section-title text-light">
+            Berry sweet.<br>
+            Only for a little while.
+          </h2>
+          <p class="seasonal-desc">
+            Hand-crafted summer raspberry & pistachio tart with wild organic berries, velvety roasted pistachio frangipane cream, nestled inside a buttery sablé pastry shell.
+          </p>
+          <div class="seasonal-meta-note">
+            <span class="seasonal-badge">Fresh Mornings Only</span>
+            <span class="seasonal-limit">Limited to 40 tarts per day</span>
+          </div>
+          <div class="seasonal-cta">
+            <a href="#menu" class="seasonal-link">Explore seasonal offerings →</a>
+          </div>
+        </div>
+
+        <!-- Right: Tart Image -->
+        <div class="seasonal-media" data-aos="fade-left" data-aos-duration="850">
+          <div class="tart-card-frame">
+            <img src="assets/images/figma_seasonal_tart.webp" alt="Fresh raspberry and pistachio tart with one slice cut out on pink plate" class="tart-img" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         NEW SECTION 3: DAILY BAKING SCHEDULE ("Hot from the hearth schedule.")
+         Live timetable of daily oven drops & batch availability
+         ============================================== -->
+    <section class="schedule-section" id="schedule">
+      <div class="container">
+        <div class="section-head text-center" data-aos="fade-up">
+          <span class="section-overline">OVEN TIMETABLE</span>
+          <h2 class="section-title text-dark">Hot from the hearth schedule.</h2>
+          <p class="section-subtitle">
+            We pull 5 distinct warm batches throughout the day so your pastry crackles and your sourdough is warm when you step in.
+          </p>
+        </div>
+
+        <!-- Schedule Filter Tabs -->
+        <div class="schedule-tabs-wrap" data-aos="fade-up" data-aos-delay="100">
+          <div class="schedule-tabs" role="tablist">
+            <button class="sched-tab active" data-day="all" role="tab" aria-selected="true">
+              <span class="sched-tab-icon">✨</span>
+              <span>All Daily Batches</span>
+            </button>
+            <button class="sched-tab" data-day="weekday" role="tab" aria-selected="false">
+              <span class="sched-tab-icon">📅</span>
+              <span>Monday – Friday</span>
+            </button>
+            <button class="sched-tab" data-day="weekend" role="tab" aria-selected="false">
+              <span class="sched-tab-icon">☀️</span>
+              <span>Saturday & Sunday</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Schedule Cards List -->
+        <div class="schedule-grid" id="scheduleList">
+          <!-- Item 1 -->
+          <div class="schedule-card" data-category="weekday weekend" data-aos="fade-up" data-aos-delay="100">
+            <div class="sched-time-col">
+              <span class="sched-clock">06:30 AM</span>
+              <span class="sched-batch-tag batch-hot">🔥 FIRST PULL</span>
+            </div>
+            <div class="sched-info-col">
+              <div class="sched-title-row">
+                <h3 class="sched-item-name">Viennoiserie & Butter Croissants</h3>
+                <span class="sched-status-badge available">● Available at Open</span>
+              </div>
+              <p class="sched-item-desc">Traditional butter croissants, Pain au Chocolat, and flaky almond swirls fresh from the stone deck.</p>
+              <div class="sched-meta-chips">
+                <span class="chip">Normandy Butter</span>
+                <span class="chip">81 Layers</span>
+                <span class="chip">Best with Espresso</span>
+              </div>
+            </div>
+            <div class="sched-action-col">
+              <a href="#menu" class="btn-sched-action">Explore Items</a>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="schedule-card highlight-card" data-category="weekday weekend" data-aos="fade-up" data-aos-delay="150">
+            <div class="sched-time-col">
+              <span class="sched-clock">08:00 AM</span>
+              <span class="sched-batch-tag batch-gold">🥖 HEARTH BREADS</span>
+            </div>
+            <div class="sched-info-col">
+              <div class="sched-title-row">
+                <h3 class="sched-item-name">Country Sourdough & French Baguettes</h3>
+                <span class="sched-status-badge popular">★ Most Popular Batch</span>
+              </div>
+              <p class="sched-item-desc">Blistered 72-hour wild levain boules, seeded rye, and traditional crusty French poolish baguettes.</p>
+              <div class="sched-meta-chips">
+                <span class="chip">100% Organic Flour</span>
+                <span class="chip">Wild Starter</span>
+                <span class="chip">Crisp Singing Crust</span>
+              </div>
+            </div>
+            <div class="sched-action-col">
+              <a href="#menu" class="btn-sched-action">Explore Items</a>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="schedule-card" data-category="weekday weekend" data-aos="fade-up" data-aos-delay="200">
+            <div class="sched-time-col">
+              <span class="sched-clock">10:30 AM</span>
+              <span class="sched-batch-tag batch-sweet">🌀 SWEET BUNS</span>
+            </div>
+            <div class="sched-info-col">
+              <div class="sched-title-row">
+                <h3 class="sched-item-name">Cinnamon Brioche Swirls & Babka</h3>
+                <span class="sched-status-badge available">● Freshly Glazed</span>
+              </div>
+              <p class="sched-item-desc">Enriched golden brioche rolled with Ceylon cinnamon, Bourbon vanilla bean glaze, and dark chocolate babka loaves.</p>
+              <div class="sched-meta-chips">
+                <span class="chip">Pasture Eggs</span>
+                <span class="chip">Ceylon Cinnamon</span>
+                <span class="chip">Vanilla Glaze</span>
+              </div>
+            </div>
+            <div class="sched-action-col">
+              <a href="#menu" class="btn-sched-action">Explore Items</a>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="schedule-card" data-category="weekday" data-aos="fade-up" data-aos-delay="250">
+            <div class="sched-time-col">
+              <span class="sched-clock">12:30 PM</span>
+              <span class="sched-batch-tag batch-savory">🫒 SAVORY OVEN</span>
+            </div>
+            <div class="sched-info-col">
+              <div class="sched-title-row">
+                <h3 class="sched-item-name">Rosemary Focaccia & Savory Galettes</h3>
+                <span class="sched-status-badge lunch">● Lunch Special</span>
+              </div>
+              <p class="sched-item-desc">Olive oil drenched sourdough focaccia studded with Maldon flake salt, fresh rosemary, and seasonal roasted garden vegetables.</p>
+              <div class="sched-meta-chips">
+                <span class="chip">Extra Virgin Olive Oil</span>
+                <span class="chip">Flaky Sea Salt</span>
+                <span class="chip">Local Herbs</span>
+              </div>
+            </div>
+            <div class="sched-action-col">
+              <a href="#menu" class="btn-sched-action">Explore Items</a>
+            </div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="schedule-card" data-category="weekend" data-aos="fade-up" data-aos-delay="300">
+            <div class="sched-time-col">
+              <span class="sched-clock">02:00 PM</span>
+              <span class="sched-batch-tag batch-gold">🍓 WEEKEND SPECIAL</span>
+            </div>
+            <div class="sched-info-col">
+              <div class="sched-title-row">
+                <h3 class="sched-item-name">Seasonal Raspberry Tarts & Eclairs</h3>
+                <span class="sched-status-badge limited">● Limited 40 Tarts</span>
+              </div>
+              <p class="sched-item-desc">Hand-assembled summer fruit tarts, Madagascar vanilla bean choux puffs, and Valrhona chocolate gateaux slices.</p>
+              <div class="sched-meta-chips">
+                <span class="chip">Fresh Organic Berries</span>
+                <span class="chip">Pistachio Frangipane</span>
+                <span class="chip">Weekend Exclusive</span>
+              </div>
+            </div>
+            <div class="sched-action-col">
+              <a href="#seasonal" class="btn-sched-action">Explore Items</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Schedule Bottom Callout Box -->
+        <div class="schedule-callout-box" data-aos="fade-up" data-aos-delay="150">
+          <div class="sched-callout-icon">🍞</div>
+          <div class="sched-callout-text">
+            <h4>Want us to hold your morning loaf?</h4>
+            <p>Our sourdough boules sell out by early afternoon. Pre-order online before 08:00 AM for guaranteed counter hold.</p>
+          </div>
+          <a href="#menu" class="btn btn-primary btn-pill">Reserve Daily Loaf</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SECTION 7: TESTIMONIAL ("A little neighborhood love.")
+         Exact Figma Layout: Centered review with 5 gold stars & quote
+         ============================================== -->
+    <section class="testimonial-section" id="reviews">
+      <div class="container">
+        <div class="testimonial-card" data-aos="zoom-in" data-aos-duration="800">
+          <span class="section-overline text-light-muted">KIND WORDS FROM OUR REGULARS</span>
+          <h2 class="section-title text-light">A little neighborhood love.</h2>
+          
+          <div class="review-stars" aria-label="Rated 5 out of 5 stars">
+            <span class="star-item" style="--star-delay: 0s">★</span>
+            <span class="star-item" style="--star-delay: 0.18s">★</span>
+            <span class="star-item" style="--star-delay: 0.36s">★</span>
+            <span class="star-item" style="--star-delay: 0.54s">★</span>
+            <span class="star-item" style="--star-delay: 0.72s">★</span>
+          </div>
+
+          <!-- Reviews Carousel Wrapper -->
+          <div class="testimonial-slider" id="testimonialSlider">
+            <!-- Slide 1 -->
+            <div class="testimonial-slide active">
+              <blockquote class="testimonial-quote">
+                “The kind of bakery that makes you look forward to mornings. Their croissants have ruined me for all others — and you can taste the dedication in every single bite.”
+              </blockquote>
+              <div class="testimonial-author-block">
+                <p class="author-name">Sarah Jenkins</p>
+                <p class="author-title">Greenpoint Resident & Daily Regular</p>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="testimonial-slide">
+              <blockquote class="testimonial-quote">
+                “The Country Sourdough has the most phenomenal crust I’ve tasted outside of Paris. Crisp, airy, sour, and stays fresh for days. We drive 20 minutes every Saturday.”
+              </blockquote>
+              <div class="testimonial-author-block">
+                <p class="author-name">Marcus & Linnea Chen</p>
+                <p class="author-title">Local Food Writers & Weekend Visitors</p>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="testimonial-slide">
+              <blockquote class="testimonial-quote">
+                “Elena and her team are true artists. Stepping in at 7:30 AM smelling the warm cinnamon buns and fresh espresso is the best part of my daily routine.”
+              </blockquote>
+              <div class="testimonial-author-block">
+                <p class="author-name">David Thorne</p>
+                <p class="author-title">Neighborhood Architect</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <div class="testimonial-controls">
+            <button class="test-nav-btn" id="testPrev" aria-label="Previous review">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <div class="test-dots" id="testDots">
+              <button class="test-dot active" data-index="0" aria-label="Slide 1"></button>
+              <button class="test-dot" data-index="1" aria-label="Slide 2"></button>
+              <button class="test-dot" data-index="2" aria-label="Slide 3"></button>
+            </div>
+            <button class="test-nav-btn" id="testNext" aria-label="Next review">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         NEW SECTION 4: CELEBRATION CAKES & CATERING ("Moments worth celebrating.")
+         Bespoke celebration gateaux, party platters & morning office pastry crates
+         ============================================== -->
+    <section class="catering-section" id="catering">
+      <div class="container">
+        <div class="catering-grid">
+          <!-- Left: Catering Content & Perks -->
+          <div class="catering-content-col" data-aos="fade-right" data-aos-duration="700">
+            <span class="section-overline">SPECIAL OCCASIONS & EVENTS</span>
+            <h2 class="section-title text-dark">
+              Made for moments<br>worth celebrating.
+            </h2>
+            <p class="catering-lead">
+              From bespoke birthday gateaux layered with wild raspberries to morning pastry crates for your studio team, our bakers craft custom orders with the same organic devotion.
+            </p>
+
+            <div class="catering-perks-list">
+              <!-- Perk 1 -->
+              <div class="catering-perk-item">
+                <div class="perk-icon-box">🎂</div>
+                <div class="perk-text-box">
+                  <h3 class="perk-title">Bespoke Artisan Gateaux</h3>
+                  <p class="perk-desc">Double Valrhona chocolate drip cakes, raspberry pistachio frangipane, and light lemon mascarpone layered cakes.</p>
+                </div>
+              </div>
+
+              <!-- Perk 2 -->
+              <div class="catering-perk-item">
+                <div class="perk-icon-box">📦</div>
+                <div class="perk-text-box">
+                  <h3 class="perk-title">Office & Studio Morning Crates</h3>
+                  <p class="perk-desc">Custom assortment crates of 12, 24, or 48 warm butter croissants, chocolate folds, and cinnamon brioche swirls.</p>
+                </div>
+              </div>
+
+              <!-- Perk 3 -->
+              <div class="catering-perk-item">
+                <div class="perk-icon-box">🌿</div>
+                <div class="perk-text-box">
+                  <h3 class="perk-title">Organic & Dietary Accommodations</h3>
+                  <p class="perk-desc">Naturally leavened sourdoughs, vegan brioches, and refined-sugar-free whole berry tarts upon request.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="catering-actions">
+              <a href="#visit" class="btn btn-primary btn-pill">Request Catering Quote</a>
+              <a href="#menu" class="btn-hero-story-link">Browse Morning Menu →</a>
+            </div>
+          </div>
+
+          <!-- Right: Visual Gallery Mosaic -->
+          <div class="catering-visual-col" data-aos="fade-left" data-aos-duration="700" data-aos-delay="150">
+            <div class="catering-mosaic">
+              <div class="mosaic-card mosaic-tall">
+                <img src="assets/images/baker-kneading.webp" alt="Master pastry chef piping delicate buttercream rosettes on artisan celebration cake" loading="lazy">
+                <div class="mosaic-badge">Handcrafted In-House</div>
+              </div>
+              <div class="mosaic-card mosaic-wide-top">
+                <img src="assets/images/baker-flour.webp" alt="Decadent artisan dark chocolate drip celebration cake with piped chocolate swirls" loading="lazy">
+                <div class="mosaic-caption">Valrhona Chocolate Gateau</div>
+              </div>
+              <div class="mosaic-card mosaic-wide-bottom">
+                <img src="assets/images/raspberry-tart.webp" alt="Fresh vanilla cupcakes with light buttercream frosting and sprinkles" loading="lazy">
+                <div class="mosaic-caption">Petite Party Sweets</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SECTION 8: JOURNAL ("Beyond the oven")
+         Exact Figma Layout: 3 Editorial Cards with Photos, Tags & Story Links
+         ============================================== -->
+    <section class="journal-section" id="journal">
+      <div class="container">
+        <div class="section-head journal-head" data-aos="fade-up">
+          <div class="head-left">
+            <span class="section-overline">STORIES & RECIPES</span>
+            <h2 class="section-title text-dark">Beyond the oven</h2>
+          </div>
+          <div class="head-right">
+            <a href="#journal" class="head-action-link">View all stories →</a>
+          </div>
+        </div>
+
+        <div class="journal-grid">
+          <!-- Article 1: Sourdough Fermentation -->
+          <article class="journal-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="journal-media">
+              <img src="assets/images/blog-kneading.webp" alt="Baker's hands kneading rustic sourdough dough on flour dusting table" class="journal-img" loading="lazy">
+            </div>
+            <div class="journal-body">
+              <div class="journal-meta">
+                <span class="journal-tag">THE CRAFT</span>
+                <span class="journal-time">5 MIN READ</span>
+              </div>
+              <h3 class="journal-title">The art of slow fermentation: why 72 hours matters</h3>
+              <p class="journal-excerpt">
+                Why rushing dough is the biggest mistake in modern breadmaking and how cold proofing unlocks digestible nutrition and deep caramel notes.
+              </p>
+              <a href="#story" class="journal-link">Read story →</a>
+            </div>
+          </article>
+
+          <!-- Article 2: Coffee & Pastry Pairings -->
+          <article class="journal-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="journal-media">
+              <img src="assets/images/blog-coffee.webp" alt="Latte art coffee cup alongside slice of cake on cafe table" class="journal-img" loading="lazy">
+            </div>
+            <div class="journal-body">
+              <div class="journal-meta">
+                <span class="journal-tag">PAIRINGS</span>
+                <span class="journal-time">3 MIN READ</span>
+              </div>
+              <h3 class="journal-title">Finding the perfect coffee companion for your morning pastry</h3>
+              <p class="journal-excerpt">
+                From floral Ethiopian pour-overs paired with butter croissants to dark roast macchiatos matching chocolate babka.
+              </p>
+              <a href="#story" class="journal-link">Read story →</a>
+            </div>
+          </article>
+
+          <!-- Article 3: Head Baker Morning Routine -->
+          <article class="journal-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="journal-media">
+              <img src="assets/images/blog-baker.webp" alt="Artisan baker checking fresh baguettes inside the bakery" class="journal-img" loading="lazy">
+            </div>
+            <div class="journal-body">
+              <div class="journal-meta">
+                <span class="journal-tag">BEHIND THE SCENES</span>
+                <span class="journal-time">4 MIN READ</span>
+              </div>
+              <h3 class="journal-title">A morning in the life of our head baker Elena Vance</h3>
+              <p class="journal-excerpt">
+                450°F stone hearth ovens, pre-dawn quiet, and the ritual of hand-dusting flours before Brooklyn awakens.
+              </p>
+              <a href="#story" class="journal-link">Read story →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         NEW SECTION 5: FREQUENTLY ASKED QUESTIONS & BREAD CARE ("Everything you want to know.")
+         Interactive accordion with sourdough storage tips, dietary notes & ordering info
+         ============================================== -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-head text-center" data-aos="fade-up">
+          <span class="section-overline">COMMON QUESTIONS</span>
+          <h2 class="section-title text-dark">Everything you want to know.</h2>
+          <p class="section-subtitle">
+            From keeping sourdough crispy at home to ingredients and same-day counter hold, here are answers from our baking team.
+          </p>
+        </div>
+
+        <div class="faq-accordion-wrap" data-aos="fade-up" data-aos-delay="150">
+          <!-- Question 1 -->
+          <div class="faq-item active">
+            <button class="faq-question" aria-expanded="true">
+              <span class="faq-q-text">How should I store my sourdough to keep the crust crispy?</span>
+              <span class="faq-toggle-icon" aria-hidden="true">−</span>
+            </button>
+            <div class="faq-answer" style="max-height: 250px;">
+              <p>
+                Keep your sourdough cut-side down on a wooden cutting board or inside a breathable linen bread bag. Never store artisan bread in plastic or the refrigerator, which draws out moisture and softens the crust. To revive a day-old loaf, sprinkle a few drops of water on the crust and reheat in a 180°C (350°F) oven for 6–8 minutes—it will taste like it was just pulled from our stone deck!
+              </p>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-q-text">Why is 72-hour cold-fermented sourdough easier to digest?</span>
+              <span class="faq-toggle-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                During our 72-hour cold proof, beneficial wild lactobacilli bacteria and live cultures break down tough gluten proteins and neutralize phytic acid. This natural enzymatic pre-digestion transforms heavy starches into absorbable nutrients, making our bread gentle on sensitive stomachs.
+              </p>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-q-text">Can I pre-order morning pastries for same-day pickup?</span>
+              <span class="faq-toggle-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Yes! You can reserve your pastries and boules directly through our online menu for same-day counter pickup. Morning batch slots fill quickly, so we recommend placing orders before 8:00 AM or the evening prior for weekend morning boxes.
+              </p>
+            </div>
+          </div>
+
+          <!-- Question 4 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-q-text">Are all your pastries made with 100% pure butter?</span>
+              <span class="faq-toggle-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Always! We exclusively use 84% butterfat AOP Beurre Charentes-Poitou from Normandy. We never use margarine, shortening, palm oils, or artificial flavorings. That rich, golden flakiness and fragrant aroma comes solely from slow-churned European grass-fed butter.
+              </p>
+            </div>
+          </div>
+
+          <!-- Question 5 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-q-text">Do you offer local neighborhood delivery?</span>
+              <span class="faq-toggle-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                We deliver fresh morning pastry crates and warm bread within a 6-mile radius of our Brooklyn storefront. Free delivery is automatically applied to all orders over $35.00! Delivery routes depart at 7:30 AM and 10:00 AM daily.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Assistance Card -->
+        <div class="faq-contact-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="faq-card-content">
+            <span class="faq-card-badge">BAKER DIRECT</span>
+            <h3 class="faq-card-title">Have a specific dietary inquiry or custom event?</h3>
+            <p class="faq-card-desc">Our head baker and hospitality team are happy to answer any questions about flours, allergens, or custom batch orders.</p>
+          </div>
+          <div class="faq-card-action">
+            <a href="#visit" class="btn btn-primary btn-pill">Visit Our Bakery</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SECTION 9: STOREFRONT ("Come for the bread. Stay for a while.")
+         Exact Figma Layout: Left Dark Green Storefront Photo, Right Address, Hours & Get Directions CTA
+         ============================================== -->
+    <section class="storefront-section" id="visit">
+      <div class="container storefront-container">
+        <!-- Left: Storefront Photo -->
+        <div class="storefront-media" data-aos="fade-right" data-aos-duration="700">
+          <div class="storefront-img-frame">
+            <img src="assets/images/storefront-green.webp" alt="Charming dark green bakery storefront with outdoor bistro table and awning" class="storefront-img" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Right: Storefront Info & Hours -->
+        <div class="storefront-content" data-aos="fade-left" data-aos-duration="700" data-aos-delay="150">
+          <span class="section-overline text-light-muted">VISIT OUR BAKERY</span>
+          <h2 class="section-title text-light">
+            Come for the bread.<br>
+            Stay for a while.
+          </h2>
+          <p class="storefront-desc">
+            Step inside our neighborhood kitchen. The smell of warm cinnamon, browned butter, and freshly pulled espresso welcomes you every morning.
+          </p>
+
+          <div class="storefront-details">
+            <!-- Location Line -->
+            <div class="detail-row">
+              <div class="detail-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#FB5022" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="detail-text">
+                <strong>142 Elmwood Ave, Brooklyn, NY 11222</strong>
+                <span>Near Greenpoint Avenue Station</span>
+              </div>
+            </div>
+
+            <!-- Hours Line -->
+            <div class="detail-row">
+              <div class="detail-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#FB5022" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="detail-text">
+                <strong>Mon – Sun: 7:00 AM – 6:00 PM</strong>
+                <span>Hearth sourdough loaves out daily at 8:00 AM</span>
+              </div>
+            </div>
+
+            <!-- Phone Line -->
+            <div class="detail-row">
+              <div class="detail-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#FB5022" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div class="detail-text">
+                <strong>+1 (718) 555-0194</strong>
+                <span>Call for today's secret bake & special orders</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="storefront-cta-row">
+            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-pill">
+              Get Directions
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SECTION 10: NEWSLETTER BANNER ("A little joy in your inbox.")
+         Exact Figma Layout: Clean Cream Banner with Subscription Input
+         ============================================== -->
+    <section class="newsletter-section">
+      <div class="container">
+        <div class="newsletter-card" data-aos="zoom-in" data-aos-duration="800">
+          <div class="newsletter-text-col">
+            <span class="section-overline">OUR NEWSLETTER</span>
+            <h3 class="newsletter-title">A little joy in your inbox.</h3>
+            <p class="newsletter-desc">Sign up for secret menu drops, home baking recipes & weekend specials.</p>
+          </div>
+          <div class="newsletter-form-col">
+            <form class="newsletter-form" id="newsletterForm" novalidate>
+              <div class="input-group">
+                <input type="email" id="newsletterEmail" class="email-input" placeholder="Enter your email address" required aria-label="Email for newsletter">
+                <button type="submit" class="btn btn-primary btn-subscribe">Subscribe</button>
+              </div>
+              <span class="form-feedback" id="newsletterFeedback"></span>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==============================================
+       SECTION 11: FOOTER
+       New Design: Forest Olive (#2D3427), Green Leaf 'S' STACKLY Logo, 4 Columns & Dark Charcoal Sub-footer (#111111)
+       ============================================== -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <!-- Col 1: Brand & Socials -->
+      <div class="footer-col footer-brand-col">
+        <a href="#hero" class="footer-brand-logo" aria-label="Stackly Home">
+          <svg class="footer-brand-mark" viewBox="0 0 24 34" fill="currentColor" aria-hidden="true">
+            <path d="M 13.5,0 C 12,2 8,7 4.5,11 C 1,15 0,17.5 1.5,20 C 3,22 8,22 12,19.5 C 9,18.5 6,17.5 6,15 C 6,12 9,7 13.5,0 Z" />
+            <path d="M 10.5,34 C 12,32 16,27 19.5,23 C 23,19 24,16.5 22.5,14 C 21,12 16,12 12,14.5 C 15,15.5 18,16.5 18,19 C 18,22 15,27 10.5,34 Z" />
+          </svg>
+          <span class="footer-brand-name">STACKLY</span>
+        </a>
+        <p class="footer-bio">
+          Your one-stop shop for fresh sourdough and daily morning essentials.
+        </p>
+        
+        <!-- Social Icons -->
+        <div class="social-links" aria-label="Social links">
+          <a href="#" class="social-btn" aria-label="Facebook" title="Facebook">
+            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-btn" aria-label="Twitter" title="Twitter">
+            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-btn" aria-label="Instagram" title="Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Quick Links -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Quick Links</h3>
+        <ul class="footer-nav">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#story">About Us</a></li>
+          <li><a href="#process">Service</a></li>
+          <li><a href="#seasonal">Blog</a></li>
+          <li><a href="#visit">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Categories -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Categories</h3>
+        <ul class="footer-nav">
+          <li><a href="#menu">Sourdough Breads</a></li>
+          <li><a href="#menu">Viennoiserie</a></li>
+          <li><a href="#menu">Sweet Brioche</a></li>
+          <li><a href="#menu">Artisan Cakes</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Contact Info -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Contact Info</h3>
+        <ul class="footer-contact-list">
+          <li class="footer-contact-item">
+            <i class="fa-solid fa-location-dot footer-contact-icon" aria-hidden="true"></i>
+            <span>142 Elmwood Ave, Brooklyn, NY</span>
+          </li>
+          <li class="footer-contact-item">
+            <i class="fa-solid fa-phone footer-contact-icon" aria-hidden="true"></i>
+            <a href="tel:+17185550194">+1 718 555 0194</a>
+          </li>
+          <li class="footer-contact-item">
+            <i class="fa-solid fa-envelope footer-contact-icon" aria-hidden="true"></i>
+            <a href="mailto:support@stacklybakery.com">support@stacklybakery.com</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright Sub-Footer -->
+    <div class="footer-bottom">
+      <div class="container footer-bottom-container">
+        <p class="copyright-text">© 2026 Stackly Bakery Co. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==============================================
+       INTERACTIVE CART SLIDE-OUT DRAWER
+       ============================================== -->
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" role="dialog" aria-label="Shopping Basket">
+    <div class="cart-drawer-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer-panel">
+      <!-- Cart Header -->
+      <div class="cart-drawer-head">
+        <div class="cart-head-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cart-head-icon">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <h3>Your Basket (<span id="cartDrawerCount">0</span>)</h3>
+        </div>
+        <button class="cart-close-btn" id="cartClose" aria-label="Close basket">✕</button>
+      </div>
+
+      <!-- Free Delivery Progress Bar -->
+      <div class="cart-shipping-notice">
+        <div class="shipping-bar-text" id="shippingBarText">Add $20.00 more for Free Morning Delivery!</div>
+        <div class="shipping-bar-track">
+          <div class="shipping-bar-fill" id="shippingBarFill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Cart Item List -->
+      <div class="cart-drawer-items" id="cartItemsList">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Cart Footer / Subtotal / Checkout -->
+      <div class="cart-drawer-foot">
+        <div class="cart-summary-row">
+          <span>Subtotal</span>
+          <strong id="cartSubtotal">$0.00</strong>
+        </div>
+        <div class="cart-summary-row text-muted">
+          <span>Estimated Taxes</span>
+          <span>Calculated at checkout</span>
+        </div>
+        <button class="btn btn-primary btn-block checkout-btn" id="checkoutBtn">
+          Proceed to Checkout • <span id="cartTotalBtn">$0.00</span>
+        </button>
+        <button class="btn-clear-cart" id="clearCartBtn">Clear basket</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==============================================
+       SEARCH MODAL
+       ============================================== -->
+  <div class="search-modal" id="searchModal" aria-hidden="true" role="dialog" aria-label="Search site">
+    <div class="search-modal-overlay" id="searchOverlay"></div>
+    <div class="search-modal-box">
+      <div class="search-input-wrapper">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Search croissants, sourdough, cinnamon rolls..." aria-label="Search bakery menu">
+        <button class="search-close-btn" id="searchClose" aria-label="Close search">✕</button>
+      </div>
+      <div class="search-results-list" id="searchResults">
+        <p class="search-hint">Type above to search our fresh morning oven menu</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       QUICK VIEW PRODUCT MODAL
+       ============================================== -->
+  <div class="quickview-modal" id="quickviewModal" aria-hidden="true" role="dialog" aria-label="Product details">
+    <div class="quickview-overlay" id="quickviewOverlay"></div>
+    <div class="quickview-dialog">
+      <button class="quickview-close" id="quickviewClose" aria-label="Close product view">✕</button>
+      <div class="quickview-body">
+        <div class="quickview-media">
+          <img id="qvImage" src="" alt="Product preview">
+        </div>
+        <div class="quickview-details">
+          <span class="qv-badge" id="qvBadge">FEATURED</span>
+          <h3 class="qv-title" id="qvTitle">Product Name</h3>
+          <p class="qv-price" id="qvPrice">$0.00</p>
+          <p class="qv-desc" id="qvDesc">Product description goes here.</p>
+          
+          <div class="qv-ingredients">
+            <strong>Key Ingredients:</strong>
+            <p id="qvIngredients">Organic flour, Normandy butter, natural levain, gray salt.</p>
+          </div>
+
+          <div class="qv-actions">
+            <div class="qv-quantity">
+              <button class="qty-btn" id="qvMinus" aria-label="Decrease quantity">−</button>
+              <span id="qvQty">1</span>
+              <button class="qty-btn" id="qvPlus" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn btn-primary btn-pill" id="qvAddBtn">Add to Basket</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Toast Notification System -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Scroll back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+  <!-- JavaScript Application -->
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
