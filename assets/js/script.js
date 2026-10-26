@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // -------------------------------------------------------------------------
   // 2. DOM CACHE
   // -------------------------------------------------------------------------
-  const header = document.getElementById('header');
+  const header = document.getElementById('siteHeader') || document.getElementById('header');
   const cartToggle = document.getElementById('cartToggle');
   const cartDrawer = document.getElementById('cartDrawer');
   const cartClose = document.getElementById('cartClose');
@@ -119,10 +119,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // -------------------------------------------------------------------------
   // 3. TOAST NOTIFICATIONS
   // -------------------------------------------------------------------------
-  function showToast(message, icon = '✦') {
+  function showToast(message, icon = '<i class="fa-solid fa-sparkles"></i>') {
     const toast = document.createElement('div');
     toast.className = 'toast';
-    toast.innerHTML = `<span style="color: var(--color-accent-gold); font-size: 1.1rem;">${icon}</span> <span>${message}</span>`;
+    toast.innerHTML = `<span style="color: var(--color-accent-gold); font-size: 1.1rem; display:inline-flex; align-items:center;">${icon}</span> <span>${message}</span>`;
     toastContainer.appendChild(toast);
 
     setTimeout(() => {
@@ -155,14 +155,14 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     saveCart();
-    showToast(`Added ${quantity}x "${product.name}" to basket!`, '🛒');
+    showToast(`Added ${quantity}x "${product.name}" to basket!`, '<i class="fa-solid fa-cart-shopping"></i>');
     openCart();
   }
 
   function removeFromCart(productId) {
     state.cart = state.cart.filter(item => item.id !== productId);
     saveCart();
-    showToast('Item removed from basket', '✕');
+    showToast('Item removed from basket', '<i class="fa-solid fa-trash-can"></i>');
   }
 
   function updateQuantity(productId, delta) {
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (state.cart.length === 0) return;
     state.cart = [];
     saveCart();
-    showToast('Basket cleared', '🗑️');
+    showToast('Basket cleared', '<i class="fa-solid fa-trash-can"></i>');
   }
 
   function updateCartUI() {
@@ -199,21 +199,17 @@ document.addEventListener('DOMContentLoaded', () => {
     shippingBarFill.style.width = `${progress}%`;
 
     if (subtotal >= state.freeShippingThreshold) {
-      shippingBarText.innerHTML = '🎉 You unlocked <strong>Free Morning Delivery</strong>!';
+      shippingBarText.innerHTML = '<i class="fa-solid fa-truck-fast"></i> You unlocked <strong>Free Morning Delivery</strong>!';
     } else {
       const remaining = state.freeShippingThreshold - subtotal;
-      shippingBarText.innerHTML = `Add <strong>$${remaining.toFixed(2)}</strong> more for Free Delivery!`;
+      shippingBarText.innerHTML = `<i class="fa-solid fa-truck-fast"></i> Add <strong>$${remaining.toFixed(2)}</strong> more for Free Delivery!`;
     }
 
     // Render items
     if (state.cart.length === 0) {
       cartItemsList.innerHTML = `
         <div class="cart-empty-message">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="cart-empty-icon">
-            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <path d="M16 10a4 4 0 0 1-8 0"></path>
-          </svg>
+          <i class="fa-solid fa-bag-shopping cart-empty-icon" style="font-size: 2.2rem; color: var(--color-accent-gold); margin-bottom: 0.65rem; display: inline-block;"></i>
           <p style="font-weight: 700; margin-bottom: 0.35rem; color: var(--text-dark-primary);">Your basket is empty</p>
           <p style="font-size: 0.82rem;">Explore our fresh morning pastries and add some warm joy.</p>
         </div>
@@ -227,11 +223,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="cart-item-price">$${(item.price * item.quantity).toFixed(2)} <span style="font-size:0.75rem; font-weight:normal; color:#888;">($${item.price.toFixed(2)} ea)</span></span>
             <div class="cart-item-actions">
               <div class="cart-qty-ctrl">
-                <button class="cart-qty-btn cart-dec-btn" aria-label="Decrease quantity" data-id="${item.id}">−</button>
+                <button class="cart-qty-btn cart-dec-btn" aria-label="Decrease quantity" data-id="${item.id}"><i class="fa-solid fa-minus"></i></button>
                 <span class="cart-qty-val">${item.quantity}</span>
-                <button class="cart-qty-btn cart-inc-btn" aria-label="Increase quantity" data-id="${item.id}">+</button>
+                <button class="cart-qty-btn cart-inc-btn" aria-label="Increase quantity" data-id="${item.id}"><i class="fa-solid fa-plus"></i></button>
               </div>
-              <button class="cart-item-remove" data-id="${item.id}">Remove</button>
+              <button class="cart-item-remove" data-id="${item.id}"><i class="fa-solid fa-trash-can"></i> Remove</button>
             </div>
           </div>
         </div>
@@ -257,17 +253,8 @@ document.addEventListener('DOMContentLoaded', () => {
   cartOverlay.addEventListener('click', closeCart);
   clearCartBtn.addEventListener('click', clearCart);
 
-  checkoutBtn.addEventListener('click', () => {
-    if (state.cart.length === 0) {
-      showToast('Please add items to your basket before checkout!', '⚠️');
-      return;
-    }
-    showToast('Redirecting to secure bakery checkout...', '🥖');
-    setTimeout(() => {
-      alert(`Thank you for ordering with Kneadly!\n\nTotal: ${cartSubtotal.textContent}\nFresh morning delivery scheduled for 8:00 AM.`);
-      clearCart();
-      closeCart();
-    }, 600);
+  checkoutBtn.addEventListener('click', (e) => {
+    window.location.href = 'catalogue.html';
   });
 
   cartItemsList.addEventListener('click', (e) => {
@@ -335,12 +322,12 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Click on details or card
+    // Click on details button -> Open Quick View modal
     const detailsBtn = card.querySelector('.btn-quickview');
-    if (detailsBtn && prod) {
+    if (detailsBtn) {
       detailsBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        openQuickView(prod);
+        if (prod) openQuickView(prod);
       });
     }
 
@@ -354,10 +341,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const prodNext = document.getElementById('prodNext');
   if (prodPrev && prodNext) {
     prodPrev.addEventListener('click', () => {
-      showToast('Showing previous bakery selections', '←');
+      showToast('Showing previous bakery selections', '<i class="fa-solid fa-chevron-left"></i>');
     });
     prodNext.addEventListener('click', () => {
-      showToast('Showing next freshly baked picks', '→');
+      showToast('Showing next freshly baked picks', '<i class="fa-solid fa-chevron-right"></i>');
     });
   }
 
@@ -524,22 +511,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // -------------------------------------------------------------------------
   // 9. MOBILE MENU DRAWER
   // -------------------------------------------------------------------------
-  mobileToggle.addEventListener('click', () => {
-    const isOpen = mobileDrawer.classList.toggle('open');
-    mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  });
-
-  document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileDrawer.classList.remove('open');
-      mobileToggle.setAttribute('aria-expanded', 'false');
+  if (mobileToggle && mobileDrawer) {
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = mobileDrawer.classList.toggle('open');
+      mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      mobileToggle.classList.toggle('active', isOpen);
     });
-  });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDrawer.classList.remove('open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileToggle.classList.remove('active');
+      });
+    });
+  }
 
   // -------------------------------------------------------------------------
   // 10. STICKY HEADER & SCROLL BEHAVIOR
   // -------------------------------------------------------------------------
-  window.addEventListener('scroll', () => {
+  const handleScroll = () => {
     if (window.scrollY > 40) {
       header.classList.add('scrolled');
     } else {
@@ -551,7 +542,10 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       backToTop.classList.remove('visible');
     }
-  }, { passive: true });
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
 
   backToTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -560,28 +554,62 @@ document.addEventListener('DOMContentLoaded', () => {
   // -------------------------------------------------------------------------
   // 11. NEWSLETTER SUBMISSION
   // -------------------------------------------------------------------------
-  newsletterForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = newsletterEmail.value.trim();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (newsletterForm && newsletterEmail) {
+    const inputGroup = newsletterEmail.closest('.input-group');
 
-    if (!emailRegex.test(email)) {
-      newsletterFeedback.textContent = 'Please enter a valid email address.';
-      newsletterFeedback.className = 'form-feedback error';
-      newsletterEmail.focus();
-      return;
-    }
+    newsletterEmail.addEventListener('input', () => {
+      newsletterEmail.classList.remove('is-invalid');
+      if (inputGroup) inputGroup.classList.remove('is-invalid');
+      if (newsletterFeedback) {
+        newsletterFeedback.textContent = '';
+        newsletterFeedback.className = 'form-feedback';
+      }
+    });
 
-    newsletterFeedback.textContent = 'Welcome! You’re on the list for weekly bakery drops & secret recipes.';
-    newsletterFeedback.className = 'form-feedback success';
-    newsletterEmail.value = '';
-    showToast('Subscribed! Check your inbox for 10% off your first order.', '💌');
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = newsletterEmail.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    setTimeout(() => {
-      newsletterFeedback.textContent = '';
-      newsletterFeedback.className = 'form-feedback';
-    }, 5000);
-  });
+      if (!email) {
+        newsletterEmail.classList.add('is-invalid');
+        if (inputGroup) inputGroup.classList.add('is-invalid');
+        if (newsletterFeedback) {
+          newsletterFeedback.textContent = 'Email is required';
+          newsletterFeedback.className = 'form-feedback error';
+        }
+        newsletterEmail.focus();
+        return;
+      }
+
+      if (!emailRegex.test(email)) {
+        newsletterEmail.classList.add('is-invalid');
+        if (inputGroup) inputGroup.classList.add('is-invalid');
+        if (newsletterFeedback) {
+          newsletterFeedback.textContent = 'Please enter a valid email';
+          newsletterFeedback.className = 'form-feedback error';
+        }
+        newsletterEmail.focus();
+        return;
+      }
+
+      newsletterEmail.classList.remove('is-invalid');
+      if (inputGroup) inputGroup.classList.remove('is-invalid');
+      if (newsletterFeedback) {
+        newsletterFeedback.textContent = 'Welcome! You’re on the list for weekly bakery drops & secret recipes.';
+        newsletterFeedback.className = 'form-feedback success';
+      }
+      newsletterEmail.value = '';
+      showToast('Subscribed! Check your inbox for 10% off your first order.', '<i class="fa-solid fa-envelope"></i>');
+
+      setTimeout(() => {
+        if (newsletterFeedback) {
+          newsletterFeedback.textContent = '';
+          newsletterFeedback.className = 'form-feedback';
+        }
+      }, 5000);
+    });
+  }
 
   // -------------------------------------------------------------------------
   // 12. ESC KEY TO CLOSE MODALS
@@ -709,10 +737,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 180);
   }
 
-  heroTastingTabs.forEach(tab => {
+  heroTastingTabs.forEach((tab, index) => {
     tab.addEventListener('click', () => {
-      const idx = parseInt(tab.dataset.index, 10);
-      setHeroShowcase(idx);
+      setHeroShowcase(index);
       resetHeroAutoTimer();
     });
   });
@@ -802,7 +829,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const otherIcon = otherItem.querySelector('.faq-toggle-icon');
           if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
           if (otherAns) otherAns.style.maxHeight = null;
-          if (otherIcon) otherIcon.textContent = '+';
+          if (otherIcon) otherIcon.innerHTML = '<i class="fa-solid fa-plus"></i>';
         }
       });
 
@@ -811,12 +838,12 @@ document.addEventListener('DOMContentLoaded', () => {
         item.classList.remove('active');
         questionBtn.setAttribute('aria-expanded', 'false');
         answer.style.maxHeight = null;
-        if (icon) icon.textContent = '+';
+        if (icon) icon.innerHTML = '<i class="fa-solid fa-plus"></i>';
       } else {
         item.classList.add('active');
         questionBtn.setAttribute('aria-expanded', 'true');
         answer.style.maxHeight = (answer.scrollHeight + 30) + 'px';
-        if (icon) icon.textContent = '−';
+        if (icon) icon.innerHTML = '<i class="fa-solid fa-minus"></i>';
       }
     });
   });
