@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us &bull; Stackly Artisan Bakery</title>
+  <meta name="description" content="Good things. Made with heart. Learn the story, craft, and heritage behind Stackly Bakery in Williamsburg, Brooklyn.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fb5022'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z'/></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans (Headings & Body) & Playfair Display (Serif Quotes) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <!-- Animate.css via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <!-- Common Navbar Stylesheet -->
+  <link rel="stylesheet" href="assets/css/navbar.css">
+
+  <!-- Preloader Stylesheet -->
+  <link rel="stylesheet" href="assets/css/preloader.css">
+
+  <!-- About Stylesheet -->
+  <link rel="stylesheet" href="assets/css/about.css?v=4">
+
+  <style>
+    .visit-feedback {
+      display: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+    .visit-feedback.error {
+      display: block !important;
+      color: #EF4444 !important;
+    }
+    .visit-feedback.active {
+      display: block !important;
+      color: #4ADE80 !important;
+    }
+    .visit-input.is-invalid {
+      border-color: #EF4444 !important;
+      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==============================================
+       PRELOADER: ARTISAN STONE HEARTH ANIMATION
+       ============================================== -->
+  <div class="site-preloader" id="sitePreloader" role="status" aria-live="polite" aria-label="Loading Stackly Bakery">
+    <div class="preloader-backdrop"></div>
+    <div class="preloader-content">
+      <!-- Animated Oven Hearth & Croissant -->
+      <div class="preloader-icon-wrap">
+        <div class="preloader-glow-ring"></div>
+        <svg class="preloader-croissant" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path class="croissant-body" d="M12 40C10 35 11 29 16 23C22.5 16 34 13 44 16.5C52.5 19.5 57 26 57.5 32C58 37 54.5 41 50 40.5C43 39.5 35.5 35.5 28 35.5C20.5 35.5 14.5 40.5 12 40Z" />
+          <path class="croissant-fold fold-1" d="M21 22.5C23.5 27.5 24 33.5 22.5 38" />
+          <path class="croissant-fold fold-2" d="M33 17C35.5 23 35.5 30.5 33 35.5" />
+          <path class="croissant-fold fold-3" d="M44.5 19.5C46.5 24.5 46 30.5 44 35" />
+        </svg>
+        <div class="preloader-steam-wrap" aria-hidden="true">
+          <span class="steam-particle steam-1"></span>
+          <span class="steam-particle steam-2"></span>
+          <span class="steam-particle steam-3"></span>
+        </div>
+      </div>
+
+      <!-- Brand Identity -->
+      <div class="preloader-brand">
+        <h2 class="preloader-title">Stackly<span class="preloader-dot">.</span></h2>
+        <span class="preloader-subtitle">ARTISAN STONE HEARTH · EST. 2018</span>
+      </div>
+
+      <!-- Animated Progress Line & Status -->
+      <div class="preloader-progress-box">
+        <div class="preloader-progress-track">
+          <div class="preloader-progress-fill" id="preloaderBar"></div>
+        </div>
+        <div class="preloader-status-text" id="preloaderStatus">Warming stone deck hearth...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       SITE HEADER (COMMON NAVBAR)
+       ============================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <!-- Logo: Stackly 006 Logo -->
+      <a href="index.html" class="brand-logo" aria-label="Stackly Home">
+        <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="brand-logo-img" width="111" height="50">
+      </a>
+
+      <!-- Center Nav Links: Home, Catalogue, About us, Contact, Blog -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="catalogue.html" class="nav-link">Catalogue</a></li>
+          <li><a href="about.html" class="nav-link active" aria-current="page">About us</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Header Actions: Shopping Bag + Login Button + Mobile Toggle -->
+      <div class="header-actions">
+        <!-- Shopping Bag Icon Button -->
+        <button class="action-btn-bag" id="cartToggle" aria-label="View shopping basket" title="Cart">
+          <i class="fa-solid fa-bag-shopping header-bag-icon" aria-hidden="true"></i>
+          <span class="cart-badge-dot active" id="cartDot"></span>
+        </button>
+
+        <!-- Login Button -->
+        <a href="login.html" class="btn-header-login">LOGIN</a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-nav-drawer" id="mobileDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="catalogue.html" class="mobile-nav-link">Catalogue</a></li>
+        <li><a href="about.html" class="mobile-nav-link active">About us</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+        <li><a href="blog.html" class="mobile-nav-link">Blog</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="login.html" class="btn-header-login btn-block text-center" style="display:block; text-align:center;">LOGIN</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==============================================
+       SECTION 1: HERO & IMPACT METRICS ("Good things. Made with heart.")
+       Background: Deep Dark Espresso (#220C07)
+       ============================================== -->
+  <section class="about-hero-section">
+    <div class="about-container">
+      <div class="about-hero-grid">
+        <!-- Hero Left: Typography & Actions -->
+        <div class="hero-content" data-aos="fade-right" data-aos-duration="850">
+          <span class="hero-eyebrow">
+            <i class="fa-solid fa-wheat-awn"></i> Our story &amp; craft &bull; Williamsburg, Brooklyn
+          </span>
+          <h1 class="hero-headline">
+            Good things.<br>
+            Made with<br>
+            <span class="text-accent-orange">heart.</span>
+          </h1>
+          <p class="hero-desc">
+            We’re a neighborhood bakery born from a simple belief: that real bread, honest pastry, and genuine warmth can turn an ordinary morning into something extraordinary.
+          </p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="404.html" class="btn-orange-pill">
+              <span>Read Our Story</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="404.html" class="btn-outline-pill">
+              <span>Daily Bakes</span>
+              <i class="fa-solid fa-bread-slice"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Right: Roman Arch Frame with Croissant Stack & Floating Badge -->
+        <div class="hero-visual-wrap" data-aos="fade-left" data-aos-duration="850">
+          <div class="hero-arch-card">
+            <img src="assets/images/about_hero_croissants.webp" alt="Stack of golden artisan butter croissants on marble counter" class="hero-arch-img">
+            
+            <!-- Circular Floating Orange Badge -->
+            <button class="hero-floating-badge animate__animated animate__pulse animate__infinite" aria-label="Learn about our story">
+              <span>SINCE<br>2018</span>
+            </button>
+          </div>
+          <p class="hero-visual-caption">Hand-rolled butter croissants, fresh from the oven at 7:00 AM.</p>
+        </div>
+      </div>
+
+      <!-- Impact Metrics Strip -->
+      <div class="about-metrics-strip" data-aos="fade-up" data-aos-duration="750">
+        <div class="metric-item" data-aos="fade-up" data-aos-delay="100">
+          <span class="metric-number">100%</span>
+          <span class="metric-label">Organic Heritage Grains</span>
+          <span class="metric-sub">Stoneground fresh by regional NY mills</span>
+        </div>
+        <div class="metric-item" data-aos="fade-up" data-aos-delay="200">
+          <span class="metric-number">72h</span>
+          <span class="metric-label">Slow Cold Fermentation</span>
+          <span class="metric-sub">Wild levain for deep gut-friendly flavor</span>
+        </div>
+        <div class="metric-item" data-aos="fade-up" data-aos-delay="300">
+          <span class="metric-number">81</span>
+          <span class="metric-label">Hand-Folded Layers</span>
+          <span class="metric-sub">Pure French Normandy cultured butter</span>
+        </div>
+        <div class="metric-item" data-aos="fade-up" data-aos-delay="400">
+          <span class="metric-number">2,400+</span>
+          <span class="metric-label">Daily Hearth Bakes</span>
+          <span class="metric-sub">Pulled warm from stone deck ovens</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 2: HERITAGE & ORIGINS ("A love of baking. A little goodness, every day.")
+       Background: Deep Dark Espresso (#220C07)
+       ============================================== -->
+  <section class="heritage-section" id="heritage">
+    <div class="about-container">
+      <div class="heritage-grid">
+        <!-- Left: Bakery Shelves Photography -->
+        <div class="heritage-media-wrap" data-aos="fade-right" data-aos-duration="850">
+          <div class="heritage-img-frame">
+            <img src="assets/images/about_bakery_shelves.webp" alt="Rustic Brooklyn bakery interior with wooden shelves loaded with sourdough boules" class="heritage-img">
+          </div>
+          <span class="heritage-caption">Our original Berry Street bakery &amp; hearth, Williamsburg.</span>
+        </div>
+
+        <!-- Right: Story Copy -->
+        <div class="heritage-content" data-aos="fade-left" data-aos-duration="850">
+          <span class="heritage-eyebrow">Where it all began</span>
+          <h2 class="heritage-headline">
+            A love of baking.<br>
+            A little goodness,<br>
+            every day.
+          </h2>
+          <p class="heritage-text">
+            Stackly started in 2018 with a single stone deck oven, twenty sacks of organic heritage flour, and an unwavering obsession with slow fermentation.
+          </p>
+          <p class="heritage-text">
+            We wanted to create a bakery that felt like a natural extension of home—where flour dust dances in morning sunbeams, where neighbors know each other by name, and where every loaf has an honest soul.
+          </p>
+          <a href="404.html" class="heritage-link">
+            Meet our craft team &bull; Elena, Julian &amp; makers <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Milestone Timeline Strip -->
+      <div class="heritage-timeline-wrap">
+        <div class="timeline-title-wrap" data-aos="fade-up">
+          <span class="heritage-eyebrow">Our Milestones</span>
+          <h3 style="font-size: 2.1rem; font-weight: 800; color: #fff; margin-top: 0.5rem;">How our hearth has grown</h3>
+        </div>
+        <div class="timeline-grid">
+          <div class="timeline-card" data-aos="fade-up" data-aos-delay="100">
+            <span class="timeline-year-badge"><i class="fa-solid fa-fire"></i> 2018</span>
+            <h4 class="timeline-heading">The Berry St. Hearth</h4>
+            <p class="timeline-desc">Opened our doors on Berry Street with one stone deck oven and lines wrapping around the block before dawn.</p>
+          </div>
+          <div class="timeline-card" data-aos="fade-up" data-aos-delay="200">
+            <span class="timeline-year-badge"><i class="fa-solid fa-seedling"></i> 2020</span>
+            <h4 class="timeline-heading">Wild Mother Levain 'Flora'</h4>
+            <p class="timeline-desc">Cultured our signature 100% rye sourdough starter, fed twice daily in a humidity-controlled cedar room.</p>
+          </div>
+          <div class="timeline-card" data-aos="fade-up" data-aos-delay="300">
+            <span class="timeline-year-badge"><i class="fa-solid fa-tractor"></i> 2023</span>
+            <h4 class="timeline-heading">Hudson Valley Grain Collective</h4>
+            <p class="timeline-desc">Transitioned 100% of our flours to direct-trade partnerships with regenerative grain growers across New York.</p>
+          </div>
+          <div class="timeline-card" data-aos="fade-up" data-aos-delay="400">
+            <span class="timeline-year-badge"><i class="fa-solid fa-bread-slice"></i> 2026</span>
+            <h4 class="timeline-heading">2 Hearth Pulls &amp; Bread Club</h4>
+            <p class="timeline-desc">Expanding to two fresh daily deck pulls at 7:00 AM and 2:00 PM, serving over 1,200 neighborhood club members.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 3: MEET OUR MASTER BAKERS & CRAFT ARTISANS
+       Background: Dark Espresso Surface (#2C120A)
+       ============================================== -->
+  <section class="team-section" id="team">
+    <div class="about-container">
+      <div class="team-header-wrap" data-aos="fade-up">
+        <span class="hero-eyebrow">The Hands Behind Every Loaf</span>
+        <h2 style="font-size: 2.85rem; font-weight: 800; color: #fff; line-height: 1.15; letter-spacing: -0.03em; margin: 0.6rem 0 1.25rem;">
+          Meet the craftspeople who wake before the sun.
+        </h2>
+        <p style="font-size: 1.05rem; line-height: 1.68; color: var(--text-dark-muted);">
+          True artisan baking is an act of devotion. Meet the founders, sourdough alchemists, and pastry perfectionists behind every single bake.
+        </p>
+      </div>
+
+      <div class="team-grid">
+        <!-- Team Member 1: Elena Vance -->
+        <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="team-card-media">
+            <img src="assets/images/about_baker_pulling_oven.webp" alt="Elena Vance smiling at the stone hearth deck oven" class="team-card-img" loading="lazy">
+            <span class="team-card-badge">Stone Deck Lead</span>
+          </div>
+          <div class="team-card-body">
+            <span class="team-member-role">Co-Founder &bull; Head Sourdough Baker</span>
+            <h3 class="team-member-name">Elena Vance</h3>
+            <p class="team-member-bio">Apprenticed in Lyon and the French Basque country before constructing our Williamsburg stone hearths.</p>
+            <blockquote class="team-member-quote">
+              &ldquo;Bread is alive. You don't master it—you learn to listen to its rhythm.&rdquo;
+            </blockquote>
+          </div>
+        </div>
+
+        <!-- Team Member 2: Julian Cole -->
+        <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="team-card-media">
+            <img src="assets/images/about_chef_julian.webp" alt="Julian Cole at marble pastry counter" class="team-card-img" loading="lazy">
+            <span class="team-card-badge">Viennoiserie Master</span>
+          </div>
+          <div class="team-card-body">
+            <span class="team-member-role">Co-Founder &bull; Executive Pastry Chef</span>
+            <h3 class="team-member-name">Julian Cole</h3>
+            <p class="team-member-bio">Graduate of Ferrandi Paris. Spent a decade perfecting 81-layer croissant lamination and browned-butter crumb.</p>
+            <blockquote class="team-member-quote">
+              &ldquo;Lamination is precision geometry made edible. 81 layers of butter and steam.&rdquo;
+            </blockquote>
+          </div>
+        </div>
+
+        <!-- Team Member 3: Clara Dupont -->
+        <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="team-card-media">
+            <img src="assets/images/baker-woman.webp" alt="Clara Dupont arranging freshly baked pastries" class="team-card-img" loading="lazy">
+            <span class="team-card-badge">Seasonal Patisserie</span>
+          </div>
+          <div class="team-card-body">
+            <span class="team-member-role">Head of Viennoiserie &bull; Patissier</span>
+            <h3 class="team-member-name">Clara Dupont</h3>
+            <p class="team-member-bio">Curates our seasonal fruit galettes, folding stone fruits and wild Hudson Valley berries into crisp rough-puff pastry.</p>
+            <blockquote class="team-member-quote">
+              &ldquo;Nature dictates our bakes. When apricots peak, we fold them into pastry.&rdquo;
+            </blockquote>
+          </div>
+        </div>
+
+        <!-- Team Member 4: Marcus & Linnea Thorne -->
+        <div class="team-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="team-card-media">
+            <img src="assets/images/testimonial-marcus-linnea-new.webp" alt="Marcus and Linnea smiling at bakery cafe table" class="team-card-img" loading="lazy">
+            <span class="team-card-badge">Hospitality &bull; Coffee</span>
+          </div>
+          <div class="team-card-body">
+            <span class="team-member-role">Cafe Curators &bull; Coffee Roasters</span>
+            <h3 class="team-member-name">Marcus &amp; Linnea</h3>
+            <p class="team-member-bio">Pairing our warm oven bakes with single-origin pour-overs roasted specifically to balance sourdough acidity.</p>
+            <blockquote class="team-member-quote">
+              &ldquo;A quiet pastry pause is the simplest, most grounding luxury in New York.&rdquo;
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 4: THE 4-STAGE HEARTH BAKING RITUAL
+       Background: Warm Sourdough Cream (#FAF5EE)
+       ============================================== -->
+  <section class="process-section" id="process">
+    <div class="about-container">
+      <div class="process-header-wrap" data-aos="fade-up">
+        <span class="rituals-eyebrow">How We Bake</span>
+        <h2 style="font-size: 2.85rem; font-weight: 800; color: var(--text-dark); line-height: 1.15; letter-spacing: -0.03em; margin: 0.6rem 0 1.25rem;">
+          Patience, precision, and 500&deg; stone heat.
+        </h2>
+        <p style="font-size: 1.05rem; line-height: 1.68; color: var(--text-light-muted);">
+          No industrial speed racks or dough conditioners. Every single loaf spends three full days transforming under the baker's care.
+        </p>
+      </div>
+
+      <div class="process-grid">
+        <!-- Step 1 -->
+        <div class="process-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="process-card-step">
+            <span>01</span>
+            <div class="process-card-icon"><i class="fa-solid fa-seedling"></i></div>
+          </div>
+          <h3 class="process-card-title">Levain Awakening</h3>
+          <p class="process-card-desc">
+            Fed twice daily with organic stoneground rye flour and natural spring water, our wild starter 'Flora' develops deep lactic complexity.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="process-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="process-card-step">
+            <span>02</span>
+            <div class="process-card-icon"><i class="fa-solid fa-snowflake"></i></div>
+          </div>
+          <h3 class="process-card-title">72-Hour Cold Sleep</h3>
+          <p class="process-card-desc">
+            Dough rests at 4&deg;C in cedar proofing chillers. Enzymes break starches down into digestible sugars, eliminating the need for preservatives.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="process-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="process-card-step">
+            <span>03</span>
+            <div class="process-card-icon"><i class="fa-solid fa-hands"></i></div>
+          </div>
+          <h3 class="process-card-title">Hand Lamination</h3>
+          <p class="process-card-desc">
+            Normandy cultured butter blocks are hand-folded and turned three times on chilled marble tables to create exactly 81 crisp layers.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="process-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="process-card-step">
+            <span>04</span>
+            <div class="process-card-icon"><i class="fa-solid fa-fire-burner"></i></div>
+          </div>
+          <h3 class="process-card-title">Stone Deck Steam Bake</h3>
+          <p class="process-card-desc">
+            Loaded on 500&deg;F refractory stone hearth decks with high-pressure steam pulses for a blistered golden ear and glass-shatter crust.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 5: CRAFT PHILOSOPHY & PURITY MANIFESTO ("Goodness in every detail.")
+       Background: Deep Dark Espresso (#220C07)
+       ============================================== -->
+  <section class="craft-section" id="craft">
+    <div class="about-container">
+      <!-- Top 2 Columns -->
+      <div class="craft-top-grid">
+        <!-- Left: Rolling Croissant Dough Photo -->
+        <div class="craft-media-wrap" data-aos="fade-right" data-aos-duration="850">
+          <div class="craft-img-frame">
+            <img src="assets/images/about_shaping_croissant.webp" alt="Baker hands rolling laminated croissant dough triangles on wooden flour bench" class="craft-img">
+          </div>
+          <span style="font-size: 0.82rem; color: var(--text-dark-subtle); font-style: italic;">Hand-shaping 81-layer croissant dough triangles at 5:00 AM.</span>
+        </div>
+
+        <!-- Right: Manifesto & Quote -->
+        <div class="craft-content" data-aos="fade-left" data-aos-duration="850">
+          <span class="craft-eyebrow">Purity &amp; Sourcing</span>
+          <h2 class="craft-headline">
+            Goodness in<br>
+            every detail.
+          </h2>
+          <p class="craft-desc">
+            We refuse shortcuts. No commercial dough conditioners, no artificial flavorings, and no rushed proofs. We source wild, unbleached flours from regenerative New York state grain growers and cultured churned butter from family farms in Normandy.
+          </p>
+          <blockquote class="craft-quote">
+            &ldquo;True craftsmanship is doing things the right way even when nobody is watching.&rdquo;
+          </blockquote>
+        </div>
+      </div>
+
+      <!-- Bottom 3 Pillars Cards Row -->
+      <div class="pillars-grid">
+        <div class="pillar-card" data-aos="fade-up" data-aos-delay="100">
+          <div style="font-size: 1.5rem; color: var(--color-orange); margin-bottom: 0.5rem;"><i class="fa-solid fa-wheat-awn"></i></div>
+          <h3 class="pillar-card-title">Simple, Honest Ingredients</h3>
+          <p class="pillar-card-desc">
+            Four elements: flour, water, salt, and wild levain starter. No additives, bleaching agents, or commercial conditioners, ever.
+          </p>
+        </div>
+        <div class="pillar-card" data-aos="fade-up" data-aos-delay="200">
+          <div style="font-size: 1.5rem; color: var(--color-orange); margin-bottom: 0.5rem;"><i class="fa-solid fa-clock-rotate-left"></i></div>
+          <h3 class="pillar-card-title">Patience, Baked Together</h3>
+          <p class="pillar-card-desc">
+            Up to 72 hours of cold fermentation allows complex sugars to bloom naturally into deep, digestible flavor and wild open crumb.
+          </p>
+        </div>
+        <div class="pillar-card" data-aos="fade-up" data-aos-delay="300">
+          <div style="font-size: 1.5rem; color: var(--color-orange); margin-bottom: 0.5rem;"><i class="fa-solid fa-fire"></i></div>
+          <h3 class="pillar-card-title">Fresh Daily, Hand &amp; Soul</h3>
+          <p class="pillar-card-desc">
+            Every single loaf, tart, and pastry is hand-shaped and pulled warm from our stone hearth decks before dawn and again at 2:00 PM.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 6: DAILY SELECTION & LIVE OVEN SCHEDULE ("A little something for every kind of moment.")
+       Background: Deep Dark Espresso (#220C07)
+       ============================================== -->
+  <section class="selection-section" id="selection">
+    <div class="about-container">
+      <!-- Live Oven Pull Schedule Bar -->
+      <div class="schedule-ticker-strip" data-aos="fade-up">
+        <div class="schedule-card">
+          <div class="schedule-badge-icon"><i class="fa-solid fa-sun"></i></div>
+          <div>
+            <div class="schedule-time">07:00 AM</div>
+            <div class="schedule-label">Dawn Hearth Pull</div>
+            <div class="schedule-items">Butter Croissants &bull; Baguettes &bull; Pain au Chocolat</div>
+          </div>
+        </div>
+        <div class="schedule-card">
+          <div class="schedule-badge-icon"><i class="fa-solid fa-bread-slice"></i></div>
+          <div>
+            <div class="schedule-time">08:30 AM</div>
+            <div class="schedule-label">Sourdough Pull #1</div>
+            <div class="schedule-items">Country Sourdough Boules &bull; Spelt Loaves</div>
+          </div>
+        </div>
+        <div class="schedule-card">
+          <div class="schedule-badge-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+          <div>
+            <div class="schedule-time">11:30 AM</div>
+            <div class="schedule-label">Midday Pastries</div>
+            <div class="schedule-items">Cinnamon Swirls &bull; Rosemary Focaccia &bull; Brioche</div>
+          </div>
+        </div>
+        <div class="schedule-card">
+          <div class="schedule-badge-icon"><i class="fa-solid fa-mug-hot"></i></div>
+          <div>
+            <div class="schedule-time">02:00 PM</div>
+            <div class="schedule-label">Afternoon Hearth Pull</div>
+            <div class="schedule-items">Fresh Country Loaves &bull; Fruit Tarts &bull; Madeleines</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <div class="selection-header-wrap" data-aos="fade-up">
+        <div>
+          <span class="selection-eyebrow">Our Daily Selection</span>
+          <h2 class="selection-headline">
+            A little something<br>
+            for every kind of moment.
+          </h2>
+        </div>
+        <div class="selection-header-right">
+          <p class="selection-subtext">
+            Freshly pulled from stone deck hearths every morning at 7:00 AM and 2:00 PM.
+          </p>
+          <a href="404.html" class="btn-orange-pill">
+            <span>Explore Our Full Menu</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- 5-Column Product Cards Grid -->
+      <div class="selection-grid">
+        <!-- Item 1: Croissant -->
+        <div class="selection-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="selection-card-media">
+            <img src="assets/images/figma_product_croissant.webp" alt="81-Layer Butter Croissant" class="selection-card-img" loading="lazy">
+          </div>
+          <div class="selection-card-body">
+            <span class="selection-card-tag">Viennoiserie</span>
+            <h3 class="selection-card-title">81-Layer Butter Croissant</h3>
+            <p class="selection-card-desc">Normandy cultured butter, flaky honeycomb layers.</p>
+            <span class="selection-card-price">$4.75</span>
+          </div>
+        </div>
+
+        <!-- Item 2: Sourdough -->
+        <div class="selection-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="selection-card-media">
+            <img src="assets/images/figma_product_sourdough.webp" alt="Country Sourdough Loaf" class="selection-card-img" loading="lazy">
+          </div>
+          <div class="selection-card-body">
+            <span class="selection-card-tag">Hearth Loaf</span>
+            <h3 class="selection-card-title">Country Sourdough</h3>
+            <p class="selection-card-desc">72-hr wild levain, blistered ear, open airy crumb.</p>
+            <span class="selection-card-price">$8.50</span>
+          </div>
+        </div>
+
+        <!-- Item 3: Cinnamon Swirl -->
+        <div class="selection-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="selection-card-media">
+            <img src="assets/images/figma_product_cinnamon.webp" alt="Cardamom Cinnamon Swirl" class="selection-card-img" loading="lazy">
+          </div>
+          <div class="selection-card-body">
+            <span class="selection-card-tag">Pastry</span>
+            <h3 class="selection-card-title">Cinnamon Swirl</h3>
+            <p class="selection-card-desc">Ceylon cinnamon, brown butter glaze, cardamom.</p>
+            <span class="selection-card-price">$5.25</span>
+          </div>
+        </div>
+
+        <!-- Item 4: Pain au Chocolat -->
+        <div class="selection-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="selection-card-media">
+            <img src="assets/images/figma_product_chocolat.webp" alt="Pain au Chocolat" class="selection-card-img" loading="lazy">
+          </div>
+          <div class="selection-card-body">
+            <span class="selection-card-tag">Chocolat</span>
+            <h3 class="selection-card-title">Pain au Chocolat</h3>
+            <p class="selection-card-desc">Twin batons of 70% Valrhona dark chocolate.</p>
+            <span class="selection-card-price">$5.25</span>
+          </div>
+        </div>
+
+        <!-- Item 5: Raspberry Tart -->
+        <div class="selection-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="selection-card-media">
+            <img src="assets/images/raspberry-tart.webp" alt="Raspberry Frangipane Tart" class="selection-card-img" loading="lazy">
+          </div>
+          <div class="selection-card-body">
+            <span class="selection-card-tag">Seasonal Tart</span>
+            <h3 class="selection-card-title">Raspberry Frangipane</h3>
+            <p class="selection-card-desc">Wild raspberries, almond frangipane, crisp shell.</p>
+            <span class="selection-card-price">$6.50</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caption -->
+      <p class="selection-footer-caption" data-aos="fade-up" data-aos-delay="100">
+        Dietary &amp; allergy notes: Organic flours, cultured dairy, and tree nuts processed on shared wooden benches. Gluten-conscious sourdough options available daily.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 7: COMMUNITY, SUSTAINABILITY & GIVING BACK
+       Background: Deep Dark Espresso (#220C07)
+       ============================================== -->
+  <section class="community-section" id="community">
+    <div class="about-container">
+      <div class="community-header-wrap" data-aos="fade-up">
+        <span class="hero-eyebrow">Our Brooklyn Roots</span>
+        <h2 style="font-size: 2.85rem; font-weight: 800; color: #fff; line-height: 1.15; letter-spacing: -0.03em; margin: 0.6rem 0 1.25rem;">
+          Baking for a better neighborhood.
+        </h2>
+        <p style="font-size: 1.05rem; line-height: 1.68; color: var(--text-dark-muted);">
+          A bakery should nourish not just stomachs, but the community it calls home. Here is our daily promise to Williamsburg.
+        </p>
+      </div>
+
+      <div class="community-grid">
+        <!-- Pillar 1 -->
+        <div class="community-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="community-icon-box"><i class="fa-solid fa-hand-holding-heart"></i></div>
+          <div class="community-card-stat">14,000+ Loaves</div>
+          <h3 class="community-card-title">Zero-Waste Daily Bread Share</h3>
+          <p class="community-card-desc">
+            We never throw bread away. Every evening at 5:00 PM, all unsold day-fresh hearth loaves are packed and delivered directly to North Brooklyn community food pantries.
+          </p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="community-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="community-icon-box"><i class="fa-solid fa-leaf"></i></div>
+          <div class="community-card-stat">0% Plastic</div>
+          <h3 class="community-card-title">100% Compostable Packaging</h3>
+          <p class="community-card-desc">
+            From unbleached FSC-certified kraft pastry sleeves to plant-cellulose cake liners and water-based vegetable inks, every package you carry home breaks down naturally.
+          </p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="community-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="community-icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="community-card-stat">24 Apprentices</div>
+          <h3 class="community-card-title">Youth Baker Apprenticeship</h3>
+          <p class="community-card-desc">
+            Each year, we sponsor four young aspiring bakers from underserved NYC neighborhoods with fully paid 6-month apprenticeships in sourdough science and viennoiserie.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 8: VISIT OUR HEARTH & THE BREAD CLUB
+       Background: Deep Dark Espresso (#220C07)
+       ============================================== -->
+  <section class="visit-section" id="visit">
+    <div class="about-container">
+      <div class="visit-grid">
+        <!-- Left: Bakery Storefront at Dusk -->
+        <div class="visit-media-wrap" data-aos="fade-right" data-aos-duration="850">
+          <div class="visit-img-frame">
+            <img src="assets/images/about_storefront_dusk.webp?v=3" alt="Charming Stackly Bakery illuminated storefront at evening dusk" class="visit-img">
+          </div>
+        </div>
+
+        <!-- Right: Visit Information & Form -->
+        <div class="visit-content" data-aos="fade-left" data-aos-duration="850">
+          <span class="visit-eyebrow">Visit our Salem hearth</span>
+          <h2 class="visit-headline">
+            Your next<br>
+            sweet moment<br>
+            starts here.
+          </h2>
+          <p class="visit-desc">
+            Whether you’re swinging by for your morning sourdough boule before work or staying for an afternoon pastry and pour-over, our doors are open.
+          </p>
+
+          <div class="visit-details-box">
+            <div><strong>Location:</strong> MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</div>
+            <div><strong>Opening Hours:</strong> Monday &ndash; Sunday: 7:00 AM &ndash; 9:00 PM</div>
+            <div><strong>Fresh Hearth Pulls:</strong> 7:00 AM, 8:30 AM &amp; 2:00 PM Daily</div>
+            <div><strong>Contact:</strong> <a href="404.html" style="color:var(--color-orange); font-weight:700;">9876543210</a> &bull; <a href="404.html" style="color:var(--color-orange); font-weight:700;">info@stackly.com</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 7: FOOTER
+       Background: Deepest Dark Brown (#160603)
+       ============================================== -->
+  <footer class="about-footer" data-aos="fade-up">
+    <div class="about-container">
+      <div class="footer-top-grid">
+        <!-- Col 1: Brand & Tagline -->
+        <div class="footer-brand-col">
+          <a href="404.html" class="about-brand" aria-label="Stackly Home">
+            <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="about-brand-logo-img" width="102" height="44">
+          </a>
+          <p class="footer-tagline">
+            Artisan sourdough, Viennoiserie pastries, and specialty roasts baked fresh daily in Salem.
+          </p>
+          <div class="footer-socials">
+            <a href="404.html" class="footer-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation Links -->
+        <div>
+          <h4 class="footer-col-title">Pages</h4>
+          <ul class="footer-col-links">
+            <li><a href="index.html">Home</a></li>
+          <li><a href="catalogue.html">Catalogue</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Categories -->
+        <div>
+          <h4 class="footer-col-title">Categories</h4>
+          <ul class="footer-col-links">
+            <li><a href="404.html">Sourdough Breads</a></li>
+            <li><a href="404.html">Viennoiserie</a></li>
+            <li><a href="404.html">Sweet Brioche</a></li>
+            <li><a href="404.html">Artisan Cakes</a></li>
+            <li><a href="404.html">Bread Club Portal</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Visit Us -->
+        <div>
+          <h4 class="footer-col-title">Visit Our Ovens</h4>
+          <p class="footer-address">
+            MMR Complex, Chinna Thirupathi,<br>
+            near Chinna Muniyappan Kovil,<br>
+            Salem, Tamil Nadu 636008<br><br>
+            <strong>Phone:</strong> <a href="404.html" style="color:var(--color-orange);">9876543210</a><br>
+            <strong>Email:</strong> <a href="404.html" style="color:var(--color-orange);">info@stackly.com</a><br>
+            <strong>Mon &ndash; Sun:</strong> 07:00 &ndash; 21:00
+          </p>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <span>&copy; 2026 Stackly Bakery. All rights reserved.</span>
+        <div class="footer-legal-links">
+          <a href="404.html">Privacy Policy</a>
+          <a href="404.html">Terms of Service</a>
+          <a href="404.html">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="assets/js/preloader.js"></script>
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/about.js?v=3"></script>
+</body>
+</html>

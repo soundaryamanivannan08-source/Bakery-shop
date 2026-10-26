@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact &bull; Stackly Artisan Bakery</title>
+  <meta name="description" content="Your next sweet moment starts here. Visit our Williamsburg Brooklyn bakery hearth, check opening hours, or contact our bakers for custom orders.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fb5022'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z'/></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans (Headings & Body) & Playfair Display (Serif Quotes) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <!-- Animate.css via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <!-- Contact Stylesheet -->
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/preloader.css">
+  <link rel="stylesheet" href="assets/css/contact.css?v=5">
+
+  <style>
+    .strip-feedback {
+      display: none;
+      font-size: 0.86rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+    .strip-feedback.error {
+      display: block !important;
+      color: #EF4444 !important;
+    }
+    .strip-feedback.active {
+      display: block !important;
+      color: #4ADE80 !important;
+    }
+    .strip-input.is-invalid {
+      border-color: #EF4444 !important;
+      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25) !important;
+    }
+    .contact-field-error {
+      display: none;
+      font-size: 0.76rem;
+      color: #EF4444 !important;
+      font-weight: 600;
+      margin-top: 0.35rem;
+    }
+    .contact-field-error.visible {
+      display: block !important;
+    }
+    .contact-form-input.is-invalid,
+    .contact-form-textarea.is-invalid {
+      border-color: #EF4444 !important;
+      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==============================================
+       PRELOADER: ARTISAN STONE HEARTH ANIMATION
+       ============================================== -->
+  <div class="site-preloader" id="sitePreloader" role="status" aria-live="polite" aria-label="Loading Stackly Bakery">
+    <div class="preloader-backdrop"></div>
+    <div class="preloader-content">
+      <!-- Animated Oven Hearth & Croissant -->
+      <div class="preloader-icon-wrap">
+        <div class="preloader-glow-ring"></div>
+        <svg class="preloader-croissant" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path class="croissant-body" d="M12 40C10 35 11 29 16 23C22.5 16 34 13 44 16.5C52.5 19.5 57 26 57 32C58 37 54.5 41 50 40.5C43 39.5 35.5 35.5 28 35.5C20.5 35.5 14.5 40.5 12 40Z" />
+          <path class="croissant-fold fold-1" d="M21 22.5C23.5 27.5 24 33.5 22.5 38" />
+          <path class="croissant-fold fold-2" d="M33 17C35.5 23 35.5 30.5 33 35.5" />
+          <path class="croissant-fold fold-3" d="M44.5 19.5C46.5 24.5 46 30.5 44 35" />
+        </svg>
+        <div class="preloader-steam-wrap" aria-hidden="true">
+          <span class="steam-particle steam-1"></span>
+          <span class="steam-particle steam-2"></span>
+          <span class="steam-particle steam-3"></span>
+        </div>
+      </div>
+
+      <!-- Brand Identity -->
+      <div class="preloader-brand">
+        <h2 class="preloader-title">Stackly<span class="preloader-dot">.</span></h2>
+        <span class="preloader-subtitle">ARTISAN STONE HEARTH · EST. 2018</span>
+      </div>
+
+      <!-- Animated Progress Line & Status -->
+      <div class="preloader-progress-box">
+        <div class="preloader-progress-track">
+          <div class="preloader-progress-fill" id="preloaderBar"></div>
+        </div>
+        <div class="preloader-status-text" id="preloaderStatus">Warming stone deck hearth...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       HEADER & NAVIGATION BAR (COMMON STACKLY NAVBAR)
+       ============================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <!-- Brand Logo (Flame / S mark) -->
+      <a href="index.html" class="brand-logo" aria-label="Stackly Home">
+        <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="brand-logo-img" width="111" height="50">
+      </a>
+
+      <!-- Center Nav Links: Home, Catalogue, About us, Contact, Blog -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="catalogue.html" class="nav-link">Catalogue</a></li>
+          <li><a href="about.html" class="nav-link">About us</a></li>
+          <li><a href="contact.html" class="nav-link active" aria-current="page">Contact</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Header Actions: Shopping Bag + Login Button + Mobile Toggle -->
+      <div class="header-actions">
+        <!-- Shopping Bag Icon Button -->
+        <button class="action-btn-bag" id="cartToggle" aria-label="View shopping basket" title="Cart">
+          <i class="fa-solid fa-bag-shopping header-bag-icon" aria-hidden="true"></i>
+          <span class="cart-badge-dot active" id="cartDot"></span>
+        </button>
+
+        <!-- Login Button -->
+        <a href="login.html" class="btn-header-login">LOGIN</a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-nav-drawer" id="mobileDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="catalogue.html" class="mobile-nav-link">Catalogue</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About us</a></li>
+        <li><a href="contact.html" class="mobile-nav-link active">Contact</a></li>
+        <li><a href="blog.html" class="mobile-nav-link">Blog</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="login.html" class="btn-header-login btn-block text-center" style="display:block; text-align:center;">LOGIN</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==============================================
+       SECTION 1: HERO ("Your next sweet moment starts here.")
+       Background: Deep Dark Espresso (#220C07)
+       ============================================== -->
+  <section class="contact-hero-section">
+    <div class="contact-container">
+      <div class="contact-hero-grid">
+        <!-- Hero Left: Typography & Actions -->
+        <div class="hero-content" data-aos="fade-right">
+          <span class="hero-eyebrow">
+            <i class="fa-solid fa-wheat-awn"></i> Visit our Salem hearth
+          </span>
+          <h1 class="hero-headline">
+            Your next<br>
+            sweet moment<br>
+            <span class="text-accent-orange">starts here.</span>
+          </h1>
+          <p class="hero-desc">
+            Whether you’re swinging by for your morning sourdough boule before work or staying for an afternoon pastry and pour-over, our doors are open.
+          </p>
+          <div class="hero-actions-wrap">
+            <a href="404.html" class="btn-orange-pill">
+              <span>Get Directions</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="404.html" class="hero-pickup-link">
+              Or order ahead for counter pickup <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Right: Roman Arch Frame with Croissant Trays & Floating Badge -->
+        <div class="hero-visual-wrap" data-aos="fade-left">
+          <div class="hero-arch-card">
+            <img src="assets/images/contact_hero_croissants.webp?v=2" alt="Golden freshly baked croissants on wooden trays in warm bakery" class="hero-arch-img">
+            
+            <!-- Circular Floating Orange Badge -->
+            <button class="hero-floating-badge animate__animated animate__pulse animate__infinite" aria-label="Find our address">
+              <span>VISIT<br>US<br>TODAY</span>
+            </button>
+          </div>
+          <p class="hero-visual-caption">Fresh morning bake, ready at 7:00 AM daily.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 2: LOCATION & ADDRESS BLOCK ("Good things. Worth finding.")
+       Background: Deep Dark Espresso (#220C07)
+       ============================================== -->
+  <section class="location-section" id="location">
+    <div class="contact-container">
+      <div class="location-grid">
+        <!-- Left: Highlight Card -->
+        <div class="location-highlight-card" data-aos="fade-right">
+          <div class="location-card-icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <span class="location-card-overline">Salem, Tamil Nadu</span>
+          <h2 class="location-card-title">
+            A place for<br>
+            little everyday joys.
+          </h2>
+          <p class="location-card-desc">
+            MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008.
+          </p>
+        </div>
+
+        <!-- Right: Address & Transit Information -->
+        <div class="location-content" data-aos="fade-left">
+          <span class="location-eyebrow">Find our hearth</span>
+          <h2 class="location-headline">
+            Good things.<br>
+            Worth finding.
+          </h2>
+          <p class="location-desc">
+            We’re located at Chinna Thirupathi in Salem. Follow the warm aroma of slow-fermented sourdough and freshly pulled butter viennoiserie.
+          </p>
+
+          <div class="location-address-box">
+            <span class="address-label">Address</span>
+            <div class="address-main">MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</div>
+            <div class="address-sub">Salem, Tamil Nadu 636008 &bull; Landmark: Near Chinna Muniyappan Kovil</div>
+          </div>
+
+          <p class="location-transit-notes">
+            <strong>Contact:</strong> Phone: <a href="404.html" style="color:var(--color-orange); font-weight:700;">9876543210</a> &bull; Email: <a href="404.html" style="color:var(--color-orange); font-weight:700;">info@stackly.com</a>
+          </p>
+
+          <div style="margin-top: 1.25rem;">
+            <a href="404.html" class="btn-orange-pill">
+              <span>Get Directions on Google Maps</span>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Google Map Section Block -->
+      <div class="contact-map-wrapper" data-aos="fade-up" style="margin-top: 3.5rem; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--bg-dark-border); background: var(--bg-dark-card); box-shadow: var(--shadow-card);">
+        <div class="map-header-bar" style="display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2rem; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid var(--bg-dark-border-subtle); flex-wrap: wrap; gap: 1rem;">
+          <div style="display: flex; align-items: center; gap: 0.85rem;">
+            <div style="width: 38px; height: 38px; border-radius: 50%; background: var(--color-orange-subtle); color: var(--color-orange); display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+              <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <div>
+              <h3 style="font-size: 1.1rem; font-weight: 700; color: #fff; line-height: 1.2;">Stackly &bull; Salem Hearth</h3>
+              <p style="font-size: 0.82rem; color: var(--color-caramel); margin-top: 2px;">MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</p>
+            </div>
+          </div>
+          <a href="404.html" class="btn-orange-pill" style="padding: 0.55rem 1.35rem; font-size: 0.85rem;">
+            <span>Open in Google Maps</span>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+        <div class="map-iframe-container" style="position: relative; width: 100%; height: 420px; overflow: hidden;">
+          <iframe 
+            src="https://maps.google.com/maps?q=11.6829566,78.1739798&amp;hl=en&amp;z=17&amp;output=embed" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Stackly Google Map">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 3: OPENING HOURS ("Make time for something good.")
+       Background: Warm Sourdough Cream (#FAF5EE)
+       ============================================== -->
+  <section class="hours-section" id="hours">
+    <div class="contact-container">
+      <div class="hours-grid">
+        <!-- Left: Schedule & Oven Pulls -->
+        <div class="hours-content" data-aos="fade-right">
+          <span class="hours-eyebrow">Opening &amp; baking hours</span>
+          <h2 class="hours-headline">
+            Make time<br>
+            for something good.
+          </h2>
+          <p class="hours-desc">
+            Our stone deck ovens fire before dawn so the first loaves hit the counter at 7:00 AM sharp. Come early for morning croissants or swing by for afternoon sourdough pull.
+          </p>
+
+          <div class="hours-table">
+            <div class="hours-row">
+              <span class="hours-day">Monday &ndash; Friday</span>
+              <span class="hours-time">7:00 AM &ndash; 5:00 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Saturday</span>
+              <span class="hours-time">7:30 AM &ndash; 5:30 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Sunday</span>
+              <span class="hours-time">8:00 AM &ndash; 4:00 PM</span>
+            </div>
+            <div class="hours-row highlight">
+              <span class="hours-day"><i class="fa-solid fa-fire"></i> Fresh Hearth Pulls</span>
+              <span class="hours-time" style="color: var(--color-orange); font-weight: 700;">08:00 AM &amp; 02:00 PM Daily</span>
+            </div>
+          </div>
+
+          <p class="hours-footnote">
+            *Special holiday hours and seasonal closures are posted on our Instagram @stacklybakery.
+          </p>
+        </div>
+
+        <!-- Right: Cinnamon Rolls Photography -->
+        <div class="hours-media-wrap" data-aos="fade-left">
+          <div class="hours-img-frame">
+            <img src="assets/images/contact_cinnamon_rolls.webp?v=2" alt="Warm cinnamon rolls fresh on wooden tray in bakery cafe" class="hours-img">
+          </div>
+          <span class="hours-caption">Warm cinnamon swirls, fresh from the oven deck.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 4: GET IN TOUCH & DIRECT CONTACT FORM
+       Background: Deep Dark Espresso (#220C07)
+       ============================================== -->
+  <section class="contact-touch-section" id="touch">
+    <div class="contact-container">
+      <div class="touch-grid">
+        <!-- Left Content: Overview & Direct Contacts -->
+        <div class="touch-content" data-aos="fade-right">
+          <span class="touch-eyebrow">
+            <i class="fa-solid fa-envelope-open-text"></i> Get in touch with our team
+          </span>
+          <h2 class="touch-headline">
+            A little question?<br>
+            Let’s talk.
+          </h2>
+          <p class="touch-desc">
+            Have a question about large pre-orders, custom celebration cakes, dietary requirements, or private sourdough masterclasses? Reach out directly or send us a message through our form.
+          </p>
+
+          <!-- Direct Contact Rows -->
+          <div class="touch-methods-list">
+            <!-- Row 1: Direct Phone -->
+            <div class="touch-method-item">
+              <div class="touch-method-icon">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div class="touch-method-info">
+                <span class="touch-method-label">Bakery Counter Direct</span>
+                <a href="404.html" class="touch-method-value">9876543210</a>
+                <span class="touch-method-note">Daily 7:00 AM &ndash; 9:00 PM for same-day loaf holds</span>
+              </div>
+            </div>
+
+            <!-- Row 2: Email Inquiries -->
+            <div class="touch-method-item">
+              <div class="touch-method-icon">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div class="touch-method-info">
+                <span class="touch-method-label">Direct Email</span>
+                <a href="404.html" class="touch-method-value">info@stackly.com</a>
+                <span class="touch-method-note">General inquiries, orders &amp; masterclasses</span>
+              </div>
+            </div>
+
+            <!-- Row 3: Bakery Hearth Location -->
+            <div class="touch-method-item">
+              <div class="touch-method-icon">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="touch-method-info">
+                <span class="touch-method-label">Salem Bakery Hearth</span>
+                <span class="touch-method-value-address">MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</span>
+                <span class="touch-method-note">Open 7 days a week for in-person visits</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Response SLA Pill -->
+          <div class="touch-sla-badge">
+            <i class="fa-solid fa-bolt-lightning"></i>
+            <span>We respond to all online inquiries within 24 hours.</span>
+          </div>
+        </div>
+
+        <!-- Right Content: Contact Form Card -->
+        <div class="touch-form-wrapper" data-aos="fade-left">
+          <div class="contact-form-card">
+            <div class="contact-form-header">
+              <span class="contact-form-badge">Quick Inquiry</span>
+              <h3 class="contact-form-title">Send a Direct Message</h3>
+              <p class="contact-form-subtitle">Fill in the fields below and our hearth team will get back to you promptly.</p>
+            </div>
+
+            <form id="mainContactForm" class="contact-form" novalidate>
+              <!-- Name & Email Row -->
+              <div class="contact-form-row">
+                <div class="contact-form-group">
+                  <label for="contactName" class="contact-form-label">
+                    Full Name <span class="required-mark">*</span>
+                  </label>
+                  <div class="contact-input-wrapper">
+                    <i class="fa-regular fa-user contact-input-icon"></i>
+                    <input type="text" id="contactName" name="fullName" class="contact-form-input" placeholder="e.g. Elena Vance" required autocomplete="name">
+                  </div>
+                  <span class="contact-field-error" id="contactNameError">Please enter your name</span>
+                </div>
+
+                <div class="contact-form-group">
+                  <label for="contactEmail" class="contact-form-label">
+                    Email Address <span class="required-mark">*</span>
+                  </label>
+                  <div class="contact-input-wrapper">
+                    <i class="fa-regular fa-envelope contact-input-icon"></i>
+                    <input type="email" id="contactEmail" name="email" class="contact-form-input" placeholder="e.g. elena@example.com" required autocomplete="email">
+                  </div>
+                  <span class="contact-field-error" id="contactEmailError">Please enter a valid email</span>
+                </div>
+              </div>
+
+              <!-- Phone & Subject Row -->
+              <div class="contact-form-row">
+                <div class="contact-form-group">
+                  <label for="contactPhone" class="contact-form-label">
+                    Phone Number
+                  </label>
+                  <div class="contact-input-wrapper">
+                    <i class="fa-solid fa-phone contact-input-icon"></i>
+                    <input type="tel" id="contactPhone" name="phone" class="contact-form-input" placeholder="9876543210" autocomplete="tel">
+                  </div>
+                  <span class="contact-field-error" id="contactPhoneError">Please enter a valid phone number</span>
+                </div>
+
+                <div class="contact-form-group">
+                  <label for="contactSubject" class="contact-form-label">
+                    Inquiry Topic
+                  </label>
+                  <div class="contact-input-wrapper select-wrapper">
+                    <i class="fa-solid fa-tag contact-input-icon"></i>
+                    <select id="contactSubject" name="subject" class="contact-form-select">
+                      <option value="General Bakery Inquiry">General Bakery Inquiry</option>
+                      <option value="Loaf Reserve & Same-Day Hold">Loaf Reserve &amp; Same-Day Hold</option>
+                      <option value="Custom Celebration Cake">Custom Celebration Cake / Gateaux</option>
+                      <option value="Office Pastry Crate & Catering">Office Pastry Crate &amp; Catering</option>
+                      <option value="Sourdough Masterclass">Sourdough Masterclass Reservation</option>
+                      <option value="Feedback & Compliment">Feedback &amp; Customer Care</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down select-arrow-icon"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Message Textarea -->
+              <div class="contact-form-group">
+                <label for="contactMessage" class="contact-form-label">
+                  Your Message <span class="required-mark">*</span>
+                </label>
+                <div class="contact-input-wrapper textarea-wrapper">
+                  <i class="fa-regular fa-comment-dots contact-input-icon textarea-icon"></i>
+                  <textarea id="contactMessage" name="message" class="contact-form-textarea" rows="4" placeholder="Tell us how we can help you (pre-order items, preferred pickup date, dietary questions, etc.)..." required></textarea>
+                </div>
+                <span class="contact-field-error" id="contactMessageError">Please enter your message</span>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" id="mainContactSubmitBtn" class="contact-form-btn">
+                <span class="btn-label">Send Message</span>
+                <i class="fa-solid fa-paper-plane btn-icon"></i>
+              </button>
+
+              <!-- Inline Feedback Alert -->
+              <div id="mainContactFeedback" class="contact-feedback-box" role="alert" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 5: CATERING & CELEBRATIONS ("Good moments. Better shared.")
+       Background: Deep Dark Espresso (#220C07)
+       ============================================== -->
+  <section class="catering-section" id="catering">
+    <div class="contact-container">
+      <div class="catering-grid">
+        <!-- Left: Fruit Tart Photo -->
+        <div class="catering-media-wrap" data-aos="fade-right">
+          <div class="catering-img-frame">
+            <img src="assets/images/contact_berry_tart.webp?v=2" alt="Raspberry pistachio celebration tart on bakery table" class="catering-img">
+          </div>
+          <span class="catering-caption">Fresh raspberry &amp; pistachio tart for celebration orders.</span>
+        </div>
+
+        <!-- Right: Catering Offerings -->
+        <div class="catering-content" data-aos="fade-left">
+          <span class="catering-eyebrow">Catering &amp; celebrations</span>
+          <h2 class="catering-headline">
+            Good moments.<br>
+            Better shared.
+          </h2>
+          <p class="catering-desc">
+            From morning office meetings to intimate weekend weddings, we prepare curated pastry boxes, morning brioche baskets, and artisan sourdough boards.
+          </p>
+
+          <div class="catering-features-list">
+            <div class="catering-feature-item">
+              <span class="catering-feature-title">
+                <i class="fa-solid fa-sparkles"></i> Custom Celebration Cakes &amp; Gateaux
+              </span>
+              <p class="catering-feature-desc">
+                Handcrafted with organic flours, seasonal fruit compotes, and European cultured butter creams.
+              </p>
+            </div>
+
+            <div class="catering-feature-item">
+              <span class="catering-feature-title">
+                <i class="fa-solid fa-box-open"></i> Morning Office Pastry Crates
+              </span>
+              <p class="catering-feature-desc">
+                Assorted flaky croissants, morning buns, and seasonal tarts delivered warm before 8:30 AM.
+              </p>
+            </div>
+
+            <div class="catering-feature-item">
+              <span class="catering-feature-title">
+                <i class="fa-solid fa-graduation-cap"></i> Private Sourdough Masterclasses
+              </span>
+              <p class="catering-feature-desc">
+                Hands-on evening workshops around our stone deck ovens with head baker Elena Vance.
+              </p>
+            </div>
+          </div>
+
+          <button class="btn-orange-pill" id="openInquiryBtn">
+            <span>Send Catering Inquiry</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 6: NEWSLETTER STRIP ("Be first to hear the good news.")
+       Background: #1A0804
+       ============================================== -->
+  <section class="newsletter-strip-section" id="newsletter">
+    <div class="contact-container">
+      <div class="newsletter-strip-grid" data-aos="fade-up">
+        <div>
+          <h3 class="strip-headline">Be first to hear the good news.</h3>
+          <p class="strip-subtext">First access to holiday preorder drops, seasonal fruit bakes, and masterclass tickets.</p>
+        </div>
+
+        <div>
+          <form class="strip-form" id="stripForm" novalidate>
+            <input 
+              type="email" 
+              id="stripEmail" 
+              class="strip-input" 
+              placeholder="Enter your email address" 
+              autocomplete="email" 
+              required>
+            <button type="submit" class="strip-btn" id="stripSubmitBtn">
+              <span>Subscribe</span>
+            </button>
+          </form>
+          <div class="strip-feedback" id="stripFeedback"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 7: FOOTER
+       Background: #140502
+       ============================================== -->
+  <footer class="contact-footer">
+    <div class="contact-container">
+      <div class="footer-top-grid" data-aos="fade-up">
+        <!-- Col 1: Brand & Bio -->
+        <div class="footer-brand-col">
+          <a href="404.html" class="contact-brand" aria-label="Stackly Home">
+            <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="contact-brand-logo-img" width="102" height="44">
+          </a>
+          <p class="footer-tagline">
+            Artisan sourdough, Viennoiserie pastries, and specialty roasts baked fresh daily in Brooklyn.
+          </p>
+          <div class="footer-socials">
+            <a href="404.html" class="footer-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation Links -->
+        <div>
+          <h4 class="footer-col-title">Pages</h4>
+          <ul class="footer-col-links">
+            <li><a href="index.html">Home</a></li>
+          <li><a href="catalogue.html">Catalogue</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Categories -->
+        <div>
+          <h4 class="footer-col-title">Categories</h4>
+          <ul class="footer-col-links">
+            <li><a href="404.html">Sourdough Breads</a></li>
+            <li><a href="404.html">Viennoiserie</a></li>
+            <li><a href="404.html">Sweet Brioche</a></li>
+            <li><a href="404.html">Artisan Cakes</a></li>
+            <li><a href="404.html">Bread Club Portal</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Visit Us -->
+        <div>
+          <h4 class="footer-col-title">Visit Our Ovens</h4>
+          <p class="footer-address">
+            MMR Complex, Chinna Thirupathi,<br>
+            near Chinna Muniyappan Kovil,<br>
+            Salem, Tamil Nadu 636008<br><br>
+            <strong>Phone:</strong> <a href="404.html" style="color:var(--color-orange);">9876543210</a><br>
+            <strong>Email:</strong> <a href="404.html" style="color:var(--color-orange);">info@stackly.com</a><br>
+            <strong>Mon &ndash; Sun:</strong> 07:00 &ndash; 21:00
+          </p>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <span>&copy; 2026 Stackly Bakery. All rights reserved.</span>
+        <div class="footer-legal-links">
+          <a href="404.html">Privacy Policy</a>
+          <a href="404.html">Terms of Service</a>
+          <a href="404.html">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==============================================
+       INTERACTIVE INQUIRY MODAL / DRAWER
+       ============================================== -->
+  <div class="inquiry-modal-overlay" id="inquiryModalOverlay" role="dialog" aria-modal="true" aria-labelledby="inquiryModalTitle">
+    <div class="inquiry-modal-container">
+      <button class="modal-close-btn" id="inquiryCloseBtn" aria-label="Close inquiry form">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <span style="font-size: 0.76rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-orange); margin-bottom: 0.5rem; display: block;">
+        Catering &amp; Special Orders
+      </span>
+      <h2 id="inquiryModalTitle" style="font-family: var(--font-heading); font-size: 2.15rem; font-weight: 800; letter-spacing: -0.025em; color: var(--text-dark); margin-bottom: 0.75rem;">
+        Let's plan your bake.
+      </h2>
+      <p style="font-size: 0.95rem; color: var(--text-light-muted); line-height: 1.6; margin-bottom: 2rem;">
+        Tell us about your event, date, or custom pastry request. Our baking team will respond with a tailored proposal and tasting schedule.
+      </p>
+
+      <form id="inquiryForm" novalidate>
+        <div class="inquiry-form-group">
+          <label class="inquiry-label" for="inqName">Your Name <span style="color:var(--color-orange);">*</span></label>
+          <input type="text" id="inqName" class="inquiry-control" placeholder="Elena Vance" required>
+          <span class="inquiry-field-error" id="inqNameError">Please enter your name</span>
+        </div>
+
+        <div class="inquiry-form-group">
+          <label class="inquiry-label" for="inqEmail">Email Address <span style="color:var(--color-orange);">*</span></label>
+          <input type="email" id="inqEmail" class="inquiry-control" placeholder="Enter your email" required>
+          <span class="inquiry-field-error" id="inqEmailError">Email is required</span>
+        </div>
+
+        <div class="inquiry-form-group">
+          <label class="inquiry-label" for="inqPhone">Phone Number</label>
+          <input type="tel" id="inqPhone" class="inquiry-control" placeholder="9876543210">
+          <span class="inquiry-field-error" id="inqPhoneError">Please enter a valid phone number</span>
+        </div>
+
+        <div class="inquiry-form-group">
+          <label class="inquiry-label" for="inqType">Inquiry Type</label>
+          <select id="inqType" class="inquiry-control" style="cursor: pointer;">
+            <option value="catering">Office Pastry Crate (10+ people)</option>
+            <option value="cake">Custom Celebration Cake / Gateau</option>
+            <option value="wedding">Wedding Pastry Table &amp; Bread Board</option>
+            <option value="masterclass">Private Masterclass Booking</option>
+            <option value="other">General Bakery Question</option>
+          </select>
+        </div>
+
+        <div class="inquiry-form-group">
+          <label class="inquiry-label" for="inqNotes">Event Details &amp; Date <span style="color:var(--color-orange);">*</span></label>
+          <textarea id="inqNotes" class="inquiry-control" placeholder="Estimated guests, dietary preferences, desired pickup date/time..." required></textarea>
+          <span class="inquiry-field-error" id="inqNotesError">Please enter your event details &amp; date</span>
+        </div>
+
+        <button type="submit" class="btn-orange-pill" style="width: 100%; justify-content: center; height: 50px;">
+          <span>Submit Catering Request</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
+
+      <div id="inquiryFeedback" style="display: none; margin-top: 1rem; padding: 1rem; background-color: #DCFCE7; color: #166534; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 600;"></div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="assets/js/preloader.js"></script>
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="assets/js/navbar.js?v=3"></script>
+  <script src="assets/js/contact.js?v=4"></script>
+</body>
+</html>

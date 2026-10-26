@@ -1,0 +1,1834 @@
+/* ==========================================================================
+   STACKLY BAKERY - ABOUT US DESIGN SYSTEM & STYLESHEET
+   Matching Figma Design: Dark Espresso & Sourdough Cream Palette,
+   Neo-grotesque Editorial Typography, and Artisanal Craft Layouts
+   ========================================================================== */
+
+:root {
+  /* Dark Espresso Palette (Hero, Heritage, Craft, Selection, Visit, Footer) */
+  --bg-dark: #220C07;
+  --bg-dark-surface: #2C120A;
+  --bg-dark-card: #2B1109;
+  --bg-dark-card-hover: #37170E;
+  --bg-dark-border: rgba(255, 255, 255, 0.12);
+  --bg-dark-border-subtle: rgba(255, 255, 255, 0.08);
+
+  /* Warm Sourdough Cream Palette (Daily Rituals Section) */
+  --bg-light: #FAF5EE;
+  --bg-light-surface: #F4ECE1;
+  --bg-light-card: #FFFFFF;
+  --bg-light-border: #E8DDD0;
+  --bg-light-border-strong: #DECDBB;
+
+  /* Stackly Accent Colors */
+  --color-orange: #FF5100;
+  --color-orange-hover: #E24400;
+  --color-orange-subtle: rgba(255, 81, 0, 0.12);
+  --color-caramel: #D49B5B;
+  --color-caramel-light: #F6ECE0;
+  --color-gold: #E8A855;
+
+  /* Typography Colors */
+  --text-white: #FFFFFF;
+  --text-dark-muted: #BBA89F;
+  --text-dark-subtle: #8A7268;
+
+  --text-dark: #220C07;
+  --text-light-muted: #6E554D;
+  --text-light-subtle: #967E74;
+
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+  --radius-arch: 240px 240px 28px 28px;
+
+  /* Fonts */
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Animations & Shadows */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-soft: 0 10px 30px rgba(34, 12, 7, 0.08);
+  --shadow-card: 0 14px 34px rgba(34, 12, 7, 0.14);
+  --shadow-hover: 0 24px 50px rgba(34, 12, 7, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   RESET & GLOBAL BASE
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  overflow-x: clip;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.about-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Utility classes */
+.text-accent-orange {
+  color: var(--color-orange);
+}
+
+.text-caramel {
+  color: var(--color-caramel);
+}
+
+/* --------------------------------------------------------------------------
+   HEADER & NAVBAR
+   -------------------------------------------------------------------------- */
+.about-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 74px;
+  background-color: rgba(34, 12, 7, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--bg-dark-border-subtle);
+  z-index: 1000;
+  transition: background-color var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.about-header.scrolled {
+  background-color: rgba(26, 9, 5, 0.96);
+  border-bottom-color: var(--bg-dark-border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.about-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.about-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-white);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.about-brand-logo-img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.about-brand .header-croissant {
+  width: 26px;
+  height: 26px;
+  stroke: var(--color-orange);
+  transform: rotate(-10deg);
+  transition: transform var(--transition-fast);
+}
+
+.about-brand:hover .header-croissant {
+  transform: rotate(-22deg) scale(1.1);
+}
+
+.about-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+  list-style: none;
+}
+
+.about-nav-link {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-dark-muted);
+  letter-spacing: 0.01em;
+  position: relative;
+  padding: 0.35rem 0;
+  transition: color var(--transition-fast);
+}
+
+.about-nav-link:hover,
+.about-nav-link.active {
+  color: var(--text-white);
+}
+
+.about-nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-orange);
+  border-radius: 2px;
+}
+
+.about-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+}
+
+.nav-icon-btn {
+  color: var(--text-dark-muted);
+  font-size: 1.05rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+  position: relative;
+}
+
+.nav-icon-btn:hover {
+  color: var(--text-white);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav-cart-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-orange);
+  color: #FFFFFF;
+  border-radius: 50%;
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  font-size: 1.25rem;
+  color: var(--text-white);
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS
+   -------------------------------------------------------------------------- */
+.btn-orange-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background-color: var(--color-orange);
+  color: #FFFFFF;
+  padding: 0.85rem 1.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 24px rgba(255, 81, 0, 0.3);
+  transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-orange-pill:hover {
+  background-color: var(--color-orange-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255, 81, 0, 0.42);
+  color: #FFFFFF;
+}
+
+.btn-orange-pill:active {
+  transform: translateY(0);
+}
+
+.btn-orange-pill i {
+  transition: transform var(--transition-fast);
+}
+
+.btn-orange-pill:hover i {
+  transform: translateX(4px);
+}
+
+.btn-outline-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: transparent;
+  color: var(--text-white);
+  border: 1px solid var(--bg-dark-border);
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.btn-outline-pill:hover {
+  border-color: var(--color-orange);
+  color: var(--color-orange);
+  background: var(--color-orange-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 1: HERO ("Good things. Made with heart.")
+   -------------------------------------------------------------------------- */
+.about-hero-section {
+  padding: 140px 0 90px;
+  background-color: var(--bg-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  align-items: center;
+  gap: 4.5rem;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-caramel);
+  margin-bottom: 1.4rem;
+}
+
+.hero-headline {
+  font-family: var(--font-heading);
+  font-size: 3.85rem;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--text-white);
+  margin-bottom: 1.6rem;
+}
+
+.hero-desc {
+  font-size: 1.08rem;
+  line-height: 1.68;
+  color: var(--text-dark-muted);
+  max-width: 500px;
+  margin-bottom: 2.2rem;
+}
+
+/* Hero Right: Arched Croissant Stack */
+.hero-visual-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.hero-arch-card {
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 4 / 3.8;
+  border-radius: var(--radius-arch);
+  background: radial-gradient(circle at 50% 30%, #3D180F 0%, #2A1008 85%);
+  border: 1px solid var(--bg-dark-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.hero-arch-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-smooth);
+}
+
+.hero-arch-card:hover .hero-arch-img {
+  transform: scale(1.04);
+}
+
+/* Floating Circular Badge */
+.hero-floating-badge {
+  position: absolute;
+  bottom: -15px;
+  right: -10px;
+  width: 96px;
+  height: 96px;
+  background-color: var(--color-orange);
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 3px solid var(--bg-dark);
+  box-shadow: 0 10px 25px rgba(255, 81, 0, 0.45);
+  cursor: pointer;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+  z-index: 5;
+}
+
+.hero-floating-badge:hover {
+  transform: scale(1.08) rotate(6deg);
+  background-color: var(--color-orange-hover);
+}
+
+.hero-visual-caption {
+  margin-top: 1.5rem;
+  font-size: 0.82rem;
+  color: var(--text-dark-subtle);
+  font-style: italic;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 2: HERITAGE ("A love of baking. A little goodness, every day.")
+   Background: Deep Dark Espresso
+   -------------------------------------------------------------------------- */
+.heritage-section {
+  padding: 100px 0 110px;
+  background-color: var(--bg-dark);
+}
+
+.heritage-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 4.5rem;
+}
+
+.heritage-media-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.heritage-img-frame {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  background-color: #38150D;
+}
+
+.heritage-img {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  transition: transform 0.6s var(--transition-smooth);
+}
+
+.heritage-img-frame:hover .heritage-img {
+  transform: scale(1.03);
+}
+
+.heritage-caption {
+  font-size: 0.82rem;
+  color: var(--text-dark-subtle);
+  font-style: italic;
+}
+
+.heritage-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.heritage-eyebrow {
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-caramel);
+  margin-bottom: 1rem;
+}
+
+.heritage-headline {
+  font-family: var(--font-heading);
+  font-size: 2.85rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text-white);
+  margin-bottom: 1.6rem;
+}
+
+.heritage-text {
+  font-size: 1.04rem;
+  line-height: 1.72;
+  color: var(--text-dark-muted);
+  margin-bottom: 1.4rem;
+}
+
+.heritage-link {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-orange);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.6rem;
+  transition: transform var(--transition-fast);
+}
+
+.heritage-link:hover {
+  transform: translateX(4px);
+  color: var(--color-orange-hover);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 3: DAILY RITUALS ("Make the little moments a little sweeter.")
+   Background: Warm Sourdough Cream (#FAF5EE)
+   -------------------------------------------------------------------------- */
+.rituals-section {
+  padding: 100px 0;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+}
+
+.rituals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: 4.5rem;
+}
+
+.rituals-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.rituals-eyebrow {
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-light-subtle);
+  margin-bottom: 1rem;
+}
+
+.rituals-headline {
+  font-family: var(--font-heading);
+  font-size: 2.85rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text-dark);
+  margin-bottom: 1.4rem;
+}
+
+.rituals-desc {
+  font-size: 1.05rem;
+  line-height: 1.72;
+  color: var(--text-light-muted);
+  margin-bottom: 2rem;
+}
+
+.rituals-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  list-style: none;
+}
+
+.rituals-check-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.rituals-check-item i {
+  color: var(--color-orange);
+  font-size: 0.85rem;
+}
+
+.rituals-media-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.rituals-img-frame {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  background-color: #EFE7DC;
+}
+
+.rituals-img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  transition: transform 0.6s var(--transition-smooth);
+}
+
+.rituals-img-frame:hover .rituals-img {
+  transform: scale(1.03);
+}
+
+.rituals-caption {
+  font-size: 0.82rem;
+  color: var(--text-light-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 4: CRAFT PHILOSOPHY & PILLARS ("Goodness in every detail.")
+   Background: Deep Dark Espresso
+   -------------------------------------------------------------------------- */
+.craft-section {
+  padding: 110px 0 120px;
+  background-color: var(--bg-dark);
+}
+
+.craft-top-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: 4.5rem;
+  margin-bottom: 4.5rem;
+}
+
+.craft-media-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.craft-img-frame {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  background-color: #38150D;
+}
+
+.craft-img {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  transition: transform 0.6s var(--transition-smooth);
+}
+
+.craft-img-frame:hover .craft-img {
+  transform: scale(1.03);
+}
+
+.craft-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.craft-eyebrow {
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-caramel);
+  margin-bottom: 1rem;
+}
+
+.craft-headline {
+  font-family: var(--font-heading);
+  font-size: 2.85rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text-white);
+  margin-bottom: 1.4rem;
+}
+
+.craft-desc {
+  font-size: 1.04rem;
+  line-height: 1.72;
+  color: var(--text-dark-muted);
+  margin-bottom: 1.75rem;
+}
+
+.craft-quote {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--color-gold);
+  border-left: 2px solid var(--color-orange);
+  padding-left: 1.25rem;
+}
+
+/* 3 Pillars Cards Row */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.pillar-card {
+  background-color: var(--bg-dark-card);
+  border: 1px solid var(--bg-dark-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: transform var(--transition-smooth), border-color var(--transition-fast), box-shadow var(--transition-smooth);
+}
+
+.pillar-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--bg-dark-border);
+  box-shadow: var(--shadow-card);
+}
+
+.pillar-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-white);
+  letter-spacing: -0.01em;
+}
+
+.pillar-card-desc {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text-dark-muted);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 5: DAILY SELECTION ROW ("A little something for every kind of moment.")
+   Background: Deep Dark Espresso
+   -------------------------------------------------------------------------- */
+.selection-section {
+  padding: 100px 0 110px;
+  background-color: var(--bg-dark);
+  border-top: 1px solid var(--bg-dark-border-subtle);
+}
+
+.selection-header-wrap {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.selection-eyebrow {
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-caramel);
+  margin-bottom: 0.85rem;
+}
+
+.selection-headline {
+  font-family: var(--font-heading);
+  font-size: 2.65rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--text-white);
+}
+
+.selection-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.selection-subtext {
+  font-size: 0.92rem;
+  color: var(--text-dark-muted);
+  text-align: right;
+  max-width: 320px;
+}
+
+/* 5-Column Products Grid */
+.selection-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.selection-card {
+  background-color: var(--bg-dark-card);
+  border: 1px solid var(--bg-dark-border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-smooth), border-color var(--transition-fast), box-shadow var(--transition-smooth);
+}
+
+.selection-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--bg-dark-border);
+  box-shadow: var(--shadow-card);
+}
+
+.selection-card-media {
+  width: 100%;
+  aspect-ratio: 16 / 12;
+  overflow: hidden;
+  background-color: #38150D;
+}
+
+.selection-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--transition-smooth);
+}
+
+.selection-card:hover .selection-card-img {
+  transform: scale(1.08);
+}
+
+.selection-card-body {
+  padding: 1.25rem 1.1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.selection-card-tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-orange);
+  margin-bottom: 0.4rem;
+}
+
+.selection-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-white);
+  margin-bottom: 0.4rem;
+}
+
+.selection-card-desc {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--text-dark-muted);
+  margin-bottom: 0.85rem;
+  flex: 1;
+}
+
+.selection-card-price {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-gold);
+}
+
+.selection-footer-caption {
+  font-size: 0.8rem;
+  color: var(--text-dark-subtle);
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 6: VISIT OUR BROOKLYN HEARTH ("Your next sweet moment starts here.")
+   Background: Deep Dark Espresso
+   -------------------------------------------------------------------------- */
+.visit-section {
+  padding: 100px 0 120px;
+  background-color: var(--bg-dark);
+}
+
+.visit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: 4.5rem;
+}
+
+.visit-media-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.visit-img-frame {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  background-color: #38150D;
+}
+
+.visit-img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  transition: transform 0.6s var(--transition-smooth);
+}
+
+.visit-img-frame:hover .visit-img {
+  transform: scale(1.03);
+}
+
+.visit-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.visit-eyebrow {
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-caramel);
+  margin-bottom: 1rem;
+}
+
+.visit-headline {
+  font-family: var(--font-heading);
+  font-size: 2.85rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text-white);
+  margin-bottom: 1.4rem;
+}
+
+.visit-desc {
+  font-size: 1.04rem;
+  line-height: 1.72;
+  color: var(--text-dark-muted);
+  margin-bottom: 1.8rem;
+  max-width: 520px;
+}
+
+.visit-details-box {
+  background-color: var(--bg-dark-card);
+  border: 1px solid var(--bg-dark-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  color: var(--text-dark-muted);
+}
+
+.visit-details-box strong {
+  color: #FFFFFF;
+}
+
+/* Newsletter Form */
+.visit-form {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 520px;
+  margin-bottom: 0.85rem;
+}
+
+.visit-input {
+  flex: 1;
+  height: 52px;
+  background-color: var(--bg-dark-card);
+  border: 1px solid var(--bg-dark-border);
+  border-radius: var(--radius-pill);
+  padding: 0 1.5rem;
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.visit-input::placeholder {
+  color: var(--text-dark-subtle);
+}
+
+.visit-input:focus {
+  border-color: var(--color-orange);
+  box-shadow: 0 0 0 3px rgba(255, 81, 0, 0.2);
+}
+
+.visit-btn {
+  height: 52px;
+  padding: 0 2rem;
+  background-color: var(--color-orange);
+  color: #FFFFFF;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 20px rgba(255, 81, 0, 0.35);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.visit-btn:hover {
+  background-color: var(--color-orange-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 81, 0, 0.45);
+}
+
+.visit-feedback {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #4ADE80;
+  display: none;
+  margin-top: 0.5rem;
+}
+
+.visit-feedback.active {
+  display: block;
+  color: #4ADE80;
+}
+
+.visit-feedback.error {
+  display: block;
+  color: #EF4444;
+}
+
+.visit-input.is-invalid {
+  border-color: #EF4444 !important;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25) !important;
+}
+
+.visit-subtext {
+  font-size: 0.8rem;
+  color: var(--text-dark-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.about-footer {
+  background-color: #160603;
+  color: var(--text-white);
+  padding: 90px 0 40px;
+  border-top: 1px solid var(--bg-dark-border-subtle);
+}
+
+.footer-top-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.25fr;
+  gap: 3.5rem;
+  margin-bottom: 4rem;
+}
+
+.footer-brand-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-tagline {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text-dark-muted);
+  margin: 1.25rem 0 1.75rem;
+  max-width: 320px;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.footer-social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-dark-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+.footer-social-btn:hover {
+  background-color: var(--color-orange);
+  color: #FFFFFF;
+  border-color: var(--color-orange);
+  transform: translateY(-3px);
+}
+
+.footer-col-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-caramel);
+  margin-bottom: 1.5rem;
+}
+
+.footer-col-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.footer-col-links a {
+  font-size: 0.9rem;
+  color: var(--text-dark-muted);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  display: inline-block;
+}
+
+.footer-col-links a:hover {
+  color: var(--color-orange);
+  transform: translateX(3px);
+}
+
+.footer-address {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text-dark-muted);
+}
+
+.footer-bottom-bar {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.84rem;
+  color: var(--text-dark-subtle);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-legal-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer-legal-links a:hover {
+  color: var(--text-white);
+}
+
+/* --------------------------------------------------------------------------
+   EXPANDED ABOUT US COMPONENTS (SECTIONS 1-8)
+   -------------------------------------------------------------------------- */
+
+/* 1. Hero Impact Metrics Strip */
+.about-metrics-strip {
+  margin-top: 4.5rem;
+  padding: 2.25rem 2.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--bg-dark-border-subtle);
+  border-radius: var(--radius-lg);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  backdrop-filter: blur(8px);
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding-right: 1.5rem;
+}
+
+.metric-item:last-child {
+  border-right: none;
+}
+
+.metric-number {
+  font-family: var(--font-heading);
+  font-size: 2.35rem;
+  font-weight: 800;
+  color: var(--color-orange);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.metric-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-white);
+  line-height: 1.35;
+}
+
+.metric-sub {
+  font-size: 0.78rem;
+  color: var(--text-dark-muted);
+}
+
+/* 2. Heritage Timeline Journey */
+.heritage-timeline-wrap {
+  margin-top: 5rem;
+  padding-top: 4rem;
+  border-top: 1px solid var(--bg-dark-border-subtle);
+}
+
+.timeline-title-wrap {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+}
+
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+}
+
+.timeline-card {
+  background: var(--bg-dark-card);
+  border: 1px solid var(--bg-dark-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform var(--transition-smooth), border-color var(--transition-fast), box-shadow var(--transition-smooth);
+}
+
+.timeline-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-caramel);
+  box-shadow: var(--shadow-card);
+}
+
+.timeline-year-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  align-self: flex-start;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--color-orange);
+  background: var(--color-orange-subtle);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.timeline-heading {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--text-white);
+  line-height: 1.3;
+}
+
+.timeline-desc {
+  font-size: 0.88rem;
+  line-height: 1.62;
+  color: var(--text-dark-muted);
+}
+
+/* 3. Team & Master Bakers Section */
+.team-section {
+  padding: 110px 0;
+  background-color: var(--bg-dark-surface);
+  position: relative;
+}
+
+.team-header-wrap {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 4rem;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.team-card {
+  background: var(--bg-dark-card);
+  border: 1px solid var(--bg-dark-border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-smooth), border-color var(--transition-fast), box-shadow var(--transition-smooth);
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--bg-dark-border);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+.team-card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.15;
+  overflow: hidden;
+  background-color: #3A170F;
+}
+
+.team-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--transition-smooth);
+}
+
+.team-card:hover .team-card-img {
+  transform: scale(1.05);
+}
+
+.team-card-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(27, 9, 5, 0.85);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--color-caramel);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill);
+}
+
+.team-card-body {
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex-grow: 1;
+}
+
+.team-member-role {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-orange);
+}
+
+.team-member-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-white);
+  line-height: 1.25;
+}
+
+.team-member-bio {
+  font-size: 0.86rem;
+  line-height: 1.58;
+  color: var(--text-dark-muted);
+}
+
+.team-member-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-gold);
+  border-left: 2px solid var(--color-caramel);
+  padding-left: 0.75rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+/* 4. 4-Stage Baking Ritual Process (Warm Sourdough Cream) */
+.process-section {
+  padding: 110px 0;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+}
+
+.process-header-wrap {
+  text-align: center;
+  max-width: 660px;
+  margin: 0 auto 4rem;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.process-card {
+  background: var(--bg-light-card);
+  border: 1px solid var(--bg-light-border);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 1.85rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-fast);
+  box-shadow: var(--shadow-soft);
+}
+
+.process-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-caramel);
+  box-shadow: var(--shadow-hover);
+}
+
+.process-card-step {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: rgba(255, 81, 0, 0.22);
+  line-height: 1;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.process-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-light-surface);
+  color: var(--color-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+
+.process-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.65rem;
+  line-height: 1.3;
+}
+
+.process-card-desc {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text-light-muted);
+}
+
+/* 5. Live Oven Pull Schedule Bar inside Selection */
+.schedule-ticker-strip {
+  margin-bottom: 3.5rem;
+  background: var(--bg-dark-card);
+  border: 1px solid var(--bg-dark-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.schedule-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding-right: 1.25rem;
+}
+
+.schedule-card:last-child {
+  border-right: none;
+}
+
+.schedule-badge-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 81, 0, 0.15);
+  color: var(--color-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.schedule-time {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-white);
+  line-height: 1.2;
+}
+
+.schedule-label {
+  font-size: 0.8rem;
+  color: var(--color-caramel);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.schedule-items {
+  font-size: 0.78rem;
+  color: var(--text-dark-muted);
+  line-height: 1.4;
+  margin-top: 3px;
+}
+
+/* 6. Community & Sustainability Section */
+.community-section {
+  padding: 110px 0;
+  background-color: var(--bg-dark);
+  position: relative;
+}
+
+.community-header-wrap {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 4rem;
+}
+
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.community-card {
+  background: var(--bg-dark-card);
+  border: 1px solid var(--bg-dark-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform var(--transition-smooth), border-color var(--transition-fast), box-shadow var(--transition-smooth);
+}
+
+.community-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-orange);
+  box-shadow: var(--shadow-card);
+}
+
+.community-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(255, 81, 0, 0.14);
+  color: var(--color-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+}
+
+.community-card-stat {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-white);
+  line-height: 1.15;
+}
+
+.community-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-caramel);
+}
+
+.community-card-desc {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text-dark-muted);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE LAYOUT RULES (ALL DEVICES)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .hero-headline {
+    font-size: 3.2rem;
+  }
+
+  .about-hero-grid,
+  .heritage-grid,
+  .rituals-grid,
+  .craft-top-grid,
+  .visit-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-metrics-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+    padding: 2rem;
+  }
+
+  .metric-item:nth-child(2) {
+    border-right: none;
+  }
+
+  .timeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .schedule-ticker-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .schedule-card:nth-child(2) {
+    border-right: none;
+  }
+
+  .community-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .selection-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-top-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .hero-visual-wrap {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero-section {
+    padding: 100px 0 60px;
+  }
+
+  .hero-headline {
+    font-size: 2.5rem;
+  }
+
+  .heritage-headline,
+  .rituals-headline,
+  .craft-headline,
+  .selection-headline,
+  .visit-headline {
+    font-size: 2.1rem;
+  }
+
+  .about-metrics-strip {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .metric-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 1rem;
+    padding-right: 0;
+  }
+
+  .metric-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .timeline-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .heritage-timeline-wrap {
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+  }
+
+  .team-section,
+  .process-section,
+  .community-section,
+  .craft-section,
+  .selection-section,
+  .visit-section {
+    padding: 70px 0;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .schedule-ticker-strip {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .schedule-card {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 1rem;
+    padding-right: 0;
+  }
+
+  .schedule-card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .selection-header-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .selection-header-right {
+    align-items: flex-start;
+  }
+
+  .selection-subtext {
+    text-align: left;
+  }
+
+  .selection-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .visit-form {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .visit-btn {
+    width: 100%;
+  }
+
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-container {
+    padding: 0 1.25rem;
+  }
+
+  .hero-headline {
+    font-size: 2.15rem;
+  }
+
+  .heritage-headline,
+  .rituals-headline,
+  .craft-headline,
+  .selection-headline,
+  .visit-headline {
+    font-size: 1.85rem;
+  }
+
+  .selection-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-arch-card {
+    max-width: 320px;
+  }
+
+  .hero-floating-badge {
+    width: 80px;
+    height: 80px;
+    font-size: 0.6rem;
+    bottom: -10px;
+    right: -5px;
+  }
+
+  .rituals-img,
+  .craft-img {
+    height: 320px;
+  }
+}

@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard &bull; Stackly Portal</title>
+  <meta name="description" content="Your personal Stackly account dashboard. View overview metrics, loaf holds, bakery rewards, and past orders.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fb5022'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z'/></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <!-- Animate.css via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <!-- Auth & Base Dashboard Stylesheet -->
+  <link rel="stylesheet" href="assets/css/auth.css?v=4">
+
+  <!-- Modern Portal Dashboard Layout Stylesheet -->
+  <link rel="stylesheet" href="assets/css/portal-dashboard.css">
+</head>
+<body class="dashboard-page">
+
+  <!-- Mobile Sidebar Backdrop Overlay -->
+  <div class="portal-sidebar-backdrop" id="portalBackdrop"></div>
+
+  <!-- Master Portal Layout -->
+  <div class="portal-layout">
+
+    <!-- ==============================================
+         LEFT SIDEBAR NAVIGATION (Deep Navy, 100vh)
+         ============================================== -->
+    <aside class="portal-sidebar" id="portalSidebar">
+      <!-- Top Brand Header: Official Stackly Logo -->
+      <div class="portal-brand-wrap">
+        <a href="index.html" class="portal-brand" aria-label="Stackly Home">
+          <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="portal-brand-logo-img" width="128" height="48">
+        </a>
+        <button class="portal-sidebar-close" id="closeSidebarBtn" aria-label="Close sidebar">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Section Title -->
+      <div class="portal-nav-section">DASHBOARD VIEWS</div>
+
+      <!-- Navigation Menu Items -->
+      <nav class="portal-nav-list" aria-label="User Dashboard Navigation">
+        <!-- 1. Overview -->
+        <button class="portal-nav-item active" data-tab="overview">
+          <i class="fa-solid fa-chart-pie portal-item-icon-circle"></i>
+          <span>Overview</span>
+        </button>
+
+        <!-- 2. My Policies / Orders -->
+        <button class="portal-nav-item" data-tab="orders">
+          <i class="fa-solid fa-file-lines"></i>
+          <span>My Policies</span>
+        </button>
+
+        <!-- 3. Claims Tracking -->
+        <button class="portal-nav-item" data-tab="tracking">
+          <i class="fa-solid fa-clipboard-check"></i>
+          <span>Claims Tracking</span>
+        </button>
+
+        <!-- 4. Renewals -->
+        <button class="portal-nav-item" data-tab="rewards">
+          <i class="fa-solid fa-calendar-check"></i>
+          <span>Renewals</span>
+        </button>
+
+        <!-- 5. Documents / Passes -->
+        <button class="portal-nav-item" data-tab="workshops">
+          <i class="fa-solid fa-folder"></i>
+          <span>Documents</span>
+        </button>
+
+        <!-- 6. Profile & Settings -->
+        <button class="portal-nav-item" data-tab="settings">
+          <i class="fa-solid fa-user-gear"></i>
+          <span>Profile &amp; Settings</span>
+        </button>
+      </nav>
+
+      <!-- Bottom Pinned Logout -->
+      <div class="portal-sidebar-bottom">
+        <a href="login.html" class="portal-logout-btn">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ==============================================
+         MAIN CONTENT AREA (Right of Sidebar)
+         ============================================== -->
+    <div class="portal-main">
+
+      <!-- ==============================================
+           TOP STICKY NAVBAR (Pure White)
+           ============================================== -->
+      <header class="portal-header">
+        <div class="portal-header-left">
+          <button class="portal-menu-toggle" id="portalMenuToggle" aria-label="Open navigation menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="portal-header-title" id="pageHeaderTitle">Overview</h1>
+        </div>
+
+        <div class="portal-header-right">
+          <!-- Calendar Date Pill -->
+          <div class="portal-date-pill">
+            <i class="fa-regular fa-calendar-check"></i>
+            <span id="portalDateDisplay">October 23, 2026 (Demo)</span>
+          </div>
+
+          <!-- Notifications Bell -->
+          <div class="dash-nav-dropdown-wrap" style="position: relative;">
+            <button class="portal-notif-btn" id="notifBtn" aria-label="View notifications" aria-expanded="false" title="Notifications">
+              <i class="fa-regular fa-bell"></i>
+              <span class="portal-notif-dot"></span>
+            </button>
+            <div class="dash-dropdown-panel notif-panel" id="notifDropdown" style="right: 0; top: 120%;">
+              <div class="dropdown-panel-head">
+                <h4>Notifications</h4>
+                <span class="badge-unread">2 New</span>
+              </div>
+              <div class="notif-list">
+                <div class="notif-item unread">
+                  <div class="notif-icon"><i class="fa-solid fa-bread-slice"></i></div>
+                  <div class="notif-content">
+                    <p class="notif-title">Loaf Ready for Pickup</p>
+                    <p class="notif-desc">Country Sourdough #KD-7842 blistered &amp; at counter.</p>
+                    <span class="notif-time">Just now</span>
+                  </div>
+                </div>
+                <div class="notif-item unread">
+                  <div class="notif-icon" style="background:#FAF0DF; color:#8C6520;"><i class="fa-solid fa-award"></i></div>
+                  <div class="notif-content">
+                    <p class="notif-title">Flour Points Credited</p>
+                    <p class="notif-desc">+35 points added to your Gold Crumb balance.</p>
+                    <span class="notif-time">2 hours ago</span>
+                  </div>
+                </div>
+              </div>
+              <a href="#orders" class="dropdown-panel-footer">View All Orders &rarr;</a>
+            </div>
+          </div>
+
+          <!-- User Profile Display Pill -->
+          <div class="portal-profile-pill" id="profilePill">
+            <div class="portal-avatar-circle" id="dashAvatar">AV</div>
+            <div class="portal-profile-info">
+              <span class="portal-profile-name" id="dashProfileName">Alexander Vance</span>
+              <span class="portal-profile-role" id="dashProfileRole">Individual Policyholder</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ==============================================
+           PORTAL BODY: DYNAMIC TAB PANELS
+           ============================================== -->
+      <main class="portal-body">
+
+        <!-- ==============================================
+             TAB 1: OVERVIEW (Default Active)
+             ============================================== -->
+        <section class="portal-tab-panel active" id="overview">
+
+          <!-- Row 1: 4 Stat KPI Cards (Exact match to structure) -->
+          <div class="portal-kpi-grid">
+            <!-- Card 1: Total Policies -->
+            <div class="portal-kpi-card" data-aos="fade-up" data-aos-delay="50">
+              <div class="portal-kpi-top">
+                <span class="portal-kpi-label">TOTAL POLICIES</span>
+                <div class="portal-kpi-badge badge-blue">
+                  <i class="fa-solid fa-layer-group"></i>
+                </div>
+              </div>
+              <div class="portal-kpi-value">5</div>
+              <div class="portal-kpi-sub">Across 4 categories</div>
+            </div>
+
+            <!-- Card 2: Active Policies -->
+            <div class="portal-kpi-card" data-aos="fade-up" data-aos-delay="100">
+              <div class="portal-kpi-top">
+                <span class="portal-kpi-label">ACTIVE POLICIES</span>
+                <div class="portal-kpi-badge badge-cream">
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+              </div>
+              <div class="portal-kpi-value">4</div>
+              <div class="portal-kpi-sub">Up to date &amp; protected</div>
+            </div>
+
+            <!-- Card 3: Pending Claims -->
+            <div class="portal-kpi-card" data-aos="fade-up" data-aos-delay="150">
+              <div class="portal-kpi-top">
+                <span class="portal-kpi-label">PENDING CLAIMS</span>
+                <div class="portal-kpi-badge badge-lightblue">
+                  <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+              </div>
+              <div class="portal-kpi-value">1</div>
+              <div class="portal-kpi-sub">Claim #CLM-2026-104</div>
+            </div>
+
+            <!-- Card 4: Upcoming Renewals -->
+            <div class="portal-kpi-card" data-aos="fade-up" data-aos-delay="200">
+              <div class="portal-kpi-top">
+                <span class="portal-kpi-label">UPCOMING RENEWALS</span>
+                <div class="portal-kpi-badge badge-amber">
+                  <i class="fa-solid fa-calendar-check"></i>
+                </div>
+              </div>
+              <div class="portal-kpi-value">2</div>
+              <div class="portal-kpi-sub">Within next 45 days</div>
+            </div>
+          </div>
+
+          <!-- Row 2: 2 Charts Side-by-Side (Exact match to structure) -->
+          <div class="portal-charts-grid">
+
+            <!-- Left: Annual Claims Settlement History Bar Chart -->
+            <div class="portal-chart-card" data-aos="fade-up" data-aos-delay="250">
+              <div class="portal-chart-header">
+                <div class="portal-chart-title">
+                  <i class="fa-solid fa-chart-column"></i>
+                  <h3>Annual Claims Settlement History</h3>
+                </div>
+                <span class="portal-chart-badge-demo">2026 DEMO DATA</span>
+              </div>
+              <svg class="portal-chart-svg" viewBox="0 0 540 260" preserveAspectRatio="xMidYMid meet">
+                <!-- Grid Lines and Y-Axis Labels -->
+                <g class="chart-grid">
+                  <!-- $2500 -->
+                  <text x="38" y="24" text-anchor="end" class="chart-axis-text">$2500</text>
+                  <line x1="48" y1="20" x2="525" y2="20" class="chart-grid-line" />
+
+                  <!-- $2000 -->
+                  <text x="38" y="64" text-anchor="end" class="chart-axis-text">$2000</text>
+                  <line x1="48" y1="60" x2="525" y2="60" class="chart-grid-line" />
+
+                  <!-- $1500 -->
+                  <text x="38" y="104" text-anchor="end" class="chart-axis-text">$1500</text>
+                  <line x1="48" y1="100" x2="525" y2="100" class="chart-grid-line" />
+
+                  <!-- $1000 -->
+                  <text x="38" y="144" text-anchor="end" class="chart-axis-text">$1000</text>
+                  <line x1="48" y1="140" x2="525" y2="140" class="chart-grid-line" />
+
+                  <!-- $500 -->
+                  <text x="38" y="184" text-anchor="end" class="chart-axis-text">$500</text>
+                  <line x1="48" y1="180" x2="525" y2="180" class="chart-grid-line" />
+
+                  <!-- $0 Base Line -->
+                  <text x="38" y="224" text-anchor="end" class="chart-axis-text">$0</text>
+                  <line x1="48" y1="220" x2="525" y2="220" stroke="#D4C2B8" stroke-width="1.5" />
+                </g>
+
+                <!-- Monthly Bars (Matching exact bars from screenshot) -->
+                <!-- May ($400) -->
+                <rect x="74" y="188" width="32" height="32" rx="4" class="chart-bar" />
+                <text x="90" y="242" text-anchor="middle" class="chart-axis-text">May</text>
+
+                <!-- Jun ($0) -->
+                <text x="170" y="242" text-anchor="middle" class="chart-axis-text">Jun</text>
+
+                <!-- Jul ($2300) -->
+                <rect x="234" y="36" width="32" height="184" rx="4" class="chart-bar" />
+                <text x="250" y="242" text-anchor="middle" class="chart-axis-text">Jul</text>
+
+                <!-- Aug ($0) -->
+                <text x="330" y="242" text-anchor="middle" class="chart-axis-text">Aug</text>
+
+                <!-- Sep ($0) -->
+                <text x="410" y="242" text-anchor="middle" class="chart-axis-text">Sep</text>
+
+                <!-- Oct ($1450) -->
+                <rect x="474" y="104" width="32" height="116" rx="4" class="chart-bar" />
+                <text x="490" y="242" text-anchor="middle" class="chart-axis-text">Oct</text>
+              </svg>
+            </div>
+
+            <!-- Right: Policy Distribution Donut Chart -->
+            <div class="portal-chart-card" data-aos="fade-up" data-aos-delay="300">
+              <div class="portal-chart-header">
+                <div class="portal-chart-title">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <h3>Policy Distribution</h3>
+                </div>
+                <span class="portal-chart-sub">Sum Insured Share</span>
+              </div>
+              <svg class="portal-chart-svg" viewBox="0 0 300 210" preserveAspectRatio="xMidYMid meet">
+                <!-- Donut Segments (Artisanal Bakery Palette) -->
+                <!-- Sourdough (Espresso Chocolate #3E1910) -->
+                <circle cx="150" cy="105" r="62" fill="none" stroke="#3E1910" stroke-width="26"
+                        stroke-dasharray="198 389.55" stroke-dashoffset="0" transform="rotate(-90 150 105)" />
+                <!-- Pastries (Vibrant CTA Orange #FB5022) -->
+                <circle cx="150" cy="105" r="62" fill="none" stroke="#FB5022" stroke-width="26"
+                        stroke-dasharray="104 389.55" stroke-dashoffset="-202" transform="rotate(-90 150 105)" />
+                <!-- Baguettes (Artisan Gold #C29548) -->
+                <circle cx="150" cy="105" r="62" fill="none" stroke="#C29548" stroke-width="26"
+                        stroke-dasharray="45 389.55" stroke-dashoffset="-310" transform="rotate(-90 150 105)" />
+                <!-- Brioche (Warm Amber #E67E22) -->
+                <circle cx="150" cy="105" r="62" fill="none" stroke="#E67E22" stroke-width="26"
+                        stroke-dasharray="18 389.55" stroke-dashoffset="-358" transform="rotate(-90 150 105)" />
+                <!-- Beverages (Warm Latte #D4A373) -->
+                <circle cx="150" cy="105" r="62" fill="none" stroke="#D4A373" stroke-width="26"
+                        stroke-dasharray="9 389.55" stroke-dashoffset="-379" transform="rotate(-90 150 105)" />
+              </svg>
+              <div class="portal-donut-legend">
+                <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#3E1910;"></span>Sourdough</span>
+                <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#FB5022;"></span>Pastries</span>
+                <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#C29548;"></span>Baguettes</span>
+                <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#E67E22;"></span>Brioche</span>
+                <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#D4A373;"></span>Beverages</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 3: Active Orders & Holds Overview Table -->
+          <div class="portal-card-section" data-aos="fade-up" data-aos-delay="350">
+            <div class="portal-section-head">
+              <h2>Recent Orders &amp; Morning Holds</h2>
+              <span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> 1 Active Pickup</span>
+            </div>
+
+            <div class="dash-table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>BATCH / ORDER</th>
+                    <th>ITEMS</th>
+                    <th>PICKUP WINDOW</th>
+                    <th>TOTAL</th>
+                    <th>STATUS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#KD-7842</strong></td>
+                    <td>1x Country Sourdough Boule (Sliced)</td>
+                    <td>Today &bull; 08:00 AM – 04:00 PM</td>
+                    <td>$8.50</td>
+                    <td><a href="404.html" class="dash-badge ready" style="text-decoration: none;"><i class="fa-solid fa-circle-check"></i> Ready at Counter</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#KD-7719</strong></td>
+                    <td>2x Butter Croissant, 1x Cortado</td>
+                    <td>Yesterday &bull; 07:30 AM</td>
+                    <td>$14.50</td>
+                    <td><a href="404.html" class="dash-badge holding" style="text-decoration: none;"><i class="fa-solid fa-check-double"></i> Completed</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#KD-7601</strong></td>
+                    <td>1x Cinnamon Brioche Swirl, 1x Babka</td>
+                    <td>Oct 12 &bull; 10:45 AM</td>
+                    <td>$15.25</td>
+                    <td><a href="404.html" class="dash-badge holding" style="text-decoration: none;"><i class="fa-solid fa-check-double"></i> Completed</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             TAB 2: MY POLICIES / ORDERS
+             ============================================== -->
+        <section class="portal-tab-panel" id="orders">
+          <div class="portal-card-section">
+            <div class="portal-section-head">
+              <div>
+                <h2>My Policies &amp; Fresh Oven Holds</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #64748B;">Manage your daily fresh reservations, active coverage, and counter hold pickups.</p>
+              </div>
+              <a href="404.html" class="portal-btn-action">
+                <i class="fa-solid fa-plus"></i> Reserve New Loaf
+              </a>
+            </div>
+
+            <div class="dash-table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Order Number</th>
+                    <th>Batch Time</th>
+                    <th>Items Ordered</th>
+                    <th>Pickup Counter</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#KD-7842</strong></td>
+                    <td>08:00 AM Hearth Pull</td>
+                    <td>1x Country Sourdough Boule (Sliced)</td>
+                    <td>Main Bread Deck &bull; Shelf A2</td>
+                    <td><strong>$8.50</strong></td>
+                    <td><a href="404.html" class="dash-badge ready" style="text-decoration: none;"><i class="fa-solid fa-bell"></i> Ready For Pickup</a></td>
+                    <td><a href="404.html" class="btn-manage-sm" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Show Code</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#KD-7719</strong></td>
+                    <td>06:30 AM First Pull</td>
+                    <td>2x Traditional Butter Croissants, 1x Cortado</td>
+                    <td>Espresso Counter</td>
+                    <td><strong>$14.50</strong></td>
+                    <td><a href="404.html" class="dash-badge holding" style="text-decoration: none;"><i class="fa-solid fa-check"></i> Completed</a></td>
+                    <td><a href="404.html" class="btn-manage-sm" style="text-decoration: none;">Reorder</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#KD-7601</strong></td>
+                    <td>10:30 AM Sweet Pull</td>
+                    <td>1x Ceylon Cinnamon Brioche Swirl, 1x Babka</td>
+                    <td>Pastry Glass</td>
+                    <td><strong>$15.25</strong></td>
+                    <td><a href="404.html" class="dash-badge holding" style="text-decoration: none;"><i class="fa-solid fa-check"></i> Completed</a></td>
+                    <td><a href="404.html" class="btn-manage-sm" style="text-decoration: none;">Reorder</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#KD-7490</strong></td>
+                    <td>12:30 PM Savory Pull</td>
+                    <td>1x Rosemary Sea Salt Focaccia Slab</td>
+                    <td>Savory Station</td>
+                    <td><strong>$9.00</strong></td>
+                    <td><a href="404.html" class="dash-badge holding" style="text-decoration: none;"><i class="fa-solid fa-check"></i> Completed</a></td>
+                    <td><a href="404.html" class="btn-manage-sm" style="text-decoration: none;">Reorder</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             TAB 3: CLAIMS TRACKING
+             ============================================== -->
+        <section class="portal-tab-panel" id="tracking">
+          <div class="portal-card-section">
+            <div class="portal-section-head">
+              <div>
+                <h2>Claims &amp; Pickup Tracking</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #64748B;">Live tracking for active hearth pulls, oven schedules, and counter handoffs.</p>
+              </div>
+              <a href="404.html" class="portal-chart-badge-demo" style="background:#EBF3FE; color:#1A56DB; text-decoration: none; cursor: pointer;">ACTIVE CLAIM #CLM-2026-104</a>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem;">
+              <div style="display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.25rem; background: #FAF4EE; border-radius: 12px; border: 1px solid rgba(62, 25, 16, 0.08);">
+                <div style="width: 44px; height: 44px; border-radius: 50%; background: #FAF0DF; color: #C29548; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <div>
+                  <h4 style="margin: 0 0 0.25rem; font-size: 0.95rem; font-weight: 700; color: #3E1910;">Hearth Pull Verified &bull; Stage 1</h4>
+                  <p style="margin: 0; font-size: 0.85rem; color: #6E534A;">Loaves scored and loaded into stone deck oven at 500&deg;F with steam injection.</p>
+                  <span style="font-size: 0.75rem; color: #9E857C; font-weight: 600;">07:15 AM</span>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.25rem; background: #FAF4EE; border-radius: 12px; border: 1px solid rgba(62, 25, 16, 0.08);">
+                <div style="width: 44px; height: 44px; border-radius: 50%; background: #FAF0DF; color: #C29548; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <div>
+                  <h4 style="margin: 0 0 0.25rem; font-size: 0.95rem; font-weight: 700; color: #3E1910;">Crust Blistering &amp; Quality Inspection &bull; Stage 2</h4>
+                  <p style="margin: 0; font-size: 0.85rem; color: #6E534A;">Tested for acoustic singing hollow crust and deep mahogany caramelization.</p>
+                  <span style="font-size: 0.75rem; color: #9E857C; font-weight: 600;">07:55 AM</span>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.25rem; background: #FFF0EB; border-radius: 12px; border: 1px solid rgba(251, 80, 34, 0.25);">
+                <div style="width: 44px; height: 44px; border-radius: 50%; background: #FB5022; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+                  <i class="fa-solid fa-bell"></i>
+                </div>
+                <div>
+                  <h4 style="margin: 0 0 0.25rem; font-size: 0.95rem; font-weight: 700; color: #3E1910;">Ready At Pickup Counter &bull; Current Status</h4>
+                  <p style="margin: 0; font-size: 0.85rem; color: #6E534A;">Reserved loaf is bagged and held at Shelf A2. Present code #7842 to claim.</p>
+                  <a href="404.html" style="font-size: 0.75rem; color: #FB5022; font-weight: 700; text-decoration: none; cursor: pointer;">Ready Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             TAB 4: RENEWALS & REWARDS
+             ============================================== -->
+        <section class="portal-tab-panel" id="rewards">
+          <div class="portal-card-section">
+            <div class="portal-section-head">
+              <div>
+                <h2>Stackly Renewals &amp; Flour Rewards Club</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #64748B;">Earn 10 points for every $1 spent on artisan loaves and specialty bakes.</p>
+              </div>
+            </div>
+
+            <!-- Rewards Tier Hero Banner -->
+            <div class="rewards-hero-card" style="margin-bottom: 2rem;">
+              <div class="rewards-left">
+                <div class="rewards-crown-icon">
+                  <i class="fa-solid fa-crown"></i>
+                </div>
+                <div>
+                  <h3 style="margin: 0 0 0.25rem; font-size: 1.25rem; font-weight: 800; color: #220C07;">Gold Crumb Regular Tier</h3>
+                  <p style="margin: 0; font-size: 0.88rem; color: #5C3D2E; line-height: 1.45;">Enjoy free monthly seasonal pastry drops, zero-queue counter priority, and 10% off masterclasses.</p>
+                </div>
+              </div>
+              <div class="rewards-pts-box">
+                <span class="pts-number">350</span>
+                <span class="pts-caption">Available Points</span>
+              </div>
+            </div>
+
+            <!-- Redeemable Perks Grid -->
+            <div class="portal-section-head" style="border: none; padding: 0; margin-bottom: 1rem;">
+              <h3>Redeem Your Points For Fresh Bakes</h3>
+              <a href="404.html" style="font-size: 0.82rem; color: #64748B; font-weight: 600; text-decoration: none; cursor: pointer;">150 pts until next tier</a>
+            </div>
+
+            <div class="perks-claim-grid">
+              <div class="perk-claim-card">
+                <span class="perk-cost-tag"><i class="fa-solid fa-coins"></i> 150 Points</span>
+                <h4>Specialty Coffee or Tea</h4>
+                <p>Redeem any single-origin espresso, oat flat white, pour-over, or cold brew.</p>
+                <a href="404.html" class="btn-claim-reward" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">Redeem Reward</a>
+              </div>
+
+              <div class="perk-claim-card">
+                <span class="perk-cost-tag"><i class="fa-solid fa-coins"></i> 200 Points</span>
+                <h4>Fresh Butter Croissant</h4>
+                <p>One warm 81-layer Normandy butter croissant pulled directly from the stone deck.</p>
+                <a href="404.html" class="btn-claim-reward" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">Redeem Reward</a>
+              </div>
+
+              <div class="perk-claim-card">
+                <span class="perk-cost-tag"><i class="fa-solid fa-coins"></i> 300 Points</span>
+                <h4>Country Sourdough Boule</h4>
+                <p>One 72-hour wild levain sourdough boule with singing, crackling blistered crust.</p>
+                <a href="404.html" class="btn-claim-reward" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">Redeem Reward</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             TAB 5: DOCUMENTS & WORKSHOPS
+             ============================================== -->
+        <section class="portal-tab-panel" id="workshops">
+          <div class="portal-card-section">
+            <div class="portal-section-head">
+              <div>
+                <h2>Documents &amp; Workshop Passes</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #64748B;">Confirmed admission passes and downloadable recipes for masterclasses.</p>
+              </div>
+            </div>
+
+            <!-- Confirmed Ticket Card -->
+            <div class="workshop-ticket-card">
+              <div class="ticket-date-box">
+                <span class="t-month">Saturday</span>
+                <span class="t-day">18</span>
+                <span class="t-time">08:30 AM (4.5h)</span>
+              </div>
+
+              <div class="ticket-details">
+                <span class="dash-badge ready" style="margin-bottom: 0.5rem;"><i class="fa-solid fa-circle-check"></i> Confirmed &bull; Station #03</span>
+                <h3>Wild Levain &amp; Sourdough Science Masterclass</h3>
+                <p>Taught by Head Baker Julian. Hands-on hydration math, coil folds, banneton shaping, and razor scoring.</p>
+                <div class="ticket-perks">
+                  <span><i class="fa-solid fa-check"></i> 50-Yr Starter Jar Included</span>
+                  <span><i class="fa-solid fa-check"></i> Cane Banneton Included</span>
+                  <span><i class="fa-solid fa-check"></i> 2 Baked Boules to Take Home</span>
+                </div>
+              </div>
+
+              <div class="ticket-qr-action">
+                <div class="ticket-barcode">PASS-WL-88402</div>
+                <a href="404.html" class="btn-manage-sm" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;"><i class="fa-solid fa-download"></i> Download Pass</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             TAB 6: PROFILE & SETTINGS
+             ============================================== -->
+        <section class="portal-tab-panel" id="settings">
+          <div class="portal-card-section">
+            <div class="portal-section-head">
+              <div>
+                <h2>Profile &amp; Settings</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #64748B;">Customize your member profile, notification alerts, and counter hold preferences.</p>
+              </div>
+            </div>
+
+            <form class="settings-form-grid" id="userProfileForm" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="settingsFullName">Full Name <span style="color:var(--portal-orange);">*</span></label>
+                <input type="text" id="settingsFullName" class="form-control" value="Alexander Vance" style="padding-left: 1rem;" required>
+                <span class="auth-field-error" id="settingsFullNameError">Full name is required</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="settingsEmail">Email Address <span style="color:var(--portal-orange);">*</span></label>
+                <input type="email" id="settingsEmail" class="form-control" value="alexander.vance@example.com" style="padding-left: 1rem;" required>
+                <span class="auth-field-error" id="settingsEmailError">Email is required</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="settingsLoafPrep">Default Loaf Preparation</label>
+                <select id="settingsLoafPrep" class="form-control" style="padding-left: 1rem;">
+                  <option selected>Sliced Sourdough (Ready for Toast)</option>
+                  <option>Whole Unsliced Boule (Preserves Moisture)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="settingsPickupWindow">Preferred Pickup Window</label>
+                <select id="settingsPickupWindow" class="form-control" style="padding-left: 1rem;">
+                  <option selected>Morning Pull (08:00 AM – 10:00 AM)</option>
+                  <option>Midday Pull (12:00 PM – 02:00 PM)</option>
+                  <option>Afternoon Pickup (02:00 PM – 05:00 PM)</option>
+                </select>
+              </div>
+
+              <div style="grid-column: 1 / -1; margin-top: 1rem;">
+                <a href="404.html" class="btn-claim-reward" style="padding: 0.75rem 2rem; font-size: 0.92rem; background-color: var(--portal-orange); border: none; color: #fff; border-radius: 8px; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-block;">Save Account Preferences</a>
+                <div id="settingsFeedback" style="display: none; margin-top: 0.75rem; padding: 0.65rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; background-color: #DCFCE7; color: #166534;"></div>
+              </div>
+            </form>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+  <!-- Interactive Portal Dashboard Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Initialize AOS Animations
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 650,
+          once: true,
+          easing: 'ease-out-cubic'
+        });
+      }
+
+      // 2. Hydrate User Details from Login
+      function initUserProfile() {
+        const email = localStorage.getItem('stackly_user_email') || sessionStorage.getItem('stackly_user_email') || localStorage.getItem('user_email') || 'alexander.vance@example.com';
+        const role = localStorage.getItem('stackly_user_role') || sessionStorage.getItem('stackly_user_role') || localStorage.getItem('user_role') || 'user';
+        let name = localStorage.getItem('user_name');
+        if (!name) {
+          const prefix = email.split('@')[0];
+          name = prefix.charAt(0).toUpperCase() + prefix.slice(1);
+        }
+        const initial = name.charAt(0).toUpperCase();
+        const roleDisplay = role.toLowerCase() === 'admin' ? 'Admin' : 'Individual Policyholder';
+
+        const avatarEl = document.getElementById('dashAvatar');
+        if (avatarEl) {
+          avatarEl.textContent = initial;
+        }
+
+        const profileNameEl = document.getElementById('dashProfileName');
+        if (profileNameEl) {
+          profileNameEl.textContent = name;
+          profileNameEl.title = email;
+        }
+
+        const profileRoleEl = document.getElementById('dashProfileRole');
+        if (profileRoleEl) {
+          profileRoleEl.textContent = roleDisplay;
+        }
+
+        const settingsName = document.getElementById('settingsFullName');
+        if (settingsName) {
+          settingsName.value = name;
+        }
+
+        const settingsEmail = document.getElementById('settingsEmail');
+        if (settingsEmail) {
+          settingsEmail.value = email;
+        }
+      }
+
+      initUserProfile();
+
+      // 3. Tab Switching Logic
+      const navButtons = document.querySelectorAll('.portal-nav-item');
+      const tabPanels = document.querySelectorAll('.portal-tab-panel');
+      const pageHeaderTitle = document.getElementById('pageHeaderTitle');
+      const portalMenuToggle = document.getElementById('portalMenuToggle');
+      const portalSidebar = document.getElementById('portalSidebar');
+      const portalBackdrop = document.getElementById('portalBackdrop');
+      const notifBtn = document.getElementById('notifBtn');
+      const notifDropdown = document.getElementById('notifDropdown');
+
+      const tabTitles = {
+        overview: 'Overview',
+        orders: 'My Policies',
+        tracking: 'Claims Tracking',
+        rewards: 'Renewals',
+        workshops: 'Documents',
+        settings: 'Profile & Settings'
+      };
+
+      function switchTab(tabId) {
+        if (!tabId) return;
+
+        navButtons.forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.tab === tabId);
+        });
+
+        tabPanels.forEach(panel => {
+          panel.classList.toggle('active', panel.id === tabId);
+        });
+
+        if (pageHeaderTitle && tabTitles[tabId]) {
+          pageHeaderTitle.textContent = tabTitles[tabId];
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        closeSidebar();
+        closeNotifications();
+
+        if (typeof AOS !== 'undefined') {
+          setTimeout(() => AOS.refresh(), 80);
+        }
+      }
+
+      navButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tabId = btn.dataset.tab;
+          if (tabId) {
+            switchTab(tabId);
+            if (history.replaceState) {
+              history.replaceState(null, '', '#' + tabId);
+            } else {
+              window.location.hash = tabId;
+            }
+          }
+        });
+      });
+
+      // 4. Mobile Drawer Toggle Handlers
+      function openSidebar() {
+        if (portalSidebar) portalSidebar.classList.add('open');
+        if (portalBackdrop) portalBackdrop.classList.add('active');
+      }
+
+      function closeSidebar() {
+        if (portalSidebar) portalSidebar.classList.remove('open');
+        if (portalBackdrop) portalBackdrop.classList.remove('active');
+      }
+
+      if (portalMenuToggle) {
+        portalMenuToggle.addEventListener('click', () => {
+          if (portalSidebar && portalSidebar.classList.contains('open')) {
+            closeSidebar();
+          } else {
+            openSidebar();
+          }
+        });
+      }
+
+      if (portalBackdrop) {
+        portalBackdrop.addEventListener('click', closeSidebar);
+      }
+
+      const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+      if (closeSidebarBtn) {
+        closeSidebarBtn.addEventListener('click', closeSidebar);
+      }
+
+      // 5. Notification Dropdown Toggle
+      function closeNotifications() {
+        if (notifDropdown) notifDropdown.classList.remove('show');
+        if (notifBtn) notifBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      if (notifBtn && notifDropdown) {
+        notifBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = notifDropdown.classList.contains('show');
+          if (isOpen) {
+            closeNotifications();
+          } else {
+            notifDropdown.classList.add('show');
+            notifBtn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      }
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.dash-nav-dropdown-wrap')) {
+          closeNotifications();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeNotifications();
+          closeSidebar();
+        }
+      });
+
+      // 6. Handle URL Hash Navigation on load
+      const hash = window.location.hash.replace('#', '');
+      if (hash && document.getElementById(hash)) {
+        switchTab(hash);
+      }
+
+      // 7. Sticky Navbar Scroll Shadow Effect
+      const portalHeader = document.querySelector('.portal-header');
+      if (portalHeader) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 8) {
+            portalHeader.classList.add('is-scrolled');
+          } else {
+            portalHeader.classList.remove('is-scrolled');
+          }
+        }, { passive: true });
+      }
+
+      // 8. Strict User Profile Form Validation
+      const userProfileForm = document.getElementById('userProfileForm');
+      if (userProfileForm) {
+        const fullNameInput = document.getElementById('settingsFullName');
+        const emailInput = document.getElementById('settingsEmail');
+        const fullNameError = document.getElementById('settingsFullNameError');
+        const emailError = document.getElementById('settingsEmailError');
+        const feedbackEl = document.getElementById('settingsFeedback');
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const nameRegex = /^[a-zA-Z\s'-]+$/;
+
+        const clearErr = (input, err) => {
+          if (!input) return;
+          input.addEventListener('input', () => {
+            input.classList.remove('is-invalid');
+            if (err) err.classList.remove('visible');
+            if (feedbackEl) feedbackEl.style.display = 'none';
+          });
+        };
+        clearErr(fullNameInput, fullNameError);
+        clearErr(emailInput, emailError);
+
+        userProfileForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const nameVal = fullNameInput ? fullNameInput.value.trim() : '';
+          const emailVal = emailInput ? emailInput.value.trim() : '';
+
+          let isValid = true;
+          let firstInvalid = null;
+
+          if (!nameVal) {
+            isValid = false;
+            if (fullNameInput) fullNameInput.classList.add('is-invalid');
+            if (fullNameError) {
+              fullNameError.textContent = 'Full name is required';
+              fullNameError.classList.add('visible');
+            }
+            if (!firstInvalid) firstInvalid = fullNameInput;
+          } else if (nameVal.length < 2 || !nameRegex.test(nameVal)) {
+            isValid = false;
+            if (fullNameInput) fullNameInput.classList.add('is-invalid');
+            if (fullNameError) {
+              fullNameError.textContent = 'Please enter a valid full name (letters only, min 2 characters)';
+              fullNameError.classList.add('visible');
+            }
+            if (!firstInvalid) firstInvalid = fullNameInput;
+          }
+
+          if (!emailVal) {
+            isValid = false;
+            if (emailInput) emailInput.classList.add('is-invalid');
+            if (emailError) {
+              emailError.textContent = 'Email is required';
+              emailError.classList.add('visible');
+            }
+            if (!firstInvalid) firstInvalid = emailInput;
+          } else if (!emailRegex.test(emailVal)) {
+            isValid = false;
+            if (emailInput) emailInput.classList.add('is-invalid');
+            if (emailError) {
+              emailError.textContent = 'Please enter a valid email address';
+              emailError.classList.add('visible');
+            }
+            if (!firstInvalid) firstInvalid = emailInput;
+          }
+
+          if (!isValid) {
+            if (firstInvalid) firstInvalid.focus();
+            return;
+          }
+
+          localStorage.setItem('user_name', nameVal);
+          localStorage.setItem('stackly_user_email', emailVal);
+
+          // Update header profile display
+          const profileNameEl = document.getElementById('dashProfileName');
+          if (profileNameEl) profileNameEl.textContent = nameVal;
+          const avatarEl = document.getElementById('dashAvatar');
+          if (avatarEl) avatarEl.textContent = nameVal.charAt(0).toUpperCase();
+
+          if (feedbackEl) {
+            feedbackEl.style.display = 'block';
+            feedbackEl.textContent = '✓ Profile preferences saved successfully!';
+            setTimeout(() => {
+              feedbackEl.style.display = 'none';
+            }, 3000);
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal &bull; Stackly Artisan Bakery</title>
+  <meta name="description" content="Good bakes. Great stories. Freshly told. Slow-fermented recipes, seasonal drops, and craft dispatches from Stackly Bakery Brooklyn.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fb5022'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z'/></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans (Body & Bold Headings) & Playfair Display (Serif Quotes) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <!-- Animate.css via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <!-- Blog Stylesheet -->
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/preloader.css">
+  <link rel="stylesheet" href="assets/css/blog.css?v=3">
+
+  <style>
+    .newsletter-feedback {
+      display: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-top: 0.85rem;
+    }
+    .newsletter-feedback.error {
+      display: block !important;
+      color: #EF4444 !important;
+    }
+    .newsletter-feedback.active {
+      display: block !important;
+      color: #4ADE80 !important;
+    }
+    .newsletter-input.is-invalid {
+      border-color: #EF4444 !important;
+      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==============================================
+       PRELOADER: ARTISAN STONE HEARTH ANIMATION
+       ============================================== -->
+  <div class="site-preloader" id="sitePreloader" role="status" aria-live="polite" aria-label="Loading Stackly Bakery">
+    <div class="preloader-backdrop"></div>
+    <div class="preloader-content">
+      <!-- Animated Oven Hearth & Croissant -->
+      <div class="preloader-icon-wrap">
+        <div class="preloader-glow-ring"></div>
+        <svg class="preloader-croissant" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path class="croissant-body" d="M12 40C10 35 11 29 16 23C22.5 16 34 13 44 16.5C52.5 19.5 57 26 57.5 32C58 37 54.5 41 50 40.5C43 39.5 35.5 35.5 28 35.5C20.5 35.5 14.5 40.5 12 40Z" />
+          <path class="croissant-fold fold-1" d="M21 22.5C23.5 27.5 24 33.5 22.5 38" />
+          <path class="croissant-fold fold-2" d="M33 17C35.5 23 35.5 30.5 33 35.5" />
+          <path class="croissant-fold fold-3" d="M44.5 19.5C46.5 24.5 46 30.5 44 35" />
+        </svg>
+        <div class="preloader-steam-wrap" aria-hidden="true">
+          <span class="steam-particle steam-1"></span>
+          <span class="steam-particle steam-2"></span>
+          <span class="steam-particle steam-3"></span>
+        </div>
+      </div>
+
+      <!-- Brand Identity -->
+      <div class="preloader-brand">
+        <h2 class="preloader-title">Stackly<span class="preloader-dot">.</span></h2>
+        <span class="preloader-subtitle">ARTISAN STONE HEARTH · EST. 2018</span>
+      </div>
+
+      <!-- Animated Progress Line & Status -->
+      <div class="preloader-progress-box">
+        <div class="preloader-progress-track">
+          <div class="preloader-progress-fill" id="preloaderBar"></div>
+        </div>
+        <div class="preloader-status-text" id="preloaderStatus">Warming stone deck hearth...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       HEADER & NAVIGATION BAR (COMMON STACKLY NAVBAR)
+       ============================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <!-- Brand Logo (Flame / S mark) -->
+      <a href="index.html" class="brand-logo" aria-label="Stackly Home">
+        <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="brand-logo-img" width="111" height="50">
+      </a>
+
+      <!-- Center Nav Links: Home, Catalogue, About us, Contact, Blog -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="catalogue.html" class="nav-link">Catalogue</a></li>
+          <li><a href="about.html" class="nav-link">About us</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="blog.html" class="nav-link active" aria-current="page">Blog</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Header Actions: Shopping Bag + Login Button + Mobile Toggle -->
+      <div class="header-actions">
+        <!-- Shopping Bag Icon Button -->
+        <button class="action-btn-bag" id="cartToggle" aria-label="View shopping basket" title="Cart">
+          <i class="fa-solid fa-bag-shopping header-bag-icon" aria-hidden="true"></i>
+          <span class="cart-badge-dot active" id="cartDot"></span>
+        </button>
+
+        <!-- Login Button -->
+        <a href="login.html" class="btn-header-login">LOGIN</a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-nav-drawer" id="mobileDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="catalogue.html" class="mobile-nav-link">Catalogue</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About us</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+        <li><a href="blog.html" class="mobile-nav-link active">Blog</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="login.html" class="btn-header-login btn-block text-center" style="display:block; text-align:center;">LOGIN</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==============================================
+       SECTION 1: HERO ("Good bakes. Great stories. Freshly told.")
+       Background: Deep Dark Espresso (#220C07)
+       ============================================== -->
+  <section class="blog-hero-section">
+    <div class="blog-container">
+      <div class="blog-hero-grid">
+        <!-- Hero Left: Typography & Actions -->
+        <div class="hero-content" data-aos="fade-right">
+          <span class="hero-eyebrow">
+            <i class="fa-solid fa-wheat-awn"></i> The Stackly Journal / A Little Food For Thought
+          </span>
+          <h1 class="hero-headline">
+            Good bakes.<br>
+            Great stories.<br>
+            <span class="text-accent-orange">Freshly told.</span>
+          </h1>
+          <p class="hero-desc">
+            From the first fold to the last crumb. Stories, small discoveries and a little inspiration from the world of baking.
+          </p>
+          <div class="hero-cta-group">
+            <a href="404.html" class="btn-orange-pill">
+              <span>Explore The Journal</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </a>
+            <a href="404.html" class="hero-recipe-link">
+              Or dive straight into recipes <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Right: Roman Arch Frame with Braided Brioche & Floating Badge -->
+        <div class="hero-visual-wrap" data-aos="fade-left">
+          <div class="hero-arch-card">
+            <img src="assets/images/blog_hero_brioche.webp?v=2" alt="Two freshly baked golden braided brioche loaves" class="hero-arch-img">
+            
+            <!-- Circular Floating Orange Badge -->
+            <a href="404.html" class="hero-floating-badge animate__animated animate__pulse animate__infinite" aria-label="Fresh from the journal">
+              <span>Fresh<br>from the<br>journal</span>
+            </a>
+          </div>
+          <p class="hero-visual-caption">Every bake has a story. Pull up a chair.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 2: FEATURED STORY ("Why good bread takes its time.")
+       Background: Warm Sourdough Cream (#FAF5EE)
+       ============================================== -->
+  <section class="featured-story-section" id="featured">
+    <div class="blog-container">
+      <div class="featured-story-grid">
+        <!-- Left: Open Crumb Photography -->
+        <div class="featured-media-wrap" data-aos="fade-right">
+          <div class="featured-img-frame">
+            <img src="assets/images/blog_sourdough_crumb.webp?v=2" alt="Artisan sourdough boule sliced open showing open glossy wild crumb" class="featured-img">
+          </div>
+          <span class="featured-caption">Flour. Water. Time. A story worth slowing down for.</span>
+        </div>
+
+        <!-- Right: Editorial Article Information -->
+        <div class="featured-article-info" data-aos="fade-left">
+          <span class="featured-eyebrow">
+            <i class="fa-solid fa-fire"></i> Editor's Pick / The Slow Bake &bull; 7 Min Read
+          </span>
+          <h2 class="featured-title">Why good bread takes its time.</h2>
+          <p class="featured-excerpt">
+            A great loaf starts long before it meets the oven. Follow the quiet transformation of flour, water and a lively starter—and discover why patience is the ingredient you can taste.
+          </p>
+          <div class="featured-meta-row">
+            <span class="featured-meta-author">Bread &amp; beyond &bull; 7 min read</span>
+            <span>The Stackly Journal</span>
+          </div>
+          <a href="404.html" class="btn-orange-pill">
+            <span>Read The Story</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 3: THE LATEST FROM THE JOURNAL
+       Background: Deep Dark Espresso (#220C07)
+       ============================================== -->
+  <!-- ==============================================
+       SECTION 3: THE LATEST FROM THE JOURNAL
+       Background: Deep Dark Espresso (#220C07)
+       ============================================== -->
+  <section class="journal-section" id="latest">
+    <div class="blog-container">
+      <!-- Section Header -->
+      <div class="journal-header-wrap" data-aos="fade-up">
+        <div class="journal-header-left">
+          <span class="journal-eyebrow">Fresh Pages / Something Good To Read</span>
+          <h2 class="journal-headline">The latest from the journal.</h2>
+        </div>
+        <p class="journal-header-right">
+          Small stories for curious bakers and lovers of a good crumb.
+        </p>
+      </div>
+
+      <!-- Editorial Cards Grid (6 Cards) -->
+      <div class="journal-grid">
+        <!-- Card 1: Chocolate Chip Cookies -->
+        <article class="journal-card" data-category="craft" data-aos="fade-up" data-aos-delay="100">
+          <div class="journal-card-media">
+            <img src="assets/images/blog_chocolate_cookies.webp?v=2" alt="Stack of thick chocolate chip cookies on parchment paper" class="journal-card-img" loading="lazy">
+          </div>
+          <div class="journal-card-body">
+            <div class="journal-card-meta">
+              <span class="journal-card-tag">The Craft</span>
+              <span class="journal-card-readtime">5 min read</span>
+            </div>
+            <h3 class="journal-card-title">The secret to a really good cookie.</h3>
+            <p class="journal-card-desc">
+              Crisp edges, a soft centre and generous pockets of Valrhona dark chocolate. The little choices that make every bite better.
+            </p>
+            <a href="404.html" class="journal-card-link" data-story-id="cookies">
+              <span>Read story</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 2: Peach & Apricot Galette -->
+        <article class="journal-card" data-category="seasonal" data-aos="fade-up" data-aos-delay="200">
+          <div class="journal-card-media">
+            <img src="assets/images/blog_peach_galette.webp?v=2" alt="Golden baked peach and apricot galette tart" class="journal-card-img" loading="lazy">
+          </div>
+          <div class="journal-card-body">
+            <div class="journal-card-meta">
+              <span class="journal-card-tag">Seasonal Specials</span>
+              <span class="journal-card-readtime">4 min read</span>
+            </div>
+            <h3 class="journal-card-title">A little sunshine, folded into pastry.</h3>
+            <p class="journal-card-desc">
+              Ripe summer stone fruit, a buttery crust and a wonderfully rustic shape. A fruit galette that makes simple feel special.
+            </p>
+            <a href="404.html" class="journal-card-link" data-story-id="galette">
+              <span>Read story</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 3: Afternoon Cake & Coffee -->
+        <article class="journal-card" data-category="pairings" data-aos="fade-up" data-aos-delay="300">
+          <div class="journal-card-media">
+            <img src="assets/images/blog_afternoon_pause.webp?v=2" alt="Slice of spiced walnut cake beside dark mug of coffee" class="journal-card-img" loading="lazy">
+          </div>
+          <div class="journal-card-body">
+            <div class="journal-card-meta">
+              <span class="journal-card-tag">Morning Pairings</span>
+              <span class="journal-card-readtime">3 min read</span>
+            </div>
+            <h3 class="journal-card-title">The case for a proper afternoon pause.</h3>
+            <p class="journal-card-desc">
+              A slice of walnut cake. A warm cup. A few quiet minutes. Finding joy in the smallest part of the day.
+            </p>
+            <a href="404.html" class="journal-card-link" data-story-id="pause">
+              <span>Read story</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 4: Open Crumb Anatomy Guide -->
+        <article class="journal-card" data-category="guide" data-aos="fade-up" data-aos-delay="100">
+          <div class="journal-card-media">
+            <img src="assets/images/blog_open_crumb_guide.webp?v=2" alt="Artisan sliced sourdough boule on wooden cutting board with open crumb" class="journal-card-img" loading="lazy">
+          </div>
+          <div class="journal-card-body">
+            <div class="journal-card-meta">
+              <span class="journal-card-tag">Baking Guides</span>
+              <span class="journal-card-readtime">6 min read</span>
+            </div>
+            <h3 class="journal-card-title">The anatomy of an open, airy crumb.</h3>
+            <p class="journal-card-desc">
+              Hydration formulas, levain vigor, and ambient humidity. How gentle coil folds shape the interior honeycomb.
+            </p>
+            <a href="404.html" class="journal-card-link" data-story-id="crumb">
+              <span>Read story</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 5: Cultured Butter Viennoiserie -->
+        <article class="journal-card" data-category="craft" data-aos="fade-up" data-aos-delay="200">
+          <div class="journal-card-media">
+            <img src="assets/images/blog_cultured_butter.webp?v=2" alt="Normandy cultured butter log on dark slate with sea salt crystals" class="journal-card-img" loading="lazy">
+          </div>
+          <div class="journal-card-body">
+            <div class="journal-card-meta">
+              <span class="journal-card-tag">The Craft</span>
+              <span class="journal-card-readtime">5 min read</span>
+            </div>
+            <h3 class="journal-card-title">Cultured butter: The soul of viennoiserie.</h3>
+            <p class="journal-card-desc">
+              Why 84% butterfat Normandy cream churns give croissants their signature caramelized honeycomb layers.
+            </p>
+            <a href="404.html" class="journal-card-link" data-story-id="butter">
+              <span>Read story</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 6: Cardamom Morning Buns -->
+        <article class="journal-card" data-category="seasonal" data-aos="fade-up" data-aos-delay="300">
+          <div class="journal-card-media">
+            <img src="assets/images/blog_morning_buns.webp?v=2" alt="Warm golden cardamom swirl morning buns with sugar crystals" class="journal-card-img" loading="lazy">
+          </div>
+          <div class="journal-card-body">
+            <div class="journal-card-meta">
+              <span class="journal-card-tag">Seasonal Specials</span>
+              <span class="journal-card-readtime">4 min read</span>
+            </div>
+            <h3 class="journal-card-title">Cardamom morning buns: Our winter warmth.</h3>
+            <p class="journal-card-desc">
+              Freshly ground green cardamom seeds, Saigon cinnamon, and Swedish pearl sugar rolled into buttery brioche coils.
+            </p>
+            <a href="404.html" class="journal-card-link" data-story-id="buns">
+              <span>Read story</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 4: HERITAGE GRAINS & FLOUR SOURCING ("Flour with a pulse.")
+       Background: Warm Sourdough Cream (#FAF5EE)
+       ============================================== -->
+  <section class="grains-section" id="grains">
+    <div class="blog-container">
+      <div class="grains-header-wrap" data-aos="fade-up">
+        <span class="grains-eyebrow">
+          <i class="fa-solid fa-seedling"></i> From Field To Stone Deck / Honest Grains
+        </span>
+        <h2 class="grains-headline">Flour with a pulse.<br>Grains with a story.</h2>
+        <p class="grains-desc">
+          Industrial white flour is stripped of living wheat germ and wild enzymes to sit on warehouse shelves for months. At Stackly, we mill cold on granite stones so every loaf carries the sweet earthy aroma of living soil.
+        </p>
+      </div>
+
+      <div class="grains-grid">
+        <!-- Left: 3 Curated Grain Cards -->
+        <div class="grains-cards-list" data-aos="fade-right">
+          <div class="grain-card">
+            <div class="grain-card-top">
+              <span class="grain-tag">HEIRLOOM WHEAT</span>
+              <span class="grain-origin">13.5% Protein</span>
+            </div>
+            <h3 class="grain-card-title">Hudson Valley Hard Red Winter Wheat</h3>
+            <p class="grain-card-desc">
+              Unbleached whole berry wheat offering tremendous gluten elasticity, deep mahogany blistered crusts, and natural roasted grain sweetness.
+            </p>
+          </div>
+
+          <div class="grain-card">
+            <div class="grain-card-top">
+              <span class="grain-tag">ANCIENT RYE</span>
+              <span class="grain-origin">Cold Stone-Milled</span>
+            </div>
+            <h3 class="grain-card-title">Stoneground Whole Rye</h3>
+            <p class="grain-card-desc">
+              Coarsely stone-milled rye flour loaded with active amylase enzymes that produce dark, dense European rye loaves with tangy malt aromas.
+            </p>
+          </div>
+
+          <div class="grain-card">
+            <div class="grain-card-top">
+              <span class="grain-tag">MINERAL GRAINS</span>
+              <span class="grain-origin">Biodynamic Blend</span>
+            </div>
+            <h3 class="grain-card-title">Heritage Einkorn &amp; Ancient Buckwheat</h3>
+            <p class="grain-card-desc">
+              Biodynamic heirloom grains with gentle gluten tenuity, providing a velvety, digestible crumb texture with nutty floral overtones.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Grain Photography -->
+        <div class="grains-media-wrap" data-aos="fade-left">
+          <div class="grains-img-frame">
+            <img src="assets/images/blog_heritage_grains.webp?v=2" alt="Stoneground whole grain flour, wheat ears and baker scoop" class="grains-img" loading="lazy">
+          </div>
+          <span class="grains-caption">Cold stoneground whole grain flour, freshly milled weekly for our hearth.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 5: BEHIND THE BAKE: CROISSANT LAMINATION
+       Background: Deep Dark Espresso (#220C07)
+       ============================================== -->
+  <section class="masterclass-section" id="masterclass">
+    <div class="blog-container">
+      <div class="masterclass-grid">
+        <!-- Masterclass Left: Technique Breakdown & Steps -->
+        <div class="masterclass-left" data-aos="fade-right">
+          <span class="masterclass-eyebrow">Behind The Bake / The Art Of The Fold &bull; 8 Min Read</span>
+          <h2 class="masterclass-headline">
+            A thousand layers.<br>
+            A little know-how.
+          </h2>
+          <p class="masterclass-desc">
+            That first flaky bite begins with a few thoughtful folds. A closer look at lamination, and the gentle rhythm behind beautifully layered pastry.
+          </p>
+          <a href="404.html" class="masterclass-view-link" data-story-id="masterclass">
+            View full masterclass guide <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+          <!-- Steps List -->
+          <div class="masterclass-steps-list">
+            <div class="masterclass-step-item" style="cursor: pointer;">
+              <h4 class="masterclass-step-header">01 / Keep it cool</h4>
+              <p class="masterclass-step-text">Cool butter stays in distinct layers instead of melting into the dough.</p>
+            </div>
+            <div class="masterclass-step-item" style="cursor: pointer;">
+              <h4 class="masterclass-step-header">02 / Give it a rest</h4>
+              <p class="masterclass-step-text">Time between folds relaxes the dough and makes the next roll gentler.</p>
+            </div>
+            <div class="masterclass-step-item" style="cursor: pointer;">
+              <h4 class="masterclass-step-header">03 / Let the oven do its work</h4>
+              <p class="masterclass-step-text">Heat turns moisture into steam, lifting those delicate 81 layers apart.</p>
+            </div>
+          </div>
+
+          <a href="404.html" class="masterclass-schedule-link">
+            Explore our daily viennoiserie <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Masterclass Right: Baker Hands Dough Photo -->
+        <div class="masterclass-media-wrap" data-aos="fade-left">
+          <div class="masterclass-img-frame">
+            <img src="assets/images/blog_laminated_dough.webp?v=2" alt="Artisan baker hands carefully folding laminated croissant dough" class="masterclass-img" loading="lazy">
+          </div>
+          <span class="masterclass-caption">A gentle hand. A patient fold. A beautiful beginning.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 6: PRACTICAL NOTES FOR THE HOME OVEN
+       Background: Warm Sourdough Cream (#FAF5EE)
+       ============================================== -->
+  <section class="home-baker-section" id="homebaker">
+    <div class="blog-container">
+      <div class="home-baker-header-wrap" data-aos="fade-up">
+        <span class="home-baker-eyebrow">
+          <i class="fa-solid fa-kitchen-set"></i> Practical Notes / For The Home Oven
+        </span>
+        <h2 class="home-baker-headline">How to bake bakery-quality loaves at home.</h2>
+        <p class="home-baker-desc">
+          You don't need a four-ton steam injection hearth oven to get blistered ears and a singing crust. Four non-negotiable rituals from our morning bakers.
+        </p>
+      </div>
+
+      <div class="home-baker-grid">
+        <!-- Rule 1 -->
+        <div class="home-baker-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="home-baker-step-num">Rule 01 / Steam Control</div>
+          <h3 class="home-baker-card-title">The Heavy Dutch Oven Steam Trap</h3>
+          <p class="home-baker-card-text">
+            Preheat a cast-iron Dutch oven to 250°C for 45 minutes. The sealed pot traps dough moisture for the first 20 minutes, allowing maximum oven spring before you remove the lid.
+          </p>
+        </div>
+
+        <!-- Rule 2 -->
+        <div class="home-baker-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="home-baker-step-num">Rule 02 / Dough Awareness</div>
+          <h3 class="home-baker-card-title">Read the Dough, Not the Clock</h3>
+          <p class="home-baker-card-text">
+            Timers lie, dough does not. Fermentation rates swing wildly with kitchen temperature. Look for rounded domed edges, aerated bubble windows, and a gentle bounce back.
+          </p>
+        </div>
+
+        <!-- Rule 3 -->
+        <div class="home-baker-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="home-baker-step-num">Rule 03 / Scoring Technique</div>
+          <h3 class="home-baker-card-title">The 45° Curved Razor Angle</h3>
+          <p class="home-baker-card-text">
+            Cut with confidence using a curved razor lame tilted at 45 degrees rather than straight down. This creates the coveted crispy overhang flap ("the baker's ear").
+          </p>
+        </div>
+
+        <!-- Rule 4 -->
+        <div class="home-baker-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="home-baker-step-num">Rule 04 / Texture Setting</div>
+          <h3 class="home-baker-card-title">The 2-Hour Patience Rule</h3>
+          <p class="home-baker-card-text">
+            Cutting into piping hot bread releases trapped steam, leaving the interior gummy and wet. Allow internal starches to set into silky custard at room temperature first.
+          </p>
+        </div>
+      </div>
+
+      <!-- Center Banner: Hearth Oven Pull -->
+      <div class="home-baker-banner-wrap" data-aos="fade-up">
+        <img src="assets/images/blog_home_oven_baker.webp?v=2" alt="Artisan baker sliding freshly baked bread sheet out of stone hearth oven" class="home-baker-banner-img" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 7: COMMUNITY HEARTH & #STACKLYATHOME
+       Background: Deep Dark Espresso (#220C07)
+       ============================================== -->
+  <section class="community-section" id="community">
+    <div class="blog-container">
+      <div class="community-header-wrap" data-aos="fade-up">
+        <div class="community-header-left">
+          <span class="community-eyebrow">
+            <i class="fa-solid fa-heart"></i> Community Hearth / #StacklyAtHome
+          </span>
+          <h2 class="community-headline">Bakes from our extended family.</h2>
+        </div>
+        <p class="community-header-right">
+          Every week, home bakers and breakfast lovers share their crust blisters, morning pastry plates, and sourdough triumphs.
+        </p>
+      </div>
+
+      <div class="community-grid">
+        <!-- Community Card 1 -->
+        <div class="community-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="community-media">
+            <img src="assets/images/blog_shaping_bench.webp?v=2" alt="Baker shaping sourdough dough on wooden workbench" class="community-img" loading="lazy">
+          </div>
+          <div class="community-body">
+            <div class="community-author-row">
+              <span class="community-handle">@salem_sourdough</span>
+              <span class="community-tag">Salem, TN</span>
+            </div>
+            <p class="community-caption">
+              "First attempt at 80% hydration country loaf using Stackly stoneground rye flour. The ear blister is unbelievable!"
+            </p>
+          </div>
+        </div>
+
+        <!-- Community Card 2 -->
+        <div class="community-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="community-media">
+            <img src="assets/images/blog_community_croissants.webp?v=2" alt="Flaky golden croissants and fresh pour over coffee on table" class="community-img" loading="lazy">
+          </div>
+          <div class="community-body">
+            <div class="community-author-row">
+              <span class="community-handle">@flourandfilter</span>
+              <span class="community-tag">Morning Ritual</span>
+            </div>
+            <p class="community-caption">
+              "Sunday morning quiet moments with Stackly butter croissants and a mug of single-origin pour-over. Pure perfection."
+            </p>
+          </div>
+        </div>
+
+        <!-- Community Card 3 -->
+        <div class="community-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="community-media">
+            <img src="assets/images/blog_bakery_shelves.webp?v=2" alt="Rustic wooden bakery shelves overflowing with crusty sourdough boules" class="community-img" loading="lazy">
+          </div>
+          <div class="community-body">
+            <div class="community-author-row">
+              <span class="community-handle">@hearth_notes</span>
+              <span class="community-tag">Home Pantry</span>
+            </div>
+            <p class="community-caption">
+              "Stocking the weekend bread board with three loaves of Levain No. 4. One for toast, two for the freezer!"
+            </p>
+          </div>
+        </div>
+
+        <!-- Community Card 4 -->
+        <div class="community-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="community-media">
+            <img src="assets/images/blog_community_tart.webp?v=2" alt="Exquisite French raspberry pistachio sable tart on ceramic plate" class="community-img" loading="lazy">
+          </div>
+          <div class="community-body">
+            <div class="community-author-row">
+              <span class="community-handle">@sweet_pastry_lab</span>
+              <span class="community-tag">Celebration Bake</span>
+            </div>
+            <p class="community-caption">
+              "Recreated the Stackly raspberry pistachio tart for our family birthday table. That pistachio frangipane is pure gold."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 8: LETTERS FROM STACKLY / NEWSLETTER
+       Background: Deep Dark Espresso (#220C07)
+       ============================================== -->
+  <section class="newsletter-section" id="newsletter">
+    <div class="blog-container">
+      <div class="newsletter-grid">
+        <!-- Left: Vintage Recipe Notebook Photo -->
+        <div class="newsletter-media-wrap" data-aos="fade-right">
+          <div class="newsletter-img-frame">
+            <img src="assets/images/blog_recipe_notebook.webp?v=2" alt="Vintage open handwritten baker recipe book with tea cup and fresh madeleines" class="newsletter-img" loading="lazy">
+          </div>
+          <span class="newsletter-caption">A little reading. Something lovely on the side.</span>
+        </div>
+
+        <!-- Right: Dispatch Subscription Form -->
+        <div class="newsletter-content" data-aos="fade-left">
+          <span class="newsletter-eyebrow">Letters From Stackly / Just The Good Stuff</span>
+          <h2 class="newsletter-headline">
+            A little goodness<br>
+            in your inbox.
+          </h2>
+          <p class="newsletter-desc">
+            New stories, baking inspiration and small reasons to slow down. Join our journal letters and make a little room for something good.
+          </p>
+
+          <form class="newsletter-form" id="newsletterForm" novalidate>
+            <input 
+              type="email" 
+              id="newsletterEmail" 
+              class="newsletter-input" 
+              placeholder="Your email address" 
+              autocomplete="email" 
+              required>
+            <button type="submit" class="newsletter-btn" id="newsletterSubmitBtn">
+              <span>COUNT ME IN &rarr;</span>
+            </button>
+          </form>
+          <div class="newsletter-feedback" id="newsletterFeedback"></div>
+
+          <p class="newsletter-guarantee">
+            No spam. Just the good stuff. Unsubscribe anytime.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 6: FOOTER (MATCHING REST OF STACKLY)
+       Background: Deepest Dark Brown (#160603)
+       ============================================== -->
+  <footer class="blog-footer">
+    <div class="blog-container">
+      <div class="footer-top-grid" data-aos="fade-up">
+        <!-- Col 1: Brand & Tagline -->
+        <div class="footer-brand-col">
+          <a href="404.html" class="blog-brand" aria-label="Stackly Home">
+            <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="blog-brand-logo-img" width="102" height="44">
+          </a>
+          <p class="footer-tagline">
+            Artisan sourdough, Viennoiserie pastries, and specialty roasts baked fresh daily in Brooklyn.
+          </p>
+          <div class="footer-socials">
+            <a href="404.html" class="footer-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation Links -->
+        <div>
+          <h4 class="footer-col-title">Pages</h4>
+          <ul class="footer-col-links">
+            <li><a href="index.html">Home</a></li>
+          <li><a href="catalogue.html">Catalogue</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Journal Categories -->
+        <div>
+          <h4 class="footer-col-title">Journal</h4>
+          <ul class="footer-col-links">
+            <li><a href="404.html">The Craft</a></li>
+            <li><a href="404.html">Baking Guides</a></li>
+            <li><a href="404.html">Masterclasses</a></li>
+            <li><a href="404.html">Weekly Dispatch</a></li>
+            <li><a href="404.html">Bread Club Portal</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Visit Us -->
+        <div>
+          <h4 class="footer-col-title">Visit Our Ovens</h4>
+          <p class="footer-address">
+            MMR Complex, Chinna Thirupathi,<br>
+            near Chinna Muniyappan Kovil,<br>
+            Salem, Tamil Nadu 636008<br><br>
+            <strong>Phone:</strong> <a href="404.html" style="color:var(--color-orange);">9876543210</a><br>
+            <strong>Email:</strong> <a href="404.html" style="color:var(--color-orange);">info@stackly.com</a><br>
+            <strong>Mon &ndash; Sun:</strong> 07:00 &ndash; 21:00
+          </p>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <span>&copy; 2026 Stackly Bakery. All rights reserved.</span>
+        <div class="footer-legal-links">
+          <a href="404.html">Privacy Policy</a>
+          <a href="404.html">Terms of Service</a>
+          <a href="404.html">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==============================================
+       INTERACTIVE STORY READING MODAL / DRAWER
+       ============================================== -->
+  <div class="story-modal-overlay" id="storyModalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalStoryTitle">
+    <div class="story-modal-container">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close story">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-content-body">
+        <span class="modal-story-tag" id="modalStoryTag">THE CRAFT</span>
+        <h2 class="modal-story-title" id="modalStoryTitle">Why good bread takes its time.</h2>
+        <div class="modal-story-meta" id="modalStoryMeta">
+          <span>By Elena Vance</span> &bull; <span>6 min read</span>
+        </div>
+
+        <img src="assets/images/blog_sourdough_crumb.webp?v=2" alt="" class="modal-story-img" id="modalStoryImg">
+
+        <blockquote class="modal-story-quote" id="modalStoryQuote">
+          Time is our most generous ingredient.
+        </blockquote>
+
+        <div class="modal-story-text" id="modalStoryText">
+          <!-- Populated dynamically via blog.js -->
+        </div>
+
+        <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--bg-light-border); display: flex; justify-content: space-between; align-items: center;">
+          <a href="404.html" class="btn-orange-pill">
+            <span>Subscribe for more dispatches</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       FAST KEYWORD SEARCH MODAL
+       ============================================== -->
+  <div class="story-modal-overlay" id="searchModalOverlay" role="dialog" aria-modal="true" aria-label="Search stories">
+    <div class="story-modal-container" style="max-width: 600px; background-color: var(--bg-dark); color: #fff;">
+      <button class="modal-close-btn" id="searchCloseBtn" aria-label="Close search" style="background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.15);">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
+      <div style="margin-top: 1.5rem;">
+        <span style="font-size: 0.76rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-caramel);">Journal Search</span>
+        <h3 style="font-size: 1.75rem; font-weight: 800; color: #fff; margin: 0.5rem 0 1.25rem;">Search Stories &amp; Recipes</h3>
+        
+        <input 
+          type="search" 
+          id="searchInput" 
+          placeholder="Type to search e.g. sourdough, cookie, butter..." 
+          style="width: 100%; height: 50px; background: var(--bg-dark-card); border: 1px solid var(--bg-dark-border); border-radius: var(--radius-pill); padding: 0 1.5rem; color: #fff; font-family: inherit; font-size: 0.95rem; outline: none; margin-bottom: 1.5rem;">
+
+        <div id="searchResults" style="max-height: 400px; overflow-y: auto;">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="assets/js/preloader.js"></script>
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="assets/js/navbar.js?v=3"></script>
+  <script src="assets/js/blog.js?v=4"></script>
+</body>
+</html>

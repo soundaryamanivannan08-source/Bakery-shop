@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Hearth Catalogue &bull; Stackly Artisan Bakery</title>
+  <meta name="description" content="Explore Stackly Bakery's daily hearth pulls: 36-hour slow-fermented sourdough loaves, 81-layer flaky butter croissants, Saigon cinnamon brioche, breakfast crates, and seasonal tarts.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fb5022'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z'/></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans (Headings & Body) & Playfair Display (Serif Quotes) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <!-- Animate.css via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <!-- Common Navbar Stylesheet -->
+  <link rel="stylesheet" href="assets/css/navbar.css">
+
+  <!-- Preloader Stylesheet -->
+  <link rel="stylesheet" href="assets/css/preloader.css">
+
+  <!-- Catalogue Stylesheet -->
+  <link rel="stylesheet" href="assets/css/catalogue.css?v=4">
+
+  <style>
+    .newsletter-feedback {
+      display: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-top: 0.85rem;
+    }
+    .newsletter-feedback.error {
+      display: block !important;
+      color: #EF4444 !important;
+    }
+    .newsletter-feedback.active {
+      display: block !important;
+      color: #4ADE80 !important;
+    }
+    .newsletter-input.is-invalid {
+      border-color: #EF4444 !important;
+      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==============================================
+       PRELOADER: ARTISAN STONE HEARTH ANIMATION
+       ============================================== -->
+  <div class="site-preloader" id="sitePreloader" role="status" aria-live="polite" aria-label="Loading Stackly Bakery">
+    <div class="preloader-backdrop"></div>
+    <div class="preloader-content">
+      <!-- Animated Oven Hearth & Croissant -->
+      <div class="preloader-icon-wrap">
+        <div class="preloader-glow-ring"></div>
+        <svg class="preloader-croissant" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path class="croissant-body" d="M12 40C10 35 11 29 16 23C22.5 16 34 13 44 16.5C52.5 19.5 57 26 57.5 32C58 37 54.5 41 50 40.5C43 39.5 35.5 35.5 28 35.5C20.5 35.5 14.5 40.5 12 40Z" />
+          <path class="croissant-fold fold-1" d="M21 22.5C23.5 27.5 24 33.5 22.5 38" />
+          <path class="croissant-fold fold-2" d="M33 17C35.5 23 35.5 30.5 33 35.5" />
+          <path class="croissant-fold fold-3" d="M44.5 19.5C46.5 24.5 46 30.5 44 35" />
+        </svg>
+        <div class="preloader-steam-wrap" aria-hidden="true">
+          <span class="steam-particle steam-1"></span>
+          <span class="steam-particle steam-2"></span>
+          <span class="steam-particle steam-3"></span>
+        </div>
+      </div>
+
+      <!-- Brand Identity -->
+      <div class="preloader-brand">
+        <h2 class="preloader-title">Stackly<span class="preloader-dot">.</span></h2>
+        <span class="preloader-subtitle">ARTISAN STONE HEARTH · EST. 2018</span>
+      </div>
+
+      <!-- Animated Progress Line & Status -->
+      <div class="preloader-progress-box">
+        <div class="preloader-progress-track">
+          <div class="preloader-progress-fill" id="preloaderBar"></div>
+        </div>
+        <div class="preloader-status-text" id="preloaderStatus">Warming stone deck hearth...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       SITE HEADER (COMMON NAVBAR)
+       ============================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <!-- Logo: Stackly 006 Logo -->
+      <a href="index.html" class="brand-logo" aria-label="Stackly Home">
+        <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="brand-logo-img" width="111" height="50">
+      </a>
+
+      <!-- Center Nav Links: Home, Catalogue, About us, Contact, Blog -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="catalogue.html" class="nav-link active" aria-current="page">Catalogue</a></li>
+          <li><a href="about.html" class="nav-link">About us</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Header Actions: Shopping Bag + Login Button + Mobile Toggle -->
+      <div class="header-actions">
+        <!-- Shopping Bag Icon Button -->
+        <button class="action-btn-bag" id="cartToggle" aria-label="View shopping basket" title="Cart">
+          <i class="fa-solid fa-bag-shopping header-bag-icon" aria-hidden="true"></i>
+          <span class="cart-badge-dot active" id="cartDot"></span>
+        </button>
+
+        <!-- Login Button -->
+        <a href="login.html" class="btn-header-login">LOGIN</a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-nav-drawer" id="mobileDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="catalogue.html" class="mobile-nav-link active">Catalogue</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About us</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+        <li><a href="blog.html" class="mobile-nav-link">Blog</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="login.html" class="btn-header-login btn-block text-center" style="display:block; text-align:center;">LOGIN</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==============================================
+       SECTION 1: HERO ("Good things. Made to be crumbled.")
+       ============================================== -->
+  <section class="catalogue-hero-section">
+    <div class="catalogue-container">
+      <div class="catalogue-hero-grid">
+        <!-- Hero Left: Typography & Actions -->
+        <div class="hero-content" data-aos="fade-right" data-aos-duration="850">
+          <span class="hero-eyebrow">
+            <i class="fa-solid fa-wheat-awn"></i> Handcrafted &amp; Stone-Milled
+          </span>
+          <h1 class="hero-headline">
+            Good things.<br>
+            Made to be<br>
+            <span class="text-accent-orange">crumbled.</span>
+          </h1>
+          <p class="hero-desc">
+            From slow-fermented hearth loaves to delicate, flaky morning pastries &mdash; baked with organic local grains, cultured Normandy butter, and timeless patience.
+          </p>
+          <div class="hero-actions">
+            <a href="404.html" class="btn-orange-pill">
+              <span>Explore Catalogue</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </a>
+            <a href="404.html" class="hero-sublink">
+              <span>Browse Breakfast Crates</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Right: Framed Photograph & Circular Badge -->
+        <div class="hero-visual-card" data-aos="fade-left" data-aos-duration="850">
+          <div class="hero-img-container">
+            <img src="assets/images/catalogue_hero_croissants.webp" alt="Baker in warm background with a wooden tray of golden croissants fresh from the oven" class="hero-img">
+            <!-- Floating Orange Badge -->
+            <button class="hero-floating-badge animate__animated animate__pulse animate__infinite" aria-label="Explore fresh bake selection">
+              <span>ALWAYS<br>BAKED<br>FRESH</span>
+            </button>
+          </div>
+          <p class="hero-caption">Fresh morning bake pulled from deck hearth at 7:00 AM daily.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 2: KEY ATTRIBUTES STRIP (Icon Features Below Hero)
+       ============================================== -->
+  <section class="catalogue-features-strip" data-aos="fade-up">
+    <div class="catalogue-container">
+      <div class="features-grid">
+        <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-wheat-awn"></i>
+          </div>
+          <div>
+            <h4 class="feature-title">Stone-Milled Flour</h4>
+            <p class="feature-desc">100% regional organic grains</p>
+          </div>
+        </div>
+
+        <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+          </div>
+          <div>
+            <h4 class="feature-title">36-Hour Ferment</h4>
+            <p class="feature-desc">Deep wild yeast development</p>
+          </div>
+        </div>
+
+        <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-fire-burner"></i>
+          </div>
+          <div>
+            <h4 class="feature-title">Stone Deck Hearth</h4>
+            <p class="feature-desc">Thick blistered caramelized crust</p>
+          </div>
+        </div>
+
+        <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+          </div>
+          <div>
+            <h4 class="feature-title">Small-Batch Daily</h4>
+            <p class="feature-desc">Fresh morning &amp; afternoon pulls</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 3: DAILY HEARTH SELECTION & PRODUCT GRID
+       ============================================== -->
+  <section class="catalogue-grid-section" id="selection">
+    <div class="catalogue-container">
+      <div class="grid-header-row" data-aos="fade-up">
+        <div>
+          <span class="section-eyebrow">DAILY HEARTH SELECTION</span>
+          <h2 class="section-title-light">Find your next favourite bite.</h2>
+        </div>
+      </div>
+
+      <!-- 5-Column Product Grid -->
+      <div class="products-grid">
+        <!-- Product 1: Classic Butter Croissant -->
+        <article class="product-card" data-category="pastries" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-img-wrap">
+            <img src="assets/images/catalogue_product_croissant.webp?v=2" alt="Classic French Butter Croissant" class="card-img">
+          </div>
+          <span class="card-category-tag">VIENNOISERIE</span>
+          <h3 class="card-title">Classic Butter Croissant</h3>
+          <p class="card-desc">81-layer laminated pastry with Normandy cultured butter, honeycomb airy crumb.</p>
+          <div class="card-price-row">
+            <span class="card-price">$4.50</span>
+            <button class="card-quick-add" data-add-to-cart data-id="croissant" data-name="Classic Butter Croissant" data-price="4.50" data-img="assets/images/catalogue_product_croissant.webp?v=2" aria-label="Add Classic Butter Croissant to bag">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+          <button class="btn-card-add" data-add-to-cart data-id="croissant" data-name="Classic Butter Croissant" data-price="4.50" data-img="assets/images/catalogue_product_croissant.webp?v=2">
+            <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+          </button>
+        </article>
+
+        <!-- Product 2: Country Sourdough -->
+        <article class="product-card" data-category="breads" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-img-wrap">
+            <img src="assets/images/catalogue_product_sourdough.webp" alt="Country Sourdough Boule" class="card-img">
+          </div>
+          <span class="card-category-tag">SOURDOUGH</span>
+          <h3 class="card-title">Country Sourdough</h3>
+          <p class="card-desc">36-hour wild yeast ferment, dark blistered crust, open custard crumb.</p>
+          <div class="card-price-row">
+            <span class="card-price">$8.50</span>
+            <button class="card-quick-add" data-add-to-cart data-id="sourdough" data-name="Country Sourdough" data-price="8.50" data-img="assets/images/catalogue_product_sourdough.webp" aria-label="Add Country Sourdough to bag">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+          <button class="btn-card-add" data-add-to-cart data-id="sourdough" data-name="Country Sourdough" data-price="8.50" data-img="assets/images/catalogue_product_sourdough.webp">
+            <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+          </button>
+        </article>
+
+        <!-- Product 3: Cinnamon Roll -->
+        <article class="product-card" data-category="brioche" data-aos="fade-up" data-aos-delay="300">
+          <div class="card-img-wrap">
+            <img src="assets/images/catalogue_product_cinnamon.webp" alt="Saigon Cinnamon Swirl Roll" class="card-img">
+          </div>
+          <span class="card-category-tag">SWEET BRIOCHE</span>
+          <h3 class="card-title">Cinnamon Roll</h3>
+          <p class="card-desc">Enriched brioche rolled with Saigon cinnamon, glazed with salted vanilla mascarpone.</p>
+          <div class="card-price-row">
+            <span class="card-price">$5.50</span>
+            <button class="card-quick-add" data-add-to-cart data-id="cinnamon" data-name="Cinnamon Roll" data-price="5.50" data-img="assets/images/catalogue_product_cinnamon.webp" aria-label="Add Cinnamon Roll to bag">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+          <button class="btn-card-add" data-add-to-cart data-id="cinnamon" data-name="Cinnamon Roll" data-price="5.50" data-img="assets/images/catalogue_product_cinnamon.webp">
+            <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+          </button>
+        </article>
+
+        <!-- Product 4: Pain au Chocolat -->
+        <article class="product-card" data-category="pastries" data-aos="fade-up" data-aos-delay="400">
+          <div class="card-img-wrap">
+            <img src="assets/images/catalogue_product_chocolat.webp" alt="Pain au Chocolat" class="card-img">
+          </div>
+          <span class="card-category-tag">VIENNOISERIE</span>
+          <h3 class="card-title">Pain au Chocolat</h3>
+          <p class="card-desc">Twin batons of Valrhona 70% dark chocolate wrapped in golden puff layers.</p>
+          <div class="card-price-row">
+            <span class="card-price">$5.00</span>
+            <button class="card-quick-add" data-add-to-cart data-id="chocolat" data-name="Pain au Chocolat" data-price="5.00" data-img="assets/images/catalogue_product_chocolat.webp" aria-label="Add Pain au Chocolat to bag">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+          <button class="btn-card-add" data-add-to-cart data-id="chocolat" data-name="Pain au Chocolat" data-price="5.00" data-img="assets/images/catalogue_product_chocolat.webp">
+            <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+          </button>
+        </article>
+
+        <!-- Product 5: Raspberry & Pistachio Tart -->
+        <article class="product-card" data-category="seasonal" data-aos="fade-up" data-aos-delay="500">
+          <div class="card-img-wrap">
+            <img src="assets/images/catalogue_product_tart.webp" alt="Raspberry and Pistachio Tart" class="card-img">
+          </div>
+          <span class="card-category-tag">SEASONAL PATISSERIE</span>
+          <h3 class="card-title">Raspberry &amp; Pistachio Tart</h3>
+          <p class="card-desc">Crisp almond sable crust, Sicilian pistachio frangipane, fresh raspberries.</p>
+          <div class="card-price-row">
+            <span class="card-price">$7.50</span>
+            <button class="card-quick-add" data-add-to-cart data-id="tart" data-name="Raspberry &amp; Pistachio Tart" data-price="7.50" data-img="assets/images/catalogue_product_tart.webp" aria-label="Add Raspberry &amp; Pistachio Tart to bag">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+          <button class="btn-card-add" data-add-to-cart data-id="tart" data-name="Raspberry &amp; Pistachio Tart" data-price="7.50" data-img="assets/images/catalogue_product_tart.webp">
+            <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+          </button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       [NEW SECTION 1]: MORNING PASTRY BUNDLES & BREAKFAST CRATES
+       ============================================== -->
+  <section class="catalogue-bundles-section" id="bundles">
+    <div class="catalogue-container">
+      <div class="bundles-header" data-aos="fade-up">
+        <span class="section-eyebrow">CURATED BAKERY CRATES</span>
+        <h2 class="section-title">Morning Bundles &amp; Pastry Boxes</h2>
+        <p class="section-desc">
+          Packed in wax-lined kraft boxes straight from our 7:00 AM pulls. Ideal for breakfast meetings, weekend hosts, or lavish family mornings.
+        </p>
+      </div>
+
+      <div class="bundles-grid">
+        <!-- Bundle 1 -->
+        <article class="bundle-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="bundle-img-wrap">
+            <img src="assets/images/catalogue_bundle_viennoiserie.webp" alt="The Viennoiserie Morning Crate" class="bundle-img">
+            <span class="bundle-badge">Save 15%</span>
+          </div>
+          <div class="bundle-body">
+            <span class="bundle-serves">Box of 6 Pastries &bull; Serves 3&ndash;5</span>
+            <h3 class="bundle-title">The Viennoiserie Crate</h3>
+            <ul class="bundle-items-list">
+              <li><i class="fa-solid fa-check"></i> 2x Classic French Butter Croissants</li>
+              <li><i class="fa-solid fa-check"></i> 2x Valrhona Pain au Chocolat</li>
+              <li><i class="fa-solid fa-check"></i> 2x Saigon Cinnamon Brioche Swirls</li>
+            </ul>
+            <div class="bundle-price-row">
+              <span class="bundle-current-price">$24.00</span>
+              <span class="bundle-original-price">$28.00</span>
+            </div>
+            <button class="btn-card-add" data-add-to-cart data-id="bundle-viennoiserie" data-name="The Viennoiserie Crate" data-price="24.00" data-img="assets/images/catalogue_bundle_viennoiserie.webp">
+              <i class="fa-solid fa-box-archive"></i> Add Crate to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- Bundle 2 -->
+        <article class="bundle-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="bundle-img-wrap">
+            <img src="assets/images/catalogue_bundle_hearth_feast.webp" alt="The Weekend Hearth Feast" class="bundle-img">
+            <span class="bundle-badge">Weekend Special</span>
+          </div>
+          <div class="bundle-body">
+            <span class="bundle-serves">Bread &amp; Butter Table &bull; Serves 4&ndash;6</span>
+            <h3 class="bundle-title">The Weekend Hearth Feast</h3>
+            <ul class="bundle-items-list">
+              <li><i class="fa-solid fa-check"></i> 1x Whole Country Sourdough Boule</li>
+              <li><i class="fa-solid fa-check"></i> 2x Morning Butter Croissants</li>
+              <li><i class="fa-solid fa-check"></i> 1x French Cultured Butter with Sea Salt</li>
+            </ul>
+            <div class="bundle-price-row">
+              <span class="bundle-current-price">$28.50</span>
+              <span class="bundle-original-price">$32.50</span>
+            </div>
+            <button class="btn-card-add" data-add-to-cart data-id="bundle-hearth-feast" data-name="The Weekend Hearth Feast" data-price="28.50" data-img="assets/images/catalogue_bundle_hearth_feast.webp">
+              <i class="fa-solid fa-box-archive"></i> Add Feast to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- Bundle 3 -->
+        <article class="bundle-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="bundle-img-wrap">
+            <img src="assets/images/catalogue_bundle_tea_box.webp" alt="The Sweet Afternoon Tea Box" class="bundle-img">
+            <span class="bundle-badge">Patisserie Box</span>
+          </div>
+          <div class="bundle-body">
+            <span class="bundle-serves">Sweet Treats &bull; Serves 3&ndash;4</span>
+            <h3 class="bundle-title">Afternoon Tea Box</h3>
+            <ul class="bundle-items-list">
+              <li><i class="fa-solid fa-check"></i> 2x Raspberry &amp; Pistachio Tarts</li>
+              <li><i class="fa-solid fa-check"></i> 2x Saigon Cinnamon Rolls</li>
+              <li><i class="fa-solid fa-check"></i> 2x Sea Salt Dark Chocolate Cookies</li>
+            </ul>
+            <div class="bundle-price-row">
+              <span class="bundle-current-price">$22.00</span>
+              <span class="bundle-original-price">$26.00</span>
+            </div>
+            <button class="btn-card-add" data-add-to-cart data-id="bundle-tea-box" data-name="Afternoon Tea Box" data-price="22.00" data-img="assets/images/catalogue_bundle_tea_box.webp">
+              <i class="fa-solid fa-box-archive"></i> Add Box to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- Bundle 4 -->
+        <article class="bundle-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="bundle-img-wrap">
+            <img src="assets/images/catalogue_bundle_breakfast_duo.webp" alt="The Baker's Breakfast Duo" class="bundle-img">
+            <span class="bundle-badge">Daily Commute</span>
+          </div>
+          <div class="bundle-body">
+            <span class="bundle-serves">Quick Morning &bull; Serves 1</span>
+            <h3 class="bundle-title">Baker's Breakfast Duo</h3>
+            <ul class="bundle-items-list">
+              <li><i class="fa-solid fa-check"></i> 1x Fresh Warm Butter Croissant</li>
+              <li><i class="fa-solid fa-check"></i> 1x Ethiopian Single-Origin Pour-Over</li>
+              <li><i class="fa-solid fa-check"></i> Quick counter pickup, zero wait</li>
+            </ul>
+            <div class="bundle-price-row">
+              <span class="bundle-current-price">$9.00</span>
+              <span class="bundle-original-price">$10.50</span>
+            </div>
+            <button class="btn-card-add" data-add-to-cart data-id="bundle-breakfast-duo" data-name="Baker's Breakfast Duo" data-price="9.00" data-img="assets/images/catalogue_bundle_breakfast_duo.webp">
+              <i class="fa-solid fa-box-archive"></i> Add Duo to Bag
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 4: SPOTLIGHT 1 — SOURDOUGH ("A proper loaf. A slower kind of goodness.")
+       ============================================== -->
+  <section class="spotlight-sourdough-section">
+    <div class="catalogue-container">
+      <div class="spotlight-sourdough-grid">
+        <!-- Visual Left -->
+        <div class="spotlight-visual" data-aos="fade-right" data-aos-duration="850">
+          <img src="assets/images/catalogue_product_sourdough.webp" alt="Artisan Country Sourdough loaf sliced open on wooden cutting board">
+        </div>
+
+        <!-- Content Right -->
+        <div class="spotlight-content" data-aos="fade-left" data-aos-duration="850">
+          <span class="section-eyebrow">BREAD BY PATIENCE</span>
+          <h2 class="spotlight-headline">
+            A proper loaf.<br>
+            A slower kind<br>
+            of goodness.
+          </h2>
+          <p class="spotlight-desc">
+            Our signature sourdough takes 36 hours from flour mixing to hearth deck pull. Slow cold fermentation breaks down gluten structures, creating an easily digestible bread with deep flavor, wild honeycombed crumb, and a crisp caramelized blistered crust.
+          </p>
+
+          <div class="spotlight-price-card">
+            <span class="spotlight-item-name">Country Sourdough Boule</span>
+            <span class="spotlight-item-price">$8.50</span>
+          </div>
+
+          <p class="spotlight-tip">
+            <i class="fa-solid fa-circle-info" style="color: var(--color-caramel); margin-right: 0.35rem;"></i>
+            Store cut-side down on wooden board or wrapped in pure linen. Slices freeze wonderfully for the toaster.
+          </p>
+
+          <button class="btn-orange-pill" data-add-to-cart data-id="sourdough" data-name="Country Sourdough" data-price="8.50" data-img="assets/images/catalogue_product_sourdough.webp">
+            <span>Add Sourdough to Bag</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 5: SPOTLIGHT 2 — VIENNOISERIE PAIR ("Flaky on the outside.")
+       ============================================== -->
+  <section class="spotlight-viennoiserie-section">
+    <div class="catalogue-container">
+      <div class="viennoiserie-header-row" data-aos="fade-up">
+        <div>
+          <span class="section-eyebrow">LAMINATED MORNING VIENNOISERIE</span>
+          <h2 class="viennoiserie-headline">
+            Flaky on the outside.<br>
+            All heart on the inside.
+          </h2>
+        </div>
+        <p class="viennoiserie-subtitle">
+          Laminated daily with Normandy cultured butter, rolled in 81 distinct microscopic layers for that signature golden morning crackle.
+        </p>
+      </div>
+
+      <div class="duo-cards-grid">
+        <!-- Left: Classic Butter Croissant -->
+        <article class="duo-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="duo-img-wrap">
+            <img src="assets/images/catalogue_product_croissant.webp?v=2" alt="Classic French Butter Croissant" class="duo-img">
+          </div>
+          <div class="duo-card-body">
+            <span class="card-category-tag">SIGNATURE CROISSANT</span>
+            <div class="duo-meta-row">
+              <h3 class="duo-item-title">Classic Butter Croissant</h3>
+              <span class="duo-item-price">$4.50</span>
+            </div>
+            <p class="duo-item-desc">
+              Flaky golden pastry with airy honeycomb crumb, rich cultured butter aroma, and a delicate caramelized bottom.
+            </p>
+            <button class="btn-orange-pill" style="width: 100%; justify-content: center;" data-add-to-cart data-id="croissant" data-name="Classic Butter Croissant" data-price="4.50" data-img="assets/images/catalogue_product_croissant.webp?v=2">
+              <span>Add to Bag</span>
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+        </article>
+
+        <!-- Right: Pain au Chocolat -->
+        <article class="duo-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="duo-img-wrap">
+            <img src="assets/images/catalogue_product_chocolat.webp" alt="Pain au Chocolat" class="duo-img">
+          </div>
+          <div class="duo-card-body">
+            <span class="card-category-tag">CHOCOLATIER SPECIAL</span>
+            <div class="duo-meta-row">
+              <h3 class="duo-item-title">Pain au Chocolat</h3>
+              <span class="duo-item-price">$5.00</span>
+            </div>
+            <p class="duo-item-desc">
+              Layered viennoiserie dough encasing twin batons of bittersweet 70% dark Valrhona chocolate that melt gently with every bite.
+            </p>
+            <button class="btn-orange-pill" style="width: 100%; justify-content: center;" data-add-to-cart data-id="chocolat" data-name="Pain au Chocolat" data-price="5.00" data-img="assets/images/catalogue_product_chocolat.webp">
+              <span>Add to Bag</span>
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 6: SPOTLIGHT 3 — CINNAMON SWIRL (Warm Sourdough Cream Palette #FAF5EE)
+       ============================================== -->
+  <section class="spotlight-cinnamon-section">
+    <div class="catalogue-container">
+      <div class="cinnamon-grid">
+        <!-- Left Content -->
+        <div class="cinnamon-content" data-aos="fade-right" data-aos-duration="850">
+          <span class="cinnamon-eyebrow">WARM BRIOCHE HEARTH PULL</span>
+          <h2 class="cinnamon-headline">
+            A little spice.<br>
+            A whole lot<br>
+            of comfort.
+          </h2>
+          <p class="cinnamon-desc">
+            Enriched brioche dough folded with organic milk and butter, rolled generously with Saigon cinnamon and dark muscovado sugar, finished with salted cream glaze.
+          </p>
+
+          <div class="cinnamon-tag-badge">
+            <i class="fa-solid fa-fire"></i> Fresh hearth pull at 8:00 AM daily
+          </div>
+
+          <div class="cinnamon-price-row">
+            <span class="item-title">Cinnamon Swirl Roll</span>
+            <span class="item-price">$5.50</span>
+          </div>
+
+          <button class="btn-orange-pill" data-add-to-cart data-id="cinnamon" data-name="Cinnamon Roll" data-price="5.50" data-img="assets/images/catalogue_product_cinnamon.webp">
+            <span>Add Cinnamon Swirl to Bag</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- Right Visual -->
+        <div class="cinnamon-visual" data-aos="fade-left" data-aos-duration="850">
+          <img src="assets/images/catalogue_product_cinnamon.webp" alt="Warm glazed cinnamon rolls with fork on rustic table">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 7: SPOTLIGHT 4 — SEASONAL PATISSERIE ("Berry sweet. Only for a little while.")
+       ============================================== -->
+  <section class="spotlight-tart-section">
+    <div class="catalogue-container">
+      <div class="tart-grid">
+        <!-- Left Visual -->
+        <div class="tart-visual" data-aos="fade-right" data-aos-duration="850">
+          <img src="assets/images/catalogue_product_tart.webp" alt="Fresh raspberry and pistachio tart sliced on plate">
+        </div>
+
+        <!-- Right Content -->
+        <div class="tart-content" data-aos="fade-left" data-aos-duration="850">
+          <span class="section-eyebrow">SEASONAL HARVEST PATISSERIE</span>
+          <h2 class="tart-headline">
+            Berry sweet.<br>
+            Only for a<br>
+            <span class="text-accent-orange">little while.</span>
+          </h2>
+          <h3 class="tart-subtitle">Raspberry &amp; Pistachio Tart</h3>
+          <p class="tart-desc">
+            Handmade almond sable shell blind-baked to golden crispness, layered with creamy Sicilian pistachio frangipane, and crowned with whole fresh raspberries dusted in powdered sugar.
+          </p>
+
+          <div class="tart-price-row">
+            <span class="item-title">Seasonal Tart (Serves 1&ndash;2)</span>
+            <span class="item-price">$7.50</span>
+          </div>
+
+          <button class="btn-orange-pill" data-add-to-cart data-id="tart" data-name="Raspberry &amp; Pistachio Tart" data-price="7.50" data-img="assets/images/catalogue_product_tart.webp">
+            <span>Add Tart to Bag</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+
+          <p class="tart-fine-print">
+            Limited daily quantities baked every morning. Pre-order for guaranteed pickup.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================================
+       [NEW SECTION 3]: ARTISAN PANTRY & SPREAD PAIRINGS
+       Palette: Deep Espresso (#220C07)
+       ============================================== -->
+  <section class="catalogue-pantry-section" id="pantry">
+    <div class="catalogue-container">
+      <div class="pantry-header" data-aos="fade-up">
+        <span class="section-eyebrow">CURATED SHELF GOODS</span>
+        <h2 class="pantry-title" style="font-size: 2.85rem; font-weight: 800; color: #FFFFFF; letter-spacing: -0.025em; margin-bottom: 0.75rem;">
+          Good bread deserves good company.
+        </h2>
+        <p class="pantry-desc" style="font-size: 1.05rem; color: var(--text-dark-muted); line-height: 1.6;">
+          Handcrafted pantry essentials sourced directly from small heritage farms and historic European dairies to elevate your home table.
+        </p>
+      </div>
+
+      <div class="pantry-grid">
+        <!-- Item 1: French Cultured Butter -->
+        <article class="pantry-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="pantry-img-wrap">
+            <img src="assets/images/catalogue_pantry_butter.webp" alt="Normandy Cultured Butter with Sea Salt" class="pantry-img">
+          </div>
+          <div class="pantry-body">
+            <span class="pantry-origin-tag">Normandy, France</span>
+            <h3 class="pantry-title">Beurre de Baratte</h3>
+            <p class="pantry-desc">Slow-churned cultured cream studded with hand-harvested fleur de sel crystals. Rich, hazelnut notes.</p>
+            <div class="pantry-price-row">
+              <span class="pantry-price">$7.50</span>
+              <button class="card-quick-add" data-add-to-cart data-id="pantry-butter" data-name="Beurre de Baratte Butter" data-price="7.50" data-img="assets/images/catalogue_pantry_butter.webp" aria-label="Add Beurre de Baratte to bag">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <button class="btn-card-add" data-add-to-cart data-id="pantry-butter" data-name="Beurre de Baratte Butter" data-price="7.50" data-img="assets/images/catalogue_pantry_butter.webp">
+              <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- Item 2: Catskills Wildflower Honey -->
+        <article class="pantry-card" data-aos="fade-up">
+          <div class="pantry-img-wrap">
+            <img src="assets/images/catalogue_pantry_honey.webp" alt="Catskills Raw Wildflower Honeycomb" class="pantry-img">
+          </div>
+          <div class="pantry-body">
+            <span class="pantry-origin-tag">Catskills, New York</span>
+            <h3 class="pantry-title">Raw Wildflower Honeycomb</h3>
+            <p class="pantry-desc">100% pure raw honeycomb cut straight from upstate hives. Spread gently across warm crusty sourdough.</p>
+            <div class="pantry-price-row">
+              <span class="pantry-price">$11.00</span>
+              <button class="card-quick-add" data-add-to-cart data-id="pantry-honey" data-name="Raw Wildflower Honeycomb" data-price="11.00" data-img="assets/images/catalogue_pantry_honey.webp" aria-label="Add Honeycomb to bag">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <button class="btn-card-add" data-add-to-cart data-id="pantry-honey" data-name="Raw Wildflower Honeycomb" data-price="11.00" data-img="assets/images/catalogue_pantry_honey.webp">
+              <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- Item 3: Copper-Kettle Berry Jam -->
+        <article class="pantry-card" data-aos="fade-up">
+          <div class="pantry-img-wrap">
+            <img src="assets/images/catalogue_pantry_jam.webp" alt="Wild Berry Preserves" class="pantry-img">
+          </div>
+          <div class="pantry-body">
+            <span class="pantry-origin-tag">Hudson Valley, NY</span>
+            <h3 class="pantry-title">Copper-Kettle Berry Jam</h3>
+            <p class="pantry-desc">Simmered in open copper pans with organic cane sugar and Madagascar vanilla beans. Tart and vibrant.</p>
+            <div class="pantry-price-row">
+              <span class="pantry-price">$9.00</span>
+              <button class="card-quick-add" data-add-to-cart data-id="pantry-jam" data-name="Copper-Kettle Berry Jam" data-price="9.00" data-img="assets/images/catalogue_pantry_jam.webp" aria-label="Add Berry Jam to bag">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <button class="btn-card-add" data-add-to-cart data-id="pantry-jam" data-name="Copper-Kettle Berry Jam" data-price="9.00" data-img="assets/images/catalogue_pantry_jam.webp">
+              <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- Item 4: Stackly Signature Whole Bean Coffee -->
+        <article class="pantry-card" data-aos="fade-up">
+          <div class="pantry-img-wrap">
+            <img src="assets/images/catalogue_pantry_coffee.webp" alt="Stackly Signature Whole Bean Roast" class="pantry-img">
+          </div>
+          <div class="pantry-body">
+            <span class="pantry-origin-tag">Yirgacheffe, Ethiopia</span>
+            <h3 class="pantry-title">Stackly Hearth Roast Coffee</h3>
+            <p class="pantry-desc">Light-medium roast with notes of candied citrus, dark chocolate, and bergamot. Crafted for pastry pairing.</p>
+            <div class="pantry-price-row">
+              <span class="pantry-price">$18.00</span>
+              <button class="card-quick-add" data-add-to-cart data-id="pantry-coffee" data-name="Stackly Hearth Roast Coffee" data-price="18.00" data-img="assets/images/catalogue_pantry_coffee.webp" aria-label="Add Coffee to bag">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <button class="btn-card-add" data-add-to-cart data-id="pantry-coffee" data-name="Stackly Hearth Roast Coffee" data-price="18.00" data-img="assets/images/catalogue_pantry_coffee.webp">
+              <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- Item 5: Fleur de Sel de Guérande -->
+        <article class="pantry-card" data-aos="fade-up">
+          <div class="pantry-img-wrap">
+            <img src="assets/images/catalogue_pantry_fleur_sel.webp" alt="Fleur de Sel de Guérande Sea Salt Flakes" class="pantry-img">
+          </div>
+          <div class="pantry-body">
+            <span class="pantry-origin-tag">Brittany, France</span>
+            <h3 class="pantry-title">Fleur de Sel de Guérande</h3>
+            <p class="pantry-desc">Hand-harvested sea salt flakes from ancient Atlantic salt marshes. The essential finishing touch for crusty sourdough.</p>
+            <div class="pantry-price-row">
+              <span class="pantry-price">$8.50</span>
+              <button class="card-quick-add" data-add-to-cart data-id="pantry-fleur-sel" data-name="Fleur de Sel de Guérande" data-price="8.50" data-img="assets/images/catalogue_pantry_fleur_sel.webp" aria-label="Add Fleur de Sel to bag">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <button class="btn-card-add" data-add-to-cart data-id="pantry-fleur-sel" data-name="Fleur de Sel de Guérande" data-price="8.50" data-img="assets/images/catalogue_pantry_fleur_sel.webp">
+              <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- Item 6: Sicilian Pistachio Cream -->
+        <article class="pantry-card" data-aos="fade-up">
+          <div class="pantry-img-wrap">
+            <img src="assets/images/catalogue_pantry_pistachio_cream.webp" alt="Sicilian Bronte Pistachio Cream" class="pantry-img">
+          </div>
+          <div class="pantry-body">
+            <span class="pantry-origin-tag">Bronte, Sicily</span>
+            <h3 class="pantry-title">Sicilian Pistachio Cream</h3>
+            <p class="pantry-desc">Velvety stone-ground cream crafted with certified Bronte green pistachios and white cocoa butter. Decadent & aromatic.</p>
+            <div class="pantry-price-row">
+              <span class="pantry-price">$12.50</span>
+              <button class="card-quick-add" data-add-to-cart data-id="pantry-pistachio-cream" data-name="Sicilian Pistachio Cream" data-price="12.50" data-img="assets/images/catalogue_pantry_pistachio_cream.webp" aria-label="Add Pistachio Cream to bag">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <button class="btn-card-add" data-add-to-cart data-id="pantry-pistachio-cream" data-name="Sicilian Pistachio Cream" data-price="12.50" data-img="assets/images/catalogue_pantry_pistachio_cream.webp">
+              <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- Item 7: Estate Extra Virgin Olive Oil -->
+        <article class="pantry-card" data-aos="fade-up">
+          <div class="pantry-img-wrap">
+            <img src="assets/images/catalogue_pantry_olive_oil.webp" alt="Estate Cold-Pressed Extra Virgin Olive Oil" class="pantry-img">
+          </div>
+          <div class="pantry-body">
+            <span class="pantry-origin-tag">Kalamata, Greece</span>
+            <h3 class="pantry-title">Estate Extra Virgin Olive Oil</h3>
+            <p class="pantry-desc">Early-harvest single-estate Koroneiki olives cold-pressed within hours. Peppery, herbaceous, and grassy.</p>
+            <div class="pantry-price-row">
+              <span class="pantry-price">$16.00</span>
+              <button class="card-quick-add" data-add-to-cart data-id="pantry-olive-oil" data-name="Estate Extra Virgin Olive Oil" data-price="16.00" data-img="assets/images/catalogue_pantry_olive_oil.webp" aria-label="Add Olive Oil to bag">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <button class="btn-card-add" data-add-to-cart data-id="pantry-olive-oil" data-name="Estate Extra Virgin Olive Oil" data-price="16.00" data-img="assets/images/catalogue_pantry_olive_oil.webp">
+              <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- Item 8: Blood Orange & Cardamom Marmalade -->
+        <article class="pantry-card" data-aos="fade-up">
+          <div class="pantry-img-wrap">
+            <img src="assets/images/catalogue_pantry_marmalade.webp" alt="Blood Orange Cardamom Marmalade" class="pantry-img">
+          </div>
+          <div class="pantry-body">
+            <span class="pantry-origin-tag">Valencia, Spain</span>
+            <h3 class="pantry-title">Blood Orange Marmalade</h3>
+            <p class="pantry-desc">Thick-cut Moro blood orange rinds slow-simmered with crushed green cardamom pods. Bright, bittersweet citrus perfection.</p>
+            <div class="pantry-price-row">
+              <span class="pantry-price">$9.50</span>
+              <button class="card-quick-add" data-add-to-cart data-id="pantry-marmalade" data-name="Blood Orange Marmalade" data-price="9.50" data-img="assets/images/catalogue_pantry_marmalade.webp" aria-label="Add Marmalade to bag">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <button class="btn-card-add" data-add-to-cart data-id="pantry-marmalade" data-name="Blood Orange Marmalade" data-price="9.50" data-img="assets/images/catalogue_pantry_marmalade.webp">
+              <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- Item 9: Piedmont Hazelnut Gianduja -->
+        <article class="pantry-card" data-aos="fade-up">
+          <div class="pantry-img-wrap">
+            <img src="assets/images/catalogue_pantry_gianduja.webp" alt="Piedmont Hazelnut Gianduja Spread" class="pantry-img">
+          </div>
+          <div class="pantry-body">
+            <span class="pantry-origin-tag">Piedmont, Italy</span>
+            <h3 class="pantry-title">Piedmont Hazelnut Gianduja</h3>
+            <p class="pantry-desc">Roasted IGP Piedmont hazelnuts blended with 65% single-origin dark chocolate. Irresistibly smooth spread.</p>
+            <div class="pantry-price-row">
+              <span class="pantry-price">$13.00</span>
+              <button class="card-quick-add" data-add-to-cart data-id="pantry-gianduja" data-name="Piedmont Hazelnut Gianduja" data-price="13.00" data-img="assets/images/catalogue_pantry_gianduja.webp" aria-label="Add Gianduja to bag">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <button class="btn-card-add" data-add-to-cart data-id="pantry-gianduja" data-name="Piedmont Hazelnut Gianduja" data-price="13.00" data-img="assets/images/catalogue_pantry_gianduja.webp">
+              <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- Item 10: Wild Blueberry & Thyme Preserves -->
+        <article class="pantry-card" data-aos="fade-up">
+          <div class="pantry-img-wrap">
+            <img src="assets/images/catalogue_pantry_blueberry_thyme.webp" alt="Wild Blueberry and Thyme Preserves" class="pantry-img">
+          </div>
+          <div class="pantry-body">
+            <span class="pantry-origin-tag">Bar Harbor, Maine</span>
+            <h3 class="pantry-title">Wild Blueberry & Thyme Preserves</h3>
+            <p class="pantry-desc">Sub-alpine wild barrens blueberries simmered with garden thyme and lemon verbena. Floral, sweet, and complex.</p>
+            <div class="pantry-price-row">
+              <span class="pantry-price">$9.50</span>
+              <button class="card-quick-add" data-add-to-cart data-id="pantry-blueberry-thyme" data-name="Wild Blueberry Preserves" data-price="9.50" data-img="assets/images/catalogue_pantry_blueberry_thyme.webp" aria-label="Add Blueberry Preserves to bag">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <button class="btn-card-add" data-add-to-cart data-id="pantry-blueberry-thyme" data-name="Wild Blueberry Preserves" data-price="9.50" data-img="assets/images/catalogue_pantry_blueberry_thyme.webp">
+              <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- Item 11: Bourbon Vanilla Bean Extract -->
+        <article class="pantry-card" data-aos="fade-up">
+          <div class="pantry-img-wrap">
+            <img src="assets/images/catalogue_pantry_vanilla_extract.webp" alt="Single-Estate Bourbon Vanilla Extract" class="pantry-img">
+          </div>
+          <div class="pantry-body">
+            <span class="pantry-origin-tag">Sambava, Madagascar</span>
+            <h3 class="pantry-title">Bourbon Vanilla Bean Extract</h3>
+            <p class="pantry-desc">Aged for 18 months in oak barrels with sun-cured grade-A planifolia vanilla pods. Deep caramel and floral notes.</p>
+            <div class="pantry-price-row">
+              <span class="pantry-price">$15.00</span>
+              <button class="card-quick-add" data-add-to-cart data-id="pantry-vanilla-extract" data-name="Bourbon Vanilla Extract" data-price="15.00" data-img="assets/images/catalogue_pantry_vanilla_extract.webp" aria-label="Add Vanilla Extract to bag">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <button class="btn-card-add" data-add-to-cart data-id="pantry-vanilla-extract" data-name="Bourbon Vanilla Extract" data-price="15.00" data-img="assets/images/catalogue_pantry_vanilla_extract.webp">
+              <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+            </button>
+          </div>
+        </article>
+
+        <!-- Item 12: Amalfi Lemon Curd -->
+        <article class="pantry-card" data-aos="fade-up">
+          <div class="pantry-img-wrap">
+            <img src="assets/images/catalogue_pantry_lemon_curd.webp" alt="Amalfi Coast Handcrafted Lemon Curd" class="pantry-img">
+          </div>
+          <div class="pantry-body">
+            <span class="pantry-origin-tag">Amalfi Coast, Italy</span>
+            <h3 class="pantry-title">Amalfi Lemon Curd</h3>
+            <p class="pantry-desc">Made with fragrant Sfusato Amalfitano lemons, farmhouse egg yolks, and fresh cultured butter. Velvety tartness.</p>
+            <div class="pantry-price-row">
+              <span class="pantry-price">$10.50</span>
+              <button class="card-quick-add" data-add-to-cart data-id="pantry-lemon-curd" data-name="Amalfi Lemon Curd" data-price="10.50" data-img="assets/images/catalogue_pantry_lemon_curd.webp" aria-label="Add Lemon Curd to bag">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <button class="btn-card-add" data-add-to-cart data-id="pantry-lemon-curd" data-name="Amalfi Lemon Curd" data-price="10.50" data-img="assets/images/catalogue_pantry_lemon_curd.webp">
+              <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       [NEW SECTION 4]: FROM GRAIN TO CRUST (CRAFT PILLARS)
+       Palette: Deep Espresso (#220C07) with Warm Sourdough Cards
+       ============================================== -->
+  <section class="catalogue-craft-section" id="craft">
+    <div class="catalogue-container">
+      <div class="craft-header" data-aos="fade-up">
+        <span class="section-eyebrow">THE PURITY PLEDGE</span>
+        <h2 class="section-title">Only four elements. Zero shortcuts.</h2>
+        <p class="section-desc">
+          We believe real bread only needs four pure ingredients. No dough improvers, no preservatives, and no commercial yeast shortcuts.
+        </p>
+      </div>
+
+      <div class="craft-grid">
+        <!-- Element 1 -->
+        <div class="craft-card" data-aos="fade-up" data-aos-delay="100">
+          <span class="craft-number">01</span>
+          <i class="fa-solid fa-wheat-awn craft-icon"></i>
+          <h3 class="craft-card-title">Stone-Ground Grains</h3>
+          <p class="craft-card-text">
+            100% certified organic heirloom wheat and rye sourced from New York state farms, stone-milled slow and cold to preserve live grain enzymes.
+          </p>
+        </div>
+
+        <!-- Element 2 -->
+        <div class="craft-card" data-aos="fade-up" data-aos-delay="200">
+          <span class="craft-number">02</span>
+          <i class="fa-solid fa-flask craft-icon"></i>
+          <h3 class="craft-card-title">36-Hour Wild Levain</h3>
+          <p class="craft-card-text">
+            Fed twice daily with stone-milled rye flour. Wild lactobacillus bacteria slowly digest sugars, creating complex tart flavors and light digestibility.
+          </p>
+        </div>
+
+        <!-- Element 3 -->
+        <div class="craft-card" data-aos="fade-up" data-aos-delay="300">
+          <span class="craft-number">03</span>
+          <i class="fa-solid fa-droplet craft-icon"></i>
+          <h3 class="craft-card-title">Pure Spring Water &amp; Salt</h3>
+          <p class="craft-card-text">
+            Mineral-rich natural spring water paired with hand-harvested Brittany grey sea salt, preserving essential micronutrients in every slice.
+          </p>
+        </div>
+
+        <!-- Element 4 -->
+        <div class="craft-card" data-aos="fade-up" data-aos-delay="400">
+          <span class="craft-number">04</span>
+          <i class="fa-solid fa-fire-flame-curved craft-icon"></i>
+          <h3 class="craft-card-title">Stone Deck &amp; Steam</h3>
+          <p class="craft-card-text">
+            Baked on blazing 480&deg;F stone deck hearths with calibrated burst steam that locks in moisture and blister-caramelizes the outer crust.
+          </p>
+        </div>
+      </div>
+
+      <!-- Craft Visual Banner Duo -->
+      <div class="craft-banner-duo" data-aos="fade-up" data-aos-delay="200">
+        <div class="craft-banner-item">
+          <img src="assets/images/catalogue_craft_shaping.webp" alt="Artisan baker hand shaping laminated pastry dough">
+          <div class="craft-banner-caption">
+            <i class="fa-solid fa-hand"></i> Hand-shaped daily in Williamsburg, Brooklyn
+          </div>
+        </div>
+        <div class="craft-banner-item">
+          <img src="assets/images/catalogue_craft_crumb.webp" alt="Open wild crumb of freshly baked sourdough boule">
+          <div class="craft-banner-caption">
+            <i class="fa-solid fa-certificate"></i> Wild airy crumb &bull; Naturally leavened sourdough
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       [NEW SECTION 5]: COMMUNITY LOVE & REGULAR REVIEWS
+       Palette: Warm Sourdough Cream (#FAF5EE)
+       ============================================== -->
+  <section class="catalogue-reviews-section" id="reviews">
+    <div class="catalogue-container">
+      <div class="reviews-header" data-aos="fade-up">
+        <span class="section-eyebrow">NEIGHBORHOOD VOICES</span>
+        <h2 class="section-title">Beloved on the block.</h2>
+        <p class="section-desc">
+          What our morning regulars, Williamsburg chefs, and weekend bread lovers say about our hearth pulls.
+        </p>
+      </div>
+
+      <div class="reviews-grid">
+        <!-- Review 1 -->
+        <article class="review-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="review-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="review-quote">
+            &ldquo;The sourdough crust has this blistered, smoky caramelization that crackles under your knife. It stays soft and custard-like inside for five full days. We never buy store-bought loaves anymore.&rdquo;
+          </p>
+          <div class="review-author-wrap">
+            <img src="assets/images/testimonial-sarah.webp" alt="Sarah Jenkins" class="review-avatar">
+            <div>
+              <h4 class="review-author-name">Sarah Jenkins</h4>
+              <span class="review-author-meta">Berry St Regular &bull; 4 years</span><br>
+              <span class="review-verified-tag"><i class="fa-solid fa-check"></i> Verified Order: Country Sourdough</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Review 2 -->
+        <article class="review-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="review-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="review-quote">
+            &ldquo;We ordered the 6-pack Viennoiserie Morning Crate for Sunday brunch. The lamination on the pain au chocolat is sheer architectural genius. Flakes everywhere, and the chocolate core is sublime.&rdquo;
+          </p>
+          <div class="review-author-wrap">
+            <img src="assets/images/testimonial-marcus-linnea-new.webp" alt="Marcus &amp; Linnea" class="review-avatar">
+            <div>
+              <h4 class="review-author-name">Marcus &amp; Linnea</h4>
+              <span class="review-author-meta">Bedford Ave &bull; Weekend Hosts</span><br>
+              <span class="review-verified-tag"><i class="fa-solid fa-check"></i> Verified Order: Viennoiserie Crate</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Review 3 -->
+        <article class="review-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="review-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="review-quote">
+            &ldquo;Arriving right at 8:00 AM as the warm cinnamon swirl rolls leave the deck oven is my sacred Saturday ritual. The salted vanilla mascarpone glaze is perfectly balanced and not cloying.&rdquo;
+          </p>
+          <div class="review-author-wrap">
+            <img src="assets/images/testimonial-david.webp" alt="David Chen" class="review-avatar">
+            <div>
+              <h4 class="review-author-name">David Chen</h4>
+              <span class="review-author-meta">Greenpoint &bull; Coffee &amp; Pastry Devotee</span><br>
+              <span class="review-verified-tag"><i class="fa-solid fa-check"></i> Verified Order: Cinnamon Swirl</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       [NEW SECTION 6]: BAKER'S STORAGE & REHEATING MASTERCLASS
+       Palette: Deep Espresso (#220C07)
+       ============================================== -->
+  <section class="catalogue-care-section" id="care">
+    <div class="catalogue-container">
+      <div class="care-header" data-aos="fade-up">
+        <span class="section-eyebrow">BAKER'S CARE MASTERCLASS</span>
+        <h2 class="section-title">How to keep your bake at its peak.</h2>
+        <p class="section-desc">
+          Simple techniques from our head baker to ensure that your crust stays shatteringly crisp and your crumb stays moist for days.
+        </p>
+      </div>
+
+      <div class="care-grid">
+        <!-- Guide 1 -->
+        <article class="care-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="care-icon-box">
+            <i class="fa-solid fa-temperature-arrow-up"></i>
+          </div>
+          <span class="care-temp-badge">Oven Reheat: 350&deg;F (175&deg;C)</span>
+          <h3 class="care-card-title">Reviving Day-Two Croissants</h3>
+          <p class="care-card-text">
+            Never microwave a croissant. Instead, pop it onto a bare oven rack for 3 to 4 minutes. The cultured butter re-melts into the 81 laminated sheets, returning the outer crunch to fresh-from-the-hearth glory.
+          </p>
+        </article>
+
+        <!-- Guide 2 -->
+        <article class="care-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="care-icon-box">
+            <i class="fa-solid fa-bread-slice"></i>
+          </div>
+          <span class="care-temp-badge">Store: Room Temp &bull; Linen Wrap</span>
+          <h3 class="care-card-title">Preserving Sourdough Crumb</h3>
+          <p class="care-card-text">
+            Store whole loaves cut-side down on a wooden cutting board or wrapped in breathable linen. Never keep artisan bread in sealed plastic or inside the refrigerator &mdash; cold accelerates starch crystallization.
+          </p>
+        </article>
+
+        <!-- Guide 3 -->
+        <article class="care-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="care-icon-box">
+            <i class="fa-solid fa-snowflake"></i>
+          </div>
+          <span class="care-temp-badge">Freeze: Sliced &bull; 0&deg;F (-18&deg;C)</span>
+          <h3 class="care-card-title">Freezing for the Toaster</h3>
+          <p class="care-card-text">
+            Slice your fresh sourdough on day one, slip parchment paper squares between slices, and seal in an airtight container. Toast directly from frozen for 2 minutes for an instant hot, steaming slice.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 8: THREE-COLUMN ATTRIBUTES ("Goodness in every detail.")
+       ============================================== -->
+  <section class="catalogue-details-section">
+    <div class="catalogue-container">
+      <div class="details-header" data-aos="fade-up">
+        <span class="section-eyebrow">OUR BAKERY COMMITMENT</span>
+        <h2 class="section-title">Goodness in every detail.</h2>
+        <p class="section-desc">Baked slowly with ancient patience, organic ingredients, and stone-deck warmth.</p>
+      </div>
+
+      <div class="details-cards-grid">
+        <article class="detail-card" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="detail-card-title">Made for mornings</h3>
+          <p class="detail-card-desc">
+            Fresh out of the ovens by 7:00 AM daily, warm and ready for your morning commute or cafe pour-over.
+          </p>
+        </article>
+
+        <article class="detail-card" data-aos="fade-up" data-aos-delay="200">
+          <h3 class="detail-card-title">100% Organic Grains</h3>
+          <p class="detail-card-desc">
+            Stone-ground flour, organic cultured butter, and pure spring water. Nothing artificial, ever.
+          </p>
+        </article>
+
+        <article class="detail-card" data-aos="fade-up" data-aos-delay="300">
+          <h3 class="detail-card-title">Baked in small batches</h3>
+          <p class="detail-card-desc">
+            We bake in small deck batches throughout the morning so your bread and pastry are always at peak crispness.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================================
+       SECTION 10: NEWSLETTER DISPATCH STRIP ("A little joy in your inbox.")
+       ============================================== -->
+  <section class="catalogue-newsletter-section" data-aos="zoom-in" data-aos-duration="750">
+    <div class="catalogue-container">
+      <div class="newsletter-strip-grid">
+        <div>
+          <span class="section-eyebrow">WEEKLY DISPATCH</span>
+          <h2 class="newsletter-headline">A little joy in your inbox.</h2>
+          <p class="newsletter-desc">Sign up for weekly hearth dispatches, weekend special reveals, and seasonal menu previews.</p>
+        </div>
+
+        <div>
+          <form class="newsletter-form" id="catalogueNewsletterForm" novalidate>
+            <input 
+              type="email" 
+              class="newsletter-input" 
+              id="catalogueNewsletterEmail" 
+              placeholder="Enter your email address..." 
+              required
+              aria-label="Email address for bakery newsletter">
+            <button type="submit" class="btn-orange-pill" id="catalogueNewsletterBtn">
+              <span>Subscribe</span>
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </form>
+          <div class="newsletter-feedback" id="catalogueNewsletterFeedback"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       SECTION 11: UNIFIED STACKLY FOOTER
+       ============================================== -->
+  <footer class="catalogue-footer" data-aos="fade-up">
+    <div class="catalogue-container">
+      <div class="footer-top-grid">
+        <!-- Col 1: Brand & Bio -->
+        <div class="footer-brand-wrap">
+          <a href="404.html" class="catalogue-brand">
+            <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="footer-brand-logo-img" width="102" height="44">
+          </a>
+          <p class="footer-tagline">
+            Artisanal stone-deck sourdough bakery and pastry counter in Williamsburg, Brooklyn.
+          </p>
+          <div class="footer-social-links">
+            <a href="404.html" class="social-circle-link" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="404.html" class="social-circle-link" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="404.html" class="social-circle-link" aria-label="TikTok">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation Links -->
+        <div>
+          <h4 class="footer-col-title">Pages</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="catalogue.html">Catalogue</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Categories -->
+        <div>
+          <h4 class="footer-col-title">Categories</h4>
+          <ul class="footer-links-list">
+            <li><a href="404.html">Sourdough Breads</a></li>
+            <li><a href="404.html">Viennoiserie</a></li>
+            <li><a href="404.html">Pastry Boxes</a></li>
+            <li><a href="404.html">Artisan Pantry</a></li>
+            <li><a href="404.html">Bread Club Portal</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Visit Us -->
+        <div>
+          <h4 class="footer-col-title">Visit Our Ovens</h4>
+          <p class="footer-address-text">
+            MMR Complex, Chinna Thirupathi,<br>
+            near Chinna Muniyappan Kovil,<br>
+            Salem, Tamil Nadu 636008<br><br>
+            <strong>Phone:</strong> <a href="404.html" style="color:var(--color-orange);">9876543210</a><br>
+            <strong>Email:</strong> <a href="404.html" style="color:var(--color-orange);">info@stackly.com</a><br>
+            <strong>Mon &ndash; Sun:</strong> 07:00 &ndash; 21:00
+          </p>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <span>&copy; 2026 Stackly Bakery. All rights reserved.</span>
+        <div class="footer-legal-links">
+          <a href="404.html">Privacy Policy</a>
+          <a href="404.html">Terms of Service</a>
+          <a href="404.html">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==============================================
+       SHOPPING BAG SLIDE-OVER DRAWER MODAL
+       ============================================== -->
+  <div class="cart-modal-overlay" id="cartModalOverlay" role="dialog" aria-modal="true" aria-labelledby="cartDrawerTitle">
+    <div class="cart-modal-drawer">
+      <div class="cart-drawer-header">
+        <h3 class="cart-drawer-title" id="cartDrawerTitle">
+          <i class="fa-solid fa-bag-shopping" style="color: var(--color-orange); margin-right: 0.5rem;"></i> Your Bag
+        </h3>
+        <button class="cart-close-btn" id="cartCloseBtn" aria-label="Close shopping bag" type="button">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="cart-items-list" id="cartItemsList">
+        <!-- Rendered dynamically by catalogue.js -->
+      </div>
+
+      <div class="cart-drawer-footer">
+        <div class="cart-summary-row">
+          <span>Subtotal</span>
+          <span id="cartSubtotal">$13.00</span>
+        </div>
+        <div class="cart-summary-row">
+          <span>Counter Pickup</span>
+          <span style="color: #4ADE80; font-weight: 700;">Free</span>
+        </div>
+        <div class="cart-total-row">
+          <span>Total</span>
+          <span class="total-price" id="cartTotal">$13.00</span>
+        </div>
+        <a href="404.html" class="btn-orange-pill" style="width: 100%; justify-content: center; height: 50px;">
+          <span>Proceed to Counter Hold</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="assets/js/preloader.js"></script>
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="assets/js/navbar.js?v=3"></script>
+  <script src="assets/js/catalogue.js?v=4"></script>
+</body>
+</html>

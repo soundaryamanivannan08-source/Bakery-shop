@@ -20,8 +20,82 @@
   <!-- AOS (Animate On Scroll) via CDNJS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
+  <!-- Animate.css via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <!-- Common Navbar Stylesheet -->
+  <link rel="stylesheet" href="assets/css/navbar.css">
+
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=5">
+
+  <style>
+    /* Section 3: Story Arched Image Equivalent to Content Size */
+    .story-container {
+      display: grid;
+      grid-template-columns: minmax(380px, 480px) 1fr;
+      align-items: stretch;
+      gap: 4.5rem;
+    }
+    .story-media-col {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .arch-image-frame {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      border-radius: 260px 260px 24px 24px;
+      overflow: visible;
+      display: flex;
+    }
+    .arch-baker-img {
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      border-radius: 260px 260px 24px 24px;
+      display: block;
+      box-shadow: var(--shadow-lg);
+      object-fit: cover;
+      object-position: 55% center;
+    }
+
+    @media (max-width: 1080px) {
+      .story-container {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+      }
+      .story-media-col {
+        height: auto;
+      }
+      .arch-image-frame {
+        margin: 0 auto;
+        max-width: 440px;
+        height: 480px;
+        min-height: 480px;
+      }
+      .arch-baker-img {
+        height: 480px;
+        min-height: 480px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .arch-image-frame {
+        max-width: 320px;
+        height: 380px;
+        min-height: 380px;
+        border-radius: 180px 180px 20px 20px;
+      }
+      .arch-baker-img {
+        height: 380px;
+        min-height: 380px;
+        border-radius: 180px 180px 20px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -63,45 +137,37 @@
     </div>
   </div>
 
-  <!-- Site Header (Exact Figma 1st Image) -->
-  <header class="site-header" id="header">
-    <div class="container header-container">
-      <!-- Logo: Stackly. + Outline Croissant Icon -->
-      <a href="#hero" class="brand-logo" aria-label="Stackly Home">
-        <span class="logo-text">Stackly.</span>
-        <svg class="header-croissant" viewBox="0 0 28 28" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M5 16.5C4.2 14.8 4.6 12.2 6.8 9.8C9.5 6.8 14.2 5.5 18.5 7C22 8.2 24 11 24.2 13.5C24.4 15.5 23 17.2 21 17C18.2 16.6 15 15 12 15C8.8 15 6.2 16.8 5 16.5Z"/>
-          <path d="M9 9.5C10 11.5 10.2 14 9.5 16"/>
-          <path d="M14 7.2C15 9.8 15 12.8 14 15"/>
-          <path d="M18.8 8.2C19.5 10.2 19.4 12.8 18.5 14.8"/>
-        </svg>
+  <!-- ==============================================
+       SITE HEADER (COMMON NAVBAR)
+       ============================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <!-- Logo: Stackly 006 Logo -->
+      <a href="index.html" class="brand-logo" aria-label="Stackly Home">
+        <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="brand-logo-img" width="111" height="50">
       </a>
 
-      <!-- Center Nav Links: Home, Catalogue, About us, Visit us, Blog -->
+      <!-- Center Nav Links: Home, Catalogue, About us, Contact, Blog -->
       <nav class="desktop-nav" aria-label="Primary Navigation">
         <ul class="nav-list">
-          <li><a href="#hero" class="nav-link active">Home</a></li>
-          <li><a href="#menu" class="nav-link">Catalogue</a></li>
-          <li><a href="#story" class="nav-link">About us</a></li>
-          <li><a href="#visit" class="nav-link">Visit us</a></li>
-          <li><a href="#journal" class="nav-link">Blog</a></li>
+          <li><a href="index.html" class="nav-link active" aria-current="page">Home</a></li>
+          <li><a href="catalogue.html" class="nav-link">Catalogue</a></li>
+          <li><a href="about.html" class="nav-link">About us</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
         </ul>
       </nav>
 
-      <!-- Right Header Actions: Shopping Bag + VISIT US Outline Button -->
+      <!-- Right Header Actions: Shopping Bag + Login Button + Mobile Toggle -->
       <div class="header-actions">
         <!-- Shopping Bag Icon Button -->
         <button class="action-btn-bag" id="cartToggle" aria-label="View shopping basket" title="Cart">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="header-bag-icon">
-            <rect x="5" y="6" width="14" height="15" rx="3"></rect>
-            <path d="M9 6V5a3 3 0 0 1 6 0v1"></path>
-            <path d="M9.5 10l2.5 2.5 2.5-2.5"></path>
-          </svg>
+          <i class="fa-solid fa-bag-shopping header-bag-icon" aria-hidden="true"></i>
           <span class="cart-badge-dot" id="cartDot"></span>
         </button>
 
-        <!-- Outline Pill Button: VISIT US -->
-        <a href="#visit" class="btn-visit-outline">VISIT US</a>
+        <!-- Login Button -->
+        <a href="login.html" class="btn-header-login">LOGIN</a>
 
         <!-- Mobile Menu Toggle Button -->
         <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle mobile menu" aria-expanded="false">
@@ -115,14 +181,14 @@
     <!-- Mobile Drawer Navigation -->
     <div class="mobile-nav-drawer" id="mobileDrawer">
       <ul class="mobile-nav-list">
-        <li><a href="#hero" class="mobile-nav-link">Home</a></li>
-        <li><a href="#menu" class="mobile-nav-link">Catalogue</a></li>
-        <li><a href="#story" class="mobile-nav-link">About us</a></li>
-        <li><a href="#visit" class="mobile-nav-link">Visit us</a></li>
-        <li><a href="#journal" class="mobile-nav-link">Blog</a></li>
+        <li><a href="index.html" class="mobile-nav-link active">Home</a></li>
+        <li><a href="catalogue.html" class="mobile-nav-link">Catalogue</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About us</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+        <li><a href="blog.html" class="mobile-nav-link">Blog</a></li>
       </ul>
       <div class="mobile-drawer-footer">
-        <a href="#visit" class="btn-visit-outline btn-block text-center" style="display:block; text-align:center;">VISIT US</a>
+        <a href="login.html" class="btn-header-login btn-block text-center" style="display:block; text-align:center;">LOGIN</a>
         <p class="mobile-drawer-hours">Open Daily: 7:00 AM – 6:00 PM</p>
       </div>
     </div>
@@ -167,7 +233,7 @@
 
             <!-- Action Buttons -->
             <div class="hero-actions-group">
-              <a href="#menu" class="btn btn-primary btn-pill hero-primary-cta">
+              <a href="catalogue.html" class="btn btn-primary btn-pill hero-primary-cta">
                 <span>Explore Morning Menu</span>
                 <svg class="cta-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M4 10h12M11 5l5 5-5 5"/>
@@ -538,7 +604,7 @@
               Because our sourdough ferments for 72 hours, natural wild enzymes pre-digest phytic acid and complex wheat proteins. The result is crusty, aromatic bread that won't leave you feeling bloated—just deeply nourished.
             </p>
             <div class="feature-banner-action">
-              <a href="#menu" class="btn btn-primary btn-pill">Taste the Difference</a>
+              <a href="404.html" class="btn btn-primary btn-pill">Taste the Difference</a>
             </div>
           </div>
           <div class="feature-banner-image">
@@ -602,7 +668,7 @@
           </div>
 
           <div class="story-cta-row">
-            <a href="#visit" class="story-link">Discover our baking philosophy →</a>
+            <a href="404.html" class="story-link">Discover our baking philosophy →</a>
           </div>
         </div>
       </div>
@@ -804,11 +870,11 @@
             Hand-crafted summer raspberry & pistachio tart with wild organic berries, velvety roasted pistachio frangipane cream, nestled inside a buttery sablé pastry shell.
           </p>
           <div class="seasonal-meta-note">
-            <span class="seasonal-badge">Fresh Mornings Only</span>
+            <a href="404.html" class="seasonal-badge">Fresh Mornings Only</a>
             <span class="seasonal-limit">Limited to 40 tarts per day</span>
           </div>
           <div class="seasonal-cta">
-            <a href="#menu" class="seasonal-link">Explore seasonal offerings →</a>
+            <a href="404.html" class="seasonal-link">Explore seasonal offerings →</a>
           </div>
         </div>
 
@@ -817,168 +883,6 @@
           <div class="tart-card-frame">
             <img src="assets/images/figma_seasonal_tart.webp" alt="Fresh raspberry and pistachio tart with one slice cut out on pink plate" class="tart-img" loading="lazy">
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==============================================
-         NEW SECTION 3: DAILY BAKING SCHEDULE ("Hot from the hearth schedule.")
-         Live timetable of daily oven drops & batch availability
-         ============================================== -->
-    <section class="schedule-section" id="schedule">
-      <div class="container">
-        <div class="section-head text-center" data-aos="fade-up">
-          <span class="section-overline">OVEN TIMETABLE</span>
-          <h2 class="section-title text-dark">Hot from the hearth schedule.</h2>
-          <p class="section-subtitle">
-            We pull 5 distinct warm batches throughout the day so your pastry crackles and your sourdough is warm when you step in.
-          </p>
-        </div>
-
-        <!-- Schedule Filter Tabs -->
-        <div class="schedule-tabs-wrap" data-aos="fade-up" data-aos-delay="100">
-          <div class="schedule-tabs" role="tablist">
-            <button class="sched-tab active" data-day="all" role="tab" aria-selected="true">
-              <span class="sched-tab-icon">✨</span>
-              <span>All Daily Batches</span>
-            </button>
-            <button class="sched-tab" data-day="weekday" role="tab" aria-selected="false">
-              <span class="sched-tab-icon">📅</span>
-              <span>Monday – Friday</span>
-            </button>
-            <button class="sched-tab" data-day="weekend" role="tab" aria-selected="false">
-              <span class="sched-tab-icon">☀️</span>
-              <span>Saturday & Sunday</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Schedule Cards List -->
-        <div class="schedule-grid" id="scheduleList">
-          <!-- Item 1 -->
-          <div class="schedule-card" data-category="weekday weekend" data-aos="fade-up" data-aos-delay="100">
-            <div class="sched-time-col">
-              <span class="sched-clock">06:30 AM</span>
-              <span class="sched-batch-tag batch-hot">🔥 FIRST PULL</span>
-            </div>
-            <div class="sched-info-col">
-              <div class="sched-title-row">
-                <h3 class="sched-item-name">Viennoiserie & Butter Croissants</h3>
-                <span class="sched-status-badge available">● Available at Open</span>
-              </div>
-              <p class="sched-item-desc">Traditional butter croissants, Pain au Chocolat, and flaky almond swirls fresh from the stone deck.</p>
-              <div class="sched-meta-chips">
-                <span class="chip">Normandy Butter</span>
-                <span class="chip">81 Layers</span>
-                <span class="chip">Best with Espresso</span>
-              </div>
-            </div>
-            <div class="sched-action-col">
-              <a href="#menu" class="btn-sched-action">Explore Items</a>
-            </div>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="schedule-card highlight-card" data-category="weekday weekend" data-aos="fade-up" data-aos-delay="150">
-            <div class="sched-time-col">
-              <span class="sched-clock">08:00 AM</span>
-              <span class="sched-batch-tag batch-gold">🥖 HEARTH BREADS</span>
-            </div>
-            <div class="sched-info-col">
-              <div class="sched-title-row">
-                <h3 class="sched-item-name">Country Sourdough & French Baguettes</h3>
-                <span class="sched-status-badge popular">★ Most Popular Batch</span>
-              </div>
-              <p class="sched-item-desc">Blistered 72-hour wild levain boules, seeded rye, and traditional crusty French poolish baguettes.</p>
-              <div class="sched-meta-chips">
-                <span class="chip">100% Organic Flour</span>
-                <span class="chip">Wild Starter</span>
-                <span class="chip">Crisp Singing Crust</span>
-              </div>
-            </div>
-            <div class="sched-action-col">
-              <a href="#menu" class="btn-sched-action">Explore Items</a>
-            </div>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="schedule-card" data-category="weekday weekend" data-aos="fade-up" data-aos-delay="200">
-            <div class="sched-time-col">
-              <span class="sched-clock">10:30 AM</span>
-              <span class="sched-batch-tag batch-sweet">🌀 SWEET BUNS</span>
-            </div>
-            <div class="sched-info-col">
-              <div class="sched-title-row">
-                <h3 class="sched-item-name">Cinnamon Brioche Swirls & Babka</h3>
-                <span class="sched-status-badge available">● Freshly Glazed</span>
-              </div>
-              <p class="sched-item-desc">Enriched golden brioche rolled with Ceylon cinnamon, Bourbon vanilla bean glaze, and dark chocolate babka loaves.</p>
-              <div class="sched-meta-chips">
-                <span class="chip">Pasture Eggs</span>
-                <span class="chip">Ceylon Cinnamon</span>
-                <span class="chip">Vanilla Glaze</span>
-              </div>
-            </div>
-            <div class="sched-action-col">
-              <a href="#menu" class="btn-sched-action">Explore Items</a>
-            </div>
-          </div>
-
-          <!-- Item 4 -->
-          <div class="schedule-card" data-category="weekday" data-aos="fade-up" data-aos-delay="250">
-            <div class="sched-time-col">
-              <span class="sched-clock">12:30 PM</span>
-              <span class="sched-batch-tag batch-savory">🫒 SAVORY OVEN</span>
-            </div>
-            <div class="sched-info-col">
-              <div class="sched-title-row">
-                <h3 class="sched-item-name">Rosemary Focaccia & Savory Galettes</h3>
-                <span class="sched-status-badge lunch">● Lunch Special</span>
-              </div>
-              <p class="sched-item-desc">Olive oil drenched sourdough focaccia studded with Maldon flake salt, fresh rosemary, and seasonal roasted garden vegetables.</p>
-              <div class="sched-meta-chips">
-                <span class="chip">Extra Virgin Olive Oil</span>
-                <span class="chip">Flaky Sea Salt</span>
-                <span class="chip">Local Herbs</span>
-              </div>
-            </div>
-            <div class="sched-action-col">
-              <a href="#menu" class="btn-sched-action">Explore Items</a>
-            </div>
-          </div>
-
-          <!-- Item 5 -->
-          <div class="schedule-card" data-category="weekend" data-aos="fade-up" data-aos-delay="300">
-            <div class="sched-time-col">
-              <span class="sched-clock">02:00 PM</span>
-              <span class="sched-batch-tag batch-gold">🍓 WEEKEND SPECIAL</span>
-            </div>
-            <div class="sched-info-col">
-              <div class="sched-title-row">
-                <h3 class="sched-item-name">Seasonal Raspberry Tarts & Eclairs</h3>
-                <span class="sched-status-badge limited">● Limited 40 Tarts</span>
-              </div>
-              <p class="sched-item-desc">Hand-assembled summer fruit tarts, Madagascar vanilla bean choux puffs, and Valrhona chocolate gateaux slices.</p>
-              <div class="sched-meta-chips">
-                <span class="chip">Fresh Organic Berries</span>
-                <span class="chip">Pistachio Frangipane</span>
-                <span class="chip">Weekend Exclusive</span>
-              </div>
-            </div>
-            <div class="sched-action-col">
-              <a href="#seasonal" class="btn-sched-action">Explore Items</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Schedule Bottom Callout Box -->
-        <div class="schedule-callout-box" data-aos="fade-up" data-aos-delay="150">
-          <div class="sched-callout-icon">🍞</div>
-          <div class="sched-callout-text">
-            <h4>Want us to hold your morning loaf?</h4>
-            <p>Our sourdough boules sell out by early afternoon. Pre-order online before 08:00 AM for guaranteed counter hold.</p>
-          </div>
-          <a href="#menu" class="btn btn-primary btn-pill">Reserve Daily Loaf</a>
         </div>
       </div>
     </section>
@@ -1009,8 +913,13 @@
                 “The kind of bakery that makes you look forward to mornings. Their croissants have ruined me for all others — and you can taste the dedication in every single bite.”
               </blockquote>
               <div class="testimonial-author-block">
-                <p class="author-name">Sarah Jenkins</p>
-                <p class="author-title">Greenpoint Resident & Daily Regular</p>
+                <div class="author-avatar-wrap">
+                  <img src="assets/images/testimonial-sarah.webp" alt="Sarah Jenkins" class="author-avatar" loading="lazy">
+                </div>
+                <div class="author-info">
+                  <p class="author-name">Sarah Jenkins</p>
+                  <p class="author-title">Greenpoint Resident &amp; Daily Regular</p>
+                </div>
               </div>
             </div>
 
@@ -1020,8 +929,13 @@
                 “The Country Sourdough has the most phenomenal crust I’ve tasted outside of Paris. Crisp, airy, sour, and stays fresh for days. We drive 20 minutes every Saturday.”
               </blockquote>
               <div class="testimonial-author-block">
-                <p class="author-name">Marcus & Linnea Chen</p>
-                <p class="author-title">Local Food Writers & Weekend Visitors</p>
+                <div class="author-avatar-wrap">
+                  <img src="assets/images/testimonial-marcus-linnea-new.webp" alt="Marcus &amp; Linnea Chen" class="author-avatar" loading="lazy">
+                </div>
+                <div class="author-info">
+                  <p class="author-name">Marcus &amp; Linnea Chen</p>
+                  <p class="author-title">Local Food Writers &amp; Weekend Visitors</p>
+                </div>
               </div>
             </div>
 
@@ -1031,8 +945,13 @@
                 “Elena and her team are true artists. Stepping in at 7:30 AM smelling the warm cinnamon buns and fresh espresso is the best part of my daily routine.”
               </blockquote>
               <div class="testimonial-author-block">
-                <p class="author-name">David Thorne</p>
-                <p class="author-title">Neighborhood Architect</p>
+                <div class="author-avatar-wrap">
+                  <img src="assets/images/testimonial-david.webp" alt="David Thorne" class="author-avatar" loading="lazy">
+                </div>
+                <div class="author-info">
+                  <p class="author-name">David Thorne</p>
+                  <p class="author-title">Neighborhood Architect</p>
+                </div>
               </div>
             </div>
           </div>
@@ -1106,8 +1025,8 @@
             </div>
 
             <div class="catering-actions">
-              <a href="#visit" class="btn btn-primary btn-pill">Request Catering Quote</a>
-              <a href="#menu" class="btn-hero-story-link">Browse Morning Menu →</a>
+              <a href="404.html" class="btn btn-primary btn-pill">Request Catering Quote</a>
+              <a href="404.html" class="btn-hero-story-link">Browse Morning Menu →</a>
             </div>
           </div>
 
@@ -1163,7 +1082,7 @@
               <p class="journal-excerpt">
                 Why rushing dough is the biggest mistake in modern breadmaking and how cold proofing unlocks digestible nutrition and deep caramel notes.
               </p>
-              <a href="#story" class="journal-link">Read story →</a>
+              <a href="404.html" class="journal-link">Read story →</a>
             </div>
           </article>
 
@@ -1181,7 +1100,7 @@
               <p class="journal-excerpt">
                 From floral Ethiopian pour-overs paired with butter croissants to dark roast macchiatos matching chocolate babka.
               </p>
-              <a href="#story" class="journal-link">Read story →</a>
+              <a href="404.html" class="journal-link">Read story →</a>
             </div>
           </article>
 
@@ -1199,7 +1118,7 @@
               <p class="journal-excerpt">
                 450°F stone hearth ovens, pre-dawn quiet, and the ritual of hand-dusting flours before Brooklyn awakens.
               </p>
-              <a href="#story" class="journal-link">Read story →</a>
+              <a href="404.html" class="journal-link">Read story →</a>
             </div>
           </article>
         </div>
@@ -1295,7 +1214,7 @@
             <p class="faq-card-desc">Our head baker and hospitality team are happy to answer any questions about flours, allergens, or custom batch orders.</p>
           </div>
           <div class="faq-card-action">
-            <a href="#visit" class="btn btn-primary btn-pill">Visit Our Bakery</a>
+            <a href="404.html" class="btn btn-primary btn-pill">Visit Our Bakery</a>
           </div>
         </div>
       </div>
@@ -1369,7 +1288,7 @@
           </div>
 
           <div class="storefront-cta-row">
-            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-pill">
+            <a href="404.html" class="btn btn-primary btn-pill">
               Get Directions
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -1380,47 +1299,18 @@
         </div>
       </div>
     </section>
-
-    <!-- ==============================================
-         SECTION 10: NEWSLETTER BANNER ("A little joy in your inbox.")
-         Exact Figma Layout: Clean Cream Banner with Subscription Input
-         ============================================== -->
-    <section class="newsletter-section">
-      <div class="container">
-        <div class="newsletter-card" data-aos="zoom-in" data-aos-duration="800">
-          <div class="newsletter-text-col">
-            <span class="section-overline">OUR NEWSLETTER</span>
-            <h3 class="newsletter-title">A little joy in your inbox.</h3>
-            <p class="newsletter-desc">Sign up for secret menu drops, home baking recipes & weekend specials.</p>
-          </div>
-          <div class="newsletter-form-col">
-            <form class="newsletter-form" id="newsletterForm" novalidate>
-              <div class="input-group">
-                <input type="email" id="newsletterEmail" class="email-input" placeholder="Enter your email address" required aria-label="Email for newsletter">
-                <button type="submit" class="btn btn-primary btn-subscribe">Subscribe</button>
-              </div>
-              <span class="form-feedback" id="newsletterFeedback"></span>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- ==============================================
-       SECTION 11: FOOTER
+       SECTION 10: FOOTER
        New Design: Forest Olive (#2D3427), Green Leaf 'S' STACKLY Logo, 4 Columns & Dark Charcoal Sub-footer (#111111)
        ============================================== -->
   <footer class="site-footer">
     <div class="container footer-container">
       <!-- Col 1: Brand & Socials -->
       <div class="footer-col footer-brand-col">
-        <a href="#hero" class="footer-brand-logo" aria-label="Stackly Home">
-          <svg class="footer-brand-mark" viewBox="0 0 24 34" fill="currentColor" aria-hidden="true">
-            <path d="M 13.5,0 C 12,2 8,7 4.5,11 C 1,15 0,17.5 1.5,20 C 3,22 8,22 12,19.5 C 9,18.5 6,17.5 6,15 C 6,12 9,7 13.5,0 Z" />
-            <path d="M 10.5,34 C 12,32 16,27 19.5,23 C 23,19 24,16.5 22.5,14 C 21,12 16,12 12,14.5 C 15,15.5 18,16.5 18,19 C 18,22 15,27 10.5,34 Z" />
-          </svg>
-          <span class="footer-brand-name">STACKLY</span>
+        <a href="index.html" class="footer-brand-logo" aria-label="Stackly Home">
+          <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="brand-logo-img" width="111" height="50">
         </a>
         <p class="footer-bio">
           Your one-stop shop for fresh sourdough and daily morning essentials.
@@ -1428,27 +1318,27 @@
         
         <!-- Social Icons -->
         <div class="social-links" aria-label="Social links">
-          <a href="#" class="social-btn" aria-label="Facebook" title="Facebook">
+          <a href="404.html" class="social-btn" aria-label="Facebook" title="Facebook">
             <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
           </a>
-          <a href="#" class="social-btn" aria-label="Twitter" title="Twitter">
+          <a href="404.html" class="social-btn" aria-label="Twitter" title="Twitter">
             <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
           </a>
-          <a href="#" class="social-btn" aria-label="Instagram" title="Instagram">
+          <a href="404.html" class="social-btn" aria-label="Instagram" title="Instagram">
             <i class="fa-brands fa-instagram" aria-hidden="true"></i>
           </a>
         </div>
       </div>
 
-      <!-- Col 2: Quick Links -->
+      <!-- Col 2: Pages -->
       <div class="footer-col">
-        <h3 class="footer-heading">Quick Links</h3>
+        <h3 class="footer-heading">Pages</h3>
         <ul class="footer-nav">
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#story">About Us</a></li>
-          <li><a href="#process">Service</a></li>
-          <li><a href="#seasonal">Blog</a></li>
-          <li><a href="#visit">Contact</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="catalogue.html">Catalogue</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="blog.html">Blog</a></li>
         </ul>
       </div>
 
@@ -1456,10 +1346,10 @@
       <div class="footer-col">
         <h3 class="footer-heading">Categories</h3>
         <ul class="footer-nav">
-          <li><a href="#menu">Sourdough Breads</a></li>
-          <li><a href="#menu">Viennoiserie</a></li>
-          <li><a href="#menu">Sweet Brioche</a></li>
-          <li><a href="#menu">Artisan Cakes</a></li>
+          <li><a href="catalogue.html">Sourdough Breads</a></li>
+          <li><a href="catalogue.html">Viennoiserie</a></li>
+          <li><a href="catalogue.html">Sweet Brioche</a></li>
+          <li><a href="catalogue.html">Artisan Cakes</a></li>
         </ul>
       </div>
 
@@ -1610,6 +1500,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
   <!-- JavaScript Application -->
-  <script src="assets/js/script.js"></script>
+  <script src="assets/js/script.js?v=3"></script>
 </body>
 </html>

@@ -1,0 +1,903 @@
+/* ==========================================================================
+   PORTAL DASHBOARD STYLES (MATCHING WEBSITE ARTISANAL COLOR PALETTE)
+   Deep Espresso Roast Sidebar | Vanilla Milk Canvas | Warm Card & Chart Tokens
+   ========================================================================== */
+
+:root {
+  /* Website Artisanal Bakery Palette */
+  --portal-bg: #FAF5F0;                        /* Warm Vanilla Dough Canvas */
+  --portal-sidebar-bg: #220C07;                 /* Deepest Roast Chocolate */
+  --portal-sidebar-hover: #2E120B;              /* Deep Cocoa */
+  --portal-sidebar-active: #3E1910;             /* Rich Espresso */
+  --portal-sidebar-text: #BAA69D;               /* Soft Vanilla Muted */
+  --portal-sidebar-text-active: #FFFFFF;
+  --portal-text-dark: #3E1910;                  /* Deep Espresso Chocolate */
+  --portal-text-secondary: #6E534A;             /* Warm Cocoa Text */
+  --portal-text-muted: #8E756C;                 /* Warm Muted */
+  --portal-border: rgba(62, 25, 16, 0.09);      /* Subtle Pastry Border */
+  --portal-card-bg: #FFFFFF;
+  --portal-navy: #3E1910;                       /* Primary Brand Roast */
+  --portal-orange: #FB5022;                     /* Figma Vibrant CTA Orange */
+  --portal-orange-hover: #E03E13;
+  --portal-gold: #C29548;                       /* Artisan Gold */
+  --portal-amber: #F5B041;                      /* Warm Amber */
+  --portal-green: #2E7D32;
+  --portal-green-bg: #E8F5E9;
+
+  /* KPI Badges */
+  --portal-badge-orange-bg: #FFF0EB;
+  --portal-badge-orange-color: #FB5022;
+  --portal-badge-gold-bg: #FAF0DF;
+  --portal-badge-gold-color: #C29548;
+  --portal-badge-cocoa-bg: #F3EBE6;
+  --portal-badge-cocoa-color: #6E534A;
+  --portal-badge-amber-bg: #FFF4E5;
+  --portal-badge-amber-color: #E67E22;
+
+  --portal-radius-card: 16px;
+  --portal-radius-pill: 999px;
+  --portal-shadow-sm: 0 4px 14px rgba(62, 25, 16, 0.04), 0 1px 3px rgba(62, 25, 16, 0.03);
+  --portal-shadow-hover: 0 10px 24px rgba(62, 25, 16, 0.08);
+}
+
+body.dashboard-page {
+  background-color: var(--portal-bg);
+  color: var(--portal-text-dark);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+/* ==========================================================================
+   PORTAL LAYOUT: MASTER WRAPPER
+   ========================================================================== */
+.portal-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+/* ==========================================================================
+   FIXED DEEP ESPRESSO SIDEBAR (Full Height 100vh)
+   ========================================================================== */
+.portal-sidebar {
+  width: 250px;
+  background-color: var(--portal-sidebar-bg);
+  color: var(--portal-sidebar-text);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  padding: 1.5rem 1rem 1.25rem;
+  box-sizing: border-box;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 2px 0 16px rgba(34, 12, 7, 0.18);
+}
+
+/* Sidebar Brand Header */
+.portal-brand-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.portal-brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.portal-brand-logo-img {
+  height: 44px;
+  width: auto;
+  max-width: 155px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.portal-brand:hover .portal-brand-logo-img {
+  transform: scale(1.03);
+  opacity: 0.95;
+}
+
+.portal-sidebar-close {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--portal-sidebar-text);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.portal-sidebar-close:hover {
+  color: #FFFFFF;
+}
+
+/* Sidebar Section Title */
+.portal-nav-section {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--portal-sidebar-text);
+  opacity: 0.75;
+  text-transform: uppercase;
+  margin: 1.5rem 0.5rem 0.75rem;
+}
+
+/* Sidebar Navigation Items */
+.portal-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex-grow: 1;
+}
+
+.portal-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  color: var(--portal-sidebar-text);
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: left;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.portal-nav-item i {
+  font-size: 1rem;
+  width: 20px;
+  text-align: center;
+  color: var(--portal-sidebar-text);
+  transition: color 0.2s ease;
+}
+
+.portal-nav-item:hover {
+  background-color: var(--portal-sidebar-hover);
+  color: #FFFFFF;
+}
+
+.portal-nav-item:hover i {
+  color: var(--portal-orange);
+}
+
+/* Active Nav Item */
+.portal-nav-item.active {
+  background-color: var(--portal-sidebar-active);
+  color: #FFFFFF;
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px rgba(251, 80, 34, 0.25);
+}
+
+.portal-nav-item.active i {
+  color: var(--portal-orange);
+}
+
+.portal-nav-item.active .portal-item-icon-circle {
+  color: var(--portal-orange);
+}
+
+/* Sidebar Bottom / Logout button */
+.portal-sidebar-bottom {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.portal-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  color: #FFFFFF;
+  background: var(--portal-sidebar-hover);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.portal-logout-btn i {
+  color: var(--portal-orange);
+  font-size: 1rem;
+}
+
+.portal-logout-btn:hover {
+  background: var(--portal-sidebar-active);
+  border-color: rgba(251, 80, 34, 0.45);
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   MAIN CONTENT AREA (Right of Sidebar)
+   ========================================================================== */
+.portal-main {
+  margin-left: 250px;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Top Sticky Header (Pure White) */
+.portal-header {
+  height: 70px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--portal-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 990;
+  box-shadow: 0 2px 10px rgba(62, 25, 16, 0.04);
+  transition: box-shadow 0.2s ease;
+}
+
+.portal-header.is-scrolled {
+  box-shadow: 0 4px 18px rgba(34, 12, 7, 0.09);
+}
+
+.portal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.portal-menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: #FAF4EE;
+  border: 1px solid var(--portal-border);
+  color: var(--portal-text-dark);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.portal-menu-toggle:hover {
+  background: #F1E7DC;
+}
+
+.portal-header-title {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--portal-navy);
+  letter-spacing: -0.02em;
+}
+
+.portal-header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* Date Pill Badge */
+.portal-date-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: #FAF4EE;
+  border: 1px solid rgba(62, 25, 16, 0.1);
+  padding: 0.45rem 1rem;
+  border-radius: var(--portal-radius-pill);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--portal-text-dark);
+}
+
+.portal-date-pill i {
+  color: var(--portal-orange);
+  font-size: 0.95rem;
+}
+
+/* Notification Bell Button */
+.portal-notif-btn {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  color: var(--portal-text-secondary);
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.portal-notif-btn:hover {
+  background: #FAF4EE;
+  color: var(--portal-orange);
+}
+
+.portal-notif-dot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--portal-orange);
+  border: 2px solid #FFFFFF;
+}
+
+/* User Profile Pill */
+.portal-profile-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.25rem 0.65rem 0.25rem 0.35rem;
+  border-radius: var(--portal-radius-pill);
+  background: #FAF4EE;
+  border: 1px solid rgba(62, 25, 16, 0.08);
+  cursor: default;
+}
+
+.portal-avatar-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #FAF0DF;
+  color: #8C6520;
+  border: 2px solid var(--portal-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.portal-profile-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  text-align: left;
+}
+
+.portal-profile-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--portal-text-dark);
+}
+
+.portal-profile-role {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--portal-orange);
+}
+
+/* ==========================================================================
+   PORTAL CONTENT BODY
+   ========================================================================== */
+.portal-body {
+  padding: 2rem;
+  flex: 1;
+}
+
+/* Dynamic Tab Panels */
+.portal-tab-panel {
+  display: none;
+}
+
+.portal-tab-panel.active {
+  display: block;
+  animation: portalFadeIn 0.25s ease-out;
+}
+
+@keyframes portalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   ROW 1: 4 STAT KPI CARDS (Warm Bakery Colors)
+   ========================================================================== */
+.portal-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.portal-kpi-card {
+  background: var(--portal-card-bg);
+  border-radius: var(--portal-radius-card);
+  padding: 1.35rem 1.5rem;
+  box-shadow: var(--portal-shadow-sm);
+  border: 1px solid var(--portal-border);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.portal-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--portal-shadow-hover);
+}
+
+.portal-kpi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+}
+
+.portal-kpi-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--portal-text-muted);
+  text-transform: uppercase;
+}
+
+.portal-kpi-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.portal-kpi-badge.badge-blue {
+  background: var(--portal-badge-orange-bg);
+  color: var(--portal-badge-orange-color);
+}
+
+.portal-kpi-badge.badge-cream {
+  background: var(--portal-badge-gold-bg);
+  color: var(--portal-badge-gold-color);
+}
+
+.portal-kpi-badge.badge-lightblue {
+  background: var(--portal-badge-cocoa-bg);
+  color: var(--portal-badge-cocoa-color);
+}
+
+.portal-kpi-badge.badge-amber {
+  background: var(--portal-badge-amber-bg);
+  color: var(--portal-badge-amber-color);
+}
+
+.portal-kpi-value {
+  font-size: 2.15rem;
+  font-weight: 800;
+  color: var(--portal-text-dark);
+  line-height: 1.1;
+  margin-bottom: 0.35rem;
+}
+
+.portal-kpi-sub {
+  font-size: 0.78rem;
+  color: var(--portal-text-muted);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   ROW 2: 2 CHARTS SIDE-BY-SIDE (Warm Bakery Colors)
+   ========================================================================== */
+.portal-charts-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.portal-chart-card {
+  background: var(--portal-card-bg);
+  border-radius: var(--portal-radius-card);
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--portal-shadow-sm);
+  border: 1px solid var(--portal-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.portal-chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.portal-chart-title {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.portal-chart-title i {
+  color: var(--portal-orange);
+  font-size: 1.15rem;
+}
+
+.portal-chart-title h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--portal-navy);
+}
+
+.portal-chart-badge-demo {
+  background: var(--portal-badge-orange-bg);
+  color: var(--portal-orange);
+  border: 1px solid rgba(251, 80, 34, 0.2);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--portal-radius-pill);
+}
+
+.portal-chart-sub {
+  font-size: 0.78rem;
+  color: var(--portal-text-muted);
+  font-weight: 600;
+}
+
+/* SVG Bar Chart Styling */
+.portal-chart-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.chart-grid-line {
+  stroke: rgba(62, 25, 16, 0.07);
+  stroke-width: 1;
+}
+
+.chart-axis-text {
+  font-family: inherit;
+  font-size: 12px;
+  fill: var(--portal-text-muted);
+  font-weight: 600;
+}
+
+.chart-bar {
+  fill: var(--portal-navy);
+  transition: fill 0.2s ease, opacity 0.2s ease;
+}
+
+.chart-bar:hover {
+  fill: var(--portal-orange);
+  cursor: pointer;
+}
+
+/* Donut Chart Legend */
+.portal-donut-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.15rem;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--portal-border);
+}
+
+.portal-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  color: var(--portal-text-secondary);
+  font-weight: 600;
+}
+
+.portal-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   TABLE & GENERAL PANEL OVERRIDES (INSIDE PORTAL BODY)
+   ========================================================================== */
+.portal-card-section {
+  background: #FFFFFF;
+  border-radius: var(--portal-radius-card);
+  padding: 1.5rem;
+  box-shadow: var(--portal-shadow-sm);
+  border: 1px solid var(--portal-border);
+  margin-bottom: 2rem;
+}
+
+.portal-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--portal-border);
+}
+
+.portal-section-head h2,
+.portal-section-head h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--portal-navy);
+}
+
+/* Action Button (e.g. Reserve New Loaf) */
+.portal-btn-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.35rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background-color: var(--portal-orange);
+  color: #FFFFFF;
+  text-decoration: none;
+  border-radius: var(--portal-radius-pill);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(251, 80, 34, 0.25);
+}
+
+.portal-btn-action:hover {
+  background-color: var(--portal-orange-hover);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(251, 80, 34, 0.35);
+}
+
+/* Responsive Table Wrapper */
+.dash-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 0.75rem;
+  border-radius: 8px;
+}
+
+.dash-table-responsive::-webkit-scrollbar {
+  height: 6px;
+}
+
+.dash-table-responsive::-webkit-scrollbar-track {
+  background: #FAF4EE;
+  border-radius: 4px;
+}
+
+.dash-table-responsive::-webkit-scrollbar-thumb {
+  background: #D4C2B8;
+  border-radius: 4px;
+}
+
+.dash-table {
+  min-width: 640px;
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVENESS
+   ========================================================================== */
+.portal-sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(34, 12, 7, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}
+
+.portal-sidebar-backdrop.active {
+  display: block;
+}
+
+@media (max-width: 1200px) {
+  .portal-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .portal-charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 992px) {
+  .portal-sidebar {
+    transform: translateX(-100%);
+  }
+  .portal-sidebar.open {
+    transform: translateX(0);
+  }
+  .portal-main {
+    margin-left: 0;
+  }
+  .portal-menu-toggle {
+    display: flex;
+  }
+  .portal-sidebar-close {
+    display: block;
+  }
+  .portal-header {
+    padding: 0 1.25rem;
+  }
+  .portal-body {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .portal-section-head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+  }
+
+  .portal-btn-action {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+  }
+
+  .portal-profile-role {
+    display: none;
+  }
+
+  .portal-profile-name {
+    max-width: 85px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 640px) {
+  .portal-header {
+    height: 62px;
+    padding: 0 0.85rem;
+  }
+
+  .portal-header-left {
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  .portal-header-title {
+    font-size: 1.15rem;
+    max-width: 130px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .portal-header-right {
+    gap: 0.5rem;
+  }
+
+  .portal-date-pill {
+    display: none;
+  }
+
+  .portal-profile-pill {
+    padding: 0.2rem 0.45rem 0.2rem 0.25rem;
+    gap: 0.4rem;
+  }
+
+  .portal-profile-name {
+    max-width: 60px;
+    font-size: 0.78rem;
+  }
+
+  .portal-body {
+    padding: 1rem 0.75rem;
+  }
+
+  .portal-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .portal-kpi-card {
+    padding: 1rem;
+  }
+
+  .portal-kpi-value {
+    font-size: 1.75rem;
+  }
+
+  .portal-kpi-badge {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .portal-chart-card {
+    padding: 1.15rem 1rem;
+  }
+
+  .portal-card-section {
+    padding: 1.15rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .portal-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portal-header-title {
+    font-size: 1.05rem;
+    max-width: 105px;
+  }
+
+  .portal-profile-info {
+    display: none;
+  }
+
+  .portal-profile-pill {
+    padding: 0;
+    background: transparent;
+    border: none;
+  }
+
+  .portal-menu-toggle {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+  }
+
+  .portal-notif-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 1.05rem;
+  }
+
+  .portal-chart-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

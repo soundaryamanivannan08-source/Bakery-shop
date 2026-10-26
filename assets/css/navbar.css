@@ -1,0 +1,363 @@
+/* ==========================================================================
+   STACKLY BAKERY - COMMON SITE NAVBAR STYLESHEET
+   Unified navbar matching the exact Figma design across all pages:
+   Home, Catalogue, About us, Contact, and Blog.
+   ========================================================================== */
+
+:root {
+  --nav-bg: #220C07;
+  --nav-bg-scrolled: rgba(34, 12, 7, 0.96);
+  --nav-text: #D6C8C0;
+  --nav-text-hover: #FFFFFF;
+  --nav-gold: #C29548;
+  --nav-gold-hover: #E2B05E;
+  --nav-orange: #FF5100;
+  --nav-font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --nav-transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Site Header Wrapper (Sticky) */
+.site-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+  background-color: var(--nav-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color var(--nav-transition), border-color var(--nav-transition), box-shadow var(--nav-transition);
+}
+
+.site-header.scrolled {
+  background-color: var(--nav-bg-scrolled);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Header Container */
+.site-header .header-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+  box-sizing: border-box;
+}
+
+/* Brand Logo */
+.site-header .brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.site-header .brand-logo-img {
+  height: 48px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+  display: block;
+  background: transparent;
+  border: none;
+  outline: none;
+  transition: transform var(--nav-transition), opacity var(--nav-transition);
+}
+
+.site-header .brand-logo:hover .brand-logo-img {
+  transform: scale(1.03);
+  opacity: 0.95;
+}
+
+/* Desktop Navigation Menu */
+.site-header .desktop-nav {
+  display: block;
+}
+
+.site-header .desktop-nav .nav-list {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-header .nav-link {
+  font-family: var(--nav-font);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--nav-text);
+  padding: 0.4rem 0;
+  text-decoration: none;
+  transition: color var(--nav-transition);
+  letter-spacing: -0.01em;
+  position: relative;
+  display: inline-block;
+}
+
+.site-header .nav-link:hover {
+  color: var(--nav-text-hover);
+}
+
+.site-header .nav-link.active {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.site-header .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--nav-orange);
+  border-radius: 9999px;
+}
+
+/* Right Header Actions: Shopping Bag + LOGIN Button + Mobile Toggle */
+.site-header .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-shrink: 0;
+}
+
+/* Shopping Bag Icon Button */
+.site-header .action-btn-bag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  position: relative;
+  padding: 0.35rem;
+  cursor: pointer;
+  transition: transform var(--nav-transition);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.site-header .header-bag-icon {
+  font-size: 1.18rem;
+  color: #FFFFFF;
+  display: inline-block;
+  line-height: 1;
+}
+
+.site-header .action-btn-bag:hover {
+  transform: scale(1.1);
+}
+
+/* Orange/Red Notification Dot */
+.site-header .cart-badge-dot {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--nav-orange);
+  border: 1.5px solid #220C07;
+  display: none;
+}
+
+.site-header .cart-badge-dot.active {
+  display: block;
+}
+
+/* LOGIN Pill Button */
+.site-header .btn-header-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.46rem 1.35rem;
+  font-family: var(--nav-font);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background-color: transparent;
+  border: 1.25px solid var(--nav-gold);
+  border-radius: 9999px;
+  transition: all var(--nav-transition);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-header .btn-header-login:hover {
+  background-color: rgba(194, 149, 72, 0.18);
+  border-color: var(--nav-gold-hover);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.site-header .btn-header-login:active {
+  transform: translateY(0);
+}
+
+/* Mobile Toggle Hamburger */
+.site-header .mobile-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 18px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.site-header .hamburger-line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #FFFFFF;
+  border-radius: 2px;
+  transition: transform var(--nav-transition), opacity var(--nav-transition);
+  transform-origin: center;
+}
+
+.site-header .mobile-toggle.active .hamburger-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.site-header .mobile-toggle.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.site-header .mobile-toggle.active .hamburger-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Nav Drawer */
+.site-header .mobile-nav-drawer {
+  display: none;
+  background-color: #180603;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.5rem 1.5rem 2rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.site-header .mobile-nav-drawer.open {
+  display: block;
+}
+
+.site-header .mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+
+.site-header .mobile-nav-link {
+  font-family: var(--nav-font);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--nav-text);
+  text-decoration: none;
+  padding: 0.25rem 0;
+  display: block;
+  transition: color var(--nav-transition);
+}
+
+.site-header .mobile-nav-link:hover,
+.site-header .mobile-nav-link.active {
+  color: var(--nav-orange);
+  font-weight: 700;
+}
+
+.site-header .mobile-drawer-footer .btn-header-login {
+  width: 100%;
+  text-align: center;
+  height: 44px;
+  font-size: 0.85rem;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 860px) {
+  .site-header .desktop-nav {
+    display: none;
+  }
+
+  .site-header .btn-header-login.desktop-only,
+  .site-header .header-actions .btn-header-login {
+    display: none;
+  }
+
+  .site-header .mobile-toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header .header-container {
+    height: 68px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .site-header .brand-logo-img {
+    height: 40px;
+  }
+
+  .site-header .header-actions {
+    gap: 1rem;
+  }
+}
+
+/* ==========================================================================
+   AOS (ANIMATE ON SCROLL) & CDNJS ANIMATIONS RESPONSIVE SAFEGUARDS
+   Ensures smooth silky scroll reveals without causing horizontal scrollbars,
+   viewport overflow, or element misalignment on mobile devices.
+   ========================================================================== */
+html {
+  overflow-x: clip;
+}
+
+body {
+  overflow-x: clip;
+  overflow-y: visible;
+  max-width: 100%;
+}
+
+[data-aos] {
+  pointer-events: auto !important;
+}
+
+@media (max-width: 768px) {
+  /* On mobile viewports, normalize horizontal slide transforms into smooth vertical reveals
+     to prevent side-scrolling, clipping, and layout misalignment */
+  [data-aos="fade-left"],
+  [data-aos="fade-right"] {
+    transform: translate3d(0, 22px, 0) !important;
+  }
+  [data-aos="fade-up-right"],
+  [data-aos="fade-up-left"] {
+    transform: translate3d(0, 22px, 0) !important;
+  }
+  [data-aos="zoom-in-left"],
+  [data-aos="zoom-in-right"] {
+    transform: scale(0.94) translate3d(0, 18px, 0) !important;
+  }
+  [data-aos].aos-animate {
+    transform: translate3d(0, 0, 0) scale(1) !important;
+  }
+}
+

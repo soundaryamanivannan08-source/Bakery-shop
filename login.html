@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In &bull; Stackly Artisan Bakery</title>
+  <meta name="description" content="Sign in to your Stackly Bakery account. Access daily oven holds, loyalty perks, and orders.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fb5022'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z'/></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <!-- Animate.css via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <!-- Auth Stylesheet -->
+  <link rel="stylesheet" href="assets/css/auth.css?v=4">
+
+  <style>
+    .form-control.is-invalid {
+      border-color: #EF4444 !important;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+    }
+    .auth-field-error {
+      display: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #EF4444;
+      margin-top: 0.4rem;
+      padding-left: 0.25rem;
+    }
+    .auth-field-error.visible {
+      display: block;
+    }
+  </style>
+
+  <!-- Preloader Stylesheet -->
+  <link rel="stylesheet" href="assets/css/preloader.css">
+</head>
+<body>
+
+  <!-- ==============================================
+       PRELOADER: ARTISAN STONE HEARTH ANIMATION
+       ============================================== -->
+  <div class="site-preloader" id="sitePreloader" role="status" aria-live="polite" aria-label="Loading Stackly Bakery">
+    <div class="preloader-backdrop"></div>
+    <div class="preloader-content">
+      <!-- Animated Oven Hearth & Croissant -->
+      <div class="preloader-icon-wrap">
+        <div class="preloader-glow-ring"></div>
+        <svg class="preloader-croissant" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path class="croissant-body" d="M12 40C10 35 11 29 16 23C22.5 16 34 13 44 16.5C52.5 19.5 57 26 57.5 32C58 37 54.5 41 50 40.5C43 39.5 35.5 35.5 28 35.5C20.5 35.5 14.5 40.5 12 40Z" />
+          <path class="croissant-fold fold-1" d="M21 22.5C23.5 27.5 24 33.5 22.5 38" />
+          <path class="croissant-fold fold-2" d="M33 17C35.5 23 35.5 30.5 33 35.5" />
+          <path class="croissant-fold fold-3" d="M44.5 19.5C46.5 24.5 46 30.5 44 35" />
+        </svg>
+        <div class="preloader-steam-wrap" aria-hidden="true">
+          <span class="steam-particle steam-1"></span>
+          <span class="steam-particle steam-2"></span>
+          <span class="steam-particle steam-3"></span>
+        </div>
+      </div>
+
+      <!-- Brand Identity -->
+      <div class="preloader-brand">
+        <h2 class="preloader-title">Stackly<span class="preloader-dot">.</span></h2>
+        <span class="preloader-subtitle">ARTISAN STONE HEARTH · EST. 2018</span>
+      </div>
+
+      <!-- Animated Progress Line & Status -->
+      <div class="preloader-progress-box">
+        <div class="preloader-progress-track">
+          <div class="preloader-progress-fill" id="preloaderBar"></div>
+        </div>
+        <div class="preloader-status-text" id="preloaderStatus">Warming stone deck hearth...</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-page">
+    <!-- ==============================================
+         LEFT: VISUAL ATMOSPHERE SHOWCASE
+         ============================================== -->
+    <aside class="auth-visual-side" data-aos="fade-right">
+      <img src="assets/images/storefront-bistro.webp" alt="Warm European bakery storefront with amber window lighting" class="auth-visual-bg">
+      <div class="auth-visual-overlay"></div>
+
+      <!-- Top Branding -->
+      <div class="auth-visual-header">
+        <a href="index.html" class="brand-logo-link" aria-label="Stackly Home">
+          <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="auth-brand-logo-img" width="106" height="48">
+        </a>
+        <span class="auth-badge-status animate__animated animate__pulse animate__infinite"><i class="fa-solid fa-fire"></i> Stone Ovens Active</span>
+      </div>
+
+      <!-- Middle Story / Quotes -->
+      <div class="auth-visual-content">
+        <span class="auth-quote-overline"><i class="fa-solid fa-wheat-awn"></i> BREAD CLUB PORTAL</span>
+        <h2 class="auth-visual-headline">Warm bread waiting at the counter.</h2>
+        <p class="auth-visual-desc">
+          Sign in to lock in your morning sourdough boule before 08:00 AM, track custom celebration gateaux, and collect flour club reward points.
+        </p>
+
+        <div class="auth-perks-row">
+          <span class="auth-perk-pill"><i class="fa-solid fa-circle-check"></i> Guaranteed Counter Hold</span>
+          <span class="auth-perk-pill"><i class="fa-solid fa-star"></i> 4.9/5 from 1,200+ Regulars</span>
+          <span class="auth-perk-pill"><i class="fa-solid fa-bolt"></i> Fast 1-Click Reorders</span>
+        </div>
+      </div>
+
+      <!-- Footer Info -->
+      <div class="auth-visual-footer">
+        <span>&copy; 2026 Stackly Artisan Hearth Bakery</span>
+        <span>Stone Deck Ovens &bull; 240&deg;C Daily</span>
+      </div>
+    </aside>
+
+    <!-- ==============================================
+         RIGHT: AUTHENTICATION FORM
+         ============================================== -->
+    <main class="auth-form-side" data-aos="fade-left">
+      <!-- Back to Home Button -->
+      <a href="index.html" class="back-home-btn" aria-label="Return to homepage">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Back to Home</span>
+      </a>
+
+      <div class="auth-card-inner">
+        <!-- Header -->
+        <div class="auth-head" data-aos="fade-up">
+          <span class="auth-head-overline">MEMBER ACCESS</span>
+          <h1 class="auth-title">Welcome Back</h1>
+          <p class="auth-subtitle">Select your account role and sign in to continue.</p>
+        </div>
+
+        <!-- Form -->
+        <form class="auth-form" id="loginForm" method="POST" autocomplete="off" novalidate>
+          <!-- Hidden anti-autofill dummy inputs -->
+          <input type="text" style="display:none!important;" tabindex="-1" autocomplete="false">
+          <input type="password" style="display:none!important;" tabindex="-1" autocomplete="false">
+
+          <!-- Role Selector (Admin / User) -->
+          <div class="role-select-wrap" data-aos="fade-up" data-aos-delay="100">
+            <span class="role-select-label">Select Account Role</span>
+            <div class="role-switch-container" role="radiogroup" aria-label="Select Account Role">
+              <label class="role-radio-label">
+                <input type="radio" name="role" value="user" checked>
+                <i class="fa-solid fa-user"></i>
+                <span>User</span>
+              </label>
+              <label class="role-radio-label">
+                <input type="radio" name="role" value="admin">
+                <i class="fa-solid fa-user-shield"></i>
+                <span>Admin</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Email Field -->
+          <div class="form-group" data-aos="fade-up" data-aos-delay="150">
+            <label for="email" class="form-label">Email Address <span style="color:var(--color-accent-orange);">*</span></label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-envelope input-icon-left"></i>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="form-control" 
+                placeholder="Enter your email" 
+                autocomplete="off" 
+                required>
+            </div>
+            <span class="auth-field-error" id="emailError">Email is required</span>
+          </div>
+
+          <!-- Password Field with Eye Toggle -->
+          <div class="form-group" data-aos="fade-up" data-aos-delay="200">
+            <label for="password" class="form-label">Password <span style="color:var(--color-accent-orange);">*</span></label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock input-icon-left"></i>
+              <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                class="form-control" 
+                placeholder="Enter your password" 
+                autocomplete="new-password" 
+                required>
+              <button 
+                type="button" 
+                class="password-toggle-btn" 
+                id="togglePassword" 
+                aria-label="Toggle password visibility">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+            <span class="auth-field-error" id="passwordError">Password is required</span>
+          </div>
+
+          <!-- Remember Me & Forgot Password Row -->
+          <div class="form-extra-row" data-aos="fade-up" data-aos-delay="250">
+            <label class="checkbox-wrap">
+              <input type="checkbox" name="remember" id="rememberMe">
+              <span>Remember me</span>
+            </label>
+            <a href="404.html" class="forgot-password-link">Forgot password?</a>
+          </div>
+
+          <!-- Login Button -->
+          <button type="submit" class="btn-auth-submit" id="submitLoginBtn" data-aos="fade-up" data-aos-delay="300">
+            <span>Sign In</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+
+          <!-- Link to Signup Page -->
+          <div class="auth-switch-footer">
+            Don't have an account? 
+            <a href="signup.html" class="auth-switch-link">Create Account</a>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 0. Initialize AOS
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 750,
+          easing: 'ease-out-cubic',
+          once: true
+        });
+      }
+
+      // 1. Password Eye Toggle
+      const toggleBtn = document.getElementById('togglePassword');
+      const passwordInput = document.getElementById('password');
+
+      if (toggleBtn && passwordInput) {
+        toggleBtn.addEventListener('click', () => {
+          const isPassword = passwordInput.type === 'password';
+          passwordInput.type = isPassword ? 'text' : 'password';
+          const icon = toggleBtn.querySelector('i');
+          if (icon) {
+            icon.className = isPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+          }
+        });
+      }
+
+      // 2. Clear credentials from storage and inputs
+      try {
+        localStorage.removeItem('stackly_user_email');
+        sessionStorage.removeItem('stackly_user_email');
+        localStorage.removeItem('user_email');
+      } catch (_) {}
+
+      const loginForm = document.getElementById('loginForm');
+      if (loginForm) {
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+
+        // Strict Email Regex: requires valid local part, domain, and TLD (at least 2 letters)
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        const validateEmail = () => {
+          const val = emailInput ? emailInput.value.trim() : '';
+          if (!val) {
+            if (emailInput) emailInput.classList.add('is-invalid');
+            if (emailError) {
+              emailError.textContent = 'Email is required';
+              emailError.classList.add('visible');
+            }
+            return false;
+          }
+          if (!emailRegex.test(val)) {
+            if (emailInput) emailInput.classList.add('is-invalid');
+            if (emailError) {
+              emailError.textContent = 'Please enter a valid email address (e.g. name@domain.com)';
+              emailError.classList.add('visible');
+            }
+            return false;
+          }
+          if (emailInput) emailInput.classList.remove('is-invalid');
+          if (emailError) emailError.classList.remove('visible');
+          return true;
+        };
+
+        const validatePassword = () => {
+          const val = passwordInput ? passwordInput.value.trim() : '';
+          if (!val) {
+            if (passwordInput) passwordInput.classList.add('is-invalid');
+            if (passwordError) {
+              passwordError.textContent = 'Password is required';
+              passwordError.classList.add('visible');
+            }
+            return false;
+          }
+          if (val.length < 6) {
+            if (passwordInput) passwordInput.classList.add('is-invalid');
+            if (passwordError) {
+              passwordError.textContent = 'Password must be at least 6 characters';
+              passwordError.classList.add('visible');
+            }
+            return false;
+          }
+          if (passwordInput) passwordInput.classList.remove('is-invalid');
+          if (passwordError) passwordError.classList.remove('visible');
+          return true;
+        };
+
+        if (emailInput) {
+          emailInput.addEventListener('input', () => {
+            emailInput.classList.remove('is-invalid');
+            if (emailError) emailError.classList.remove('visible');
+          });
+          emailInput.addEventListener('blur', () => {
+            if (emailInput.value.trim().length > 0) validateEmail();
+          });
+        }
+
+        if (passwordInput) {
+          passwordInput.addEventListener('input', () => {
+            passwordInput.classList.remove('is-invalid');
+            if (passwordError) passwordError.classList.remove('visible');
+          });
+          passwordInput.addEventListener('blur', () => {
+            if (passwordInput.value.trim().length > 0) validatePassword();
+          });
+        }
+
+        loginForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const isEmailValid = validateEmail();
+          const isPasswordValid = validatePassword();
+
+          if (!isEmailValid || !isPasswordValid) {
+            if (!isEmailValid && emailInput) {
+              emailInput.focus();
+            } else if (!isPasswordValid && passwordInput) {
+              passwordInput.focus();
+            }
+            return;
+          }
+
+          const emailVal = emailInput ? emailInput.value.trim() : '';
+
+          // Capture entered email for dashboard greeting
+          localStorage.setItem('stackly_user_email', emailVal);
+          sessionStorage.setItem('stackly_user_email', emailVal);
+          localStorage.setItem('user_email', emailVal);
+
+          // Store user name fallback if not present
+          if (!localStorage.getItem('user_name')) {
+            const prefix = emailVal.split('@')[0] || 'User';
+            const cleanName = prefix.charAt(0).toUpperCase() + prefix.slice(1);
+            localStorage.setItem('user_name', cleanName);
+          }
+
+          // Read and store selected role
+          const roleRadio = document.querySelector('input[name="role"]:checked');
+          const role = roleRadio ? roleRadio.value : 'user';
+          localStorage.setItem('stackly_user_role', role);
+          sessionStorage.setItem('stackly_user_role', role);
+
+          // Redirect to appropriate dashboard
+          if (role === 'admin') {
+            window.location.href = 'admin-dashboard.html';
+          } else {
+            window.location.href = 'user-dashboard.html';
+          }
+        });
+      }
+    });
+  </script>
+  <!-- Preloader Controller -->
+  <script src="assets/js/preloader.js"></script>
+</body>
+</html>

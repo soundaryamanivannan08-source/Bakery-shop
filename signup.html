@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account &bull; Stackly Artisan Bakery</title>
+  <meta name="description" content="Join the Stackly Bread Club. Create an account to preorder fresh morning sourdough, artisan pastries, and receive member perks.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fb5022'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z'/></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <!-- Animate.css via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <!-- Auth Stylesheet -->
+  <link rel="stylesheet" href="assets/css/auth.css?v=4">
+
+  <style>
+    .form-control.is-invalid {
+      border-color: #EF4444 !important;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+    }
+    .auth-field-error {
+      display: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #EF4444;
+      margin-top: 0.4rem;
+      padding-left: 0.25rem;
+    }
+    .auth-field-error.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-page">
+    <!-- ==============================================
+         LEFT: VISUAL ATMOSPHERE SHOWCASE
+         ============================================== -->
+    <aside class="auth-visual-side" data-aos="fade-right">
+      <img src="assets/images/baker-kneading.webp" alt="Master artisan baker hand kneading wild levain dough on flour bench" class="auth-visual-bg">
+      <div class="auth-visual-overlay"></div>
+
+      <!-- Top Branding -->
+      <div class="auth-visual-header">
+        <a href="index.html" class="brand-logo-link" aria-label="Stackly Home">
+          <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="auth-brand-logo-img" width="106" height="48">
+        </a>
+        <span class="auth-badge-status animate__animated animate__pulse animate__infinite"><i class="fa-solid fa-wheat-awn"></i> 100% Organic Flours</span>
+      </div>
+
+      <!-- Middle Story / Quotes -->
+      <div class="auth-visual-content">
+        <span class="auth-quote-overline"><i class="fa-solid fa-sparkles"></i> BECOME A REGULAR</span>
+        <h2 class="auth-visual-headline">Slow fermentation, honest community.</h2>
+        <p class="auth-visual-desc">
+          Members enjoy early access to weekend patisserie drops, zero-wait counter loaf pickups, and invitations to our intimate baking masterclasses.
+        </p>
+
+        <div class="auth-perks-row">
+          <span class="auth-perk-pill"><i class="fa-solid fa-check"></i> Free Welcome Brioche</span>
+          <span class="auth-perk-pill"><i class="fa-solid fa-check"></i> Preorder Daily Bakes</span>
+          <span class="auth-perk-pill"><i class="fa-solid fa-check"></i> Exclusive Tasting Invites</span>
+        </div>
+      </div>
+
+      <!-- Footer Info -->
+      <div class="auth-visual-footer">
+        <span>&copy; 2026 Stackly Artisan Hearth Bakery</span>
+        <span>72-Hour Wild Levain Fermentation</span>
+      </div>
+    </aside>
+
+    <!-- ==============================================
+         RIGHT: REGISTRATION FORM
+         ============================================== -->
+    <main class="auth-form-side" data-aos="fade-left">
+      <!-- Back to Home Button -->
+      <a href="index.html" class="back-home-btn" aria-label="Return to homepage">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Back to Home</span>
+      </a>
+
+      <div class="auth-card-inner">
+        <!-- Header -->
+        <div class="auth-head" data-aos="fade-up">
+          <span class="auth-head-overline">JOIN OUR HEARTH</span>
+          <h1 class="auth-title">Create Account</h1>
+          <p class="auth-subtitle">Join Stackly today to enjoy fresh artisan bread every morning.</p>
+        </div>
+
+        <!-- Form -->
+        <form class="auth-form" id="signupForm" method="POST" autocomplete="off" novalidate>
+          <!-- Hidden anti-autofill dummy inputs -->
+          <input type="text" style="display:none!important;" tabindex="-1" autocomplete="false">
+          <input type="password" style="display:none!important;" tabindex="-1" autocomplete="false">
+
+          <!-- Role Selector (Admin / User) -->
+          <div class="role-select-wrap" data-aos="fade-up" data-aos-delay="100">
+            <span class="role-select-label">Select Account Role</span>
+            <div class="role-switch-container" role="radiogroup" aria-label="Select Account Role">
+              <label class="role-radio-label">
+                <input type="radio" name="role" value="user" checked>
+                <i class="fa-solid fa-user"></i>
+                <span>User</span>
+              </label>
+              <label class="role-radio-label">
+                <input type="radio" name="role" value="admin">
+                <i class="fa-solid fa-user-shield"></i>
+                <span>Admin</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Username Field -->
+          <div class="form-group" data-aos="fade-up" data-aos-delay="150">
+            <label for="username" class="form-label">Username <span style="color:var(--color-accent-orange);">*</span></label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-user input-icon-left"></i>
+              <input 
+                type="text" 
+                id="username" 
+                name="username" 
+                class="form-control" 
+                placeholder="Choose a username" 
+                autocomplete="off" 
+                required>
+            </div>
+            <span class="auth-field-error" id="usernameError">Username is required</span>
+          </div>
+
+          <!-- Email Field -->
+          <div class="form-group" data-aos="fade-up" data-aos-delay="200">
+            <label for="email" class="form-label">Email Address <span style="color:var(--color-accent-orange);">*</span></label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-envelope input-icon-left"></i>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="form-control" 
+                placeholder="Enter your email" 
+                autocomplete="off" 
+                required>
+            </div>
+            <span class="auth-field-error" id="emailError">Email is required</span>
+          </div>
+
+          <!-- Password Field with Eye Toggle -->
+          <div class="form-group" data-aos="fade-up" data-aos-delay="250">
+            <label for="password" class="form-label">Password <span style="color:var(--color-accent-orange);">*</span></label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock input-icon-left"></i>
+              <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                class="form-control" 
+                placeholder="Create a password" 
+                autocomplete="new-password" 
+                required>
+              <button 
+                type="button" 
+                class="password-toggle-btn" 
+                id="togglePassword" 
+                aria-label="Toggle password visibility">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+            <span class="auth-field-error" id="passwordError">Password is required</span>
+          </div>
+
+          <!-- Confirm Password Field with Eye Toggle -->
+          <div class="form-group" data-aos="fade-up" data-aos-delay="300">
+            <label for="confirmPassword" class="form-label">Confirm Password <span style="color:var(--color-accent-orange);">*</span></label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-shield-halved input-icon-left"></i>
+              <input 
+                type="password" 
+                id="confirmPassword" 
+                name="confirmPassword" 
+                class="form-control" 
+                placeholder="Confirm your password" 
+                autocomplete="new-password" 
+                required>
+              <button 
+                type="button" 
+                class="password-toggle-btn" 
+                id="toggleConfirmPassword" 
+                aria-label="Toggle confirm password visibility">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+            <span class="auth-field-error" id="confirmPasswordError">Please confirm your password</span>
+          </div>
+
+          <!-- Accept Terms & Privacy Policy Checkbox -->
+          <label class="terms-checkbox-wrap" id="termsWrap" for="terms" data-aos="fade-up" data-aos-delay="350">
+            <input type="checkbox" id="terms" name="terms" required>
+            <span>I agree to the <a href="404.html" target="_blank">Terms of Service</a> and <a href="404.html" target="_blank">Privacy Policy</a></span>
+          </label>
+          <span class="auth-field-error" id="termsError" style="margin-bottom: 0.8rem;">You must agree to the Terms of Service and Privacy Policy</span>
+
+          <!-- Register Button -->
+          <button type="submit" class="btn-auth-submit" id="submitRegisterBtn" data-aos="fade-up" data-aos-delay="400">
+            <span>Register Account</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+
+          <!-- Link to Login Page -->
+          <div class="auth-switch-footer">
+            Already have an account? 
+            <a href="login.html" class="auth-switch-link">Sign In</a>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 0. Initialize AOS
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 750,
+          easing: 'ease-out-cubic',
+          once: true
+        });
+      }
+
+      // 1. Password Eye Toggle Helper Function
+      function setupPasswordToggle(toggleId, inputId) {
+        const toggleBtn = document.getElementById(toggleId);
+        const input = document.getElementById(inputId);
+
+        if (toggleBtn && input) {
+          toggleBtn.addEventListener('click', () => {
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            const icon = toggleBtn.querySelector('i');
+            if (icon) {
+              icon.className = isPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+            }
+          });
+        }
+      }
+
+      setupPasswordToggle('togglePassword', 'password');
+      setupPasswordToggle('toggleConfirmPassword', 'confirmPassword');
+
+      // 2. Clear credentials from storage and inputs
+      try {
+        localStorage.removeItem('stackly_user_email');
+        sessionStorage.removeItem('stackly_user_email');
+        localStorage.removeItem('user_email');
+      } catch (_) {}
+
+      const usernameInput = document.getElementById('username');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const confirmInput = document.getElementById('confirmPassword');
+      const termsCheckbox = document.getElementById('terms');
+      const termsWrap = document.getElementById('termsWrap');
+      const termsError = document.getElementById('termsError');
+
+      const usernameError = document.getElementById('usernameError');
+      const emailError = document.getElementById('emailError');
+      const passwordError = document.getElementById('passwordError');
+      const confirmError = document.getElementById('confirmPasswordError');
+
+      // Strict validation rules
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      const usernameRegex = /^[a-zA-Z0-9_-]+$/;
+
+      const validateUsername = () => {
+        const val = usernameInput ? usernameInput.value.trim() : '';
+        if (!val) {
+          if (usernameInput) usernameInput.classList.add('is-invalid');
+          if (usernameError) {
+            usernameError.textContent = 'Username is required';
+            usernameError.classList.add('visible');
+          }
+          return false;
+        }
+        if (val.length < 3 || val.length > 20) {
+          if (usernameInput) usernameInput.classList.add('is-invalid');
+          if (usernameError) {
+            usernameError.textContent = 'Username must be between 3 and 20 characters';
+            usernameError.classList.add('visible');
+          }
+          return false;
+        }
+        if (!usernameRegex.test(val)) {
+          if (usernameInput) usernameInput.classList.add('is-invalid');
+          if (usernameError) {
+            usernameError.textContent = 'Username can only contain letters, numbers, and underscores';
+            usernameError.classList.add('visible');
+          }
+          return false;
+        }
+        if (usernameInput) usernameInput.classList.remove('is-invalid');
+        if (usernameError) usernameError.classList.remove('visible');
+        return true;
+      };
+
+      const validateEmail = () => {
+        const val = emailInput ? emailInput.value.trim() : '';
+        if (!val) {
+          if (emailInput) emailInput.classList.add('is-invalid');
+          if (emailError) {
+            emailError.textContent = 'Email is required';
+            emailError.classList.add('visible');
+          }
+          return false;
+        }
+        if (!emailRegex.test(val)) {
+          if (emailInput) emailInput.classList.add('is-invalid');
+          if (emailError) {
+            emailError.textContent = 'Please enter a valid email address (e.g. name@domain.com)';
+            emailError.classList.add('visible');
+          }
+          return false;
+        }
+        if (emailInput) emailInput.classList.remove('is-invalid');
+        if (emailError) emailError.classList.remove('visible');
+        return true;
+      };
+
+      const validatePassword = () => {
+        const val = passwordInput ? passwordInput.value.trim() : '';
+        if (!val) {
+          if (passwordInput) passwordInput.classList.add('is-invalid');
+          if (passwordError) {
+            passwordError.textContent = 'Password is required';
+            passwordError.classList.add('visible');
+          }
+          return false;
+        }
+        if (val.length < 8) {
+          if (passwordInput) passwordInput.classList.add('is-invalid');
+          if (passwordError) {
+            passwordError.textContent = 'Password must be at least 8 characters';
+            passwordError.classList.add('visible');
+          }
+          return false;
+        }
+        if (!/[a-zA-Z]/.test(val) || !/[0-9]/.test(val)) {
+          if (passwordInput) passwordInput.classList.add('is-invalid');
+          if (passwordError) {
+            passwordError.textContent = 'Password must contain at least one letter and one number';
+            passwordError.classList.add('visible');
+          }
+          return false;
+        }
+        if (passwordInput) passwordInput.classList.remove('is-invalid');
+        if (passwordError) passwordError.classList.remove('visible');
+        return true;
+      };
+
+      const validateConfirmPassword = () => {
+        const pVal = passwordInput ? passwordInput.value.trim() : '';
+        const cVal = confirmInput ? confirmInput.value.trim() : '';
+        if (!cVal) {
+          if (confirmInput) confirmInput.classList.add('is-invalid');
+          if (confirmError) {
+            confirmError.textContent = 'Please confirm your password';
+            confirmError.classList.add('visible');
+          }
+          return false;
+        }
+        if (pVal && cVal !== pVal) {
+          if (confirmInput) confirmInput.classList.add('is-invalid');
+          if (confirmError) {
+            confirmError.textContent = 'Passwords do not match';
+            confirmError.classList.add('visible');
+          }
+          return false;
+        }
+        if (confirmInput) confirmInput.classList.remove('is-invalid');
+        if (confirmError) confirmError.classList.remove('visible');
+        return true;
+      };
+
+      const validateTerms = () => {
+        if (termsCheckbox && !termsCheckbox.checked) {
+          if (termsWrap) termsWrap.classList.add('is-invalid');
+          if (termsError) termsError.classList.add('visible');
+          return false;
+        }
+        if (termsWrap) termsWrap.classList.remove('is-invalid');
+        if (termsError) termsError.classList.remove('visible');
+        return true;
+      };
+
+      // Real-time error dismissal and blur checking
+      if (usernameInput) {
+        usernameInput.addEventListener('input', () => {
+          usernameInput.classList.remove('is-invalid');
+          if (usernameError) usernameError.classList.remove('visible');
+        });
+        usernameInput.addEventListener('blur', () => {
+          if (usernameInput.value.trim().length > 0) validateUsername();
+        });
+      }
+
+      if (emailInput) {
+        emailInput.addEventListener('input', () => {
+          emailInput.classList.remove('is-invalid');
+          if (emailError) emailError.classList.remove('visible');
+        });
+        emailInput.addEventListener('blur', () => {
+          if (emailInput.value.trim().length > 0) validateEmail();
+        });
+      }
+
+      if (passwordInput) {
+        passwordInput.addEventListener('input', () => {
+          passwordInput.classList.remove('is-invalid');
+          if (passwordError) passwordError.classList.remove('visible');
+        });
+        passwordInput.addEventListener('blur', () => {
+          if (passwordInput.value.trim().length > 0) validatePassword();
+          if (confirmInput && confirmInput.value.trim().length > 0) validateConfirmPassword();
+        });
+      }
+
+      if (confirmInput) {
+        confirmInput.addEventListener('input', () => {
+          confirmInput.classList.remove('is-invalid');
+          if (confirmError) confirmError.classList.remove('visible');
+        });
+        confirmInput.addEventListener('blur', () => {
+          if (confirmInput.value.trim().length > 0) validateConfirmPassword();
+        });
+      }
+
+      if (termsCheckbox) {
+        termsCheckbox.addEventListener('change', () => {
+          validateTerms();
+        });
+      }
+
+      // 3. Form Submission with Strict Validation
+      const signupForm = document.getElementById('signupForm');
+      if (signupForm) {
+        signupForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const isUserValid = validateUsername();
+          const isEmailValid = validateEmail();
+          const isPassValid = validatePassword();
+          const isConfirmValid = validateConfirmPassword();
+          const isTermsValid = validateTerms();
+
+          if (!isUserValid || !isEmailValid || !isPassValid || !isConfirmValid || !isTermsValid) {
+            if (!isUserValid && usernameInput) {
+              usernameInput.focus();
+            } else if (!isEmailValid && emailInput) {
+              emailInput.focus();
+            } else if (!isPassValid && passwordInput) {
+              passwordInput.focus();
+            } else if (!isConfirmValid && confirmInput) {
+              confirmInput.focus();
+            } else if (!isTermsValid && termsCheckbox) {
+              termsCheckbox.focus();
+            }
+            return;
+          }
+
+          const usernameVal = usernameInput ? usernameInput.value.trim() : '';
+          const emailVal = emailInput ? emailInput.value.trim() : '';
+
+          // Save username and email for greeting upon login
+          localStorage.setItem('user_name', usernameVal);
+          localStorage.setItem('stackly_user_email', emailVal);
+
+          // All validation passed; redirect to login page
+          window.location.href = 'login.html';
+        });
+      }
+    });
+  </script>
+</body>
+</html>

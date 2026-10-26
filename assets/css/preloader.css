@@ -1,0 +1,285 @@
+/* ==========================================================================
+   STACKLY BAKERY — ARTISAN STONE HEARTH PRELOADER
+   Shared component for catalogue, about, contact, blog, login pages
+   ========================================================================== */
+
+body.preload-active {
+  overflow: hidden !important;
+}
+
+.site-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #4E2015 0%, #290F09 60%, #1A0704 100%);
+  color: #FFFFFF;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.75s ease,
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, visibility, transform;
+}
+
+.site-preloader.preloader-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.03);
+  pointer-events: none;
+}
+
+.preloader-backdrop {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(rgba(251, 80, 34, 0.15) 1px, transparent 1px),
+    radial-gradient(rgba(194, 149, 72, 0.1) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.preloader-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  max-width: 380px;
+  width: 90%;
+}
+
+/* Icon & Hearth Glow */
+.preloader-icon-wrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.75rem;
+}
+
+.preloader-glow-ring {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(251, 80, 34, 0.4) 0%, rgba(194, 149, 72, 0.2) 50%, transparent 75%);
+  filter: blur(10px);
+  animation: hearthPulse 2s ease-in-out infinite alternate;
+}
+
+.preloader-croissant {
+  width: 68px;
+  height: 68px;
+  color: #FFFFFF;
+  filter: drop-shadow(0 6px 16px rgba(251, 80, 34, 0.45));
+  transform-origin: center;
+  animation: croissantFloat 3s ease-in-out infinite;
+}
+
+.preloader-croissant .croissant-body {
+  stroke: #FB5022;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  animation: croissantDraw 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
+             croissantFill 1.2s 0.6s ease forwards;
+}
+
+.preloader-croissant .croissant-fold {
+  stroke: #F5B041;
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+}
+
+.preloader-croissant .croissant-fold.fold-1 {
+  animation: foldDraw 1s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.preloader-croissant .croissant-fold.fold-2 {
+  animation: foldDraw 1s 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.preloader-croissant .croissant-fold.fold-3 {
+  animation: foldDraw 1s 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Warm Steam Particles */
+.preloader-steam-wrap {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 30px;
+  pointer-events: none;
+}
+
+.steam-particle {
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(to top, rgba(255, 253, 249, 0.45), transparent);
+  filter: blur(1.5px);
+  opacity: 0;
+}
+
+.steam-1 {
+  left: 20%;
+  animation: steamRise 2s 0.2s infinite ease-out;
+}
+
+.steam-2 {
+  left: 50%;
+  animation: steamRise 2.2s 0.7s infinite ease-out;
+}
+
+.steam-3 {
+  left: 80%;
+  animation: steamRise 1.9s 1.2s infinite ease-out;
+}
+
+/* Brand Identity */
+.preloader-brand {
+  margin-bottom: 1.5rem;
+}
+
+.preloader-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  margin-bottom: 0.35rem;
+  line-height: 1.1;
+}
+
+.preloader-dot {
+  color: #FB5022;
+}
+
+.preloader-subtitle {
+  display: block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #BAA69D;
+}
+
+/* Progress Box */
+.preloader-progress-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.preloader-progress-track {
+  width: 190px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.preloader-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #FB5022 0%, #F5B041 100%);
+  border-radius: 9999px;
+  box-shadow: 0 0 10px rgba(251, 80, 34, 0.6);
+  transition: width 0.28s ease-out;
+}
+
+.preloader-status-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #DDD0C8;
+  letter-spacing: 0.02em;
+  min-height: 1.2rem;
+  transition: opacity 0.25s ease;
+}
+
+/* Keyframe Animations */
+@keyframes hearthPulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.18);
+    opacity: 0.95;
+  }
+}
+
+@keyframes croissantFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(-1.5deg);
+  }
+}
+
+@keyframes croissantDraw {
+  0% {
+    stroke-dashoffset: 220;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes foldDraw {
+  0% {
+    stroke-dashoffset: 60;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes croissantFill {
+  0% {
+    fill: rgba(251, 80, 34, 0);
+  }
+  100% {
+    fill: rgba(251, 80, 34, 0.15);
+  }
+}
+
+@keyframes steamRise {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-24px) scaleX(1.8);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Recipe Still In The Oven | Stackly Bakery</title>
+  <meta name="description" content="Oops! This recipe is still in the oven. The page you are looking for does not exist.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fb5022'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z'/></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <!-- Animate.css via CDNJS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <style>
+    /* --------------------------------------------------------------------------
+       404 ERROR PAGE — EXACT STACKLY BAKERY DESIGN
+       Matching uploaded Figma mockup: Warm cream canvas, White card, 4[Cookie]4
+       -------------------------------------------------------------------------- */
+    :root {
+      --color-primary-dark: #3E1910;
+      --color-primary-orange: #FF5100;
+      --color-primary-orange-hover: #E24400;
+      --color-accent-orange: #FB5022;
+      --color-badge-bg: #FFF0EB;
+      --color-badge-text: #FF5100;
+      --color-page-bg: #FAF4EF;
+      --text-dark: #220C07;
+      --text-muted: #6E534A;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      overflow-x: clip;
+    }
+
+    body {
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: clip;
+      overflow-y: visible;
+    }
+
+    [data-aos] {
+      pointer-events: auto !important;
+    }
+
+    @media (max-width: 768px) {
+      [data-aos="fade-left"],
+      [data-aos="fade-right"] {
+        transform: translate3d(0, 22px, 0) !important;
+      }
+      [data-aos].aos-animate {
+        transform: translate3d(0, 0, 0) !important;
+      }
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-page-bg);
+      background-image: radial-gradient(circle at 50% 15%, rgba(255, 238, 230, 0.85) 0%, transparent 65%);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.25rem;
+      position: relative;
+    }
+
+    /* Ambient floating crumbs in the background */
+    .crumb-bg {
+      position: absolute;
+      pointer-events: none;
+      border-radius: 50%;
+      background-color: rgba(255, 81, 0, 0.16);
+      animation: floatCrumb 8s ease-in-out infinite alternate;
+    }
+    .crumb-1 { width: 14px; height: 14px; top: 12%; left: 10%; animation-delay: 0s; }
+    .crumb-2 { width: 8px; height: 8px; top: 22%; right: 12%; animation-delay: 1.5s; }
+    .crumb-3 { width: 12px; height: 12px; bottom: 18%; left: 14%; animation-delay: 3s; }
+    .crumb-4 { width: 10px; height: 10px; bottom: 14%; right: 15%; animation-delay: 2s; }
+
+    @keyframes floatCrumb {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+      100% { transform: translateY(-16px) rotate(45deg); opacity: 0.65; }
+    }
+
+    /* Top Brand Logo */
+    .top-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      margin-bottom: 2.25rem;
+      transition: transform 0.3s var(--ease-smooth), opacity 0.3s ease;
+      z-index: 10;
+    }
+
+    .top-brand:hover {
+      transform: translateY(-2px) scale(1.03);
+      opacity: 0.95;
+    }
+
+    .top-brand-logo-img {
+      height: 48px;
+      width: auto;
+      max-width: 165px;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* Main Error Card */
+    .error-card {
+      background-color: #FFFFFF;
+      max-width: 640px;
+      width: 100%;
+      border-radius: 28px;
+      padding: 3.5rem 3rem;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(62, 25, 16, 0.08), 0 4px 18px rgba(255, 81, 0, 0.06);
+      border: 1px solid rgba(255, 81, 0, 0.15);
+      position: relative;
+      z-index: 10;
+      animation: cardPopIn 0.7s var(--ease-smooth) both;
+    }
+
+    @keyframes cardPopIn {
+      0% {
+        opacity: 0;
+        transform: translateY(24px) scale(0.97);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* 4 [Cookie] 4 Graphic */
+    .error-number-graphic {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+      user-select: none;
+    }
+
+    .error-digit {
+      font-family: var(--font-heading);
+      font-size: clamp(5.5rem, 12vw, 7.5rem);
+      font-weight: 700;
+      line-height: 0.9;
+      color: var(--color-primary-orange);
+      letter-spacing: -0.02em;
+      text-shadow: 0 4px 18px rgba(255, 81, 0, 0.15);
+    }
+
+    /* Cookie with bite mark */
+    .cookie-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.4s var(--ease-smooth);
+      animation: cookieFloat 4.5s ease-in-out infinite;
+    }
+
+    @keyframes cookieFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-7px) rotate(2deg); }
+    }
+
+    .cookie-wrap:hover {
+      animation-play-state: paused;
+      transform: scale(1.1) rotate(-4deg);
+    }
+
+    .cookie-svg {
+      width: clamp(75px, 14vw, 98px);
+      height: clamp(75px, 14vw, 98px);
+      display: block;
+      filter: drop-shadow(0 8px 20px rgba(255, 81, 0, 0.22));
+      transition: filter 0.3s ease;
+    }
+
+    .cookie-wrap:hover .cookie-svg {
+      filter: drop-shadow(0 12px 26px rgba(255, 81, 0, 0.35));
+    }
+
+    /* Page Not Found Badge */
+    .error-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background-color: var(--color-badge-bg);
+      color: var(--color-badge-text);
+      padding: 0.45rem 1.15rem;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.6rem;
+      border: 1px solid rgba(255, 81, 0, 0.22);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .error-badge:hover {
+      transform: scale(1.04);
+      background-color: #FFE5DC;
+    }
+
+    .error-badge i {
+      font-size: 0.85rem;
+      color: var(--color-primary-orange);
+    }
+
+    /* Heading */
+    .error-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.75rem, 3.8vw, 2.35rem);
+      font-weight: 700;
+      line-height: 1.22;
+      color: var(--text-dark);
+      margin-bottom: 1.15rem;
+    }
+
+    /* Subtitle description */
+    .error-desc {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 490px;
+      margin: 0 auto 2.4rem;
+    }
+
+    /* Buttons */
+    .error-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.15rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-return-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, #FF661A 0%, #FF5100 100%);
+      color: #FFFFFF;
+      padding: 0.85rem 1.95rem;
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(255, 81, 0, 0.36);
+      transition: all 0.35s var(--ease-smooth);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-return-home:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(255, 81, 0, 0.48);
+      background: linear-gradient(135deg, #FF7733 0%, #E24400 100%);
+    }
+
+    .btn-return-home:active {
+      transform: translateY(-1px);
+    }
+
+    .btn-go-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background-color: #FFFFFF;
+      color: var(--color-primary-orange);
+      padding: 0.82rem 1.95rem;
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1.5px solid var(--color-primary-orange);
+      transition: all 0.35s var(--ease-smooth);
+      cursor: pointer;
+    }
+
+    .btn-go-back:hover {
+      background-color: #FFF0EB;
+      border-color: var(--color-primary-orange-hover);
+      color: var(--color-primary-orange-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(255, 81, 0, 0.16);
+    }
+
+    .btn-go-back:active {
+      transform: translateY(-1px);
+    }
+
+    /* Responsive */
+    @media (max-width: 580px) {
+      body {
+        padding: 2rem 1rem;
+      }
+      .top-brand {
+        margin-bottom: 1.75rem;
+      }
+      .error-card {
+        padding: 2.25rem 1.25rem;
+        border-radius: 20px;
+        width: 100%;
+        max-width: 100%;
+      }
+      .error-digit {
+        font-size: 4.8rem;
+      }
+      .cookie-svg {
+        width: 68px;
+        height: 68px;
+      }
+      .error-title {
+        font-size: 1.6rem;
+        line-height: 1.25;
+      }
+      .error-desc {
+        font-size: 0.92rem;
+        margin-bottom: 2rem;
+      }
+      .error-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+      }
+      .btn-return-home, .btn-go-back {
+        width: 100%;
+        justify-content: center;
+        padding: 0.85rem 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background decorative crumbs -->
+  <div class="crumb-bg crumb-1"></div>
+  <div class="crumb-bg crumb-2"></div>
+  <div class="crumb-bg crumb-3"></div>
+  <div class="crumb-bg crumb-4"></div>
+
+  <!-- Top Logo: Stackly Brand Logo -->
+  <a href="index.html" class="top-brand" aria-label="Stackly Bakery Home" data-aos="fade-down" data-aos-duration="700">
+    <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="top-brand-logo-img" width="136" height="60">
+  </a>
+
+  <!-- Main Error Card -->
+  <main class="error-card" role="main" data-aos="zoom-in" data-aos-duration="800">
+    
+    <!-- 4 [Cookie] 4 Graphic -->
+    <div class="error-number-graphic" aria-hidden="true" data-aos="zoom-in" data-aos-delay="100">
+      <span class="error-digit">4</span>
+      <div class="cookie-wrap animate__animated animate__pulse animate__infinite" title="A delicious freshly baked chocolate chip cookie!">
+        <svg class="cookie-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Golden oven-baked cookie dough gradient -->
+            <radialGradient id="artisanDough" cx="42%" cy="42%" r="58%">
+              <stop offset="0%" stop-color="#F7C478" />
+              <stop offset="50%" stop-color="#EAA649" />
+              <stop offset="85%" stop-color="#D68D32" />
+              <stop offset="100%" stop-color="#BE741E" />
+            </radialGradient>
+            <!-- Rich dark espresso chocolate chip gradient -->
+            <linearGradient id="chocChip" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#4E2317" />
+              <stop offset="100%" stop-color="#260C05" />
+            </linearGradient>
+          </defs>
+
+          <!-- Baked Cookie Shape with Bite Mark -->
+          <path d="M 66,7 C 55,5 38,8 24,19 C 11,30 5,46 7,62 C 9,78 22,91 38,94 C 54,97 73,92 84,81 C 94,71 97,55 96,44 C 91,44 87,40 88,35 C 83,34 80,29 82,24 C 77,22 74,16 75,11 C 72,9 69,8 66,7 Z" fill="url(#artisanDough)" />
+          
+          <!-- Golden crust edge accent -->
+          <path d="M 24,19 C 11,30 5,46 7,62 C 9,78 22,91 38,94 C 54,97 73,92 84,81" stroke="#A85F14" stroke-width="1.5" stroke-linecap="round" opacity="0.35" />
+
+          <!-- Rich Dark Chocolate Chips (Espresso Chocolate) -->
+          <circle cx="58" cy="34" r="6.8" fill="url(#chocChip)" />
+          <circle cx="53" cy="63" r="6.8" fill="url(#chocChip)" />
+          <circle cx="85" cy="56" r="6.8" fill="url(#chocChip)" />
+          <circle cx="35" cy="46" r="4.8" fill="url(#chocChip)" />
+          <circle cx="70" cy="76" r="4.2" fill="url(#chocChip)" />
+
+          <!-- Chocolate chip gleam / delicious highlights -->
+          <circle cx="56.5" cy="32.5" r="1.8" fill="#783C2C" opacity="0.7" />
+          <circle cx="51.5" cy="61.5" r="1.8" fill="#783C2C" opacity="0.7" />
+          <circle cx="83.5" cy="54.5" r="1.8" fill="#783C2C" opacity="0.7" />
+        </svg>
+      </div>
+      <span class="error-digit">4</span>
+    </div>
+
+    <!-- Badge: PAGE NOT FOUND -->
+    <div class="error-badge" data-aos="fade-up" data-aos-delay="150">
+      <i class="fa-solid fa-wheat-awn" aria-hidden="true"></i>
+      <span>PAGE NOT FOUND</span>
+    </div>
+
+    <!-- Title -->
+    <h1 class="error-title" data-aos="fade-up" data-aos-delay="200">Oops! This Recipe Is Still In The Oven</h1>
+
+    <!-- Subtitle description -->
+    <p class="error-desc" data-aos="fade-up" data-aos-delay="250">
+      The page or resource you are trying to access is currently being prepared or does not exist. Let's get you back to fresh breads, pastries, and your dashboard.
+    </p>
+
+    <!-- Call to actions -->
+    <div class="error-actions" data-aos="fade-up" data-aos-delay="300">
+      <a href="index.html" class="btn-return-home">
+        <i class="fa-solid fa-house" aria-hidden="true"></i>
+        <span>Return Home</span>
+      </a>
+      <button type="button" onclick="if (window.history.length > 1) { window.history.back(); } else { window.location.href = 'index.html'; }" class="btn-go-back">
+        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+        <span>Go Back</span>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- AOS (Animate On Scroll) via CDNJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 750,
+          easing: 'ease-out-cubic',
+          once: true,
+          offset: 30
+        });
+      }
+    });
+  </script>
+</body>
+</html>
