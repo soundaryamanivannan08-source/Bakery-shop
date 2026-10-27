@@ -43,7 +43,7 @@
     <aside class="portal-sidebar" id="portalSidebar">
       <!-- Top Brand Header: Official Stackly Logo -->
       <div class="portal-brand-wrap">
-        <a href="index.html" class="portal-brand" aria-label="Stackly Home">
+        <a href="user-dashboard.html" class="portal-brand" aria-label="Stackly User Dashboard">
           <img src="assets/images/stackly_006.webp?v=3" alt="Stackly" class="portal-brand-logo-img" width="160" height="50">
         </a>
         <button class="portal-sidebar-close" id="closeSidebarBtn" aria-label="Close sidebar">
@@ -115,7 +115,9 @@
           <button class="portal-menu-toggle" id="portalMenuToggle" aria-label="Open navigation menu">
             <i class="fa-solid fa-bars"></i>
           </button>
-          <h1 class="portal-header-title" id="pageHeaderTitle">Overview</h1>
+          <a href="user-dashboard.html" class="portal-header-brand" id="portalHeaderBrand" aria-label="Stackly User Dashboard">
+            <img src="assets/images/stackly_006.webp?v=3" alt="Stackly" class="portal-header-logo-img" width="125" height="36">
+          </a>
         </div>
 
         <div class="portal-header-right">
@@ -1622,6 +1624,34 @@
           }
         });
       });
+
+      // Brand Logo Click: Redirect to Overview Tab
+      const portalBrandLogo = document.querySelector('.portal-brand');
+      if (portalBrandLogo) {
+        portalBrandLogo.addEventListener('click', (e) => {
+          e.preventDefault();
+          switchTab('overview');
+          if (history.replaceState) {
+            history.replaceState(null, '', '#overview');
+          }
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          closeSidebar();
+        });
+      }
+
+      // Header Brand Logo Click: Redirect to Overview Tab
+      const portalHeaderBrand = document.getElementById('portalHeaderBrand') || document.querySelector('.portal-header-brand');
+      if (portalHeaderBrand) {
+        portalHeaderBrand.addEventListener('click', (e) => {
+          e.preventDefault();
+          switchTab('overview');
+          if (history.replaceState) {
+            history.replaceState(null, '', '#overview');
+          }
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          closeSidebar();
+        });
+      }
 
       // 4. Mobile Drawer Toggle Handlers
       function openSidebar() {
