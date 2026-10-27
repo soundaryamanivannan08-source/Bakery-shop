@@ -24,10 +24,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
   <!-- Auth & Base Dashboard Stylesheet -->
-  <link rel="stylesheet" href="assets/css/auth.css?v=4">
+  <link rel="stylesheet" href="assets/css/auth.css?v=6">
 
   <!-- Modern Portal Dashboard Layout Stylesheet -->
-  <link rel="stylesheet" href="assets/css/portal-dashboard.css">
+  <link rel="stylesheet" href="assets/css/portal-dashboard.css?v=14">
 </head>
 <body class="dashboard-page">
 
@@ -44,7 +44,7 @@
       <!-- Top Brand Header: Official Stackly Logo -->
       <div class="portal-brand-wrap">
         <a href="index.html" class="portal-brand" aria-label="Stackly Home">
-          <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="portal-brand-logo-img" width="128" height="48">
+          <img src="assets/images/stackly_006.webp?v=3" alt="Stackly" class="portal-brand-logo-img" width="160" height="50">
         </a>
         <button class="portal-sidebar-close" id="closeSidebarBtn" aria-label="Close sidebar">
           <i class="fa-solid fa-xmark"></i>
@@ -158,12 +158,12 @@
             </div>
           </div>
 
-          <!-- User Profile Display Pill -->
-          <div class="portal-profile-pill" id="profilePill">
-            <div class="portal-avatar-circle" id="dashAvatar">AV</div>
+          <!-- User Profile Display Pill (Name & Mail ID) -->
+          <div class="portal-profile-pill" id="profilePill" title="Account Details">
+            <div class="portal-avatar-circle" id="dashAvatar">S</div>
             <div class="portal-profile-info">
-              <span class="portal-profile-name" id="dashProfileName">Alexander Vance</span>
-              <span class="portal-profile-role" id="dashProfileRole">Individual Policyholder</span>
+              <span class="portal-profile-name" id="dashProfileName">Soundaryamanivannan08</span>
+              <span class="portal-profile-email" id="dashProfileEmail">soundaryamanivannan08@gmail.com</span>
             </div>
           </div>
         </div>
@@ -178,6 +178,27 @@
              TAB 1: OVERVIEW (Default Active)
              ============================================== -->
         <section class="portal-tab-panel active" id="overview">
+
+          <!-- Welcome Hero Section -->
+          <div class="portal-welcome-banner" data-aos="fade-down" data-aos-duration="600">
+            <div class="portal-welcome-left">
+              <div class="portal-welcome-badge">
+                <span class="portal-pulse-dot"></span> Stackly Bread Club Member
+              </div>
+              <h2 class="portal-welcome-title">
+                Welcome back, <span class="welcome-name-highlight" id="welcomeUserName">Soundaryamanivannan08</span>!
+              </h2>
+              <p class="portal-welcome-desc">
+                Your artisanal bread reserves, claims tracking, and policyholder perks are active and up to date for today.
+              </p>
+            </div>
+            <div class="portal-welcome-right">
+              <div class="portal-welcome-user-tag" title="Logged in email address">
+                <i class="fa-regular fa-envelope"></i>
+                <span id="welcomeUserEmail">soundaryamanivannan08@gmail.com</span>
+              </div>
+            </div>
+          </div>
 
           <!-- Row 1: 4 Stat KPI Cards (Exact match to structure) -->
           <div class="portal-kpi-grid">
@@ -304,29 +325,29 @@
                 <span class="portal-chart-sub">Sum Insured Share</span>
               </div>
               <svg class="portal-chart-svg" viewBox="0 0 300 210" preserveAspectRatio="xMidYMid meet">
-                <!-- Donut Segments (Artisanal Bakery Palette) -->
-                <!-- Sourdough (Espresso Chocolate #3E1910) -->
-                <circle cx="150" cy="105" r="62" fill="none" stroke="#3E1910" stroke-width="26"
-                        stroke-dasharray="198 389.55" stroke-dashoffset="0" transform="rotate(-90 150 105)" />
-                <!-- Pastries (Vibrant CTA Orange #FB5022) -->
+                <!-- Donut Segments with Crisp Gaps (Matching Reference Screenshot) -->
+                <!-- Sourdough (Deep Roast Espresso #2C1408) -->
+                <circle cx="150" cy="105" r="62" fill="none" stroke="#2C1408" stroke-width="26"
+                        stroke-dasharray="195 389.56" stroke-dashoffset="0" transform="rotate(-90 150 105)" />
+                <!-- Pastries (Vivid CTA Orange #FB5022) -->
                 <circle cx="150" cy="105" r="62" fill="none" stroke="#FB5022" stroke-width="26"
-                        stroke-dasharray="104 389.55" stroke-dashoffset="-202" transform="rotate(-90 150 105)" />
+                        stroke-dasharray="105 389.56" stroke-dashoffset="-198" transform="rotate(-90 150 105)" />
                 <!-- Baguettes (Artisan Gold #C29548) -->
                 <circle cx="150" cy="105" r="62" fill="none" stroke="#C29548" stroke-width="26"
-                        stroke-dasharray="45 389.55" stroke-dashoffset="-310" transform="rotate(-90 150 105)" />
+                        stroke-dasharray="42 389.56" stroke-dashoffset="-306" transform="rotate(-90 150 105)" />
                 <!-- Brioche (Warm Amber #E67E22) -->
                 <circle cx="150" cy="105" r="62" fill="none" stroke="#E67E22" stroke-width="26"
-                        stroke-dasharray="18 389.55" stroke-dashoffset="-358" transform="rotate(-90 150 105)" />
-                <!-- Beverages (Warm Latte #D4A373) -->
-                <circle cx="150" cy="105" r="62" fill="none" stroke="#D4A373" stroke-width="26"
-                        stroke-dasharray="9 389.55" stroke-dashoffset="-379" transform="rotate(-90 150 105)" />
+                        stroke-dasharray="18 389.56" stroke-dashoffset="-351" transform="rotate(-90 150 105)" />
+                <!-- Beverages (Warm Biscuit / Cream #DEB887) -->
+                <circle cx="150" cy="105" r="62" fill="none" stroke="#DEB887" stroke-width="26"
+                        stroke-dasharray="14.5 389.56" stroke-dashoffset="-372" transform="rotate(-90 150 105)" />
               </svg>
               <div class="portal-donut-legend">
-                <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#3E1910;"></span>Sourdough</span>
+                <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#2C1408;"></span>Sourdough</span>
                 <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#FB5022;"></span>Pastries</span>
                 <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#C29548;"></span>Baguettes</span>
                 <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#E67E22;"></span>Brioche</span>
-                <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#D4A373;"></span>Beverages</span>
+                <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#DEB887;"></span>Beverages</span>
               </div>
             </div>
           </div>
@@ -378,69 +399,311 @@
         </section>
 
         <!-- ==============================================
-             TAB 2: MY POLICIES / ORDERS
+             TAB 2: MY POLICIES / SUBSCRIPTIONS
              ============================================== -->
         <section class="portal-tab-panel" id="orders">
+
+          <!-- Sub-Tab Mini-KPIs -->
+          <div class="portal-sub-kpi-grid">
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FFF0EB; color:#FB5022;">
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">TOTAL POLICIES</span>
+                <span class="portal-sub-kpi-val">5</span>
+                <span class="portal-sub-kpi-desc">Across 4 categories</span>
+              </div>
+            </div>
+
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FBF4E8; color:#C29548;">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">ACTIVE COVERAGE</span>
+                <span class="portal-sub-kpi-val">4</span>
+                <span class="portal-sub-kpi-desc">100% Up to date</span>
+              </div>
+            </div>
+
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#EBF5EB; color:#2E7D32;">
+                <i class="fa-solid fa-vault"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">PROTECTION CAP</span>
+                <span class="portal-sub-kpi-val">$24,500</span>
+                <span class="portal-sub-kpi-desc">Aggregate value</span>
+              </div>
+            </div>
+
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FFF2E2; color:#E67E22;">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">MONTHLY INVESTMENT</span>
+                <span class="portal-sub-kpi-val">$162.00</span>
+                <span class="portal-sub-kpi-desc">Direct debit active</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detailed Policy Cards Grid (5 Active Policies) -->
+          <div class="portal-policy-grid" id="policyCardsGrid" style="margin-top: 1.5rem;">
+
+            <!-- Policy 1 -->
+            <div class="portal-policy-card" data-category="sourdough">
+              <div class="portal-policy-card-head">
+                <div>
+                  <div class="portal-policy-num">POLICY #POL-2026-SRD01</div>
+                  <h3 class="portal-policy-name">Artisan Sourdough Daily Reserve</h3>
+                </div>
+                <span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Active</span>
+              </div>
+              <div class="portal-policy-card-body">
+                <div class="portal-policy-coverage-box">
+                  <div class="portal-policy-coverage-label">Sum Insured Share &bull; 50%</div>
+                  <div class="portal-policy-coverage-val">$5,000 Cap Coverage</div>
+                  <p class="portal-policy-coverage-desc">Daily guaranteed fresh wild levain sourdough boule pull, crust acoustic resonance guarantee, zero-queue counter handoff.</p>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Category</span>
+                  <strong>Sourdough Breads</strong>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Term / Billing</span>
+                  <strong>$34.00 / mo &bull; Auto-Debit</strong>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Next Hearth Pull</span>
+                  <strong>Today &bull; 08:00 AM Shelf A2</strong>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Expiration Date</span>
+                  <strong>Dec 31, 2026 (66 Days)</strong>
+                </div>
+              </div>
+              <div class="portal-policy-card-footer">
+                <button type="button" class="portal-btn-sm portal-btn-sm-outline btn-download-cert"><i class="fa-regular fa-file-pdf"></i> Certificate</button>
+                <a href="404.html" class="portal-btn-sm portal-btn-sm-outline"><i class="fa-solid fa-shield-halved"></i> File Claim</a>
+              </div>
+            </div>
+
+            <!-- Policy 2 -->
+            <div class="portal-policy-card" data-category="viennoiserie">
+              <div class="portal-policy-card-head">
+                <div>
+                  <div class="portal-policy-num">POLICY #POL-2026-VNN02</div>
+                  <h3 class="portal-policy-name">Normandy Viennoiserie Weekend Cover</h3>
+                </div>
+                <span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Active</span>
+              </div>
+              <div class="portal-policy-card-body">
+                <div class="portal-policy-coverage-box">
+                  <div class="portal-policy-coverage-label">Sum Insured Share &bull; 27%</div>
+                  <div class="portal-policy-coverage-val">$6,500 Cap Coverage</div>
+                  <p class="portal-policy-coverage-desc">Saturday &amp; Sunday priority viennoiserie tray (81-layer butter croissant, pain au chocolat, escargot) pulled directly from stone deck.</p>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Category</span>
+                  <strong>Viennoiserie</strong>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Term / Billing</span>
+                  <strong>$45.00 / mo &bull; Auto-Debit</strong>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Weekend Window</span>
+                  <strong>Sat &ndash; Sun &bull; 07:30 AM</strong>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Expiration Date</span>
+                  <strong>Mar 14, 2027 (139 Days)</strong>
+                </div>
+              </div>
+              <div class="portal-policy-card-footer">
+                <button type="button" class="portal-btn-sm portal-btn-sm-outline btn-download-cert"><i class="fa-regular fa-file-pdf"></i> Certificate</button>
+                <a href="404.html" class="portal-btn-sm portal-btn-sm-outline"><i class="fa-solid fa-shield-halved"></i> File Claim</a>
+              </div>
+            </div>
+
+            <!-- Policy 3 (Expiring) -->
+            <div class="portal-policy-card" data-category="pastry" style="border-color: rgba(230, 126, 34, 0.45);">
+              <div class="portal-policy-card-head">
+                <div>
+                  <div class="portal-policy-num" style="color: #E67E22;">POLICY #POL-2026-PST03</div>
+                  <h3 class="portal-policy-name">Celebration Pastry &amp; Tart Guarantee</h3>
+                </div>
+                <span class="dash-badge baking" style="background:#FFF2EC; color:#FB5022;"><i class="fa-solid fa-clock"></i> 35 Days Left</span>
+              </div>
+              <div class="portal-policy-card-body">
+                <div class="portal-policy-coverage-box" style="background:#FFF9F5;">
+                  <div class="portal-policy-coverage-label">Sum Insured Share &bull; 11%</div>
+                  <div class="portal-policy-coverage-val">$4,000 Cap Coverage</div>
+                  <p class="portal-policy-coverage-desc">Guaranteed seasonal fruit galette and celebration brioche allocation for family gatherings, with temperature-controlled handoff.</p>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Category</span>
+                  <strong>Pastry Boxes</strong>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Term / Billing</span>
+                  <strong>$58.00 / quarter &bull; Manual</strong>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Renewal Window</span>
+                  <strong style="color: #E67E22;">Open &bull; Nov 30, 2026</strong>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Member Discount</span>
+                  <strong style="color:#2E7D32;">15% Off Applied</strong>
+                </div>
+              </div>
+              <div class="portal-policy-card-footer">
+                <button type="button" class="portal-btn-sm portal-btn-sm-primary btn-renew-action"><i class="fa-solid fa-rotate"></i> Renew Now ($49.30)</button>
+                <a href="404.html" class="portal-btn-sm portal-btn-sm-outline"><i class="fa-solid fa-circle-info"></i> Details</a>
+              </div>
+            </div>
+
+            <!-- Policy 4 -->
+            <div class="portal-policy-card" data-category="pantry">
+              <div class="portal-policy-card-head">
+                <div>
+                  <div class="portal-policy-num">POLICY #POL-2026-PAN04</div>
+                  <h3 class="portal-policy-name">Artisan Pantry Cold-Chain Collection</h3>
+                </div>
+                <span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Active</span>
+              </div>
+              <div class="portal-policy-card-body">
+                <div class="portal-policy-coverage-box">
+                  <div class="portal-policy-coverage-label">Sum Insured Share &bull; 5%</div>
+                  <div class="portal-policy-coverage-val">$3,000 Cap Coverage</div>
+                  <p class="portal-policy-coverage-desc">Small-batch Normandy churned cultured butter, Piedmont hazelnut gianduja, Guerande fleur de sel, and single-estate honey jars.</p>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Category</span>
+                  <strong>Artisan Pantry</strong>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Term / Billing</span>
+                  <strong>$28.00 / mo &bull; Auto-Debit</strong>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Monthly Box</span>
+                  <strong>Dispatches 1st of month</strong>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Expiration Date</span>
+                  <strong>Apr 09, 2027 (165 Days)</strong>
+                </div>
+              </div>
+              <div class="portal-policy-card-footer">
+                <button type="button" class="portal-btn-sm portal-btn-sm-outline btn-download-cert"><i class="fa-regular fa-file-pdf"></i> Certificate</button>
+                <a href="404.html" class="portal-btn-sm portal-btn-sm-outline"><i class="fa-solid fa-box-open"></i> Box Items</a>
+              </div>
+            </div>
+
+            <!-- Policy 5 -->
+            <div class="portal-policy-card" data-category="vip">
+              <div class="portal-policy-card-head">
+                <div>
+                  <div class="portal-policy-num">POLICY #POL-2026-BCP05</div>
+                  <h3 class="portal-policy-name">Hearthstone Bread Club Executive VIP</h3>
+                </div>
+                <span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Active</span>
+              </div>
+              <div class="portal-policy-card-body">
+                <div class="portal-policy-coverage-box">
+                  <div class="portal-policy-coverage-label">Sum Insured Share &bull; 7%</div>
+                  <div class="portal-policy-coverage-val">$6,000 Cap Coverage</div>
+                  <p class="portal-policy-coverage-desc">Comprehensive executive membership: priority bakery queue bypass, emergency bread holds, exclusive masterclass reservations, complimentary tasting passes.</p>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Category</span>
+                  <strong>Bread Club VIP</strong>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Term / Billing</span>
+                  <strong>$140.00 / yr &bull; Auto-Debit</strong>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>VIP Member ID</span>
+                  <strong>STK-VIP-99482</strong>
+                </div>
+                <div class="portal-policy-meta-row">
+                  <span>Renewal Window</span>
+                  <strong>Dec 15, 2026 (50 Days)</strong>
+                </div>
+              </div>
+              <div class="portal-policy-card-footer">
+                <button type="button" class="portal-btn-sm portal-btn-sm-outline btn-download-cert"><i class="fa-solid fa-id-card"></i> Digital VIP Pass</button>
+                <a href="404.html" class="portal-btn-sm portal-btn-sm-outline"><i class="fa-regular fa-file-lines"></i> Bylaws</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Real-Time Counter Holds Table -->
           <div class="portal-card-section">
             <div class="portal-section-head">
               <div>
-                <h2>My Policies &amp; Fresh Oven Holds</h2>
-                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #64748B;">Manage your daily fresh reservations, active coverage, and counter hold pickups.</p>
+                <h2>Daily Batch Allocations &amp; Counter Pickups</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #64748B;">Live counter reservations fulfilled under your active policies.</p>
               </div>
-              <a href="404.html" class="portal-btn-action">
-                <i class="fa-solid fa-plus"></i> Reserve New Loaf
-              </a>
+              <span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> 1 Active Pickup Today</span>
             </div>
 
             <div class="dash-table-responsive">
               <table class="dash-table">
                 <thead>
                   <tr>
-                    <th>Order Number</th>
-                    <th>Batch Time</th>
-                    <th>Items Ordered</th>
-                    <th>Pickup Counter</th>
-                    <th>Price</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th>BATCH / ORDER</th>
+                    <th>LINKED POLICY</th>
+                    <th>ITEMS ALLOCATED</th>
+                    <th>COUNTER PICKUP</th>
+                    <th>VALUE</th>
+                    <th>STATUS</th>
+                    <th>ACTION</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td><strong>#KD-7842</strong></td>
-                    <td>08:00 AM Hearth Pull</td>
+                    <td><a href="404.html" style="color:var(--portal-orange); text-decoration: none; font-weight: 700;">#POL-SRD01</a></td>
                     <td>1x Country Sourdough Boule (Sliced)</td>
                     <td>Main Bread Deck &bull; Shelf A2</td>
-                    <td><strong>$8.50</strong></td>
-                    <td><a href="404.html" class="dash-badge ready" style="text-decoration: none;"><i class="fa-solid fa-bell"></i> Ready For Pickup</a></td>
-                    <td><a href="404.html" class="btn-manage-sm" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Show Code</a></td>
+                    <td>$8.50</td>
+                    <td><a href="404.html" class="dash-badge ready" style="text-decoration: none;"><i class="fa-solid fa-bell"></i> Ready at Counter</a></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-primary" style="padding: 0.3rem 0.65rem;">Show QR Code</a></td>
                   </tr>
                   <tr>
                     <td><strong>#KD-7719</strong></td>
-                    <td>06:30 AM First Pull</td>
-                    <td>2x Traditional Butter Croissants, 1x Cortado</td>
+                    <td><a href="404.html" style="color:var(--portal-orange); text-decoration: none; font-weight: 700;">#POL-VNN02</a></td>
+                    <td>2x Butter Croissants, 1x Cortado</td>
                     <td>Espresso Counter</td>
-                    <td><strong>$14.50</strong></td>
-                    <td><a href="404.html" class="dash-badge holding" style="text-decoration: none;"><i class="fa-solid fa-check"></i> Completed</a></td>
-                    <td><a href="404.html" class="btn-manage-sm" style="text-decoration: none;">Reorder</a></td>
+                    <td>$14.50</td>
+                    <td><a href="404.html" class="dash-badge holding" style="text-decoration: none;"><i class="fa-solid fa-check-double"></i> Completed</a></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="padding: 0.3rem 0.65rem;">Reorder</a></td>
                   </tr>
                   <tr>
                     <td><strong>#KD-7601</strong></td>
-                    <td>10:30 AM Sweet Pull</td>
-                    <td>1x Ceylon Cinnamon Brioche Swirl, 1x Babka</td>
+                    <td><a href="404.html" style="color:var(--portal-orange); text-decoration: none; font-weight: 700;">#POL-PST03</a></td>
+                    <td>1x Cinnamon Brioche Swirl, 1x Babka</td>
                     <td>Pastry Glass</td>
-                    <td><strong>$15.25</strong></td>
-                    <td><a href="404.html" class="dash-badge holding" style="text-decoration: none;"><i class="fa-solid fa-check"></i> Completed</a></td>
-                    <td><a href="404.html" class="btn-manage-sm" style="text-decoration: none;">Reorder</a></td>
+                    <td>$15.25</td>
+                    <td><a href="404.html" class="dash-badge holding" style="text-decoration: none;"><i class="fa-solid fa-check-double"></i> Completed</a></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="padding: 0.3rem 0.65rem;">Reorder</a></td>
                   </tr>
                   <tr>
                     <td><strong>#KD-7490</strong></td>
-                    <td>12:30 PM Savory Pull</td>
+                    <td><a href="404.html" style="color:var(--portal-orange); text-decoration: none; font-weight: 700;">#POL-SRD01</a></td>
                     <td>1x Rosemary Sea Salt Focaccia Slab</td>
                     <td>Savory Station</td>
-                    <td><strong>$9.00</strong></td>
-                    <td><a href="404.html" class="dash-badge holding" style="text-decoration: none;"><i class="fa-solid fa-check"></i> Completed</a></td>
-                    <td><a href="404.html" class="btn-manage-sm" style="text-decoration: none;">Reorder</a></td>
+                    <td>$9.00</td>
+                    <td><a href="404.html" class="dash-badge holding" style="text-decoration: none;"><i class="fa-solid fa-check-double"></i> Completed</a></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="padding: 0.3rem 0.65rem;">Reorder</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -449,51 +712,177 @@
         </section>
 
         <!-- ==============================================
-             TAB 3: CLAIMS TRACKING
+             TAB 3: CLAIMS TRACKING & SETTLEMENTS
              ============================================== -->
         <section class="portal-tab-panel" id="tracking">
+
+          <!-- Sub-Tab Mini-KPIs -->
+          <div class="portal-sub-kpi-grid">
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FFF0EB; color:#FB5022;">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">PENDING CLAIMS</span>
+                <span class="portal-sub-kpi-val">1</span>
+                <span class="portal-sub-kpi-desc">Claim #CLM-2026-104</span>
+              </div>
+            </div>
+
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#EBF5EB; color:#2E7D32;">
+                <i class="fa-solid fa-circle-check"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">SETTLED CLAIMS (2026)</span>
+                <span class="portal-sub-kpi-val">2</span>
+                <span class="portal-sub-kpi-desc">May &amp; July settlements</span>
+              </div>
+            </div>
+
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FBF4E8; color:#C29548;">
+                <i class="fa-solid fa-money-bill-transfer"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">TOTAL SETTLED VALUE</span>
+                <span class="portal-sub-kpi-val">$2,700</span>
+                <span class="portal-sub-kpi-desc">100% Payout rate</span>
+              </div>
+            </div>
+
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#F0F4FF; color:#3B82F6;">
+                <i class="fa-solid fa-bolt"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">AVG RESOLUTION</span>
+                <span class="portal-sub-kpi-val">&lt; 24h</span>
+                <span class="portal-sub-kpi-desc">Expedited deck review</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Claim Spotlight Card with 4-Step Stepper -->
+          <div class="portal-stepper-wrap">
+            <div class="portal-section-head" style="border-bottom: none; padding-bottom: 0;">
+              <div>
+                <div style="font-size: 0.75rem; font-weight: 700; color: var(--portal-orange); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">
+                  ACTIVE CLAIM IN PROGRESS
+                </div>
+                <h2>Claim #CLM-2026-104 &bull; Counter Delay &amp; Replenishment</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #64748B;">
+                  Associated Policy: <strong>#POL-2026-SRD01 (Artisan Sourdough Daily Reserve)</strong> &bull; Incident: Oct 21, 2026, 08:15 AM
+                </p>
+              </div>
+              <span class="dash-badge baking" style="background:#FFF2EC; color:#FB5022; padding: 0.35rem 0.85rem; font-size: 0.82rem;">
+                <i class="fa-solid fa-spinner fa-spin"></i> Step 4 of 4: Counter Payout Ready
+              </span>
+            </div>
+
+            <!-- Stepper Component -->
+            <div class="portal-stepper">
+              <!-- Step 1 -->
+              <div class="portal-step-item completed">
+                <div class="portal-step-node"><i class="fa-solid fa-check"></i></div>
+                <h4 class="portal-step-title">1. Claim Submitted</h4>
+                <p class="portal-step-desc">Ticket logged via member portal with counter photo verification.</p>
+                <span class="portal-step-time">Oct 21 &bull; 08:30 AM</span>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="portal-step-item completed">
+                <div class="portal-step-node"><i class="fa-solid fa-check"></i></div>
+                <h4 class="portal-step-title">2. Deck Verification</h4>
+                <p class="portal-step-desc">Head Baker verified stone hearth batch pull delay log.</p>
+                <span class="portal-step-time">Oct 21 &bull; 10:15 AM</span>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="portal-step-item completed">
+                <div class="portal-step-node"><i class="fa-solid fa-check"></i></div>
+                <h4 class="portal-step-title">3. Settlement Approved</h4>
+                <p class="portal-step-desc">Store credit of $14.50 + 2x complimentary Brioche voucher authorized.</p>
+                <span class="portal-step-time">Oct 22 &bull; 02:40 PM</span>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="portal-step-item active">
+                <div class="portal-step-node"><i class="fa-solid fa-bell"></i></div>
+                <h4 class="portal-step-title">4. Ready For Handoff</h4>
+                <p class="portal-step-desc">Present voucher code <strong>#7842</strong> at pickup counter or apply to next renewal.</p>
+                <span class="portal-step-time" style="color:var(--portal-orange); font-weight:700;">Ready Now</span>
+              </div>
+            </div>
+
+            <div class="portal-stepper-footer" style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(62, 25, 16, 0.06); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+              <div class="portal-stepper-compensation" style="font-size: 0.85rem; color: #6E5D55;">
+                Approved Compensation: <strong style="color:#1E0C07;">$14.50 Account Credit + 2 Brioches</strong>
+              </div>
+              <div class="portal-stepper-actions" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <a href="404.html" class="portal-btn-sm portal-btn-sm-primary"><i class="fa-solid fa-qrcode"></i> Present Counter Code</a>
+                <a href="404.html" class="portal-btn-sm portal-btn-sm-outline"><i class="fa-regular fa-file-pdf"></i> Download Statement</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Claims History & Settlement Records Table -->
           <div class="portal-card-section">
             <div class="portal-section-head">
               <div>
-                <h2>Claims &amp; Pickup Tracking</h2>
-                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #64748B;">Live tracking for active hearth pulls, oven schedules, and counter handoffs.</p>
+                <h2>Annual Claims Settlement History</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #64748B;">
+                  Audited historical claims matching your overview settlement chart ($400 May, $2300 Jul).
+                </p>
               </div>
-              <a href="404.html" class="portal-chart-badge-demo" style="background:#EBF3FE; color:#1A56DB; text-decoration: none; cursor: pointer;">ACTIVE CLAIM #CLM-2026-104</a>
+              <a href="404.html" class="portal-btn-action">
+                <i class="fa-solid fa-plus"></i> File New Claim
+              </a>
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem;">
-              <div style="display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.25rem; background: #FAF4EE; border-radius: 12px; border: 1px solid rgba(62, 25, 16, 0.08);">
-                <div style="width: 44px; height: 44px; border-radius: 50%; background: #FAF0DF; color: #C29548; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
-                  <i class="fa-solid fa-check"></i>
-                </div>
-                <div>
-                  <h4 style="margin: 0 0 0.25rem; font-size: 0.95rem; font-weight: 700; color: #3E1910;">Hearth Pull Verified &bull; Stage 1</h4>
-                  <p style="margin: 0; font-size: 0.85rem; color: #6E534A;">Loaves scored and loaded into stone deck oven at 500&deg;F with steam injection.</p>
-                  <span style="font-size: 0.75rem; color: #9E857C; font-weight: 600;">07:15 AM</span>
-                </div>
-              </div>
-
-              <div style="display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.25rem; background: #FAF4EE; border-radius: 12px; border: 1px solid rgba(62, 25, 16, 0.08);">
-                <div style="width: 44px; height: 44px; border-radius: 50%; background: #FAF0DF; color: #C29548; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
-                  <i class="fa-solid fa-check"></i>
-                </div>
-                <div>
-                  <h4 style="margin: 0 0 0.25rem; font-size: 0.95rem; font-weight: 700; color: #3E1910;">Crust Blistering &amp; Quality Inspection &bull; Stage 2</h4>
-                  <p style="margin: 0; font-size: 0.85rem; color: #6E534A;">Tested for acoustic singing hollow crust and deep mahogany caramelization.</p>
-                  <span style="font-size: 0.75rem; color: #9E857C; font-weight: 600;">07:55 AM</span>
-                </div>
-              </div>
-
-              <div style="display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.25rem; background: #FFF0EB; border-radius: 12px; border: 1px solid rgba(251, 80, 34, 0.25);">
-                <div style="width: 44px; height: 44px; border-radius: 50%; background: #FB5022; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
-                  <i class="fa-solid fa-bell"></i>
-                </div>
-                <div>
-                  <h4 style="margin: 0 0 0.25rem; font-size: 0.95rem; font-weight: 700; color: #3E1910;">Ready At Pickup Counter &bull; Current Status</h4>
-                  <p style="margin: 0; font-size: 0.85rem; color: #6E534A;">Reserved loaf is bagged and held at Shelf A2. Present code #7842 to claim.</p>
-                  <a href="404.html" style="font-size: 0.75rem; color: #FB5022; font-weight: 700; text-decoration: none; cursor: pointer;">Ready Now</a>
-                </div>
-              </div>
+            <div class="dash-table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>CLAIM ID</th>
+                    <th>DATE FILED</th>
+                    <th>INCIDENT TYPE</th>
+                    <th>POLICY AFFECTED</th>
+                    <th>SETTLEMENT</th>
+                    <th>STATUS</th>
+                    <th>RECEIPT</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#CLM-2026-104</strong></td>
+                    <td>Oct 21, 2026</td>
+                    <td>Hearth Pull Shift Delay &bull; Counter Restock</td>
+                    <td>#POL-SRD01</td>
+                    <td><strong style="color:var(--portal-orange);">$14.50 Credit</strong></td>
+                    <td><a href="404.html" class="dash-badge baking" style="text-decoration: none;"><i class="fa-solid fa-clock"></i> Under Settlement</a></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="padding: 0.3rem 0.65rem;">View</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#CLM-2026-088</strong></td>
+                    <td>Jul 14, 2026</td>
+                    <td>Oven Calibration Temperature Drop (Batch #28)</td>
+                    <td>#POL-VNN02</td>
+                    <td><strong style="color:#2E7D32;">$2,300.00 Paid</strong></td>
+                    <td><a href="404.html" class="dash-badge ready" style="text-decoration: none;"><i class="fa-solid fa-check"></i> Settled &amp; Paid</a></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="padding: 0.3rem 0.65rem;">PDF Receipt</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#CLM-2026-042</strong></td>
+                    <td>May 03, 2026</td>
+                    <td>Stone Hearth Crust Singe &bull; Replacement Batch</td>
+                    <td>#POL-SRD01</td>
+                    <td><strong style="color:#2E7D32;">$400.00 Paid</strong></td>
+                    <td><a href="404.html" class="dash-badge ready" style="text-decoration: none;"><i class="fa-solid fa-check"></i> Settled &amp; Paid</a></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="padding: 0.3rem 0.65rem;">PDF Receipt</a></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </section>
@@ -502,15 +891,137 @@
              TAB 4: RENEWALS & REWARDS
              ============================================== -->
         <section class="portal-tab-panel" id="rewards">
-          <div class="portal-card-section">
-            <div class="portal-section-head">
-              <div>
-                <h2>Stackly Renewals &amp; Flour Rewards Club</h2>
-                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #64748B;">Earn 10 points for every $1 spent on artisan loaves and specialty bakes.</p>
+
+          <!-- Sub-Tab Mini-KPIs -->
+          <div class="portal-sub-kpi-grid">
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FFF2E2; color:#E67E22;">
+                <i class="fa-solid fa-calendar-check"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">UPCOMING RENEWALS</span>
+                <span class="portal-sub-kpi-val">2</span>
+                <span class="portal-sub-kpi-desc">Within next 45 days</span>
               </div>
             </div>
 
-            <!-- Rewards Tier Hero Banner -->
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FBF4E8; color:#C29548;">
+                <i class="fa-solid fa-coins"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">FLOUR REWARDS BALANCE</span>
+                <span class="portal-sub-kpi-val">350 Pts</span>
+                <span class="portal-sub-kpi-desc">Gold Crumb Tier</span>
+              </div>
+            </div>
+
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#EBF5EB; color:#2E7D32;">
+                <i class="fa-solid fa-tag"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">MEMBER SAVINGS</span>
+                <span class="portal-sub-kpi-val">15% Off</span>
+                <span class="portal-sub-kpi-desc">Applied at renewal</span>
+              </div>
+            </div>
+
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FFF0EB; color:#FB5022;">
+                <i class="fa-solid fa-receipt"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">NET DUE FOR 2027</span>
+                <span class="portal-sub-kpi-val">$189.30</span>
+                <span class="portal-sub-kpi-desc">For 2 renewals</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Highlighted Upcoming Policy Renewal Cards -->
+          <div class="portal-card-section">
+            <div class="portal-section-head">
+              <div>
+                <h2>Policies Due For Renewal</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #64748B;">Review your coverage renewal deadlines and locked-in member rates.</p>
+              </div>
+              <span class="dash-badge baking"><i class="fa-solid fa-triangle-exclamation"></i> Action Required</span>
+            </div>
+
+            <div class="portal-policy-grid">
+              <!-- Renewal Card 1 -->
+              <div class="portal-policy-card" style="border: 1.5px solid rgba(230, 126, 34, 0.45);">
+                <div class="portal-policy-card-head" style="background:#FFFDF9;">
+                  <div>
+                    <div class="portal-policy-num" style="color:#E67E22;">RENEWAL NOTICE &bull; 35 DAYS LEFT</div>
+                    <h3 class="portal-policy-name">#POL-2026-PST03 Celebration Pastry</h3>
+                  </div>
+                  <span class="dash-badge baking" style="background:#FFF2EC; color:#FB5022;">Expires Nov 30</span>
+                </div>
+                <div class="portal-policy-card-body">
+                  <div class="portal-policy-coverage-box" style="background:#FFF9F5;">
+                    <div class="portal-policy-coverage-label">Coverage Continuity</div>
+                    <div class="portal-policy-coverage-val">$4,000 Seasonal Protection</div>
+                    <p class="portal-policy-coverage-desc">Maintain guaranteed fruit galette and sweet celebration box allocations throughout winter holiday season.</p>
+                  </div>
+                  <div class="portal-policy-meta-row">
+                    <span>Standard Semi-Annual Rate</span>
+                    <span style="text-decoration: line-through; color: #8C7D75;">$58.00</span>
+                  </div>
+                  <div class="portal-policy-meta-row">
+                    <span>Gold Crumb Member Perk (15% Off)</span>
+                    <strong style="color:#2E7D32;">-$8.70 Discount</strong>
+                  </div>
+                  <div class="portal-policy-meta-row" style="background:#FAF4EE; padding: 0.5rem; border-radius: 6px;">
+                    <strong>Net Renewal Amount Due</strong>
+                    <strong style="color:var(--portal-orange); font-size: 1.1rem;">$49.30</strong>
+                  </div>
+                </div>
+                <div class="portal-policy-card-footer">
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-primary" style="flex: 1; justify-content: center;"><i class="fa-solid fa-lock"></i> 1-Click Renew ($49.30)</a>
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-outline">Modify</a>
+                </div>
+              </div>
+
+              <!-- Renewal Card 2 -->
+              <div class="portal-policy-card">
+                <div class="portal-policy-card-head">
+                  <div>
+                    <div class="portal-policy-num">RENEWAL NOTICE &bull; 50 DAYS LEFT</div>
+                    <h3 class="portal-policy-name">#POL-2026-BCP05 Bread Club VIP</h3>
+                  </div>
+                  <span class="dash-badge ready"><i class="fa-solid fa-check"></i> Auto-Debit Active</span>
+                </div>
+                <div class="portal-policy-card-body">
+                  <div class="portal-policy-coverage-box">
+                    <div class="portal-policy-coverage-label">Coverage Continuity</div>
+                    <div class="portal-policy-coverage-val">$6,000 Executive Cap</div>
+                    <p class="portal-policy-coverage-desc">Unlimited oven bypass, VIP weekend reservations, and exclusive access to the 2027 Wild Levain Masterclasses.</p>
+                  </div>
+                  <div class="portal-policy-meta-row">
+                    <span>Annual Rate</span>
+                    <span>$150.00</span>
+                  </div>
+                  <div class="portal-policy-meta-row">
+                    <span>Loyalty Retention Credit</span>
+                    <strong style="color:#2E7D32;">-$10.00</strong>
+                  </div>
+                  <div class="portal-policy-meta-row" style="background:#FAF4EE; padding: 0.5rem; border-radius: 6px;">
+                    <strong>Scheduled Charge (Dec 10, 2026)</strong>
+                    <strong style="color:#1E0C07; font-size: 1.1rem;">$140.00</strong>
+                  </div>
+                </div>
+                <div class="portal-policy-card-footer">
+                  <span style="font-size: 0.78rem; color: #8C7D75;"><i class="fa-solid fa-credit-card"></i> Visa ending in 4242</span>
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-outline">Manage Billing</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Loyalty Flour Rewards Tier Card -->
+          <div class="portal-card-section">
             <div class="rewards-hero-card" style="margin-bottom: 2rem;">
               <div class="rewards-left">
                 <div class="rewards-crown-icon">
@@ -518,19 +1029,19 @@
                 </div>
                 <div>
                   <h3 style="margin: 0 0 0.25rem; font-size: 1.25rem; font-weight: 800; color: #220C07;">Gold Crumb Regular Tier</h3>
-                  <p style="margin: 0; font-size: 0.88rem; color: #5C3D2E; line-height: 1.45;">Enjoy free monthly seasonal pastry drops, zero-queue counter priority, and 10% off masterclasses.</p>
+                  <p style="margin: 0; font-size: 0.88rem; color: #5C3D2E; line-height: 1.45;">Enjoy 15% off all policy renewals, free monthly seasonal pastry drops, zero-queue counter priority, and 10% off masterclasses.</p>
                 </div>
               </div>
               <div class="rewards-pts-box">
                 <span class="pts-number">350</span>
-                <span class="pts-caption">Available Points</span>
+                <span class="pts-caption">Available Flour Points</span>
               </div>
             </div>
 
             <!-- Redeemable Perks Grid -->
             <div class="portal-section-head" style="border: none; padding: 0; margin-bottom: 1rem;">
               <h3>Redeem Your Points For Fresh Bakes</h3>
-              <a href="404.html" style="font-size: 0.82rem; color: #64748B; font-weight: 600; text-decoration: none; cursor: pointer;">150 pts until next tier</a>
+              <a href="404.html" style="font-size: 0.82rem; color: #64748B; font-weight: 600; text-decoration: none; cursor: pointer;">150 pts until Platinum Tier</a>
             </div>
 
             <div class="perks-claim-grid">
@@ -559,18 +1070,171 @@
         </section>
 
         <!-- ==============================================
-             TAB 5: DOCUMENTS & WORKSHOPS
+             TAB 5: DOCUMENTS & PASSES
              ============================================== -->
         <section class="portal-tab-panel" id="workshops">
-          <div class="portal-card-section">
-            <div class="portal-section-head">
-              <div>
-                <h2>Documents &amp; Workshop Passes</h2>
-                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #64748B;">Confirmed admission passes and downloadable recipes for masterclasses.</p>
+
+          <!-- Sub-Tab Mini-KPIs -->
+          <div class="portal-sub-kpi-grid">
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FFF0EB; color:#FB5022;">
+                <i class="fa-solid fa-folder-open"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">TOTAL DOCUMENTS</span>
+                <span class="portal-sub-kpi-val">8</span>
+                <span class="portal-sub-kpi-desc">Official PDF archives</span>
               </div>
             </div>
 
-            <!-- Confirmed Ticket Card -->
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#EBF5EB; color:#2E7D32;">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">VERIFIED CERTIFICATES</span>
+                <span class="portal-sub-kpi-val">5</span>
+                <span class="portal-sub-kpi-desc">Policy declarations</span>
+              </div>
+            </div>
+
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FBF4E8; color:#C29548;">
+                <i class="fa-solid fa-receipt"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">FINANCIAL STATEMENTS</span>
+                <span class="portal-sub-kpi-val">3</span>
+                <span class="portal-sub-kpi-desc">Tax invoices for 2026</span>
+              </div>
+            </div>
+
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#F0F4FF; color:#3B82F6;">
+                <i class="fa-solid fa-ticket"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">WALLET PASSES</span>
+                <span class="portal-sub-kpi-val">2</span>
+                <span class="portal-sub-kpi-desc">VIP workshop passes</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Document Library Grid -->
+          <div class="portal-card-section">
+            <div class="portal-section-head">
+              <div>
+                <h2>Policy Documents &amp; Certificates Library</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #64748B;">Download official certified certificates of coverage, settlement releases, and wallet admission passes.</p>
+              </div>
+              <a href="404.html" class="portal-btn-action">
+                <i class="fa-solid fa-file-arrow-up"></i> Request Endorsement
+              </a>
+            </div>
+
+            <div class="portal-doc-grid">
+
+              <!-- Doc 1 -->
+              <div class="portal-doc-card">
+                <div class="portal-doc-top">
+                  <div class="portal-doc-icon"><i class="fa-solid fa-file-shield"></i></div>
+                  <div class="portal-doc-info">
+                    <h4>Sourdough Reserve Quality Certificate</h4>
+                    <span class="portal-doc-meta">PDF &bull; 320 KB &bull; Policy #POL-SRD01</span>
+                  </div>
+                </div>
+                <div class="portal-doc-bottom">
+                  <span class="dash-badge ready"><i class="fa-solid fa-check"></i> Verified</span>
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-primary"><i class="fa-solid fa-download"></i> Download</a>
+                </div>
+              </div>
+
+              <!-- Doc 2 -->
+              <div class="portal-doc-card">
+                <div class="portal-doc-top">
+                  <div class="portal-doc-icon"><i class="fa-solid fa-file-contract"></i></div>
+                  <div class="portal-doc-info">
+                    <h4>Viennoiserie Weekend Policy Declaration</h4>
+                    <span class="portal-doc-meta">PDF &bull; 415 KB &bull; Policy #POL-VNN02</span>
+                  </div>
+                </div>
+                <div class="portal-doc-bottom">
+                  <span class="dash-badge ready"><i class="fa-solid fa-check"></i> Verified</span>
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-primary"><i class="fa-solid fa-download"></i> Download</a>
+                </div>
+              </div>
+
+              <!-- Doc 3 -->
+              <div class="portal-doc-card">
+                <div class="portal-doc-top">
+                  <div class="portal-doc-icon" style="background:#EBF5EB; color:#2E7D32;"><i class="fa-solid fa-file-signature"></i></div>
+                  <div class="portal-doc-info">
+                    <h4>Claim Settlement Release #CLM-2026-088</h4>
+                    <span class="portal-doc-meta">PDF &bull; 280 KB &bull; $2,300.00 Paid</span>
+                  </div>
+                </div>
+                <div class="portal-doc-bottom">
+                  <span class="dash-badge ready"><i class="fa-solid fa-check-double"></i> Executed</span>
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-outline"><i class="fa-solid fa-download"></i> Download</a>
+                </div>
+              </div>
+
+              <!-- Doc 4 -->
+              <div class="portal-doc-card">
+                <div class="portal-doc-top">
+                  <div class="portal-doc-icon" style="background:#FBF4E8; color:#C29548;"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                  <div class="portal-doc-info">
+                    <h4>2026 Consolidated Annual Tax Statement</h4>
+                    <span class="portal-doc-meta">PDF &bull; 185 KB &bull; Certified Tax Year 2026</span>
+                  </div>
+                </div>
+                <div class="portal-doc-bottom">
+                  <span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Tax Ready</span>
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-outline"><i class="fa-solid fa-download"></i> Download</a>
+                </div>
+              </div>
+
+              <!-- Doc 5 -->
+              <div class="portal-doc-card">
+                <div class="portal-doc-top">
+                  <div class="portal-doc-icon"><i class="fa-solid fa-id-badge"></i></div>
+                  <div class="portal-doc-info">
+                    <h4>Bread Club Executive Membership Bylaws</h4>
+                    <span class="portal-doc-meta">PDF &bull; 540 KB &bull; ID #STK-VIP-99482</span>
+                  </div>
+                </div>
+                <div class="portal-doc-bottom">
+                  <span class="dash-badge ready"><i class="fa-solid fa-crown"></i> VIP Active</span>
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-primary"><i class="fa-solid fa-wallet"></i> Wallet Pass</a>
+                </div>
+              </div>
+
+              <!-- Doc 6 -->
+              <div class="portal-doc-card">
+                <div class="portal-doc-top">
+                  <div class="portal-doc-icon" style="background:#F0F4FF; color:#3B82F6;"><i class="fa-solid fa-ticket-simple"></i></div>
+                  <div class="portal-doc-info">
+                    <h4>Wild Levain Science Masterclass Pass</h4>
+                    <span class="portal-doc-meta">PDF &bull; 890 KB &bull; Nov 18 Station #03</span>
+                  </div>
+                </div>
+                <div class="portal-doc-bottom">
+                  <span class="dash-badge ready"><i class="fa-solid fa-calendar"></i> Confirmed</span>
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-primary"><i class="fa-solid fa-download"></i> Pass &bull; PDF</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Workshop Ticket Showcase -->
+          <div class="portal-card-section">
+            <div class="portal-section-head">
+              <h2>Confirmed Masterclass Passes</h2>
+              <span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Confirmed &bull; Station #03</span>
+            </div>
+
             <div class="workshop-ticket-card">
               <div class="ticket-date-box">
                 <span class="t-month">Saturday</span>
@@ -579,7 +1243,7 @@
               </div>
 
               <div class="ticket-details">
-                <span class="dash-badge ready" style="margin-bottom: 0.5rem;"><i class="fa-solid fa-circle-check"></i> Confirmed &bull; Station #03</span>
+                <span class="dash-badge ready" style="margin-bottom: 0.5rem;"><i class="fa-solid fa-circle-check"></i> Confirmed Seat &bull; Station #03</span>
                 <h3>Wild Levain &amp; Sourdough Science Masterclass</h3>
                 <p>Taught by Head Baker Julian. Hands-on hydration math, coil folds, banneton shaping, and razor scoring.</p>
                 <div class="ticket-perks">
@@ -601,54 +1265,214 @@
              TAB 6: PROFILE & SETTINGS
              ============================================== -->
         <section class="portal-tab-panel" id="settings">
-          <div class="portal-card-section">
-            <div class="portal-section-head">
-              <div>
-                <h2>Profile &amp; Settings</h2>
-                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #64748B;">Customize your member profile, notification alerts, and counter hold preferences.</p>
+
+          <!-- Policyholder Identity Card -->
+          <div class="portal-card-section" style="margin-bottom: 1.5rem;">
+            <div class="portal-profile-hero">
+              <div class="portal-profile-hero-left">
+                <div class="portal-profile-hero-avatar" id="heroAvatar">
+                  S
+                </div>
+                <div class="portal-profile-hero-info">
+                  <h2 class="portal-profile-hero-title" id="heroName">Soundaryamanivannan08</h2>
+                  <p class="portal-profile-hero-meta">
+                    Policyholder ID: <strong>STK-USR-99482</strong> &bull; Email: <strong id="heroEmail">soundaryamanivannan08@gmail.com</strong>
+                  </p>
+                </div>
+              </div>
+              <div class="portal-profile-hero-badges">
+                <span class="dash-badge ready"><i class="fa-solid fa-shield-halved"></i> Active Policyholder</span>
+                <span class="dash-badge holding"><i class="fa-solid fa-crown"></i> Gold Crumb VIP</span>
               </div>
             </div>
-
-            <form class="settings-form-grid" id="userProfileForm" novalidate>
-              <div class="form-group">
-                <label class="form-label" for="settingsFullName">Full Name <span style="color:var(--portal-orange);">*</span></label>
-                <input type="text" id="settingsFullName" class="form-control" value="Alexander Vance" style="padding-left: 1rem;" required>
-                <span class="auth-field-error" id="settingsFullNameError">Full name is required</span>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="settingsEmail">Email Address <span style="color:var(--portal-orange);">*</span></label>
-                <input type="email" id="settingsEmail" class="form-control" value="alexander.vance@example.com" style="padding-left: 1rem;" required>
-                <span class="auth-field-error" id="settingsEmailError">Email is required</span>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="settingsLoafPrep">Default Loaf Preparation</label>
-                <select id="settingsLoafPrep" class="form-control" style="padding-left: 1rem;">
-                  <option selected>Sliced Sourdough (Ready for Toast)</option>
-                  <option>Whole Unsliced Boule (Preserves Moisture)</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="settingsPickupWindow">Preferred Pickup Window</label>
-                <select id="settingsPickupWindow" class="form-control" style="padding-left: 1rem;">
-                  <option selected>Morning Pull (08:00 AM – 10:00 AM)</option>
-                  <option>Midday Pull (12:00 PM – 02:00 PM)</option>
-                  <option>Afternoon Pickup (02:00 PM – 05:00 PM)</option>
-                </select>
-              </div>
-
-              <div style="grid-column: 1 / -1; margin-top: 1rem;">
-                <a href="404.html" class="btn-claim-reward" style="padding: 0.75rem 2rem; font-size: 0.92rem; background-color: var(--portal-orange); border: none; color: #fff; border-radius: 8px; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-block;">Save Account Preferences</a>
-                <div id="settingsFeedback" style="display: none; margin-top: 0.75rem; padding: 0.65rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; background-color: #DCFCE7; color: #166534;"></div>
-              </div>
-            </form>
           </div>
+
+          <!-- Two-Column Settings Grid -->
+          <div class="portal-settings-grid">
+
+            <!-- Column 1: Personal & Notification Settings -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+
+              <!-- Personal Information Form -->
+              <div class="portal-card-section" style="margin-bottom: 0;">
+                <div class="portal-section-head">
+                  <div>
+                    <h3>Policyholder Personal Information</h3>
+                    <p style="margin: 0.25rem 0 0; font-size: 0.82rem; color: #8C7D75;">Update legal name, primary email address, and official contact numbers.</p>
+                  </div>
+                </div>
+
+                <form class="settings-form-grid" id="userProfileForm" novalidate>
+                  <div class="form-group">
+                    <label class="form-label" for="settingsFullName">Full Legal Name <span style="color:var(--portal-orange);">*</span></label>
+                    <input type="text" id="settingsFullName" class="form-control" value="Soundaryamanivannan08" style="padding-left: 1rem;" required>
+                    <span class="auth-field-error" id="settingsFullNameError">Full name is required</span>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="settingsEmail">Primary Email Address <span style="color:var(--portal-orange);">*</span></label>
+                    <input type="email" id="settingsEmail" class="form-control" value="soundaryamanivannan08@gmail.com" style="padding-left: 1rem;" required>
+                    <span class="auth-field-error" id="settingsEmailError">Email is required</span>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="settingsPhone">Contact Phone Number</label>
+                    <input type="tel" id="settingsPhone" class="form-control" value="9876543210" style="padding-left: 1rem;">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="settingsPickupWindow">Preferred Pickup Window</label>
+                    <select id="settingsPickupWindow" class="form-control" style="padding-left: 1rem;">
+                      <option selected>Morning Pull (08:00 AM – 10:00 AM)</option>
+                      <option>Midday Pull (12:00 PM – 02:00 PM)</option>
+                      <option>Afternoon Pickup (02:00 PM – 05:00 PM)</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group" style="grid-column: 1 / -1;">
+                    <label class="form-label" for="settingsAddress">Registered Delivery &amp; Billing Address</label>
+                    <input type="text" id="settingsAddress" class="form-control" value="MMR Complex, Chinna Thirupathi, Salem, TN 636008" style="padding-left: 1rem;">
+                  </div>
+
+                  <div style="grid-column: 1 / -1; margin-top: 0.5rem;">
+                    <button type="submit" class="portal-btn-sm portal-btn-sm-primary" style="padding: 0.65rem 1.6rem; font-size: 0.88rem;">Save Profile Preferences</button>
+                    <div id="settingsFeedback" style="display: none; margin-top: 0.75rem; padding: 0.65rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; background-color: #DCFCE7; color: #166534;"></div>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Communication Preferences -->
+              <div class="portal-card-section" style="margin-bottom: 0;">
+                <div class="portal-section-head">
+                  <div>
+                    <h3>Notification Channels &amp; Alerts</h3>
+                    <p style="margin: 0.25rem 0 0; font-size: 0.82rem; color: #8C7D75;">Select how you wish to receive policy renewal, claim, and bread alerts.</p>
+                  </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+                  <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; color: #1E0C07; cursor: pointer;">
+                    <input type="checkbox" checked style="accent-color: var(--portal-orange); width: 18px; height: 18px;">
+                    <span>Email notices for upcoming policy renewals (45-day &amp; 15-day alerts)</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; color: #1E0C07; cursor: pointer;">
+                    <input type="checkbox" checked style="accent-color: var(--portal-orange); width: 18px; height: 18px;">
+                    <span>SMS text alerts when daily stone hearth loaf is ready at counter</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; color: #1E0C07; cursor: pointer;">
+                    <input type="checkbox" checked style="accent-color: var(--portal-orange); width: 18px; height: 18px;">
+                    <span>Claim settlement updates and counter compensation releases</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; color: #1E0C07; cursor: pointer;">
+                    <input type="checkbox" style="accent-color: var(--portal-orange); width: 18px; height: 18px;">
+                    <span>Monthly artisan bakery journal &amp; seasonal pastry catalog releases</span>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Column 2: Payment, Security & Governance -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+
+              <!-- Saved Payment Methods -->
+              <div class="portal-card-section" style="margin-bottom: 0;">
+                <div class="portal-section-head">
+                  <div>
+                    <h3>Billing &amp; Payment Methods</h3>
+                    <p style="margin: 0.25rem 0 0; font-size: 0.82rem; color: #8C7D75;">Methods used for automatic policy renewal debits.</p>
+                  </div>
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-primary"><i class="fa-solid fa-plus"></i> Add Card</a>
+                </div>
+
+                <div class="portal-payment-card">
+                  <div class="portal-payment-left">
+                    <i class="fa-brands fa-cc-visa portal-payment-icon" style="color:#1A1F71;"></i>
+                    <div class="portal-payment-info">
+                      <h5>Visa ending in 4242</h5>
+                      <p>Expires 08/28 &bull; Default for Policy Auto-Debit</p>
+                    </div>
+                  </div>
+                  <span class="dash-badge ready">Default</span>
+                </div>
+
+                <div class="portal-payment-card">
+                  <div class="portal-payment-left">
+                    <i class="fa-brands fa-cc-mastercard portal-payment-icon" style="color:#EB001B;"></i>
+                    <div class="portal-payment-info">
+                      <h5>Mastercard ending in 8812</h5>
+                      <p>Expires 11/29 &bull; Backup Method</p>
+                    </div>
+                  </div>
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-outline">Set Default</a>
+                </div>
+              </div>
+
+              <!-- Security Credentials -->
+              <div class="portal-card-section" style="margin-bottom: 0;">
+                <div class="portal-section-head">
+                  <div>
+                    <h3>Security &amp; Authentication</h3>
+                    <p style="margin: 0.25rem 0 0; font-size: 0.82rem; color: #8C7D75;">Manage passwords and two-factor verification.</p>
+                  </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(62, 25, 16, 0.06);">
+                    <div>
+                      <strong style="font-size: 0.88rem; color: #1E0C07;">Two-Factor Authentication (2FA)</strong>
+                      <div style="font-size: 0.75rem; color: #8C7D75;">SMS OTP sent to &bull;&bull;&bull;&bull; 3210</div>
+                    </div>
+                    <span class="dash-badge ready"><i class="fa-solid fa-lock"></i> Enabled</span>
+                  </div>
+
+                  <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(62, 25, 16, 0.06);">
+                    <div>
+                      <strong style="font-size: 0.88rem; color: #1E0C07;">Current Session</strong>
+                      <div style="font-size: 0.75rem; color: #8C7D75;">Windows &bull; Chrome &bull; Salem, India</div>
+                    </div>
+                    <span class="dash-badge ready">Active Now</span>
+                  </div>
+
+                  <div style="margin-top: 0.5rem;">
+                    <a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="width: 100%; justify-content: center;"><i class="fa-solid fa-key"></i> Change Account Password</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Account Governance -->
+              <div class="portal-card-section" style="margin-bottom: 0;">
+                <div class="portal-section-head">
+                  <div>
+                    <h3>Data &amp; Policy Governance</h3>
+                    <p style="margin: 0.25rem 0 0; font-size: 0.82rem; color: #8C7D75;">Export archives or temporarily suspend coverage.</p>
+                  </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="justify-content: flex-start; gap: 0.65rem;">
+                    <i class="fa-solid fa-download"></i> Download Full Policy Archive (JSON)
+                  </a>
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="justify-content: flex-start; gap: 0.65rem; color: #991B1B; border-color: rgba(185, 28, 28, 0.2);">
+                    <i class="fa-solid fa-pause"></i> Request Temporary Policy Freeze
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
         </section>
 
       </main>
     </div>
+  </div>
+
+  <!-- Floating Toast Notification -->
+  <div id="portalToast" class="portal-toast" role="alert" aria-live="assertive">
+    <i class="fa-solid fa-circle-check" style="color:var(--portal-orange);"></i>
+    <span id="portalToastMsg">Action completed!</span>
   </div>
 
   <!-- AOS (Animate On Scroll) via CDNJS -->
@@ -666,43 +1490,78 @@
         });
       }
 
+      function deriveNameFromEmail(email) {
+        if (!email || !email.includes('@')) return 'User';
+        const prefix = email.split('@')[0].trim();
+        if (!prefix) return 'User';
+        if (/[._-]/.test(prefix)) {
+          return prefix
+            .split(/[._-]+/)
+            .filter(Boolean)
+            .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+            .join(' ');
+        }
+        return prefix.charAt(0).toUpperCase() + prefix.slice(1);
+      }
+
       // 2. Hydrate User Details from Login
       function initUserProfile() {
-        const email = localStorage.getItem('stackly_user_email') || sessionStorage.getItem('stackly_user_email') || localStorage.getItem('user_email') || 'alexander.vance@example.com';
+        const email = localStorage.getItem('stackly_user_email') || sessionStorage.getItem('stackly_user_email') || localStorage.getItem('user_email') || 'soundaryamanivannan08@gmail.com';
         const role = localStorage.getItem('stackly_user_role') || sessionStorage.getItem('stackly_user_role') || localStorage.getItem('user_role') || 'user';
         let name = localStorage.getItem('user_name');
-        if (!name) {
-          const prefix = email.split('@')[0];
-          name = prefix.charAt(0).toUpperCase() + prefix.slice(1);
+        
+        // Take name directly from entered mail id if name is missing or still legacy default
+        if (!name || (name === 'Soundaryamanivannan08' && email.toLowerCase() !== 'soundaryamanivannan08@gmail.com')) {
+          name = deriveNameFromEmail(email);
+          localStorage.setItem('user_name', name);
         }
+
         const initial = name.charAt(0).toUpperCase();
         const roleDisplay = role.toLowerCase() === 'admin' ? 'Admin' : 'Individual Policyholder';
 
+        // 1. Profile Logo Section (Header Pill: Avatar, Name & Mail ID)
         const avatarEl = document.getElementById('dashAvatar');
-        if (avatarEl) {
-          avatarEl.textContent = initial;
-        }
+        if (avatarEl) avatarEl.textContent = initial;
 
         const profileNameEl = document.getElementById('dashProfileName');
         if (profileNameEl) {
           profileNameEl.textContent = name;
-          profileNameEl.title = email;
+          profileNameEl.title = `Logged in as: ${name}`;
         }
 
-        const profileRoleEl = document.getElementById('dashProfileRole');
-        if (profileRoleEl) {
-          profileRoleEl.textContent = roleDisplay;
+        const profileEmailEl = document.getElementById('dashProfileEmail');
+        if (profileEmailEl) {
+          profileEmailEl.textContent = email;
+          profileEmailEl.title = email;
         }
+
+        const profilePill = document.getElementById('profilePill');
+        if (profilePill) {
+          profilePill.title = `${name} (${email}) • ${roleDisplay}`;
+        }
+
+        // 2. Welcome Section in Overview Tab
+        const welcomeNameEl = document.getElementById('welcomeUserName');
+        if (welcomeNameEl) welcomeNameEl.textContent = name;
+
+        const welcomeEmailEl = document.getElementById('welcomeUserEmail');
+        if (welcomeEmailEl) welcomeEmailEl.textContent = email;
+
+        // 3. Settings Hero Card & Inputs
+        const heroAvatar = document.getElementById('heroAvatar');
+        if (heroAvatar) heroAvatar.textContent = initial;
+
+        const heroName = document.getElementById('heroName');
+        if (heroName) heroName.textContent = name;
+
+        const heroEmail = document.getElementById('heroEmail');
+        if (heroEmail) heroEmail.textContent = email;
 
         const settingsName = document.getElementById('settingsFullName');
-        if (settingsName) {
-          settingsName.value = name;
-        }
+        if (settingsName) settingsName.value = name;
 
         const settingsEmail = document.getElementById('settingsEmail');
-        if (settingsEmail) {
-          settingsEmail.value = email;
-        }
+        if (settingsEmail) settingsEmail.value = email;
       }
 
       initUserProfile();
@@ -917,12 +1776,28 @@
 
           localStorage.setItem('user_name', nameVal);
           localStorage.setItem('stackly_user_email', emailVal);
+          sessionStorage.setItem('user_name', nameVal);
+          sessionStorage.setItem('stackly_user_email', emailVal);
 
-          // Update header profile display
+          // Update header profile display & welcome banner
           const profileNameEl = document.getElementById('dashProfileName');
           if (profileNameEl) profileNameEl.textContent = nameVal;
+          const profileEmailEl = document.getElementById('dashProfileEmail');
+          if (profileEmailEl) profileEmailEl.textContent = emailVal;
           const avatarEl = document.getElementById('dashAvatar');
           if (avatarEl) avatarEl.textContent = nameVal.charAt(0).toUpperCase();
+
+          const welcomeNameEl = document.getElementById('welcomeUserName');
+          if (welcomeNameEl) welcomeNameEl.textContent = nameVal;
+          const welcomeEmailEl = document.getElementById('welcomeUserEmail');
+          if (welcomeEmailEl) welcomeEmailEl.textContent = emailVal;
+
+          const heroName = document.getElementById('heroName');
+          if (heroName) heroName.textContent = nameVal;
+          const heroAvatar = document.getElementById('heroAvatar');
+          if (heroAvatar) heroAvatar.textContent = nameVal.charAt(0).toUpperCase();
+          const heroEmail = document.getElementById('heroEmail');
+          if (heroEmail) heroEmail.textContent = emailVal;
 
           if (feedbackEl) {
             feedbackEl.style.display = 'block';
@@ -931,6 +1806,100 @@
               feedbackEl.style.display = 'none';
             }, 3000);
           }
+          showToast('Profile preferences updated successfully!', 'fa-circle-check');
+        });
+      }
+
+      // 9. Floating Toast Notification Utility
+      const portalToast = document.getElementById('portalToast');
+      const portalToastMsg = document.getElementById('portalToastMsg');
+      let toastTimer = null;
+
+      function showToast(message, iconClass = 'fa-circle-check') {
+        if (!portalToast || !portalToastMsg) return;
+        clearTimeout(toastTimer);
+        portalToastMsg.textContent = message;
+        const iconEl = portalToast.querySelector('i');
+        if (iconEl) {
+          iconEl.className = `fa-solid ${iconClass}`;
+        }
+        portalToast.classList.add('show');
+        toastTimer = setTimeout(() => {
+          portalToast.classList.remove('show');
+        }, 3500);
+      }
+
+      // 10. Real-time Policy Card Filtering & Search
+      const policySearch = document.getElementById('policySearchInput');
+      const filterPills = document.querySelectorAll('#policyFilterPills .portal-pill-btn');
+      const policyCards = document.querySelectorAll('#policyCardsGrid .portal-policy-card');
+
+      function filterPolicies() {
+        const query = (policySearch ? policySearch.value : '').toLowerCase().trim();
+        const activePill = document.querySelector('#policyFilterPills .portal-pill-btn.active');
+        const filterCategory = activePill ? activePill.dataset.filter : 'all';
+
+        policyCards.forEach(card => {
+          const cat = card.dataset.category || '';
+          const text = card.textContent.toLowerCase();
+          const matchesCategory = (filterCategory === 'all') || (cat === filterCategory);
+          const matchesQuery = !query || text.includes(query);
+
+          if (matchesCategory && matchesQuery) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
+      if (filterPills.length > 0) {
+        filterPills.forEach(pill => {
+          pill.addEventListener('click', () => {
+            filterPills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            filterPolicies();
+          });
+        });
+      }
+
+      if (policySearch) {
+        policySearch.addEventListener('input', filterPolicies);
+      }
+
+      // 11. Interactive Dashboard Button Triggers
+      // Certificate & Pass Downloads
+      document.querySelectorAll('.btn-download-cert, .btn-manage-sm, .portal-doc-bottom .portal-btn-sm-primary').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          showToast('Downloading official policy certificate PDF archive...', 'fa-file-arrow-down');
+        });
+      });
+
+      // Renewals 1-Click Action
+      document.querySelectorAll('.btn-renew-action').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          showToast('Renewal confirmed! Policy #POL-2026-PST03 renewed for $49.30.', 'fa-shield-halved');
+        });
+      });
+
+      // Flour Points Rewards Redemption
+      document.querySelectorAll('.btn-claim-reward').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const card = btn.closest('.perk-claim-card');
+          const rewardTitle = card ? card.querySelector('h4').textContent : 'Reward';
+          showToast(`Redeemed! Voucher for "${rewardTitle}" generated.`, 'fa-coins');
+        });
+      });
+
+      // Present Counter QR Code
+      const qrBtn = document.querySelector('.portal-stepper-wrap .portal-btn-sm-primary');
+      if (qrBtn) {
+        qrBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          showToast('Voucher #7842 ready for bakery counter scanner handoff.', 'fa-qrcode');
         });
       }
     });

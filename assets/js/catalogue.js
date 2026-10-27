@@ -4,7 +4,29 @@
  * shopping bag drawer, quantity management, newsletter, and mobile drawer.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+// Immediate global cart hooks
+window.openStacklyCart = function(e) {
+  if (e && typeof e.preventDefault === 'function') e.preventDefault();
+  if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+  const overlay = document.getElementById('cartModalOverlay');
+  if (!overlay) return;
+  if (typeof window.renderStacklyCart === 'function') {
+    try { window.renderStacklyCart(); } catch (_) {}
+  }
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeStacklyCart = function(e) {
+  if (e && typeof e.preventDefault === 'function') e.preventDefault();
+  if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+  const overlay = document.getElementById('cartModalOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+};
+
+function initCatalogue() {
   // --------------------------------------------------------------------------
   // 1. STICKY NAVBAR SCROLL STATE
   // --------------------------------------------------------------------------
@@ -79,39 +101,31 @@ document.addEventListener('DOMContentLoaded', () => {
   // --------------------------------------------------------------------------
   // 4. INTERACTIVE SHOPPING BAG DRAWER
   // --------------------------------------------------------------------------
-  const cartToggle = document.getElementById('cartToggle');
-  const cartOverlay = document.getElementById('cartModalOverlay');
-  const cartCloseBtn = document.getElementById('cartCloseBtn');
-  const cartItemsContainer = document.getElementById('cartItemsList');
-  const cartBadge = document.querySelector('.nav-cart-badge');
-  const cartSubtotalEl = document.getElementById('cartSubtotal');
-  const cartTotalEl = document.getElementById('cartTotal');
+  function parsePrice(val) {
+    if (typeof val === 'number') return isNaN(val) ? 0 : val;
+    if (!val) return 0;
+    const cleaned = String(val).replace(/[^0-9.]/g, '');
+    const parsed = parseFloat(cleaned);
+    return isNaN(parsed) ? 0 : parsed;
+  }
 
-  // Default sample items matching Figma mock
-  let cart = [
-    {
-      id: 'croissant',
-      name: 'Classic Butter Croissant',
-      price: 4.50,
-      qty: 1,
-      img: 'assets/images/catalogue_spotlight_croissant.webp'
-    },
-    {
-      id: 'sourdough',
-      name: 'Country Sourdough',
-      price: 8.50,
-      qty: 1,
-      img: 'assets/images/catalogue_spotlight_sourdough.webp'
-    }
-  ];
+  // Cart state - loaded from localStorage if previously stored
+  let cart = [];
 
-  // Try load from localStorage if exists
   try {
-    const saved = localStorage.getItem('stackly_cart');
+    const saved = localStorage.getItem('stackly_cart') || localStorage.getItem('kneadly_cart');
     if (saved) {
       const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        cart = parsed;
+      if (Array.isArray(parsed)) {
+        cart = parsed.map(item => {
+          return {
+            id: item.id || ('item-' + Math.random().toString(36).substr(2, 8)),
+            name: item.name || 'Bakery Item',
+            price: parsePrice(item.price),
+            qty: Math.max(1, parseInt(item.qty || item.quantity, 10) || 1),
+            img: item.img || item.image || 'assets/images/catalogue_spotlight_croissant.webp'
+          };
+        });
       }
     }
   } catch (_) {}
@@ -119,45 +133,79 @@ document.addEventListener('DOMContentLoaded', () => {
   function saveCart() {
     try {
       localStorage.setItem('stackly_cart', JSON.stringify(cart));
+      const mirrored = cart.map(item => ({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: item.qty,
+        image: item.img
+      }));
+      localStorage.setItem('kneadly_cart', JSON.stringify(mirrored));
+      window.dispatchEvent(new Event('storage'));
     } catch (_) {}
   }
 
+  function updateCartBadge(count) {
+    const badges = document.querySelectorAll('.nav-cart-badge, #cartBadge');
+    badges.forEach(b => {
+      b.textContent = count.toString();
+    });
+    const dots = document.querySelectorAll('.cart-badge-dot, #cartDot');
+    dots.forEach(d => {
+      d.classList.toggle('active', count > 0);
+    });
+  }
+
   function renderCart() {
+    const cartItemsContainer = document.getElementById('cartItemsList');
+    const cartSubtotalEl = document.getElementById('cartSubtotal');
+    const cartTotalEl = document.getElementById('cartTotal');
+
+    let subtotal = 0;
+    let totalItems = 0;
+
+    cart.forEach(item => {
+      const p = parsePrice(item.price);
+      const q = Math.max(1, parseInt(item.qty, 10) || 1);
+      subtotal += p * q;
+      totalItems += q;
+    });
+
+    updateCartBadge(totalItems);
+
+    if (cartSubtotalEl) cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+    if (cartTotalEl) cartTotalEl.textContent = `$${subtotal.toFixed(2)}`;
+
     if (!cartItemsContainer) return;
 
     if (cart.length === 0) {
       cartItemsContainer.innerHTML = `
-        <div class="cart-empty-message">
-          <i class="fa-solid fa-basket-shopping" style="font-size: 2.5rem; color: var(--color-caramel); margin-bottom: 1rem; display: block;"></i>
-          <p style="font-weight: 700; color: #fff; margin-bottom: 0.5rem;">Your shopping bag is empty</p>
-          <p style="font-size: 0.88rem; color: var(--text-dark-muted);">Browse our fresh daily hearth pulls and flaky pastries to add your favorites.</p>
+        <div class="cart-empty-message" style="text-align: center; padding: 3rem 1.5rem;">
+          <i class="fa-solid fa-basket-shopping" style="font-size: 2.5rem; color: var(--color-caramel, #C68B59); margin-bottom: 1rem; display: block;"></i>
+          <p style="font-weight: 700; color: #fff; margin-bottom: 0.5rem; font-size: 1.1rem;">Your shopping bag is empty</p>
+          <p style="font-size: 0.88rem; color: var(--text-dark-muted, #A89F91); line-height: 1.5;">Browse our fresh daily hearth pulls and flaky pastries to add your favorites.</p>
         </div>
       `;
-      if (cartSubtotalEl) cartSubtotalEl.textContent = '$0.00';
-      if (cartTotalEl) cartTotalEl.textContent = '$0.00';
-      if (cartBadge) cartBadge.textContent = '0';
       return;
     }
 
-    let subtotal = 0;
-    let totalItems = 0;
     let html = '';
-
     cart.forEach((item, index) => {
-      const itemTotal = item.price * item.qty;
-      subtotal += itemTotal;
-      totalItems += item.qty;
+      const p = parsePrice(item.price);
+      const q = Math.max(1, parseInt(item.qty, 10) || 1);
+      const img = item.img || 'assets/images/catalogue_spotlight_croissant.webp';
+      const name = item.name || 'Bakery Item';
 
       html += `
         <div class="cart-item" data-id="${item.id}">
-          <img src="${item.img}" alt="${item.name}" class="cart-item-thumb">
+          <img src="${img}" alt="${name}" class="cart-item-thumb">
           <div class="cart-item-details">
-            <h4 class="cart-item-name">${item.name}</h4>
-            <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+            <h4 class="cart-item-name">${name}</h4>
+            <div class="cart-item-price">$${p.toFixed(2)}</div>
           </div>
           <div class="cart-item-qty">
             <button class="qty-btn" data-action="dec" data-index="${index}" aria-label="Decrease quantity">&minus;</button>
-            <span class="qty-number">${item.qty}</span>
+            <span class="qty-number">${q}</span>
             <button class="qty-btn" data-action="inc" data-index="${index}" aria-label="Increase quantity">&plus;</button>
           </div>
           <button class="cart-item-remove" data-index="${index}" aria-label="Remove item">
@@ -169,20 +217,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cartItemsContainer.innerHTML = html;
 
-    const total = subtotal; // No tax on unheated bakery items in NY or inclusive
-    if (cartSubtotalEl) cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
-    if (cartTotalEl) cartTotalEl.textContent = `$${total.toFixed(2)}`;
-    if (cartBadge) cartBadge.textContent = totalItems.toString();
-
     // Attach listeners to newly rendered qty & remove buttons
     cartItemsContainer.querySelectorAll('.qty-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         const action = e.currentTarget.getAttribute('data-action');
         const idx = parseInt(e.currentTarget.getAttribute('data-index'), 10);
+        if (isNaN(idx) || !cart[idx]) return;
+
         if (action === 'inc') {
-          cart[idx].qty += 1;
+          cart[idx].qty = (parseInt(cart[idx].qty, 10) || 1) + 1;
         } else if (action === 'dec') {
-          cart[idx].qty -= 1;
+          cart[idx].qty = (parseInt(cart[idx].qty, 10) || 1) - 1;
           if (cart[idx].qty <= 0) {
             cart.splice(idx, 1);
           }
@@ -194,7 +241,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cartItemsContainer.querySelectorAll('.cart-item-remove').forEach(btn => {
       btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         const idx = parseInt(e.currentTarget.getAttribute('data-index'), 10);
+        if (isNaN(idx) || !cart[idx]) return;
         cart.splice(idx, 1);
         saveCart();
         renderCart();
@@ -203,9 +253,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function openCart() {
-    if (!cartOverlay) return;
-    renderCart();
-    cartOverlay.classList.add('open');
+    const overlay = document.getElementById('cartModalOverlay');
+    if (!overlay) return;
+    try {
+      renderCart();
+    } catch (err) {
+      console.error('Cart render error:', err);
+    }
+    overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
@@ -214,32 +269,49 @@ document.addEventListener('DOMContentLoaded', () => {
       if (typeof e.preventDefault === 'function') e.preventDefault();
       if (typeof e.stopPropagation === 'function') e.stopPropagation();
     }
-    if (!cartOverlay) return;
-    cartOverlay.classList.remove('open');
+    const overlay = document.getElementById('cartModalOverlay');
+    if (!overlay) return;
+    overlay.classList.remove('open');
     document.body.style.overflow = '';
   }
 
-  if (cartToggle) {
-    cartToggle.addEventListener('click', (e) => {
+  // Expose globally
+  window.openStacklyCart = openCart;
+  window.closeStacklyCart = closeCart;
+
+  // Global document click delegation for all cart triggers
+  document.addEventListener('click', (e) => {
+    // 1. Shopping Bag Header Button
+    const bagToggle = e.target.closest('#cartToggle, .action-btn-bag');
+    if (bagToggle) {
       e.preventDefault();
+      e.stopPropagation();
       openCart();
-    });
-  }
+      return;
+    }
 
-  if (cartCloseBtn) {
-    cartCloseBtn.addEventListener('click', (e) => {
+    // 2. Cart Close Button inside Drawer
+    const closeBtn = e.target.closest('#cartCloseBtn, .cart-close-btn');
+    if (closeBtn) {
+      e.preventDefault();
+      e.stopPropagation();
       closeCart(e);
-    });
-  }
+      return;
+    }
 
-  if (cartOverlay) {
-    cartOverlay.addEventListener('click', (e) => {
-      if (e.target === cartOverlay) closeCart();
-    });
-  }
+    // 3. Cart Overlay Backdrop Click (outside drawer)
+    const overlay = document.getElementById('cartModalOverlay');
+    if (overlay && e.target === overlay) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeCart(e);
+      return;
+    }
+  });
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && cartOverlay && cartOverlay.classList.contains('open')) {
+    const overlay = document.getElementById('cartModalOverlay');
+    if (e.key === 'Escape' && overlay && overlay.classList.contains('open')) {
       closeCart();
     }
   });
@@ -248,14 +320,15 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-add-to-cart]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const id = btn.getAttribute('data-id');
-      const name = btn.getAttribute('data-name');
-      const price = parseFloat(btn.getAttribute('data-price'));
-      const img = btn.getAttribute('data-img');
+      e.stopPropagation();
+      const id = btn.getAttribute('data-id') || ('prod-' + Math.random().toString(36).substr(2, 6));
+      const name = btn.getAttribute('data-name') || 'Fresh Bakery Item';
+      const price = parsePrice(btn.getAttribute('data-price'));
+      const img = btn.getAttribute('data-img') || 'assets/images/catalogue_spotlight_croissant.webp';
 
       const existingIndex = cart.findIndex(item => item.id === id);
       if (existingIndex > -1) {
-        cart[existingIndex].qty += 1;
+        cart[existingIndex].qty = (parseInt(cart[existingIndex].qty, 10) || 1) + 1;
       } else {
         cart.push({ id, name, price, qty: 1, img });
       }
@@ -265,7 +338,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Button feedback
       const originalHtml = btn.innerHTML;
-      btn.innerHTML = '<i class="fa-solid fa-check"></i> Added!';
+      const isQuickAdd = btn.classList.contains('card-quick-add');
+      if (isQuickAdd) {
+        btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+      } else {
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Added!';
+      }
       btn.style.backgroundColor = '#16A34A';
       btn.style.borderColor = '#16A34A';
       btn.style.color = '#FFFFFF';
@@ -275,12 +353,21 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.style.backgroundColor = '';
         btn.style.borderColor = '';
         btn.style.color = '';
-      }, 1500);
+      }, 1200);
+
+      // Open the cart drawer to show the item in the bag!
+      openCart();
     });
   });
 
   // Initial render of cart
+  window.renderStacklyCart = renderCart;
   renderCart();
+
+  // Auto open cart if URL parameter or hash requests it
+  if (window.location.search.includes('openCart') || window.location.hash.includes('cart')) {
+    setTimeout(openCart, 200);
+  }
 
   // --------------------------------------------------------------------------
   // 5. NEWSLETTER SUBSCRIPTION STRIP
@@ -375,5 +462,12 @@ document.addEventListener('DOMContentLoaded', () => {
       disableMutationObserver: false
     });
   }
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initCatalogue);
+} else {
+  initCatalogue();
+}
+
 

@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
   <!-- Auth Stylesheet -->
-  <link rel="stylesheet" href="assets/css/auth.css?v=4">
+  <link rel="stylesheet" href="assets/css/auth.css?v=6">
 
   <style>
     .form-control.is-invalid {
@@ -267,6 +267,8 @@
         localStorage.removeItem('stackly_user_email');
         sessionStorage.removeItem('stackly_user_email');
         localStorage.removeItem('user_email');
+        localStorage.removeItem('user_name');
+        sessionStorage.removeItem('user_name');
       } catch (_) {}
 
       const loginForm = document.getElementById('loginForm');
@@ -362,17 +364,26 @@
 
           const emailVal = emailInput ? emailInput.value.trim() : '';
 
-          // Capture entered email for dashboard greeting
+          // Capture entered email for dashboard greeting & profile display
           localStorage.setItem('stackly_user_email', emailVal);
           sessionStorage.setItem('stackly_user_email', emailVal);
           localStorage.setItem('user_email', emailVal);
 
-          // Store user name fallback if not present
-          if (!localStorage.getItem('user_name')) {
-            const prefix = emailVal.split('@')[0] || 'User';
-            const cleanName = prefix.charAt(0).toUpperCase() + prefix.slice(1);
-            localStorage.setItem('user_name', cleanName);
+          // Derive respective display name from entered email (e.g. "avsvdsv@gmail.com" -> "Avsvdsv")
+          const prefix = emailVal.split('@')[0] || 'User';
+          let cleanName = prefix;
+          if (/[._-]/.test(prefix)) {
+            cleanName = prefix
+              .split(/[._-]+/)
+              .filter(Boolean)
+              .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+              .join(' ');
+          } else {
+            cleanName = prefix.charAt(0).toUpperCase() + prefix.slice(1);
           }
+
+          localStorage.setItem('user_name', cleanName);
+          sessionStorage.setItem('user_name', cleanName);
 
           // Read and store selected role
           const roleRadio = document.querySelector('input[name="role"]:checked');

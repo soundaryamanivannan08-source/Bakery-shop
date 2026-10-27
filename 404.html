@@ -106,23 +106,22 @@
       100% { transform: translateY(-16px) rotate(45deg); opacity: 0.65; }
     }
 
-    /* Top Brand Logo */
-    .top-brand {
+    /* Brand Logo Inside Error Card */
+    .card-brand-logo {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      margin-bottom: 2.25rem;
+      margin-bottom: 1.75rem;
       transition: transform 0.3s var(--ease-smooth), opacity 0.3s ease;
-      z-index: 10;
     }
 
-    .top-brand:hover {
-      transform: translateY(-2px) scale(1.03);
+    .card-brand-logo:hover {
+      transform: translateY(-2px) scale(1.04);
       opacity: 0.95;
     }
 
-    .top-brand-logo-img {
+    .card-brand-logo-img {
       height: 48px;
       width: auto;
       max-width: 165px;
@@ -325,8 +324,12 @@
       body {
         padding: 2rem 1rem;
       }
-      .top-brand {
-        margin-bottom: 1.75rem;
+      .card-brand-logo {
+        margin-bottom: 1.25rem;
+      }
+      .card-brand-logo-img {
+        height: 40px;
+        max-width: 140px;
       }
       .error-card {
         padding: 2.25rem 1.25rem;
@@ -370,13 +373,13 @@
   <div class="crumb-bg crumb-3"></div>
   <div class="crumb-bg crumb-4"></div>
 
-  <!-- Top Logo: Stackly Brand Logo -->
-  <a href="index.html" class="top-brand" aria-label="Stackly Bakery Home" data-aos="fade-down" data-aos-duration="700">
-    <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="top-brand-logo-img" width="136" height="60">
-  </a>
-
   <!-- Main Error Card -->
   <main class="error-card" role="main" data-aos="zoom-in" data-aos-duration="800">
+    
+    <!-- Brand Logo: Stackly Inside Card -->
+    <a href="index.html" class="card-brand-logo" aria-label="Stackly Bakery Home">
+      <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="card-brand-logo-img" width="136" height="60">
+    </a>
     
     <!-- 4 [Cookie] 4 Graphic -->
     <div class="error-number-graphic" aria-hidden="true" data-aos="zoom-in" data-aos-delay="100">

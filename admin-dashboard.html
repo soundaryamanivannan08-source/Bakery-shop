@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard &bull; Stackly Artisan Bakery</title>
-  <meta name="description" content="Stackly Bakery Administrator Control Deck. Manage hearth batches, counter orders, and flour inventory.">
+  <title>Admin Dashboard &bull; Stackly Portal</title>
+  <meta name="description" content="Stackly Administrator Control Deck. Manage hearth batches, counter orders, and flour inventory.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fb5022'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z'/></svg>">
@@ -23,713 +23,1705 @@
   <!-- Animate.css via CDNJS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
-  <!-- Auth & Dashboard Stylesheet -->
-  <link rel="stylesheet" href="assets/css/auth.css?v=4">
+  <!-- Auth & Base Dashboard Stylesheet -->
+  <link rel="stylesheet" href="assets/css/auth.css?v=6">
+
+  <!-- Modern Portal Dashboard Layout Stylesheet -->
+  <link rel="stylesheet" href="assets/css/portal-dashboard.css?v=14">
 </head>
 <body class="dashboard-page">
 
-  <!-- ==============================================
-       TOP NAVIGATION BAR
-       ============================================== -->
-  <header class="dash-top-navbar" id="dashTopNavbar">
+  <!-- Mobile Sidebar Backdrop Overlay -->
+  <div class="portal-sidebar-backdrop" id="portalBackdrop"></div>
 
+  <!-- Master Portal Layout -->
+  <div class="portal-layout">
 
-    <!-- Right: Notifications, Cart & User Profile -->
-    <div class="dash-nav-right">
-
-      <!-- Notifications Bell -->
-      <div class="dash-nav-dropdown-wrap">
-        <button class="dash-nav-btn" id="notifBtn" aria-label="View notifications" aria-expanded="false" title="Notifications">
-          <i class="fa-solid fa-bell"></i>
-          <span class="dash-notif-count">3</span>
-        </button>
-        <div class="dash-dropdown-panel notif-panel" id="notifDropdown">
-          <div class="dropdown-panel-head">
-            <h4>Bakehouse Alerts</h4>
-            <span class="badge-unread">3 New</span>
-          </div>
-          <div class="notif-list">
-            <div class="notif-item unread">
-              <div class="notif-icon"><i class="fa-solid fa-temperature-arrow-up"></i></div>
-              <div class="notif-content">
-                <p class="notif-title">Chamber 3 at 240&deg;C</p>
-                <p class="notif-desc">Deck reached target temperature. Ready for Batch #43 load.</p>
-                <span class="notif-time">4 mins ago</span>
-              </div>
-            </div>
-            <div class="notif-item unread">
-              <div class="notif-icon" style="background:#FAF0DF; color:#8C6520;"><i class="fa-solid fa-wheat-awn"></i></div>
-              <div class="notif-content">
-                <p class="notif-title">Flour Shipment In Transit</p>
-                <p class="notif-desc">Moulin de Chars 840kg T65 flour arrives at 11:30 AM.</p>
-                <span class="notif-time">35 mins ago</span>
-              </div>
-            </div>
-            <div class="notif-item unread">
-              <div class="notif-icon" style="background:#EBF5FB; color:#2980B9;"><i class="fa-solid fa-graduation-cap"></i></div>
-              <div class="notif-content">
-                <p class="notif-title">Workshop Capacity Reached</p>
-                <p class="notif-desc">Saturday masterclass is 100% booked (8 / 8 bakers registered).</p>
-                <span class="notif-time">1 hr ago</span>
-              </div>
-            </div>
-          </div>
-          <a href="#batches" class="dropdown-panel-footer">View Deck Timetable &rarr;</a>
-        </div>
-      </div>
-
-      <!-- Shopping Bag / Store link -->
-      <a href="index.html#menu" class="dash-nav-btn" title="View Storefront Catalogue" aria-label="Storefront">
-        <i class="fa-solid fa-store"></i>
-      </a>
-
-      <!-- Admin Profile Pill -->
-      <div class="dash-nav-profile-pill" id="profileBtn" style="cursor: default;">
-        <div class="dash-avatar-circle admin" id="dashAvatar">AD</div>
-        <div class="dash-profile-meta">
-          <span class="profile-name" id="dashProfileName">Julian</span>
-          <span class="profile-role" id="dashProfileRole" style="color: #FFB39E;">Admin</span>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Mobile Drawer Backdrop -->
-  <div class="dash-sidebar-backdrop" id="dashBackdrop"></div>
-
-  <!-- Master Layout Wrapper -->
-  <div class="dash-wrapper">
     <!-- ==============================================
-         SIDEBAR NAVIGATION
+         LEFT SIDEBAR NAVIGATION (Deep Roast Espresso)
          ============================================== -->
-    <aside class="dash-sidebar" id="dashSidebar">
-      <!-- Sidebar Top / Brand -->
-      <div>
-        <div class="dash-sidebar-top">
-          <a href="index.html" class="dash-brand-block" aria-label="Stackly Home">
-            <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="dash-brand-logo-img" width="102" height="46">
-          </a>
-          <button class="sidebar-close-btn" id="closeSidebarBtn" aria-label="Close sidebar">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-
-        <!-- Role Badge Card -->
-        <div class="dash-role-card admin">
-          <div class="dash-role-info">
-            <span class="dash-role-label">Management Deck</span>
-            <span class="dash-role-title">Head Baker &bull; Admin</span>
-          </div>
-          <i class="fa-solid fa-user-shield dash-role-badge-icon"></i>
-        </div>
-
-        <!-- Sidebar Menu Items -->
-        <nav class="dash-sidebar-nav" aria-label="Admin Dashboard Navigation">
-          <span class="dash-nav-section-title">Hearth Control</span>
-
-          <!-- 1. Overview -->
-          <button class="dash-menu-btn active" data-tab="overview">
-            <div class="dash-menu-btn-left">
-              <i class="fa-solid fa-chart-line"></i>
-              <span>Command Deck</span>
-            </div>
-          </button>
-
-          <!-- 2. Live Hearth Batches -->
-          <button class="dash-menu-btn" data-tab="batches">
-            <div class="dash-menu-btn-left">
-              <i class="fa-solid fa-fire-burner"></i>
-              <span>Oven Timetable</span>
-            </div>
-            <span class="dash-menu-badge" style="background-color: #FFF2EC; color: var(--color-accent-orange);">240&deg;C</span>
-          </button>
-
-          <!-- 3. Orders & Holds -->
-          <button class="dash-menu-btn" data-tab="orders">
-            <div class="dash-menu-btn-left">
-              <i class="fa-solid fa-bag-shopping"></i>
-              <span>Orders &amp; Preorders</span>
-            </div>
-            <span class="dash-menu-badge">142</span>
-          </button>
-
-          <!-- 4. Flour & Inventory -->
-          <button class="dash-menu-btn" data-tab="inventory">
-            <div class="dash-menu-btn-left">
-              <i class="fa-solid fa-wheat-awn"></i>
-              <span>Flour &amp; Stock</span>
-            </div>
-            <span class="dash-menu-badge">840 kg</span>
-          </button>
-
-          <!-- 5. Baking Academy -->
-          <button class="dash-menu-btn" data-tab="workshops">
-            <div class="dash-menu-btn-left">
-              <i class="fa-solid fa-graduation-cap"></i>
-              <span>Baking Academy</span>
-            </div>
-            <span class="dash-menu-badge" style="background-color: #EBF7EE; color: #2F6D38;">Full</span>
-          </button>
-
-          <!-- 6. Store Settings -->
-          <button class="dash-menu-btn" data-tab="settings">
-            <div class="dash-menu-btn-left">
-              <i class="fa-solid fa-sliders"></i>
-              <span>Deck &amp; Store Settings</span>
-            </div>
-          </button>
-        </nav>
+    <aside class="portal-sidebar" id="portalSidebar">
+      <!-- Top Brand Header: Official Stackly Logo -->
+      <div class="portal-brand-wrap">
+        <a href="index.html" class="portal-brand" aria-label="Stackly Home">
+          <img src="assets/images/stackly_006.webp?v=3" alt="Stackly" class="portal-brand-logo-img" width="160" height="50">
+        </a>
+        <button class="portal-sidebar-close" id="closeSidebarBtn" aria-label="Close sidebar">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
       </div>
 
-      <!-- Sidebar Bottom Actions -->
-      <div class="dash-sidebar-bottom">
-        <a href="login.html" class="dash-footer-link logout">
+      <!-- Section Title -->
+      <div class="portal-nav-section">DASHBOARD VIEWS</div>
+
+      <!-- Navigation Menu Items -->
+      <nav class="portal-nav-list" aria-label="Admin Dashboard Navigation">
+        <!-- 1. Overview -->
+        <button class="portal-nav-item active" data-tab="overview">
+          <i class="fa-solid fa-chart-pie portal-item-icon-circle"></i>
+          <span>Overview</span>
+        </button>
+
+        <!-- 2. Live Batches -->
+        <button class="portal-nav-item" data-tab="batches">
+          <i class="fa-solid fa-fire-burner"></i>
+          <span>Live Batches</span>
+        </button>
+
+        <!-- 3. Orders & Preorders -->
+        <button class="portal-nav-item" data-tab="orders">
+          <i class="fa-solid fa-file-lines"></i>
+          <span>Orders &amp; Preorders</span>
+        </button>
+
+        <!-- 4. Flour & Inventory -->
+        <button class="portal-nav-item" data-tab="inventory">
+          <i class="fa-solid fa-wheat-awn"></i>
+          <span>Flour &amp; Inventory</span>
+        </button>
+
+        <!-- 5. Baking Academy -->
+        <button class="portal-nav-item" data-tab="workshops">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <span>Baking Academy</span>
+        </button>
+
+        <!-- 6. Deck & Store Settings -->
+        <button class="portal-nav-item" data-tab="settings">
+          <i class="fa-solid fa-user-gear"></i>
+          <span>Deck &amp; Settings</span>
+        </button>
+      </nav>
+
+      <!-- Bottom Pinned Logout -->
+      <div class="portal-sidebar-bottom">
+        <a href="login.html" class="portal-logout-btn">
           <i class="fa-solid fa-arrow-right-from-bracket"></i>
-          <span>Sign Out</span>
+          <span>Logout</span>
         </a>
       </div>
     </aside>
 
     <!-- ==============================================
-         MAIN CONTENT AREA & DYNAMIC PANELS
+         MAIN CONTENT AREA (Right of Sidebar)
          ============================================== -->
-    <main class="dash-content-area">
+    <div class="portal-main">
 
       <!-- ==============================================
-           TAB 1: COMMAND DECK (Overview)
+           TOP SEAMLESS HEADER
            ============================================== -->
-      <section class="dash-tab-panel active" id="overview">
-        <!-- Welcome Banner -->
-        <div class="dash-welcome-banner" data-aos="fade-down">
-          <div class="dash-welcome-content">
-            <h1 id="dashWelcomeTitle">Welcome, <span id="dashWelcomeName">Head Baker</span> &amp; Admin</h1>
-            <p>Hearth deck status: Deck ovens active at 240&deg;C &bull; All 5 daily batches on schedule &bull; 142 morning orders logged.</p>
-          </div>
+      <header class="portal-header">
+        <div class="portal-header-left">
+          <button class="portal-menu-toggle" id="portalMenuToggle" aria-label="Open navigation menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="portal-header-title" id="pageHeaderTitle">Overview</h1>
         </div>
 
-        <!-- 4 Stat Cards Grid -->
-        <div class="dash-stats-grid">
-          <div class="dash-stat-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="dash-stat-icon orange">
-              <i class="fa-solid fa-bag-shopping"></i>
-            </div>
-            <div class="dash-stat-info">
-              <h3>142</h3>
-              <span>Today's Orders</span>
+        <div class="portal-header-right">
+          <!-- Calendar Date Pill -->
+          <div class="portal-date-pill">
+            <i class="fa-regular fa-calendar-check"></i>
+            <span id="portalDateDisplay">October 23, 2026 (Demo)</span>
+          </div>
+
+          <!-- Notifications Bell -->
+          <div class="dash-nav-dropdown-wrap" style="position: relative;">
+            <button class="portal-notif-btn" id="notifBtn" aria-label="View notifications" aria-expanded="false" title="Notifications">
+              <i class="fa-regular fa-bell"></i>
+              <span class="portal-notif-dot"></span>
+            </button>
+            <div class="dash-dropdown-panel notif-panel" id="notifDropdown" style="right: 0; top: 120%;">
+              <div class="dropdown-panel-head">
+                <h4>Bakehouse Alerts</h4>
+                <span class="badge-unread">3 New</span>
+              </div>
+              <div class="notif-list">
+                <div class="notif-item unread">
+                  <div class="notif-icon"><i class="fa-solid fa-temperature-arrow-up"></i></div>
+                  <div class="notif-content">
+                    <p class="notif-title">Chamber 3 at 240&deg;C</p>
+                    <p class="notif-desc">Deck reached target temperature. Ready for Batch #43 load.</p>
+                    <span class="notif-time">4 mins ago</span>
+                  </div>
+                </div>
+                <div class="notif-item unread">
+                  <div class="notif-icon" style="background:#FAF0DF; color:#8C6520;"><i class="fa-solid fa-wheat-awn"></i></div>
+                  <div class="notif-content">
+                    <p class="notif-title">Flour Shipment In Transit</p>
+                    <p class="notif-desc">Moulin de Chars 840kg T65 flour arrives at 11:30 AM.</p>
+                    <span class="notif-time">35 mins ago</span>
+                  </div>
+                </div>
+                <div class="notif-item unread">
+                  <div class="notif-icon" style="background:#EBF5FB; color:#2980B9;"><i class="fa-solid fa-graduation-cap"></i></div>
+                  <div class="notif-content">
+                    <p class="notif-title">Workshop Capacity Reached</p>
+                    <p class="notif-desc">Saturday masterclass is 100% booked (8 / 8 bakers registered).</p>
+                    <span class="notif-time">1 hr ago</span>
+                  </div>
+                </div>
+              </div>
+              <a href="#batches" class="dropdown-panel-footer">View Deck Timetable &rarr;</a>
             </div>
           </div>
 
-          <div class="dash-stat-card" data-aos="fade-up" data-aos-delay="150">
-            <div class="dash-stat-icon gold">
-              <i class="fa-solid fa-fire-burner"></i>
-            </div>
-            <div class="dash-stat-info">
-              <h3>5 / 5</h3>
-              <span>Daily Hearth Batches</span>
-            </div>
-          </div>
-
-          <div class="dash-stat-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="dash-stat-icon green">
-              <i class="fa-solid fa-wheat-awn"></i>
-            </div>
-            <div class="dash-stat-info">
-              <h3>840 kg</h3>
-              <span>Organic Levain Flour</span>
-            </div>
-          </div>
-
-          <div class="dash-stat-card" data-aos="fade-up" data-aos-delay="250">
-            <div class="dash-stat-icon brown">
-              <i class="fa-solid fa-graduation-cap"></i>
-            </div>
-            <div class="dash-stat-info">
-              <h3>24 / 24</h3>
-              <span>Masterclass Seats Full</span>
+          <!-- User Profile Display Pill (Name & Mail ID) -->
+          <div class="portal-profile-pill" id="profilePill" title="Admin Account Details">
+            <div class="portal-avatar-circle" id="dashAvatar">S</div>
+            <div class="portal-profile-info">
+              <span class="portal-profile-name" id="dashProfileName">Soundaryamanivannan08</span>
+              <span class="portal-profile-email" id="dashProfileEmail">soundaryamanivannan08@gmail.com</span>
             </div>
           </div>
         </div>
+      </header>
 
-        <!-- 2-Column Content Grid -->
-        <div class="dash-content-grid">
-          <!-- Left: Recent Orders Table -->
-          <div class="dash-panel" data-aos="fade-up" data-aos-delay="200">
-            <div class="dash-panel-header">
+      <!-- ==============================================
+           PORTAL BODY: DYNAMIC TAB PANELS
+           ============================================== -->
+      <main class="portal-body">
+
+        <!-- ==============================================
+             TAB 1: OVERVIEW (Default Active)
+             ============================================== -->
+        <section class="portal-tab-panel active" id="overview">
+
+          <!-- Welcome Hero Section -->
+          <div class="portal-welcome-banner" data-aos="fade-down" data-aos-duration="600">
+            <div class="portal-welcome-left">
+              <div class="portal-welcome-badge" style="background: #FFF0EB; color: #FB5022; border-color: rgba(251, 80, 34, 0.2);">
+                <span class="portal-pulse-dot"></span> Master Bakehouse Administrator
+              </div>
+              <h2 class="portal-welcome-title">
+                Welcome back, <span class="welcome-name-highlight" id="welcomeUserName">Soundaryamanivannan08</span>!
+              </h2>
+              <p class="portal-welcome-desc">
+                Live deck oven telemetry, active sourdough production batches, and inventory reserves for today.
+              </p>
+            </div>
+            <div class="portal-welcome-right">
+              <div class="portal-welcome-user-tag" title="Logged in admin email address">
+                <i class="fa-regular fa-envelope"></i>
+                <span id="welcomeUserEmail">soundaryamanivannan08@gmail.com</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 1: 4 Stat KPI Cards (Exact match to screenshot) -->
+          <div class="portal-kpi-grid">
+            <!-- Card 1: Total Policies -->
+            <div class="portal-kpi-card" data-aos="fade-up" data-aos-delay="50">
+              <div class="portal-kpi-top">
+                <span class="portal-kpi-label">TOTAL POLICIES</span>
+                <div class="portal-kpi-badge badge-blue">
+                  <i class="fa-solid fa-layer-group"></i>
+                </div>
+              </div>
+              <div class="portal-kpi-value">5</div>
+              <div class="portal-kpi-sub">Across 4 categories</div>
+            </div>
+
+            <!-- Card 2: Active Policies -->
+            <div class="portal-kpi-card" data-aos="fade-up" data-aos-delay="100">
+              <div class="portal-kpi-top">
+                <span class="portal-kpi-label">ACTIVE POLICIES</span>
+                <div class="portal-kpi-badge badge-cream">
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+              </div>
+              <div class="portal-kpi-value">4</div>
+              <div class="portal-kpi-sub">Up to date &amp; protected</div>
+            </div>
+
+            <!-- Card 3: Pending Claims -->
+            <div class="portal-kpi-card" data-aos="fade-up" data-aos-delay="150">
+              <div class="portal-kpi-top">
+                <span class="portal-kpi-label">PENDING CLAIMS</span>
+                <div class="portal-kpi-badge badge-lightblue">
+                  <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+              </div>
+              <div class="portal-kpi-value">1</div>
+              <div class="portal-kpi-sub">Claim #CLM-2026-104</div>
+            </div>
+
+            <!-- Card 4: Upcoming Renewals -->
+            <div class="portal-kpi-card" data-aos="fade-up" data-aos-delay="200">
+              <div class="portal-kpi-top">
+                <span class="portal-kpi-label">UPCOMING RENEWALS</span>
+                <div class="portal-kpi-badge badge-amber">
+                  <i class="fa-solid fa-calendar-check"></i>
+                </div>
+              </div>
+              <div class="portal-kpi-value">2</div>
+              <div class="portal-kpi-sub">Within next 45 days</div>
+            </div>
+          </div>
+
+          <!-- Row 2: 2 Charts Side-by-Side (Exact match to screenshot) -->
+          <div class="portal-charts-grid">
+
+            <!-- Left: Annual Claims Settlement History Bar Chart -->
+            <div class="portal-chart-card" data-aos="fade-up" data-aos-delay="250">
+              <div class="portal-chart-header">
+                <div class="portal-chart-title">
+                  <i class="fa-solid fa-chart-column"></i>
+                  <h3>Annual Claims Settlement History</h3>
+                </div>
+                <span class="portal-chart-badge-demo">2026 DEMO DATA</span>
+              </div>
+              <svg class="portal-chart-svg" viewBox="0 0 540 260" preserveAspectRatio="xMidYMid meet">
+                <!-- Grid Lines and Y-Axis Labels -->
+                <g class="chart-grid">
+                  <!-- $2500 -->
+                  <text x="38" y="24" text-anchor="end" class="chart-axis-text">$2500</text>
+                  <line x1="48" y1="20" x2="525" y2="20" class="chart-grid-line" />
+
+                  <!-- $2000 -->
+                  <text x="38" y="64" text-anchor="end" class="chart-axis-text">$2000</text>
+                  <line x1="48" y1="60" x2="525" y2="60" class="chart-grid-line" />
+
+                  <!-- $1500 -->
+                  <text x="38" y="104" text-anchor="end" class="chart-axis-text">$1500</text>
+                  <line x1="48" y1="100" x2="525" y2="100" class="chart-grid-line" />
+
+                  <!-- $1000 -->
+                  <text x="38" y="144" text-anchor="end" class="chart-axis-text">$1000</text>
+                  <line x1="48" y1="140" x2="525" y2="140" class="chart-grid-line" />
+
+                  <!-- $500 -->
+                  <text x="38" y="184" text-anchor="end" class="chart-axis-text">$500</text>
+                  <line x1="48" y1="180" x2="525" y2="180" class="chart-grid-line" />
+
+                  <!-- $0 Base Line -->
+                  <text x="38" y="224" text-anchor="end" class="chart-axis-text">$0</text>
+                  <line x1="48" y1="220" x2="525" y2="220" stroke="#EAE0D8" stroke-width="1.5" />
+                </g>
+
+                <!-- Monthly Bars (Matching exact bars from screenshot) -->
+                <!-- May ($400) -->
+                <rect x="74" y="188" width="32" height="32" rx="4" class="chart-bar" />
+                <text x="90" y="242" text-anchor="middle" class="chart-axis-text">May</text>
+
+                <!-- Jun ($0) -->
+                <text x="170" y="242" text-anchor="middle" class="chart-axis-text">Jun</text>
+
+                <!-- Jul ($2300) -->
+                <rect x="234" y="36" width="32" height="184" rx="4" class="chart-bar" />
+                <text x="250" y="242" text-anchor="middle" class="chart-axis-text">Jul</text>
+
+                <!-- Aug ($0) -->
+                <text x="330" y="242" text-anchor="middle" class="chart-axis-text">Aug</text>
+
+                <!-- Sep ($0) -->
+                <text x="410" y="242" text-anchor="middle" class="chart-axis-text">Sep</text>
+
+                <!-- Oct ($1450) -->
+                <rect x="474" y="104" width="32" height="116" rx="4" class="chart-bar" />
+                <text x="490" y="242" text-anchor="middle" class="chart-axis-text">Oct</text>
+              </svg>
+            </div>
+
+            <!-- Right: Policy Distribution Donut Chart -->
+            <div class="portal-chart-card" data-aos="fade-up" data-aos-delay="300">
+              <div class="portal-chart-header">
+                <div class="portal-chart-title">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <h3>Policy Distribution</h3>
+                </div>
+                <span class="portal-chart-sub">Sum Insured Share</span>
+              </div>
+              <svg class="portal-chart-svg" viewBox="0 0 300 210" preserveAspectRatio="xMidYMid meet">
+                <!-- Donut Segments with Crisp Gaps (Matching Reference Screenshot) -->
+                <!-- Sourdough (Deep Roast Espresso #2C1408) -->
+                <circle cx="150" cy="105" r="62" fill="none" stroke="#2C1408" stroke-width="26"
+                        stroke-dasharray="195 389.56" stroke-dashoffset="0" transform="rotate(-90 150 105)" />
+                <!-- Pastries (Vivid CTA Orange #FB5022) -->
+                <circle cx="150" cy="105" r="62" fill="none" stroke="#FB5022" stroke-width="26"
+                        stroke-dasharray="105 389.56" stroke-dashoffset="-198" transform="rotate(-90 150 105)" />
+                <!-- Baguettes (Artisan Gold #C29548) -->
+                <circle cx="150" cy="105" r="62" fill="none" stroke="#C29548" stroke-width="26"
+                        stroke-dasharray="42 389.56" stroke-dashoffset="-306" transform="rotate(-90 150 105)" />
+                <!-- Brioche (Warm Amber #E67E22) -->
+                <circle cx="150" cy="105" r="62" fill="none" stroke="#E67E22" stroke-width="26"
+                        stroke-dasharray="18 389.56" stroke-dashoffset="-351" transform="rotate(-90 150 105)" />
+                <!-- Beverages (Warm Biscuit / Cream #DEB887) -->
+                <circle cx="150" cy="105" r="62" fill="none" stroke="#DEB887" stroke-width="26"
+                        stroke-dasharray="14.5 389.56" stroke-dashoffset="-372" transform="rotate(-90 150 105)" />
+              </svg>
+              <div class="portal-donut-legend">
+                <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#2C1408;"></span>Sourdough</span>
+                <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#FB5022;"></span>Pastries</span>
+                <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#C29548;"></span>Baguettes</span>
+                <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#E67E22;"></span>Brioche</span>
+                <span class="portal-legend-item"><span class="portal-legend-dot" style="background:#DEB887;"></span>Beverages</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 3: Active Orders & Holds Overview Table -->
+          <div class="portal-card-section" data-aos="fade-up" data-aos-delay="350">
+            <div class="portal-section-head">
               <h2>Recent Hearth Orders &amp; Counter Holds</h2>
-              <span class="dash-badge ready"><i class="fa-solid fa-rotate"></i> Live Deck Sync</span>
+              <span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> 1 Active Pickup</span>
             </div>
 
-            <table class="dash-table">
-              <thead>
-                <tr>
-                  <th>Order ID</th>
-                  <th>Customer</th>
-                  <th>Items</th>
-                  <th>Total</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>#KD-8921</strong></td>
-                  <td>Sophie Laurent</td>
-                  <td>2x Country Sourdough, 1x Cortado</td>
-                  <td>$19.50</td>
-                  <td><span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Ready at Counter</span></td>
-                </tr>
-                <tr>
-                  <td><strong>#KD-8920</strong></td>
-                  <td>Marcus Vance</td>
-                  <td>4x Butter Croissant, 2x Pain au Chocolat</td>
-                  <td>$28.00</td>
-                  <td><span class="dash-badge baking"><i class="fa-solid fa-fire"></i> In Deck Oven</span></td>
-                </tr>
-                <tr>
-                  <td><strong>#KD-8919</strong></td>
-                  <td>Elena Rostova</td>
-                  <td>1x Valrhona Chocolate Gateau (Catering)</td>
-                  <td>$85.00</td>
-                  <td><span class="dash-badge holding"><i class="fa-solid fa-clock"></i> Scheduled 2 PM</span></td>
-                </tr>
-                <tr>
-                  <td><strong>#KD-8918</strong></td>
-                  <td>David Chen</td>
-                  <td>1x Rosemary Focaccia, 1x Babka Swirl</td>
-                  <td>$16.75</td>
-                  <td><span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Ready at Counter</span></td>
-                </tr>
-                <tr>
-                  <td><strong>#KD-8917</strong></td>
-                  <td>Claire Moreau</td>
-                  <td>3x Seeded Baguettes, 1x V60 Pour-Over</td>
-                  <td>$18.25</td>
-                  <td><span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Picked Up</span></td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="dash-table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>BATCH / ORDER</th>
+                    <th>CUSTOMER</th>
+                    <th>ITEMS</th>
+                    <th>PICKUP WINDOW</th>
+                    <th>TOTAL</th>
+                    <th>STATUS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#KD-8921</strong></td>
+                    <td>Sophie Laurent</td>
+                    <td>2x Country Sourdough, 1x Cortado</td>
+                    <td>08:00 AM</td>
+                    <td>$19.50</td>
+                    <td><span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Ready at Counter</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#KD-8920</strong></td>
+                    <td>Marcus Vance</td>
+                    <td>4x Butter Croissant, 2x Pain au Chocolat</td>
+                    <td>09:15 AM</td>
+                    <td>$28.00</td>
+                    <td><span class="dash-badge baking"><i class="fa-solid fa-fire"></i> In Deck Oven</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#KD-8919</strong></td>
+                    <td>Elena Rostova</td>
+                    <td>1x Valrhona Chocolate Gateau (Catering)</td>
+                    <td>02:00 PM</td>
+                    <td>$85.00</td>
+                    <td><span class="dash-badge holding"><i class="fa-solid fa-clock"></i> Scheduled 2 PM</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#KD-8918</strong></td>
+                    <td>David Chen</td>
+                    <td>1x Rosemary Focaccia, 1x Babka Swirl</td>
+                    <td>12:45 PM</td>
+                    <td>$16.75</td>
+                    <td><span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Ready at Counter</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             TAB 2: LIVE HEARTH BATCHES (Oven Timetable)
+             ============================================== -->
+        <section class="portal-tab-panel" id="batches">
+
+          <!-- Sub-Tab Mini-KPIs -->
+          <div class="portal-sub-kpi-grid">
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FFF0EB; color:#FB5022;">
+                <i class="fa-solid fa-fire-burner"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">ACTIVE HEARTH BATCHES</span>
+                <span class="portal-sub-kpi-val">3</span>
+                <span class="portal-sub-kpi-desc">Chambers A, B &amp; C baking</span>
+              </div>
+            </div>
+
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#EBF5EB; color:#2E7D32;">
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">DAILY BAKE TARGET</span>
+                <span class="portal-sub-kpi-val">380 / 420</span>
+                <span class="portal-sub-kpi-desc">90.5% Yield achieved</span>
+              </div>
+            </div>
+
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FBF4E8; color:#C29548;">
+                <i class="fa-solid fa-temperature-arrow-up"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">AVG DECK TEMPERATURE</span>
+                <span class="portal-sub-kpi-val">238&deg;C</span>
+                <span class="portal-sub-kpi-desc">Refractory stone calibrated</span>
+              </div>
+            </div>
+
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FFF2E2; color:#E67E22;">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">NEXT HEARTH PULL</span>
+                <span class="portal-sub-kpi-val">12:30 PM</span>
+                <span class="portal-sub-kpi-desc">Chamber A &bull; 18m remaining</span>
+              </div>
+            </div>
           </div>
 
-          <!-- Right: Quick Admin Actions -->
-          <div class="dash-panel" data-aos="fade-up" data-aos-delay="300">
-            <div class="dash-panel-header">
-              <h2>Quick Actions</h2>
+          <!-- Stone Deck Chamber Telemetry Live Monitor (3 Chambers) -->
+          <div class="portal-card-section" style="margin-bottom: 1.5rem;">
+            <div class="portal-section-head">
+              <div>
+                <h2>Stone Hearth Chambers &bull; Real-Time Telemetry</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #8C7D75;">Direct digital probes from Bongard 3-deck stone refractory hearth.</p>
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button type="button" class="portal-btn-sm portal-btn-sm-primary btn-calibrate-deck"><i class="fa-solid fa-temperature-half"></i> Calibrate All Hearths</button>
+              </div>
             </div>
 
-            <div class="dash-actions-list">
-              <a href="404.html" class="dash-action-link">
-                <span><i class="fa-solid fa-bread-slice" style="color: var(--color-accent-orange); margin-right: 0.5rem;"></i> View Pastry Menu</span>
-                <i class="fa-solid fa-arrow-right"></i>
+            <div class="portal-chamber-grid">
+              <!-- Chamber A -->
+              <div class="portal-chamber-card" style="border-left: 4px solid var(--portal-orange);">
+                <div class="portal-chamber-head">
+                  <span class="portal-chamber-name"><i class="fa-solid fa-fire" style="color:var(--portal-orange);"></i> Chamber A &bull; Poolish Deck</span>
+                  <span class="dash-badge baking"><i class="fa-solid fa-spinner fa-spin"></i> Active Bake</span>
+                </div>
+                <div style="display:flex; align-items: baseline; justify-content: space-between;">
+                  <div class="portal-chamber-temp">240&deg;C <span>/ Target 240&deg;C</span></div>
+                  <span style="font-size: 0.78rem; font-weight: 700; color: #2E7D32;"><i class="fa-solid fa-check"></i> Temp Steady</span>
+                </div>
+                <div style="font-size: 0.82rem; color: #6E5D55;">
+                  Loaded: <strong>Rosemary Sea Salt Focaccia &amp; Sourdough</strong>
+                </div>
+                <div class="meter-bar" style="margin: 0.25rem 0;">
+                  <div class="meter-fill" style="width: 65%; background-color: var(--portal-orange);"></div>
+                </div>
+                <div style="display:flex; justify-content: space-between; font-size: 0.75rem; color: #8C7D75;">
+                  <span>Steam: 3.2 bar injected</span>
+                  <strong style="color:var(--portal-orange);">18m 42s left</strong>
+                </div>
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.35rem;">
+                  <button type="button" class="portal-btn-sm portal-btn-sm-outline btn-vent" style="flex:1; justify-content:center; font-size:0.75rem;"><i class="fa-solid fa-wind"></i> Vent Steam</button>
+                  <button type="button" class="portal-btn-sm portal-btn-sm-primary btn-pull-check" style="flex:1; justify-content:center; font-size:0.75rem;"><i class="fa-solid fa-bread-slice"></i> Inspect Crust</button>
+                </div>
+              </div>
+
+              <!-- Chamber B -->
+              <div class="portal-chamber-card" style="border-left: 4px solid #C29548;">
+                <div class="portal-chamber-head">
+                  <span class="portal-chamber-name"><i class="fa-solid fa-bread-slice" style="color:#C29548;"></i> Chamber B &bull; Wild Levain Deck</span>
+                  <span class="dash-badge ready"><i class="fa-solid fa-bell"></i> Ready For Load</span>
+                </div>
+                <div style="display:flex; align-items: baseline; justify-content: space-between;">
+                  <div class="portal-chamber-temp" style="color:#C29548;">250&deg;C <span>/ Target 250&deg;C</span></div>
+                  <span style="font-size: 0.78rem; font-weight: 700; color: #2E7D32;"><i class="fa-solid fa-check"></i> High Heat</span>
+                </div>
+                <div style="font-size: 0.82rem; color: #6E5D55;">
+                  Staged: <strong>Country Sourdough 72h Wild Levain (Batch #45)</strong>
+                </div>
+                <div class="meter-bar" style="margin: 0.25rem 0;">
+                  <div class="meter-fill" style="width: 100%; background-color: #C29548;"></div>
+                </div>
+                <div style="display:flex; justify-content: space-between; font-size: 0.75rem; color: #8C7D75;">
+                  <span>Steam boiler: 4.0 bar (Ready)</span>
+                  <strong style="color:#2E7D32;">Load Slot 01:00 PM</strong>
+                </div>
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.35rem;">
+                  <button type="button" class="portal-btn-sm portal-btn-sm-primary btn-load-chamber" style="flex:1; justify-content:center; font-size:0.75rem;"><i class="fa-solid fa-fire"></i> Load Chamber B</button>
+                  <button type="button" class="portal-btn-sm portal-btn-sm-outline" style="flex:1; justify-content:center; font-size:0.75rem;"><i class="fa-solid fa-sliders"></i> Adjust 250&deg;C</button>
+                </div>
+              </div>
+
+              <!-- Chamber C -->
+              <div class="portal-chamber-card" style="border-left: 4px solid #E67E22;">
+                <div class="portal-chamber-head">
+                  <span class="portal-chamber-name"><i class="fa-solid fa-cookie" style="color:#E67E22;"></i> Chamber C &bull; Convection Deck</span>
+                  <span class="dash-badge holding"><i class="fa-solid fa-droplet"></i> Glaze &amp; Rest</span>
+                </div>
+                <div style="display:flex; align-items: baseline; justify-content: space-between;">
+                  <div class="portal-chamber-temp" style="color:#E67E22;">200&deg;C <span>/ Target 200&deg;C</span></div>
+                  <span style="font-size: 0.78rem; font-weight: 700; color: #E67E22;"><i class="fa-solid fa-clock"></i> Cooling Rest</span>
+                </div>
+                <div style="font-size: 0.82rem; color: #6E5D55;">
+                  Completed: <strong>Ceylon Cinnamon Brioche &amp; Babka Swirls</strong>
+                </div>
+                <div class="meter-bar" style="margin: 0.25rem 0;">
+                  <div class="meter-fill" style="width: 100%; background-color: #E67E22;"></div>
+                </div>
+                <div style="display:flex; justify-content: space-between; font-size: 0.75rem; color: #8C7D75;">
+                  <span>Sugar glaze bench active</span>
+                  <strong style="color:#E67E22;">45 Buns Glazed</strong>
+                </div>
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.35rem;">
+                  <button type="button" class="portal-btn-sm portal-btn-sm-primary btn-send-counter" style="flex:1; justify-content:center; font-size:0.75rem;"><i class="fa-solid fa-bell"></i> Send to Counter</button>
+                  <button type="button" class="portal-btn-sm portal-btn-sm-outline" style="flex:1; justify-content:center; font-size:0.75rem;"><i class="fa-solid fa-snowflake"></i> Cool Down Deck</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Batch Manager Cards Grid -->
+          <div class="portal-card-section" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+            <div class="portal-section-head">
+              <div>
+                <h2>Daily Stone Deck Production Timetable</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #8C7D75;">Real-time loaf yields, crust acoustic scores, and lead baker assignments.</p>
+              </div>
+              <a href="404.html" class="portal-btn-action"><i class="fa-solid fa-file-pdf"></i> Print Oven Timetable</a>
+            </div>
+
+            <div class="batch-manager-grid" id="batchCardsGrid" style="margin-top: 1.25rem;">
+              <!-- Batch 1 -->
+              <div class="batch-manage-card" data-category="completed">
+                <div class="batch-time-block">
+                  <span class="batch-clock-time">06:30 AM</span>
+                  <span class="batch-deck-tag"><i class="fa-solid fa-fire"></i> Deck A &bull; 240&deg;C</span>
+                </div>
+                <div class="batch-info-block">
+                  <h4>Viennoiserie &amp; 81-Layer Butter Croissants</h4>
+                  <p>Batch #BCH-41 &bull; Normandy Butter Beurrage &bull; Baker: Claire Moreau</p>
+                </div>
+                <div class="batch-progress-meter">
+                  <div class="meter-labels">
+                    <span>Batch Yield</span>
+                    <span>80 / 80 Baked</span>
+                  </div>
+                  <div class="meter-bar">
+                    <div class="meter-fill" style="width: 100%; background-color:#2E7D32;"></div>
+                  </div>
+                </div>
+                <span class="dash-badge ready"><i class="fa-solid fa-check"></i> Completed</span>
+              </div>
+
+              <!-- Batch 2 -->
+              <div class="batch-manage-card" data-category="counter">
+                <div class="batch-time-block">
+                  <span class="batch-clock-time">08:00 AM</span>
+                  <span class="batch-deck-tag"><i class="fa-solid fa-bread-slice"></i> Deck B &bull; 250&deg;C</span>
+                </div>
+                <div class="batch-info-block">
+                  <h4>Country Sourdough &amp; Poolish Baguettes</h4>
+                  <p>Batch #BCH-42 &bull; 72-hour wild levain boules &bull; Baker: Julian Keller</p>
+                </div>
+                <div class="batch-progress-meter">
+                  <div class="meter-labels">
+                    <span>Counter Held</span>
+                    <span>48 / 60 Reserved</span>
+                  </div>
+                  <div class="meter-bar">
+                    <div class="meter-fill" style="width: 80%; background-color:#FB5022;"></div>
+                  </div>
+                </div>
+                <span class="dash-badge ready"><i class="fa-solid fa-bell"></i> On Counter</span>
+              </div>
+
+              <!-- Batch 3 -->
+              <div class="batch-manage-card" data-category="counter">
+                <div class="batch-time-block">
+                  <span class="batch-clock-time">10:30 AM</span>
+                  <span class="batch-deck-tag"><i class="fa-solid fa-cookie"></i> Deck C &bull; 220&deg;C</span>
+                </div>
+                <div class="batch-info-block">
+                  <h4>Ceylon Cinnamon Brioche Swirls &amp; Babka</h4>
+                  <p>Batch #BCH-43 &bull; Bourbon vanilla bean glaze &bull; Baker: Claire Moreau</p>
+                </div>
+                <div class="batch-progress-meter">
+                  <div class="meter-labels">
+                    <span>Glaze Bench</span>
+                    <span>45 Buns Glazed</span>
+                  </div>
+                  <div class="meter-bar">
+                    <div class="meter-fill" style="width: 100%; background-color: #A07222;"></div>
+                  </div>
+                </div>
+                <span class="dash-badge holding"><i class="fa-solid fa-droplet"></i> Glazed</span>
+              </div>
+
+              <!-- Batch 4 -->
+              <div class="batch-manage-card" data-category="in-oven">
+                <div class="batch-time-block">
+                  <span class="batch-clock-time">12:30 PM</span>
+                  <span class="batch-deck-tag"><i class="fa-solid fa-utensils"></i> Deck A &bull; 230&deg;C</span>
+                </div>
+                <div class="batch-info-block">
+                  <h4>Rosemary Focaccia Slabs &amp; Galettes</h4>
+                  <p>Batch #BCH-44 &bull; Ligurian olive oil &amp; Maldon salt &bull; Baker: Marcus Vance</p>
+                </div>
+                <div class="batch-progress-meter">
+                  <div class="meter-labels">
+                    <span>In Chamber</span>
+                    <span>18 Mins Left</span>
+                  </div>
+                  <div class="meter-bar">
+                    <div class="meter-fill" style="width: 65%; background-color:var(--portal-orange);"></div>
+                  </div>
+                </div>
+                <span class="dash-badge baking"><i class="fa-solid fa-fire"></i> In Oven</span>
+              </div>
+
+              <!-- Batch 5 -->
+              <div class="batch-manage-card" data-category="in-oven">
+                <div class="batch-time-block">
+                  <span class="batch-clock-time">02:00 PM</span>
+                  <span class="batch-deck-tag"><i class="fa-solid fa-cake-candles"></i> Deck C &bull; 200&deg;C</span>
+                </div>
+                <div class="batch-info-block">
+                  <h4>Seasonal Raspberry Tarts &amp; Choux Puffs</h4>
+                  <p>Batch #BCH-45 &bull; Summer berry coulis &bull; Baker: Claire Moreau</p>
+                </div>
+                <div class="batch-progress-meter">
+                  <div class="meter-labels">
+                    <span>Cold Resting</span>
+                    <span>Chamber Staged</span>
+                  </div>
+                  <div class="meter-bar">
+                    <div class="meter-fill" style="width: 40%; background-color: #8C6520;"></div>
+                  </div>
+                </div>
+                <span class="dash-badge baking"><i class="fa-solid fa-clock"></i> Pre-Heated</span>
+              </div>
+
+              <!-- Batch 6 -->
+              <div class="batch-manage-card" data-category="completed">
+                <div class="batch-time-block">
+                  <span class="batch-clock-time">04:00 PM</span>
+                  <span class="batch-deck-tag"><i class="fa-solid fa-wheat-awn"></i> Deck B &bull; 245&deg;C</span>
+                </div>
+                <div class="batch-info-block">
+                  <h4>Heritage Ancient Grain &amp; Seeded Rye Boules</h4>
+                  <p>Batch #BCH-46 &bull; Khorasan &amp; caraway poolish &bull; Baker: Julian Keller</p>
+                </div>
+                <div class="batch-progress-meter">
+                  <div class="meter-labels">
+                    <span>Proofing Box</span>
+                    <span>Final Rise</span>
+                  </div>
+                  <div class="meter-bar">
+                    <div class="meter-fill" style="width: 90%; background-color: #2F6D38;"></div>
+                  </div>
+                </div>
+                <span class="dash-badge holding"><i class="fa-solid fa-hourglass-half"></i> Proofing</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Daily Hearth Allocation & Counter Handoff Ledger Table -->
+          <div class="portal-card-section">
+            <div class="portal-section-head">
+              <div>
+                <h2>Daily Batch Allocations &amp; Quality Audit Ledger</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #8C7D75;">Verified crumb structure inspection, acoustic crust resonance, and counter batch handoff.</p>
+              </div>
+              <a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="text-decoration:none;"><i class="fa-solid fa-file-excel"></i> Export Ledger</a>
+            </div>
+
+            <div class="dash-table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>BATCH ID</th>
+                    <th>HEARTH RECIPE</th>
+                    <th>LEAD BAKER</th>
+                    <th>CHAMBER</th>
+                    <th>TOTAL YIELD</th>
+                    <th>PRE-ORDER HELD</th>
+                    <th>CRUST SCORE</th>
+                    <th>STATUS</th>
+                    <th>ACTION</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#BCH-41</strong></td>
+                    <td>81-Layer Butter Croissants</td>
+                    <td>Claire Moreau</td>
+                    <td>Deck A (240&deg;C)</td>
+                    <td>80 Pcs</td>
+                    <td>35 Reserved</td>
+                    <td><span style="color:#2E7D32; font-weight:700;"><i class="fa-solid fa-star"></i> 9.8 / 10</span></td>
+                    <td><span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Sold Out</span></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="padding:0.3rem 0.65rem; text-decoration:none; display:inline-flex; align-items:center;">Log Sample</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#BCH-42</strong></td>
+                    <td>Country Sourdough 72h Wild Levain</td>
+                    <td>Julian Keller</td>
+                    <td>Deck B (250&deg;C)</td>
+                    <td>60 Boules</td>
+                    <td>48 Reserved</td>
+                    <td><span style="color:#2E7D32; font-weight:700;"><i class="fa-solid fa-star"></i> 9.9 / 10</span></td>
+                    <td><span class="dash-badge ready"><i class="fa-solid fa-bell"></i> On Counter</span></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-primary" style="padding:0.3rem 0.65rem; text-decoration:none; display:inline-flex; align-items:center;">Counter Pull</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#BCH-43</strong></td>
+                    <td>Ceylon Cinnamon Brioche Swirls</td>
+                    <td>Claire Moreau</td>
+                    <td>Deck C (220&deg;C)</td>
+                    <td>45 Buns</td>
+                    <td>20 Reserved</td>
+                    <td><span style="color:#2E7D32; font-weight:700;"><i class="fa-solid fa-star"></i> 9.7 / 10</span></td>
+                    <td><span class="dash-badge holding"><i class="fa-solid fa-droplet"></i> Glazed</span></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="padding:0.3rem 0.65rem; text-decoration:none; display:inline-flex; align-items:center;">Transfer</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#BCH-44</strong></td>
+                    <td>Rosemary Sea Salt Focaccia Slabs</td>
+                    <td>Marcus Vance</td>
+                    <td>Deck A (230&deg;C)</td>
+                    <td>30 Slabs</td>
+                    <td>14 Reserved</td>
+                    <td><span style="color:#8C7D75; font-weight:600;">In Chamber</span></td>
+                    <td><span class="dash-badge baking"><i class="fa-solid fa-fire"></i> 18m Left</span></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="padding:0.3rem 0.65rem; text-decoration:none; display:inline-flex; align-items:center;">Inspect</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#BCH-45</strong></td>
+                    <td>Valrhona Dark Chocolate Gateaux</td>
+                    <td>Claire Moreau</td>
+                    <td>Deck C (200&deg;C)</td>
+                    <td>12 Cakes</td>
+                    <td>8 Pre-ordered</td>
+                    <td><span style="color:#8C7D75; font-weight:600;">Cold Resting</span></td>
+                    <td><span class="dash-badge holding"><i class="fa-solid fa-clock"></i> 02:00 PM</span></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="padding:0.3rem 0.65rem; text-decoration:none; display:inline-flex; align-items:center;">Pre-Cool</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             TAB 3: ORDERS & PREORDERS
+             ============================================== -->
+        <section class="portal-tab-panel" id="orders">
+
+          <!-- Sub-Tab Mini-KPIs -->
+          <div class="portal-sub-kpi-grid">
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FFF0EB; color:#FB5022;">
+                <i class="fa-solid fa-receipt"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">TODAY'S ORDERS</span>
+                <span class="portal-sub-kpi-val">142</span>
+                <span class="portal-sub-kpi-desc">+$3,480.00 Gross Sales</span>
+              </div>
+            </div>
+
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FFF2E2; color:#E67E22;">
+                <i class="fa-solid fa-bell"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">PENDING COUNTER HOLDS</span>
+                <span class="portal-sub-kpi-val">18</span>
+                <span class="portal-sub-kpi-desc">Shelves A2, B1 ready</span>
+              </div>
+            </div>
+
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#EBF5EB; color:#2E7D32;">
+                <i class="fa-solid fa-circle-check"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">FULFILLMENT ACCURACY</span>
+                <span class="portal-sub-kpi-val">99.2%</span>
+                <span class="portal-sub-kpi-desc">Avg 42s pickup speed</span>
+              </div>
+            </div>
+
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#F0F4FF; color:#3B82F6;">
+                <i class="fa-solid fa-calendar-check"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">ACTIVE PREORDERS (7D)</span>
+                <span class="portal-sub-kpi-val">64</span>
+                <span class="portal-sub-kpi-desc">Booked through Sunday</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-Time Counter Pickup Spotlight Queue -->
+          <div class="portal-card-section" style="margin-bottom: 1.5rem; border-left: 4px solid var(--portal-orange);">
+            <div class="portal-section-head" style="border-bottom: none; padding-bottom: 0;">
+              <div>
+                <div style="font-size: 0.75rem; font-weight: 700; color: var(--portal-orange); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">
+                  IMMEDIATE COUNTER PICKUP QUEUE
+                </div>
+                <h2>Next 30 Minutes Scheduled Collections</h2>
+                <p style="margin: 0.25rem 0 0; font-size: 0.85rem; color: #6E5D55;">Bags pre-packaged and placed in temperature-controlled holding zones.</p>
+              </div>
+              <a href="404.html" class="dash-badge baking" style="background:#FFF2EC; color:#FB5022; padding: 0.35rem 0.85rem; text-decoration:none; cursor:pointer;">
+                <i class="fa-solid fa-clock"></i> 3 Orders Imminent
               </a>
-              <a href="404.html" class="dash-action-link">
-                <span><i class="fa-solid fa-mug-hot" style="color: #A07222; margin-right: 0.5rem;"></i> Specialty Coffee Bar</span>
-                <i class="fa-solid fa-arrow-right"></i>
-              </a>
-              <a href="404.html" class="dash-action-link">
-                <span><i class="fa-solid fa-graduation-cap" style="color: #2F6D38; margin-right: 0.5rem;"></i> Workshop Bookings</span>
-                <i class="fa-solid fa-arrow-right"></i>
-              </a>
-              <a href="404.html" class="dash-action-link">
-                <span><i class="fa-solid fa-cake-candles" style="color: var(--color-accent-orange); margin-right: 0.5rem;"></i> Catering Quotes</span>
-                <i class="fa-solid fa-arrow-right"></i>
-              </a>
-              <a href="404.html" class="dash-action-link">
-                <span><i class="fa-solid fa-location-dot" style="color: var(--color-primary-dark); margin-right: 0.5rem;"></i> Storefront Hours</span>
-                <i class="fa-solid fa-arrow-right"></i>
-              </a>
             </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- ==============================================
-           TAB 2: LIVE HEARTH BATCHES (Oven Timetable)
-           ============================================== -->
-      <section class="dash-tab-panel" id="batches">
-        <div class="panel-head">
-          <div class="panel-title-wrap">
-            <h2>Stone Deck Timetable &amp; Ovens</h2>
-            <p>Live status of all five daily hearth pulls, chamber temperatures, and counter allocation.</p>
-          </div>
-          <div class="panel-action-wrap">
-            <button class="btn-manage-sm" onclick="alert('Stone deck temperature calibrated to 240°C.')"><i class="fa-solid fa-temperature-half"></i> Calibrate Ovens</button>
-          </div>
-        </div>
-
-        <div class="batch-manager-grid">
-          <!-- Batch 1 -->
-          <div class="batch-manage-card">
-            <div class="batch-time-block">
-              <span class="batch-clock-time">06:30 AM</span>
-              <span class="batch-deck-tag"><i class="fa-solid fa-fire"></i> Deck A &bull; 240&deg;C</span>
-            </div>
-            <div class="batch-info-block">
-              <h4>Viennoiserie &amp; Butter Croissants</h4>
-              <p>Traditional butter croissants, Pain au Chocolat, and flaky almond swirls.</p>
-            </div>
-            <div class="batch-progress-meter">
-              <div class="meter-labels">
-                <span>Batch Yield</span>
-                <span>80 / 80 Baked</span>
+            <div class="portal-quick-orders-grid" style="margin-top: 1.25rem;">
+              <!-- Quick Order 1 -->
+              <div style="background:#FAF6F0; border-radius:12px; padding:1rem 1.15rem; border:1px solid rgba(62,25,16,0.06); display:flex; flex-direction:column; justify-content:space-between; gap:0.65rem;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                  <div>
+                    <strong style="color:#1E0C07; font-size:0.95rem;">#KD-8921 &bull; Sophie Laurent</strong>
+                    <div style="font-size:0.75rem; color:#8C7D75; margin-top:0.15rem;">Gold Crumb Member &bull; Shelf A2</div>
+                  </div>
+                  <span class="dash-badge ready">Ready Now</span>
+                </div>
+                <div style="font-size:0.82rem; color:#4A3831;">2x Country Sourdough, 1x Cortado</div>
+                <div style="display:flex; gap:0.5rem; margin-top:0.25rem;">
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-primary" style="flex:1; justify-content:center; font-size:0.78rem; text-decoration:none;"><i class="fa-solid fa-check"></i> Picked Up</a>
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="flex:1; justify-content:center; font-size:0.78rem; text-decoration:none;"><i class="fa-solid fa-sms"></i> SMS Reminder</a>
+                </div>
               </div>
-              <div class="meter-bar">
-                <div class="meter-fill" style="width: 100%;"></div>
+
+              <!-- Quick Order 2 -->
+              <div style="background:#FAF6F0; border-radius:12px; padding:1rem 1.15rem; border:1px solid rgba(62,25,16,0.06); display:flex; flex-direction:column; justify-content:space-between; gap:0.65rem;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                  <div>
+                    <strong style="color:#1E0C07; font-size:0.95rem;">#KD-8918 &bull; David Chen</strong>
+                    <div style="font-size:0.75rem; color:#8C7D75; margin-top:0.15rem;">Gold Crumb Member &bull; Shelf B1</div>
+                  </div>
+                  <span class="dash-badge ready">Ready Now</span>
+                </div>
+                <div style="font-size:0.82rem; color:#4A3831;">1x Rosemary Focaccia, 1x Babka Swirl</div>
+                <div style="display:flex; gap:0.5rem; margin-top:0.25rem;">
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-primary" style="flex:1; justify-content:center; font-size:0.78rem; text-decoration:none;"><i class="fa-solid fa-check"></i> Picked Up</a>
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="flex:1; justify-content:center; font-size:0.78rem; text-decoration:none;"><i class="fa-solid fa-print"></i> Re-print Slip</a>
+                </div>
+              </div>
+
+              <!-- Quick Order 3 -->
+              <div style="background:#FAF6F0; border-radius:12px; padding:1rem 1.15rem; border:1px solid rgba(62,25,16,0.06); display:flex; flex-direction:column; justify-content:space-between; gap:0.65rem;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                  <div>
+                    <strong style="color:#1E0C07; font-size:0.95rem;">#KD-8919 &bull; Elena Rostova</strong>
+                    <div style="font-size:0.75rem; color:#8C7D75; margin-top:0.15rem;">Catering VIP &bull; Cold Room 2</div>
+                  </div>
+                  <span class="dash-badge holding">Due 02:00 PM</span>
+                </div>
+                <div style="font-size:0.82rem; color:#4A3831;">1x Valrhona Chocolate Gateau (12-inch)</div>
+                <div style="display:flex; gap:0.5rem; margin-top:0.25rem;">
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="flex:1; justify-content:center; font-size:0.78rem; text-decoration:none;"><i class="fa-solid fa-tag"></i> Catering Tag</a>
+                  <a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="flex:1; justify-content:center; font-size:0.78rem; text-decoration:none;"><i class="fa-solid fa-box-open"></i> Inspection</a>
+                </div>
               </div>
             </div>
-            <span class="dash-badge ready"><i class="fa-solid fa-check"></i> Completed</span>
           </div>
 
-          <!-- Batch 2 -->
-          <div class="batch-manage-card">
-            <div class="batch-time-block">
-              <span class="batch-clock-time">08:00 AM</span>
-              <span class="batch-deck-tag"><i class="fa-solid fa-bread-slice"></i> Deck B &bull; 250&deg;C</span>
+          <!-- Filter & Search Toolbar -->
+          <div class="portal-filter-bar">
+            <div class="portal-search-wrap">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="orderSearchInput" class="portal-search-input" placeholder="Search orders by #KD ID, customer, items, or slot..." aria-label="Search orders">
             </div>
-            <div class="batch-info-block">
-              <h4>Country Sourdough &amp; Baguettes</h4>
-              <p>72-hour wild levain boules, seeded rye, and crusty French poolish baguettes.</p>
+            <div class="portal-filter-pills" id="orderFilterPills">
+              <button class="portal-pill-btn active" data-filter="all">All (142)</button>
+              <button class="portal-pill-btn" data-filter="ready">Ready at Counter (18)</button>
+              <button class="portal-pill-btn" data-filter="in-oven">In Oven (12)</button>
+              <button class="portal-pill-btn" data-filter="preorder">Pre-ordered (8)</button>
+              <button class="portal-pill-btn" data-filter="completed">Completed (104)</button>
             </div>
-            <div class="batch-progress-meter">
-              <div class="meter-labels">
-                <span>Hold Reserved</span>
-                <span>48 / 60 Held</span>
+            <a href="404.html" class="portal-btn-sm portal-btn-sm-primary" style="text-decoration:none;">
+              <i class="fa-solid fa-file-export"></i> Export Orders CSV
+            </a>
+          </div>
+
+          <!-- Comprehensive Orders Master Table -->
+          <div class="portal-card-section">
+            <div class="portal-section-head">
+              <div>
+                <h2>Customer Orders &amp; Pre-order Holds Master Ledger</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #8C7D75;">Complete retail point-of-sale, Bread Club subscriptions, and catering pre-orders.</p>
               </div>
-              <div class="meter-bar">
-                <div class="meter-fill" style="width: 80%;"></div>
+              <a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="text-decoration:none;"><i class="fa-solid fa-print"></i> Print Daily Packing Slips</a>
+            </div>
+
+            <div class="dash-table-responsive" style="margin-top: 1rem;">
+              <table class="dash-table" id="ordersMasterTable">
+                <thead>
+                  <tr>
+                    <th>ORDER ID</th>
+                    <th>CUSTOMER &bull; TIER</th>
+                    <th>ITEMS ORDERED</th>
+                    <th>PICKUP SLOT</th>
+                    <th>TOTAL</th>
+                    <th>PAYMENT</th>
+                    <th>STATUS</th>
+                    <th>COUNTER ACTION</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-status="ready">
+                    <td><strong>#KD-8922</strong></td>
+                    <td>Soundaryamanivannan08 <span class="dash-badge holding" style="padding:0.15rem 0.4rem; font-size:0.68rem;">VIP Member</span></td>
+                    <td>1x Country Sourdough Daily Reserve, 1x Hazelnut Gianduja</td>
+                    <td>08:00 AM</td>
+                    <td>$34.00</td>
+                    <td><span style="color:#2E7D32; font-weight:600;"><i class="fa-solid fa-check"></i> Sub Debit</span></td>
+                    <td><span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Ready</span></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-primary" style="padding:0.3rem 0.65rem; text-decoration:none; display:inline-flex; align-items:center;">Mark Picked Up</a></td>
+                  </tr>
+                  <tr data-status="ready">
+                    <td><strong>#KD-8921</strong></td>
+                    <td>Sophie Laurent <span class="dash-badge ready" style="padding:0.15rem 0.4rem; font-size:0.68rem;">Gold Crumb</span></td>
+                    <td>2x Country Sourdough, 1x Single-Origin Cortado</td>
+                    <td>08:00 AM</td>
+                    <td>$19.50</td>
+                    <td><span style="color:#2E7D32; font-weight:600;"><i class="fa-solid fa-check"></i> Paid Online</span></td>
+                    <td><span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Ready</span></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-primary" style="padding:0.3rem 0.65rem; text-decoration:none; display:inline-flex; align-items:center;">Mark Picked Up</a></td>
+                  </tr>
+                  <tr data-status="in-oven">
+                    <td><strong>#KD-8920</strong></td>
+                    <td>Marcus Vance <span style="font-size:0.75rem; color:#8C7D75;">Walk-in Preorder</span></td>
+                    <td>4x Butter Croissant, 2x Pain au Chocolat</td>
+                    <td>09:15 AM</td>
+                    <td>$28.00</td>
+                    <td><span style="color:#2E7D32; font-weight:600;"><i class="fa-solid fa-check"></i> Paid Online</span></td>
+                    <td><span class="dash-badge baking"><i class="fa-solid fa-fire"></i> In Oven</span></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="padding:0.3rem 0.65rem; text-decoration:none; display:inline-flex; align-items:center;">Notify Baker</a></td>
+                  </tr>
+                  <tr data-status="preorder">
+                    <td><strong>#KD-8919</strong></td>
+                    <td>Elena Rostova <span class="dash-badge holding" style="padding:0.15rem 0.4rem; font-size:0.68rem;">Catering VIP</span></td>
+                    <td>1x Valrhona Chocolate Gateau (12-inch celebration)</td>
+                    <td>02:00 PM</td>
+                    <td>$85.00</td>
+                    <td><span style="color:#2E7D32; font-weight:600;"><i class="fa-solid fa-check"></i> Invoice Paid</span></td>
+                    <td><span class="dash-badge holding"><i class="fa-solid fa-clock"></i> Pre-ordered</span></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="padding:0.3rem 0.65rem; text-decoration:none; display:inline-flex; align-items:center;">Print Tag</a></td>
+                  </tr>
+                  <tr data-status="ready">
+                    <td><strong>#KD-8918</strong></td>
+                    <td>David Chen <span class="dash-badge ready" style="padding:0.15rem 0.4rem; font-size:0.68rem;">Gold Crumb</span></td>
+                    <td>1x Rosemary Focaccia, 1x Babka Swirl</td>
+                    <td>12:45 PM</td>
+                    <td>$16.75</td>
+                    <td><span style="color:#2E7D32; font-weight:600;"><i class="fa-solid fa-check"></i> Paid Online</span></td>
+                    <td><span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Ready</span></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-primary" style="padding:0.3rem 0.65rem; text-decoration:none; display:inline-flex; align-items:center;">Mark Picked Up</a></td>
+                  </tr>
+                  <tr data-status="completed">
+                    <td><strong>#KD-8917</strong></td>
+                    <td>Claire Moreau <span style="font-size:0.75rem; color:#8C7D75;">Counter Regular</span></td>
+                    <td>3x Seeded Baguettes, 1x V60 Ethiopian Pour-Over</td>
+                    <td>07:45 AM</td>
+                    <td>$18.25</td>
+                    <td><span style="color:#2E7D32; font-weight:600;"><i class="fa-solid fa-check"></i> Counter Tap</span></td>
+                    <td><span class="dash-badge ready"><i class="fa-solid fa-check-double"></i> Completed</span></td>
+                    <td><span style="font-size:0.78rem; color:#8C7D75;">Archived</span></td>
+                  </tr>
+                  <tr data-status="preorder">
+                    <td><strong>#KD-8916</strong></td>
+                    <td>Liam O'Connor <span style="font-size:0.75rem; color:#8C7D75;">Web Order</span></td>
+                    <td>2x Cinnamon Brioche Swirls, 2x Cold Brew Bottles</td>
+                    <td>11:00 AM</td>
+                    <td>$22.00</td>
+                    <td><span style="color:#2E7D32; font-weight:600;"><i class="fa-solid fa-check"></i> Apple Pay</span></td>
+                    <td><span class="dash-badge holding"><i class="fa-solid fa-clock"></i> Shelf A3 Hold</span></td>
+                    <td><a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="padding:0.3rem 0.65rem; text-decoration:none; display:inline-flex; align-items:center;">Mark Ready</a></td>
+                  </tr>
+                  <tr data-status="completed">
+                    <td><strong>#KD-8915</strong></td>
+                    <td>Ananya Sharma <span class="dash-badge holding" style="padding:0.15rem 0.4rem; font-size:0.68rem;">VIP Member</span></td>
+                    <td>1x Normandy Viennoiserie Weekend Box (8-piece)</td>
+                    <td>08:30 AM</td>
+                    <td>$45.00</td>
+                    <td><span style="color:#2E7D32; font-weight:600;"><i class="fa-solid fa-check"></i> Sub Debit</span></td>
+                    <td><span class="dash-badge ready"><i class="fa-solid fa-check-double"></i> Completed</span></td>
+                    <td><span style="font-size:0.78rem; color:#8C7D75;">Archived</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             TAB 4: FLOUR & INVENTORY
+             ============================================== -->
+        <section class="portal-tab-panel" id="inventory">
+
+          <!-- Sub-Tab Mini-KPIs -->
+          <div class="portal-sub-kpi-grid">
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FFF0EB; color:#FB5022;">
+                <i class="fa-solid fa-wheat-awn"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">TOTAL CELLAR STOCK</span>
+                <span class="portal-sub-kpi-val">2,840 kg</span>
+                <span class="portal-sub-kpi-desc">88% Aggregate capacity</span>
               </div>
             </div>
-            <span class="dash-badge ready"><i class="fa-solid fa-bell"></i> On Counter</span>
-          </div>
 
-          <!-- Batch 3 -->
-          <div class="batch-manage-card">
-            <div class="batch-time-block">
-              <span class="batch-clock-time">10:30 AM</span>
-              <span class="batch-deck-tag"><i class="fa-solid fa-cookie"></i> Deck C &bull; 220&deg;C</span>
-            </div>
-            <div class="batch-info-block">
-              <h4>Cinnamon Brioche Swirls &amp; Babka</h4>
-              <p>Enriched golden brioche rolled with Ceylon cinnamon and Bourbon vanilla bean glaze.</p>
-            </div>
-            <div class="batch-progress-meter">
-              <div class="meter-labels">
-                <span>Glazing Station</span>
-                <span>45 Buns Ready</span>
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FFF2EC; color:#FB5022;">
+                <i class="fa-solid fa-triangle-exclamation"></i>
               </div>
-              <div class="meter-bar">
-                <div class="meter-fill" style="width: 100%; background-color: #A07222;"></div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">CRITICAL REORDER ALERTS</span>
+                <span class="portal-sub-kpi-val" style="color:var(--portal-orange);">1 Item Low</span>
+                <span class="portal-sub-kpi-desc">Normandy Butter &lt; 3 days</span>
               </div>
             </div>
-            <span class="dash-badge holding"><i class="fa-solid fa-droplet"></i> Glazed</span>
-          </div>
 
-          <!-- Batch 4 -->
-          <div class="batch-manage-card">
-            <div class="batch-time-block">
-              <span class="batch-clock-time">12:30 PM</span>
-              <span class="batch-deck-tag"><i class="fa-solid fa-utensils"></i> Deck A &bull; 230&deg;C</span>
-            </div>
-            <div class="batch-info-block">
-              <h4>Rosemary Focaccia &amp; Galettes</h4>
-              <p>Olive oil drenched sourdough focaccia with Maldon sea salt and garden herbs.</p>
-            </div>
-            <div class="batch-progress-meter">
-              <div class="meter-labels">
-                <span>In Deck Chamber</span>
-                <span>18 Mins Left</span>
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#EBF5EB; color:#2E7D32;">
+                <i class="fa-solid fa-flask"></i>
               </div>
-              <div class="meter-bar">
-                <div class="meter-fill" style="width: 65%;"></div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">WILD LEVAIN CULTURE</span>
+                <span class="portal-sub-kpi-val">Active pH 3.85</span>
+                <span class="portal-sub-kpi-desc">Fed 2h ago &bull; 22&deg;C ambient</span>
               </div>
             </div>
-            <span class="dash-badge baking"><i class="fa-solid fa-fire"></i> In Oven</span>
-          </div>
 
-          <!-- Batch 5 -->
-          <div class="batch-manage-card">
-            <div class="batch-time-block">
-              <span class="batch-clock-time">02:00 PM</span>
-              <span class="batch-deck-tag"><i class="fa-solid fa-cake-candles"></i> Deck C &bull; 200&deg;C</span>
-            </div>
-            <div class="batch-info-block">
-              <h4>Seasonal Raspberry Tarts &amp; Eclairs</h4>
-              <p>Hand-assembled summer berry tarts and Madagascar vanilla choux puffs.</p>
-            </div>
-            <div class="batch-progress-meter">
-              <div class="meter-labels">
-                <span>Chilling Room</span>
-                <span>Cold Resting</span>
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FBF4E8; color:#C29548;">
+                <i class="fa-solid fa-truck-ramp-box"></i>
               </div>
-              <div class="meter-bar">
-                <div class="meter-fill" style="width: 30%; background-color: #8C6520;"></div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">INCOMING SHIPMENTS</span>
+                <span class="portal-sub-kpi-val">2 In Transit</span>
+                <span class="portal-sub-kpi-desc">Moulin de Chars &amp; Butter</span>
               </div>
             </div>
-            <span class="dash-badge holding"><i class="fa-solid fa-clock"></i> Scheduled</span>
           </div>
-        </div>
-      </section>
 
-      <!-- ==============================================
-           TAB 3: ORDERS & PREORDERS
-           ============================================== -->
-      <section class="dash-tab-panel" id="orders">
-        <div class="panel-head">
-          <div class="panel-title-wrap">
-            <h2>Customer Orders &amp; Pre-order Holds</h2>
-            <p>142 total orders registered today &bull; 18 active counter holds awaiting collection.</p>
-          </div>
-          <div class="panel-action-wrap">
-            <a href="404.html" class="btn-manage-sm" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;"><i class="fa-solid fa-file-export"></i> Export Orders</a>
-          </div>
-        </div>
-
-        <div class="dash-panel">
-          <table class="dash-table">
-            <thead>
-              <tr>
-                <th>Order Number</th>
-                <th>Customer Name</th>
-                <th>Items Details</th>
-                <th>Pickup Slot</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Counter Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>#KD-8921</strong></td>
-                <td>Sophie Laurent</td>
-                <td>2x Country Sourdough, 1x Cortado</td>
-                <td>08:00 AM</td>
-                <td>$19.50</td>
-                <td><span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Ready</span></td>
-                <td><button class="btn-manage-sm" onclick="alert('Marked as picked up!')">Mark Picked Up</button></td>
-              </tr>
-              <tr>
-                <td><strong>#KD-8920</strong></td>
-                <td>Marcus Vance</td>
-                <td>4x Butter Croissant, 2x Pain au Chocolat</td>
-                <td>09:15 AM</td>
-                <td>$28.00</td>
-                <td><span class="dash-badge baking"><i class="fa-solid fa-fire"></i> In Oven</span></td>
-                <td><button class="btn-manage-sm" onclick="alert('Batch notification sent to customer!')">Notify Customer</button></td>
-              </tr>
-              <tr>
-                <td><strong>#KD-8919</strong></td>
-                <td>Elena Rostova</td>
-                <td>1x Valrhona Chocolate Gateau (Catering)</td>
-                <td>02:00 PM</td>
-                <td>$85.00</td>
-                <td><span class="dash-badge holding"><i class="fa-solid fa-clock"></i> Pre-ordered</span></td>
-                <td><button class="btn-manage-sm" onclick="alert('Catering tag printed.')">Print Slip</button></td>
-              </tr>
-              <tr>
-                <td><strong>#KD-8918</strong></td>
-                <td>David Chen</td>
-                <td>1x Rosemary Focaccia, 1x Babka Swirl</td>
-                <td>12:45 PM</td>
-                <td>$16.75</td>
-                <td><span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Ready</span></td>
-                <td><button class="btn-manage-sm" onclick="alert('Marked as picked up!')">Mark Picked Up</button></td>
-              </tr>
-              <tr>
-                <td><strong>#KD-8917</strong></td>
-                <td>Claire Moreau</td>
-                <td>3x Seeded Baguettes, 1x V60 Pour-Over</td>
-                <td>07:45 AM</td>
-                <td>$18.25</td>
-                <td><span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> Completed</span></td>
-                <td><span style="font-size: 0.75rem; color: var(--text-dark-muted);">Archived</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- ==============================================
-           TAB 4: FLOUR & INVENTORY
-           ============================================== -->
-      <section class="dash-tab-panel" id="inventory">
-        <div class="panel-head">
-          <div class="panel-title-wrap">
-            <h2>Organic Grain &amp; Ingredient Inventory</h2>
-            <p>Live cellar stock levels, flour fermentation tracking, and cold butter storage.</p>
-          </div>
-          <div class="panel-action-wrap">
-            <a href="404.html" class="btn-manage-sm" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;"><i class="fa-solid fa-truck"></i> Reorder Supplies</a>
-          </div>
-        </div>
-
-        <div class="inventory-grid">
-          <div class="inventory-card">
-            <div class="inv-header">
-              <span class="inv-name">Organic Stone Flour</span>
-              <div class="inv-icon"><i class="fa-solid fa-wheat-awn"></i></div>
+          <!-- Critical Stock Warning Banner -->
+          <div class="portal-alert-banner">
+            <div class="portal-alert-left">
+              <i class="fa-solid fa-triangle-exclamation portal-alert-icon"></i>
+              <div>
+                <h4 class="portal-alert-title">Low Stock Alert: Normandy Butter Blocks (84% Butterfat Beurrage)</h4>
+                <p class="portal-alert-desc">Current inventory: <strong>120 kg</strong> (Safety Threshold: 150 kg). Weekend lamination production requires 180 kg.</p>
+              </div>
             </div>
-            <div class="inv-amount">840 kg</div>
-            <span class="inv-sub">T65 French Milling &bull; 84% Capacity</span>
-            <div class="meter-bar"><div class="meter-fill" style="width: 84%; background-color: #2F6D38;"></div></div>
+            <a href="404.html" class="portal-btn-sm portal-btn-sm-primary" style="text-decoration:none; display:inline-flex; align-items:center;">
+              <i class="fa-solid fa-truck-fast"></i> 1-Click PO Reorder: 250 kg ($1,850.00)
+            </a>
           </div>
 
-          <div class="inventory-card">
-            <div class="inv-header">
-              <span class="inv-name">Normandy Butter Blocks</span>
-              <div class="inv-icon" style="background-color: #FAF0DF; color: #A07222;"><i class="fa-solid fa-award"></i></div>
+          <!-- Filter & Search Toolbar -->
+          <div class="portal-filter-bar">
+            <div class="portal-search-wrap">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="invSearchInput" class="portal-search-input" placeholder="Search ingredients by name, origin, or cellar bin..." aria-label="Search ingredients">
             </div>
-            <div class="inv-amount">120 kg</div>
-            <span class="inv-sub">84% Butterfat Beurrage &bull; 80% Capacity</span>
-            <div class="meter-bar"><div class="meter-fill" style="width: 80%; background-color: #A07222;"></div></div>
-          </div>
-
-          <div class="inventory-card">
-            <div class="inv-header">
-              <span class="inv-name">Wild Levain Culture</span>
-              <div class="inv-icon" style="background-color: #FFF2EC; color: var(--color-accent-orange);"><i class="fa-solid fa-flask"></i></div>
+            <div class="portal-filter-pills" id="invFilterPills">
+              <button class="portal-pill-btn active" data-filter="all">All (8)</button>
+              <button class="portal-pill-btn" data-filter="flour">Flours &amp; Grains (3)</button>
+              <button class="portal-pill-btn" data-filter="dairy">Dairy &amp; Fats (1)</button>
+              <button class="portal-pill-btn" data-filter="chocolate">Chocolates &amp; Spices (2)</button>
+              <button class="portal-pill-btn" data-filter="salt">Leavening &amp; Salt (2)</button>
             </div>
-            <div class="inv-amount">Active &bull; pH 3.9</div>
-            <span class="inv-sub">50-Year Mother Starter &bull; Fed 2h Ago</span>
-            <div class="meter-bar"><div class="meter-fill" style="width: 100%; background-color: var(--color-accent-orange);"></div></div>
+            <button type="button" class="portal-btn-sm portal-btn-sm-primary btn-add-stock">
+              <i class="fa-solid fa-plus"></i> Add Stock Item
+            </button>
           </div>
 
-          <div class="inventory-card">
-            <div class="inv-header">
-              <span class="inv-name">Ceylon Cinnamon Bark</span>
-              <div class="inv-icon"><i class="fa-solid fa-seedling"></i></div>
-            </div>
-            <div class="inv-amount">18 kg</div>
-            <span class="inv-sub">Single-Origin Sri Lanka &bull; 72% Capacity</span>
-            <div class="meter-bar"><div class="meter-fill" style="width: 72%; background-color: #2F6D38;"></div></div>
-          </div>
-
-          <div class="inventory-card">
-            <div class="inv-header">
-              <span class="inv-name">Valrhona Chocolate 70%</span>
-              <div class="inv-icon" style="background-color: #FAF0DF; color: #8C6520;"><i class="fa-solid fa-cookie"></i></div>
-            </div>
-            <div class="inv-amount">45 kg</div>
-            <span class="inv-sub">Guanaja Baking Batons &bull; 90% Capacity</span>
-            <div class="meter-bar"><div class="meter-fill" style="width: 90%; background-color: #A07222;"></div></div>
-          </div>
-
-          <div class="inventory-card">
-            <div class="inv-header">
-              <span class="inv-name">Maldon Sea Salt Flakes</span>
-              <div class="inv-icon"><i class="fa-solid fa-mountain"></i></div>
-            </div>
-            <div class="inv-amount">24 kg</div>
-            <span class="inv-sub">Pyramid Crystal Deck Finish &bull; 95% Capacity</span>
-            <div class="meter-bar"><div class="meter-fill" style="width: 95%; background-color: #2F6D38;"></div></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ==============================================
-           TAB 5: BAKING ACADEMY (Workshops)
-           ============================================== -->
-      <section class="dash-tab-panel" id="workshops">
-        <div class="panel-head">
-          <div class="panel-title-wrap">
-            <h2>Baking Academy &amp; Masterclasses</h2>
-            <p>Weekend workshop roster, student bookings, and bench ingredient prep.</p>
-          </div>
-          <div class="panel-action-wrap">
-            <a href="404.html" class="btn-manage-sm" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;"><i class="fa-solid fa-print"></i> Print Roster</a>
-          </div>
-        </div>
-
-        <div class="dash-panel">
-          <div class="dash-panel-header">
-            <h3>This Weekend's Sessions (100% Booked)</h3>
-            <span class="dash-badge ready"><i class="fa-solid fa-check"></i> 24 Registered Bakers</span>
-          </div>
-
-          <table class="dash-table">
-            <thead>
-              <tr>
-                <th>Session Date</th>
-                <th>Masterclass Title</th>
-                <th>Lead Instructor</th>
-                <th>Capacity</th>
-                <th>Revenue</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Saturday &bull; 08:30 AM</strong></td>
-                <td>Wild Levain &amp; Sourdough Science</td>
-                <td>Julian (Head Baker)</td>
-                <td><strong>8 / 8 Bakers</strong></td>
-                <td>$1,160</td>
-                <td><span class="dash-badge ready">Fully Booked</span></td>
-              </tr>
-              <tr>
-                <td><strong>Sunday &bull; 08:00 AM</strong></td>
-                <td>French Lamination &amp; Croissants</td>
-                <td>Claire (Pastry Chef)</td>
-                <td><strong>8 / 8 Bakers</strong></td>
-                <td>$1,320</td>
-                <td><span class="dash-badge ready">Fully Booked</span></td>
-              </tr>
-              <tr>
-                <td><strong>Friday &bull; 05:30 PM</strong></td>
-                <td>Hearth Baguettes &amp; Savory Focaccia</td>
-                <td>Marcus (Oven Master)</td>
-                <td><strong>8 / 8 Bakers</strong></td>
-                <td>$1,000</td>
-                <td><span class="dash-badge ready">Fully Booked</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- ==============================================
-           TAB 6: STORE SETTINGS
-           ============================================== -->
-      <section class="dash-tab-panel" id="settings">
-        <div class="panel-head">
-          <div class="panel-title-wrap">
-            <h2>Deck &amp; Storefront Settings</h2>
-            <p>Configure stone oven parameters, daily preorder cutoff times, and holiday announcements.</p>
-          </div>
-        </div>
-
-        <div class="dash-panel">
-          <form class="settings-form-grid" id="adminSettingsForm" novalidate>
-            <div class="form-group">
-              <label class="form-label" for="adminCutoff">Morning Deck Hold Cutoff Time <span style="color:var(--portal-orange);">*</span></label>
-              <input type="text" id="adminCutoff" class="form-control" value="08:00 AM Daily" style="padding-left: 1rem;" required>
-              <span class="auth-field-error" id="adminCutoffError">Cutoff time is required</span>
+          <!-- Enhanced 8-Card Inventory Grid -->
+          <div class="portal-card-section" style="margin-bottom: 1.5rem;">
+            <div class="portal-section-head">
+              <div>
+                <h2>Organic Grain, Milling &amp; Raw Ingredient Bins</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #8C7D75;">Live cellar tracking with humidity controls and automated reorder triggers.</p>
+              </div>
+              <a href="404.html" class="portal-btn-sm portal-btn-sm-outline" style="text-decoration:none; display:inline-flex; align-items:center;"><i class="fa-solid fa-clipboard-check"></i> Audit Cellar</a>
             </div>
 
-            <div class="form-group">
-              <label class="form-label" for="adminTemp">Stone Hearth Target Temperature <span style="color:var(--portal-orange);">*</span></label>
-              <input type="text" id="adminTemp" class="form-control" value="240°C Deck Chamber" style="padding-left: 1rem;" required>
-              <span class="auth-field-error" id="adminTempError">Temperature target is required</span>
+            <div class="inventory-grid" id="invCardsGrid" style="margin-top: 1.25rem;">
+              <!-- Item 1 -->
+              <div class="inventory-card" data-category="flour">
+                <div class="inv-header">
+                  <span class="inv-name">Organic T65 Stone Flour</span>
+                  <div class="inv-icon"><i class="fa-solid fa-wheat-awn"></i></div>
+                </div>
+                <div class="inv-amount">840 kg</div>
+                <span class="inv-sub">Moulin de Chars, France &bull; 84% Capacity</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 84%; background-color: #2F6D38;"></div></div>
+                <div style="margin-top:0.65rem; font-size:0.75rem; color:#8C7D75; display:flex; justify-content:space-between;">
+                  <span>Cellar Bin #A1</span>
+                  <strong>Lot #FR-T65-992</strong>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="inventory-card" data-category="flour">
+                <div class="inv-header">
+                  <span class="inv-name">Organic Rye T130 Stone Flour</span>
+                  <div class="inv-icon" style="background:#FBF4E8; color:#C29548;"><i class="fa-solid fa-wheat-awn"></i></div>
+                </div>
+                <div class="inv-amount">320 kg</div>
+                <span class="inv-sub">Shipton Mill, Cotswolds &bull; 78% Capacity</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 78%; background-color: #2F6D38;"></div></div>
+                <div style="margin-top:0.65rem; font-size:0.75rem; color:#8C7D75; display:flex; justify-content:space-between;">
+                  <span>Cellar Bin #A3</span>
+                  <strong>Lot #UK-RYE-441</strong>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="inventory-card" data-category="flour">
+                <div class="inv-header">
+                  <span class="inv-name">Biodynamic Khorasan Wheat</span>
+                  <div class="inv-icon"><i class="fa-solid fa-seedling"></i></div>
+                </div>
+                <div class="inv-amount">240 kg</div>
+                <span class="inv-sub">Heritage Ancient Grain &bull; 80% Capacity</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 80%; background-color: #2F6D38;"></div></div>
+                <div style="margin-top:0.65rem; font-size:0.75rem; color:#8C7D75; display:flex; justify-content:space-between;">
+                  <span>Cellar Bin #A4</span>
+                  <strong>Lot #KH-882</strong>
+                </div>
+              </div>
+
+              <!-- Item 4 (LOW) -->
+              <div class="inventory-card" data-category="dairy" style="border:1.5px solid rgba(251,80,34,0.4); background:#FFFDFB;">
+                <div class="inv-header">
+                  <span class="inv-name">Normandy Butter (Beurrage)</span>
+                  <div class="inv-icon" style="background-color: #FAF0DF; color: #A07222;"><i class="fa-solid fa-award"></i></div>
+                </div>
+                <div class="inv-amount" style="color:var(--portal-orange);">120 kg <span style="font-size:0.75rem; color:var(--portal-orange); font-weight:700;">LOW</span></div>
+                <span class="inv-sub">84% Butterfat Lamination &bull; 24% Left</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 24%; background-color: var(--portal-orange);"></div></div>
+                <div style="margin-top:0.65rem; font-size:0.75rem; color:#8C7D75; display:flex; justify-content:space-between;">
+                  <span>Cold Room B &bull; 4&deg;C</span>
+                  <strong>Lot #BT-NOR-102</strong>
+                </div>
+              </div>
+
+              <!-- Item 5 -->
+              <div class="inventory-card" data-category="salt">
+                <div class="inv-header">
+                  <span class="inv-name">Wild Levain Mother Starter</span>
+                  <div class="inv-icon" style="background-color: #FFF2EC; color: var(--portal-orange);"><i class="fa-solid fa-flask"></i></div>
+                </div>
+                <div class="inv-amount">Active &bull; pH 3.85</div>
+                <span class="inv-sub">50-Year Mother Starter &bull; Fed 2h Ago</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 100%; background-color: var(--portal-orange);"></div></div>
+                <div style="margin-top:0.65rem; font-size:0.75rem; color:#8C7D75; display:flex; justify-content:space-between;">
+                  <span>Ferment Chamber &bull; 22&deg;C</span>
+                  <strong style="color:#2E7D32;">Optimal Activity</strong>
+                </div>
+              </div>
+
+              <!-- Item 6 -->
+              <div class="inventory-card" data-category="chocolate">
+                <div class="inv-header">
+                  <span class="inv-name">Valrhona 70% Guanaja Batons</span>
+                  <div class="inv-icon" style="background-color: #FAF0DF; color: #8C6520;"><i class="fa-solid fa-cookie"></i></div>
+                </div>
+                <div class="inv-amount">45 kg</div>
+                <span class="inv-sub">Tain-l'Hermitage, France &bull; 90% Capacity</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 90%; background-color: #A07222;"></div></div>
+                <div style="margin-top:0.65rem; font-size:0.75rem; color:#8C7D75; display:flex; justify-content:space-between;">
+                  <span>Dry Pastry Cellar</span>
+                  <strong>Lot #VAL-70-332</strong>
+                </div>
+              </div>
+
+              <!-- Item 7 -->
+              <div class="inventory-card" data-category="chocolate">
+                <div class="inv-header">
+                  <span class="inv-name">Ceylon Organic Cinnamon Quills</span>
+                  <div class="inv-icon"><i class="fa-solid fa-seedling"></i></div>
+                </div>
+                <div class="inv-amount">18 kg</div>
+                <span class="inv-sub">Single-Origin Sri Lanka &bull; 72% Capacity</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 72%; background-color: #2F6D38;"></div></div>
+                <div style="margin-top:0.65rem; font-size:0.75rem; color:#8C7D75; display:flex; justify-content:space-between;">
+                  <span>Spice Vault #S2</span>
+                  <strong>Lot #CEY-CIN-809</strong>
+                </div>
+              </div>
+
+              <!-- Item 8 -->
+              <div class="inventory-card" data-category="salt">
+                <div class="inv-header">
+                  <span class="inv-name">Maldon Sea Salt Flakes</span>
+                  <div class="inv-icon"><i class="fa-solid fa-mountain"></i></div>
+                </div>
+                <div class="inv-amount">24 kg</div>
+                <span class="inv-sub">Pyramid Crystal Deck Finish &bull; 95% Capacity</span>
+                <div class="meter-bar"><div class="meter-fill" style="width: 95%; background-color: #2F6D38;"></div></div>
+                <div style="margin-top:0.65rem; font-size:0.75rem; color:#8C7D75; display:flex; justify-content:space-between;">
+                  <span>Bench Station Rack</span>
+                  <strong>Lot #MAL-SALT-221</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Supplier Deliveries & Purchase Orders Ledger Table -->
+          <div class="portal-card-section">
+            <div class="portal-section-head">
+              <div>
+                <h2>Inbound Supplier Shipments &amp; Purchase Orders</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #8C7D75;">Cold-chain tracking, supplier invoices, and stock receiving checkpoints.</p>
+              </div>
+              <button type="button" class="portal-btn-sm portal-btn-sm-outline btn-new-po"><i class="fa-solid fa-file-invoice-dollar"></i> Create Purchase Order</button>
             </div>
 
-            <div class="form-group">
-              <label class="form-label" for="adminBanner">Storefront Announcement Banner <span style="color:var(--portal-orange);">*</span></label>
-              <input type="text" id="adminBanner" class="form-control" value="Fresh pull every 2 hours • Stone ovens running at 240°C" style="padding-left: 1rem;" required>
-              <span class="auth-field-error" id="adminBannerError">Announcement banner text is required</span>
+            <div class="dash-table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>PO NUMBER</th>
+                    <th>SUPPLIER PARTNER</th>
+                    <th>ITEMS DESCRIPTION</th>
+                    <th>EST. DELIVERY</th>
+                    <th>TRACKING / CARRIER</th>
+                    <th>TOTAL</th>
+                    <th>ACTION</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#PO-2026-904</strong></td>
+                    <td>Moulin de Chars (France)</td>
+                    <td>840 kg Organic T65 Wheat Flour</td>
+                    <td>Today &bull; 11:30 AM</td>
+                    <td><span class="dash-badge baking"><i class="fa-solid fa-truck"></i> In Transit (Chronofresh)</span></td>
+                    <td>$1,280.00</td>
+                    <td><button type="button" class="portal-btn-sm portal-btn-sm-primary btn-receive-stock" style="padding:0.3rem 0.65rem;">Receive Stock</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#PO-2026-903</strong></td>
+                    <td>Laiterie d'Isigny (Normandy)</td>
+                    <td>250 kg Cultured Butter Beurrage (84%)</td>
+                    <td>Tomorrow &bull; 07:00 AM</td>
+                    <td><span class="dash-badge holding"><i class="fa-solid fa-snowflake"></i> Dispatched Cold-Chain</span></td>
+                    <td>$1,850.00</td>
+                    <td><button type="button" class="portal-btn-sm portal-btn-sm-outline" style="padding:0.3rem 0.65rem;">Track GPS</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#PO-2026-902</strong></td>
+                    <td>Valrhona Chocolaterie</td>
+                    <td>60 kg Guanaja 70% Baking Batons</td>
+                    <td>Oct 20, 2026</td>
+                    <td><span class="dash-badge ready"><i class="fa-solid fa-check"></i> Received &amp; Cellared</span></td>
+                    <td>$920.00</td>
+                    <td><span style="font-size:0.78rem; color:#8C7D75;">Archived</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             TAB 5: BAKING ACADEMY (Workshops)
+             ============================================== -->
+        <section class="portal-tab-panel" id="workshops">
+
+          <!-- Sub-Tab Mini-KPIs -->
+          <div class="portal-sub-kpi-grid">
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FFF0EB; color:#FB5022;">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">ENROLLED BAKERS (OCT)</span>
+                <span class="portal-sub-kpi-val">48</span>
+                <span class="portal-sub-kpi-desc">Across 6 masterclasses</span>
+              </div>
             </div>
 
-            <div class="form-group">
-              <label class="form-label" for="adminMaxHolds">Maximum Daily Sourdough Loaf Holds <span style="color:var(--portal-orange);">*</span></label>
-              <input type="number" id="adminMaxHolds" class="form-control" value="60" min="1" max="1000" style="padding-left: 1rem;" required>
-              <span class="auth-field-error" id="adminMaxHoldsError">Valid hold capacity (1-1000) is required</span>
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#EBF5EB; color:#2E7D32;">
+                <i class="fa-solid fa-chair"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">BENCH UTILIZATION</span>
+                <span class="portal-sub-kpi-val">100%</span>
+                <span class="portal-sub-kpi-desc">14 on waitlist</span>
+              </div>
             </div>
 
-            <div style="grid-column: 1 / -1; margin-top: 1rem;">
-              <a href="404.html" class="btn-claim-reward" style="padding: 0.75rem 2rem; font-size: 0.92rem; text-decoration: none; display: inline-block; cursor: pointer;">Save Hearth Configuration</a>
-              <div id="adminSettingsFeedback" style="display: none; margin-top: 0.75rem; padding: 0.65rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; background-color: #DCFCE7; color: #166534;"></div>
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#FBF4E8; color:#C29548;">
+                <i class="fa-solid fa-coins"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">ACADEMY REVENUE</span>
+                <span class="portal-sub-kpi-val">$7,480.00</span>
+                <span class="portal-sub-kpi-desc">+18% Month-over-Month</span>
+              </div>
             </div>
-          </form>
-        </div>
-      </section>
 
-    </main>
+            <div class="portal-sub-kpi-card">
+              <div class="portal-sub-kpi-icon" style="background:#F0F4FF; color:#3B82F6;">
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div class="portal-sub-kpi-info">
+                <span class="portal-sub-kpi-label">STUDENT SATISFACTION</span>
+                <span class="portal-sub-kpi-val">4.98 / 5.0</span>
+                <span class="portal-sub-kpi-desc">82 Verified reviews</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Featured Masterclass Spotlight Card -->
+          <div class="portal-card-section" style="margin-bottom: 1.5rem; border-left: 4px solid var(--portal-orange);">
+            <div class="portal-section-head" style="border-bottom:none; padding-bottom:0;">
+              <div>
+                <div style="font-size: 0.75rem; font-weight: 700; color: var(--portal-orange); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">
+                  NEXT WORKSHOP SPOTLIGHT &bull; SATURDAY OCT 24
+                </div>
+                <h2>Wild Levain Sourdough Science &amp; Hand Mixing Masterclass</h2>
+                <p style="margin: 0.25rem 0 0; font-size: 0.85rem; color: #6E5D55;">
+                  Instructor: <strong>Julian Keller (Head Baker)</strong> &bull; 08:30 AM &ndash; 01:30 PM (5 Hours) &bull; Refractory Stone Chamber B Booked
+                </p>
+              </div>
+              <span class="dash-badge ready" style="padding: 0.35rem 0.85rem;"><i class="fa-solid fa-circle-check"></i> 8 / 8 Bakers Enrolled (Sold Out)</span>
+            </div>
+
+            <div class="portal-spotlight-metrics-grid" style="margin-top: 1.25rem;">
+              <div style="background:#FAF6F0; padding:1rem; border-radius:10px;">
+                <span style="font-size:0.75rem; color:#8C7D75; text-transform:uppercase; font-weight:700;">Student Roster</span>
+                <div style="font-size:1.1rem; font-weight:800; color:#1E0C07; margin-top:0.2rem;">8 Confirmed Bakers</div>
+                <span style="font-size:0.75rem; color:#2E7D32; font-weight:600;"><i class="fa-solid fa-check"></i> Soundaryamanivannan08 VIP Pass</span>
+              </div>
+              <div style="background:#FAF6F0; padding:1rem; border-radius:10px;">
+                <span style="font-size:0.75rem; color:#8C7D75; text-transform:uppercase; font-weight:700;">Bench Station Prep</span>
+                <div style="font-size:1.1rem; font-weight:800; color:#1E0C07; margin-top:0.2rem;">100% Prepared</div>
+                <span style="font-size:0.75rem; color:#2E7D32; font-weight:600;"><i class="fa-solid fa-check"></i> Starter kits &amp; bannetons staged</span>
+              </div>
+              <div style="background:#FAF6F0; padding:1rem; border-radius:10px;">
+                <span style="font-size:0.75rem; color:#8C7D75; text-transform:uppercase; font-weight:700;">Stone Chamber Slot</span>
+                <div style="font-size:1.1rem; font-weight:800; color:#1E0C07; margin-top:0.2rem;">Chamber B (250&deg;C)</div>
+                <span style="font-size:0.75rem; color:#E67E22; font-weight:600;"><i class="fa-solid fa-clock"></i> 11:30 AM &ndash; 01:00 PM Bake</span>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.5rem; margin-top: 1.25rem; flex-wrap: wrap;">
+              <button type="button" class="portal-btn-sm portal-btn-sm-primary btn-print-roster"><i class="fa-solid fa-print"></i> Print Student Roster (PDF)</button>
+              <button type="button" class="portal-btn-sm portal-btn-sm-outline btn-email-students"><i class="fa-solid fa-paper-plane"></i> Email Welcome Pack &amp; Formula</button>
+            </div>
+          </div>
+
+          <!-- Filter & Search Toolbar -->
+          <div class="portal-filter-bar">
+            <div class="portal-search-wrap">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="workshopSearchInput" class="portal-search-input" placeholder="Search masterclasses by title, instructor, or date..." aria-label="Search masterclasses">
+            </div>
+            <div class="portal-filter-pills" id="workshopFilterPills">
+              <button class="portal-pill-btn active" data-filter="all">All Sessions (6)</button>
+              <button class="portal-pill-btn" data-filter="upcoming">Upcoming (3)</button>
+              <button class="portal-pill-btn" data-filter="completed">Completed (3)</button>
+            </div>
+            <button type="button" class="portal-btn-sm portal-btn-sm-primary btn-new-workshop">
+              <i class="fa-solid fa-plus"></i> New Masterclass
+            </button>
+          </div>
+
+          <!-- Academy Masterclass Schedule Master Table -->
+          <div class="portal-card-section" style="margin-bottom: 1.5rem;">
+            <div class="portal-section-head">
+              <div>
+                <h2>Masterclass Schedule &amp; Student Bookings</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #8C7D75;">Hand-mixing workshops, croissant lamination intensives, and sourdough biology.</p>
+              </div>
+              <button type="button" class="portal-btn-sm portal-btn-sm-outline btn-export-academy"><i class="fa-solid fa-file-excel"></i> Export Revenue</button>
+            </div>
+
+            <div class="dash-table-responsive" style="margin-top: 1rem;">
+              <table class="dash-table" id="workshopsMasterTable">
+                <thead>
+                  <tr>
+                    <th>SESSION DATE</th>
+                    <th>MASTERCLASS TITLE</th>
+                    <th>LEAD INSTRUCTOR</th>
+                    <th>SEATS FILLED</th>
+                    <th>BENCH PREP</th>
+                    <th>REVENUE</th>
+                    <th>STATUS</th>
+                    <th>ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-status="upcoming">
+                    <td><strong>Saturday &bull; Oct 24 (08:30 AM)</strong></td>
+                    <td>Wild Levain Sourdough Science &amp; Hand Mixing</td>
+                    <td>Julian Keller (Head Baker)</td>
+                    <td><strong>8 / 8 Bakers</strong></td>
+                    <td><span class="dash-badge ready"><i class="fa-solid fa-check"></i> 100% Ready</span></td>
+                    <td>$1,160.00</td>
+                    <td><span class="dash-badge ready">Fully Booked</span></td>
+                    <td><button type="button" class="portal-btn-sm portal-btn-sm-primary btn-print-roster" style="padding:0.3rem 0.65rem;">Roster</button></td>
+                  </tr>
+                  <tr data-status="upcoming">
+                    <td><strong>Sunday &bull; Oct 25 (08:00 AM)</strong></td>
+                    <td>French Lamination, Butter Beurrage &amp; Croissants</td>
+                    <td>Claire Moreau (Pastry Chef)</td>
+                    <td><strong>8 / 8 Bakers</strong></td>
+                    <td><span class="dash-badge ready"><i class="fa-solid fa-check"></i> Butter Chilled</span></td>
+                    <td>$1,320.00</td>
+                    <td><span class="dash-badge ready">Fully Booked</span></td>
+                    <td><button type="button" class="portal-btn-sm portal-btn-sm-outline btn-print-roster" style="padding:0.3rem 0.65rem;">Roster</button></td>
+                  </tr>
+                  <tr data-status="upcoming">
+                    <td><strong>Friday &bull; Oct 30 (05:30 PM)</strong></td>
+                    <td>Hearth Baguettes &amp; Savory Focaccia Masterclass</td>
+                    <td>Marcus Vance (Oven Master)</td>
+                    <td><strong>8 / 8 Bakers</strong></td>
+                    <td><span class="dash-badge holding"><i class="fa-solid fa-clock"></i> In Staging</span></td>
+                    <td>$1,000.00</td>
+                    <td><span class="dash-badge ready">Fully Booked</span></td>
+                    <td><button type="button" class="portal-btn-sm portal-btn-sm-outline btn-print-roster" style="padding:0.3rem 0.65rem;">Roster</button></td>
+                  </tr>
+                  <tr data-status="completed">
+                    <td><strong>Saturday &bull; Oct 17 (08:30 AM)</strong></td>
+                    <td>Ancient Grains: Einkorn, Spelt &amp; Heritage Rye</td>
+                    <td>Julian Keller (Head Baker)</td>
+                    <td><strong>8 / 8 Bakers</strong></td>
+                    <td><span class="dash-badge ready"><i class="fa-solid fa-check-double"></i> Completed</span></td>
+                    <td>$1,240.00</td>
+                    <td><span class="dash-badge ready">Completed</span></td>
+                    <td><span style="font-size:0.78rem; color:#8C7D75;">Graduated</span></td>
+                  </tr>
+                  <tr data-status="completed">
+                    <td><strong>Sunday &bull; Oct 11 (08:00 AM)</strong></td>
+                    <td>Viennoiserie Masterclass: Brioche &amp; Babka</td>
+                    <td>Claire Moreau (Pastry Chef)</td>
+                    <td><strong>8 / 8 Bakers</strong></td>
+                    <td><span class="dash-badge ready"><i class="fa-solid fa-check-double"></i> Completed</span></td>
+                    <td>$1,360.00</td>
+                    <td><span class="dash-badge ready">Completed</span></td>
+                    <td><span style="font-size:0.78rem; color:#8C7D75;">Graduated</span></td>
+                  </tr>
+                  <tr data-status="completed">
+                    <td><strong>Saturday &bull; Oct 04 (09:00 AM)</strong></td>
+                    <td>Wild Levain Sourdough Fundamentals</td>
+                    <td>Julian Keller (Head Baker)</td>
+                    <td><strong>8 / 8 Bakers</strong></td>
+                    <td><span class="dash-badge ready"><i class="fa-solid fa-check-double"></i> Completed</span></td>
+                    <td>$1,400.00</td>
+                    <td><span class="dash-badge ready">Completed</span></td>
+                    <td><span style="font-size:0.78rem; color:#8C7D75;">Graduated</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Student Bench & Station Preparation Checklist -->
+          <div class="portal-card-section">
+            <div class="portal-section-head">
+              <div>
+                <h2>Academy Bench Stations &bull; Equipment &amp; Kit Inventory</h2>
+                <p style="margin: 0.35rem 0 0; font-size: 0.85rem; color: #8C7D75;">8 dedicated butcher-block workbench stations with professional tools.</p>
+              </div>
+            </div>
+
+            <div class="portal-equipment-grid" style="margin-top: 1rem;">
+              <div style="background:#FAF6F0; border-radius:12px; padding:1rem; border:1px solid rgba(62,25,16,0.06);">
+                <div style="display:flex; align-items:center; gap:0.65rem; margin-bottom:0.35rem;">
+                  <i class="fa-solid fa-basket-shopping" style="color:var(--portal-orange); font-size:1.1rem;"></i>
+                  <strong style="color:#1E0C07; font-size:0.9rem;">Spruce Bannetons</strong>
+                </div>
+                <div style="font-size:1.25rem; font-weight:800; color:#1E0C07;">16 Prepped</div>
+                <span style="font-size:0.75rem; color:#2E7D32;"><i class="fa-solid fa-check"></i> Dusted with Rice Flour</span>
+              </div>
+
+              <div style="background:#FAF6F0; border-radius:12px; padding:1rem; border:1px solid rgba(62,25,16,0.06);">
+                <div style="display:flex; align-items:center; gap:0.65rem; margin-bottom:0.35rem;">
+                  <i class="fa-solid fa-scissors" style="color:var(--portal-orange); font-size:1.1rem;"></i>
+                  <strong style="color:#1E0C07; font-size:0.9rem;">Bench Lames &amp; Blades</strong>
+                </div>
+                <div style="font-size:1.25rem; font-weight:800; color:#1E0C07;">16 Sterilized</div>
+                <span style="font-size:0.75rem; color:#2E7D32;"><i class="fa-solid fa-check"></i> Fresh Astra Razor Fitted</span>
+              </div>
+
+              <div style="background:#FAF6F0; border-radius:12px; padding:1rem; border:1px solid rgba(62,25,16,0.06);">
+                <div style="display:flex; align-items:center; gap:0.65rem; margin-bottom:0.35rem;">
+                  <i class="fa-solid fa-scale-balanced" style="color:var(--portal-orange); font-size:1.1rem;"></i>
+                  <strong style="color:#1E0C07; font-size:0.9rem;">Digital Bench Scales</strong>
+                </div>
+                <div style="font-size:1.25rem; font-weight:800; color:#1E0C07;">8 Calibrated</div>
+                <span style="font-size:0.75rem; color:#2E7D32;"><i class="fa-solid fa-check"></i> 0.1g Precision Ready</span>
+              </div>
+
+              <div style="background:#FAF6F0; border-radius:12px; padding:1rem; border:1px solid rgba(62,25,16,0.06);">
+                <div style="display:flex; align-items:center; gap:0.65rem; margin-bottom:0.35rem;">
+                  <i class="fa-solid fa-jar" style="color:var(--portal-orange); font-size:1.1rem;"></i>
+                  <strong style="color:#1E0C07; font-size:0.9rem;">Take-Home Starter Jars</strong>
+                </div>
+                <div style="font-size:1.25rem; font-weight:800; color:#1E0C07;">8 Weck Jars</div>
+                <span style="font-size:0.75rem; color:#2E7D32;"><i class="fa-solid fa-check"></i> 50-Year Mother Seeded</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             TAB 6: STORE SETTINGS
+             ============================================== -->
+        <section class="portal-tab-panel" id="settings">
+
+          <!-- Bakehouse Operations License Banner -->
+          <div class="portal-card-section" style="margin-bottom: 1.5rem;">
+            <div class="portal-profile-hero">
+              <div class="portal-profile-hero-left">
+                <div class="portal-profile-hero-avatar">
+                  <i class="fa-solid fa-sliders" style="color:var(--portal-orange);"></i>
+                </div>
+                <div class="portal-profile-hero-info">
+                  <h2 class="portal-profile-hero-title">Salem Bakehouse Operations Control Deck</h2>
+                  <p class="portal-profile-hero-meta">
+                    Master Deck License: <strong>#BKE-2026-994</strong> &bull; Operating Lead: <strong id="adminOperatingLead">Soundaryamanivannan08 (Admin) &amp; Julian K. (Head Baker)</strong>
+                  </p>
+                </div>
+              </div>
+              <div class="portal-profile-hero-badges">
+                <span class="dash-badge ready"><i class="fa-solid fa-circle-check"></i> POS Connected</span>
+                <span class="dash-badge baking"><i class="fa-solid fa-fire"></i> 3 Ovens Live</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Two-Column Settings Grid -->
+          <div class="portal-settings-grid">
+
+            <!-- Column 1: Stone Hearth & Daily Bake Operations -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div class="portal-card-section" style="margin-bottom: 0;">
+                <div class="portal-section-head">
+                  <div>
+                    <h3>Stone Hearth &amp; Production Parameters</h3>
+                    <p style="margin: 0.25rem 0 0; font-size: 0.82rem; color: #8C7D75;">Configure chamber heat thresholds, morning hold cutoffs, and storefront alerts.</p>
+                  </div>
+                </div>
+
+                <form class="settings-form-grid" id="adminSettingsForm" novalidate>
+                  <div class="form-group">
+                    <label class="form-label" for="adminChamberATemp">Chamber A (Poolish Deck) Target &bull; &deg;C <span style="color:var(--portal-orange);">*</span></label>
+                    <input type="text" id="adminChamberATemp" class="form-control" value="240°C" style="padding-left: 1rem;" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="adminChamberBTemp">Chamber B (Wild Levain) Target &bull; &deg;C <span style="color:var(--portal-orange);">*</span></label>
+                    <input type="text" id="adminChamberBTemp" class="form-control" value="250°C" style="padding-left: 1rem;" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="adminCutoff">Morning Deck Hold Cutoff Time <span style="color:var(--portal-orange);">*</span></label>
+                    <input type="text" id="adminCutoff" class="form-control" value="08:00 AM Daily" style="padding-left: 1rem;" required>
+                    <span class="auth-field-error" id="adminCutoffError">Cutoff time is required</span>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="adminMaxHolds">Maximum Daily Sourdough Loaf Holds <span style="color:var(--portal-orange);">*</span></label>
+                    <input type="number" id="adminMaxHolds" class="form-control" value="60" min="1" max="1000" style="padding-left: 1rem;" required>
+                    <span class="auth-field-error" id="adminMaxHoldsError">Valid hold capacity (1-1000) is required</span>
+                  </div>
+
+                  <div class="form-group" style="grid-column: 1 / -1;">
+                    <label class="form-label" for="adminBanner">Storefront Announcement Banner <span style="color:var(--portal-orange);">*</span></label>
+                    <input type="text" id="adminBanner" class="form-control" value="Fresh pull every 2 hours • Stone ovens running at 240°C" style="padding-left: 1rem;" required>
+                    <span class="auth-field-error" id="adminBannerError">Announcement banner text is required</span>
+                  </div>
+
+                  <div style="grid-column: 1 / -1; margin-top: 0.5rem;">
+                    <button type="submit" class="portal-btn-sm portal-btn-sm-primary" style="padding: 0.65rem 1.6rem; font-size: 0.88rem;">Save Hearth Configuration</button>
+                    <div id="adminSettingsFeedback" style="display: none; margin-top: 0.75rem; padding: 0.65rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; background-color: #DCFCE7; color: #166534;"></div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Column 2: Counter Automation, Printers & System Governance -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+
+              <!-- Slip Printers & POS Hardware -->
+              <div class="portal-card-section" style="margin-bottom: 0;">
+                <div class="portal-section-head">
+                  <div>
+                    <h3>Thermal Slip Printers &amp; POS</h3>
+                    <p style="margin: 0.25rem 0 0; font-size: 0.82rem; color: #8C7D75;">Connected kitchen and counter packing printers.</p>
+                  </div>
+                  <button type="button" class="portal-btn-sm portal-btn-sm-outline btn-test-printer"><i class="fa-solid fa-print"></i> Test Print</button>
+                </div>
+
+                <div class="portal-payment-card">
+                  <div class="portal-payment-left">
+                    <i class="fa-solid fa-receipt portal-payment-icon" style="color:var(--portal-orange);"></i>
+                    <div class="portal-payment-info">
+                      <h5>Counter Thermal Slip Printer (Epson TM-T88VI)</h5>
+                      <p>IP: 192.168.1.140 &bull; Status: Online &bull; 80mm Roll</p>
+                    </div>
+                  </div>
+                  <span class="dash-badge ready">Connected</span>
+                </div>
+
+                <div class="portal-payment-card">
+                  <div class="portal-payment-left">
+                    <i class="fa-solid fa-fire portal-payment-icon" style="color:#C29548;"></i>
+                    <div class="portal-payment-info">
+                      <h5>Bakehouse Deck Dispatch Printer (Bixolon SRP-350)</h5>
+                      <p>IP: 192.168.1.142 &bull; Status: Online &bull; Kitchen KDS</p>
+                    </div>
+                  </div>
+                  <span class="dash-badge ready">Connected</span>
+                </div>
+              </div>
+
+              <!-- Automated Notifications & Shift Bakers -->
+              <div class="portal-card-section" style="margin-bottom: 0;">
+                <div class="portal-section-head">
+                  <div>
+                    <h3>Automated Notifications &amp; Shifts</h3>
+                    <p style="margin: 0.25rem 0 0; font-size: 0.82rem; color: #8C7D75;">Customer SMS readiness alerts and morning bake sheets.</p>
+                  </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+                  <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; color: #1E0C07; cursor: pointer;">
+                    <input type="checkbox" checked style="accent-color: var(--portal-orange); width: 18px; height: 18px;">
+                    <span>Automatic SMS alert to customer when daily batch leaves stone hearth</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; color: #1E0C07; cursor: pointer;">
+                    <input type="checkbox" checked style="accent-color: var(--portal-orange); width: 18px; height: 18px;">
+                    <span>Dispatch daily morning bake sheet to Head Baker phone at 04:30 AM</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; color: #1E0C07; cursor: pointer;">
+                    <input type="checkbox" checked style="accent-color: var(--portal-orange); width: 18px; height: 18px;">
+                    <span>Automatic purchase order warning when butter drops below 150 kg</span>
+                  </label>
+                </div>
+
+                <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid rgba(62,25,16,0.06); display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                  <button type="button" class="portal-btn-sm portal-btn-sm-outline btn-export-recipe-json" style="flex:1; justify-content:center;">
+                    <i class="fa-solid fa-download"></i> Export Recipe Formulae (JSON)
+                  </button>
+                  <button type="button" class="portal-btn-sm portal-btn-sm-outline btn-calibrate-deck" style="flex:1; justify-content:center;">
+                    <i class="fa-solid fa-temperature-half"></i> Recalibrate Probes
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Floating Toast Notification -->
+  <div id="portalToast" class="portal-toast" role="alert" aria-live="assertive">
+    <i class="fa-solid fa-circle-check" style="color:var(--portal-orange);"></i>
+    <span id="portalToastMsg">Action completed!</span>
   </div>
 
   <!-- AOS (Animate On Scroll) via CDNJS -->
@@ -738,98 +1730,122 @@
   <!-- Interactive Tab Switching, Dropdowns & Mobile Drawer Script -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Initialize AOS (Animate On Scroll) via CDNJS
+      // 1. Initialize AOS Animations
       if (typeof AOS !== 'undefined') {
         AOS.init({
-          duration: 750,
-          easing: 'ease-out-cubic',
-          once: true
+          duration: 650,
+          once: true,
+          easing: 'ease-out-cubic'
         });
       }
 
-      // Populate admin name, email, and role from login page
-      function initAdminProfile() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const email = urlParams.get('email') || 
-                      localStorage.getItem('stackly_user_email') || 
-                      sessionStorage.getItem('stackly_user_email');
-        
-        const rawRole = urlParams.get('role') || 
-                        localStorage.getItem('stackly_user_role') || 
-                        sessionStorage.getItem('stackly_user_role') || 
-                        'admin';
-        const roleDisplay = rawRole.charAt(0).toUpperCase() + rawRole.slice(1).toLowerCase();
-
-        if (!email) return;
-
-        // Derive respective name from email for welcome section
-        const atIdx = email.indexOf('@');
-        const local = atIdx > -1 ? email.slice(0, atIdx) : email;
-        const words = local.replace(/[._\-+]+/g, ' ').trim().split(/\s+/).filter(Boolean);
-        const name = words.map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ') || local;
-        
-        // Derive initial for avatar logo from email
-        const initial = email[0].toUpperCase();
-
-        // 1. Apply name in Welcome section
-        const welcomeNameEl = document.getElementById('dashWelcomeName');
-        if (welcomeNameEl) {
-          welcomeNameEl.textContent = name;
+      function deriveNameFromEmail(email) {
+        if (!email || !email.includes('@')) return 'User';
+        const prefix = email.split('@')[0].trim();
+        if (!prefix) return 'User';
+        if (/[._-]/.test(prefix)) {
+          return prefix
+            .split(/[._-]+/)
+            .filter(Boolean)
+            .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+            .join(' ');
         }
-
-        // 2. Marked profile logo area: show entered email and selected role
-        const avatarEl = document.getElementById('dashAvatar');
-        if (avatarEl) {
-          avatarEl.textContent = initial;
-        }
-        const profileNameEl = document.getElementById('dashProfileName');
-        if (profileNameEl) {
-          profileNameEl.textContent = email;
-          profileNameEl.title = email;
-        }
-        const profileRoleEl = document.getElementById('dashProfileRole');
-        if (profileRoleEl) {
-          profileRoleEl.textContent = roleDisplay;
-        }
-
+        return prefix.charAt(0).toUpperCase() + prefix.slice(1);
       }
 
+      // 2. Hydrate Admin Details from Login
+      function initAdminProfile() {
+        const email = localStorage.getItem('stackly_user_email') || sessionStorage.getItem('stackly_user_email') || 'soundaryamanivannan08@gmail.com';
+        let name = localStorage.getItem('user_name');
+        
+        // Take name directly from entered mail id if name is missing or still legacy default
+        if (!name || (name === 'Soundaryamanivannan08' && email.toLowerCase() !== 'soundaryamanivannan08@gmail.com')) {
+          name = deriveNameFromEmail(email);
+          localStorage.setItem('user_name', name);
+        }
+
+        const initial = name.charAt(0).toUpperCase();
+
+        // 1. Profile Logo Section (Header Pill: Avatar, Name & Mail ID)
+        const avatarEl = document.getElementById('dashAvatar');
+        if (avatarEl) avatarEl.textContent = initial;
+
+        const profileNameEl = document.getElementById('dashProfileName');
+        if (profileNameEl) {
+          profileNameEl.textContent = name;
+          profileNameEl.title = `Logged in as: ${name}`;
+        }
+
+        const profileEmailEl = document.getElementById('dashProfileEmail');
+        if (profileEmailEl) {
+          profileEmailEl.textContent = email;
+          profileEmailEl.title = email;
+        }
+
+        const profilePill = document.getElementById('profilePill');
+        if (profilePill) {
+          profilePill.title = `${name} (${email}) • Administrator`;
+        }
+
+        // 2. Welcome Section in Overview Tab
+        const welcomeNameEl = document.getElementById('welcomeUserName');
+        if (welcomeNameEl) welcomeNameEl.textContent = name;
+
+        const welcomeEmailEl = document.getElementById('welcomeUserEmail');
+        if (welcomeEmailEl) welcomeEmailEl.textContent = email;
+
+        // 3. Settings Operating Lead
+        const operatingLead = document.getElementById('adminOperatingLead');
+        if (operatingLead) {
+          operatingLead.innerHTML = `${name} (Admin) &amp; Julian K. (Head Baker)`;
+        }
+      }
       initAdminProfile();
 
-      const menuButtons = document.querySelectorAll('.dash-menu-btn');
-      const tabPanels = document.querySelectorAll('.dash-tab-panel');
-      const sidebarToggle = document.getElementById('sidebarToggle');
-      const sidebar = document.getElementById('dashSidebar');
-      const backdrop = document.getElementById('dashBackdrop');
-      const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+      // 3. Tab Switching Logic
+      const navButtons = document.querySelectorAll('.portal-nav-item');
+      const tabPanels = document.querySelectorAll('.portal-tab-panel');
+      const pageHeaderTitle = document.getElementById('pageHeaderTitle');
+      const portalMenuToggle = document.getElementById('portalMenuToggle');
+      const portalSidebar = document.getElementById('portalSidebar');
+      const portalBackdrop = document.getElementById('portalBackdrop');
       const notifBtn = document.getElementById('notifBtn');
       const notifDropdown = document.getElementById('notifDropdown');
 
+      const tabTitles = {
+        overview: 'Overview',
+        batches: 'Live Hearth Batches',
+        orders: 'Orders & Preorders',
+        inventory: 'Flour & Inventory',
+        workshops: 'Baking Academy',
+        settings: 'Deck & Store Settings'
+      };
+
       function switchTab(tabId) {
-        // Update menu buttons
-        menuButtons.forEach(btn => {
+        if (!tabId) return;
+
+        navButtons.forEach(btn => {
           btn.classList.toggle('active', btn.dataset.tab === tabId);
         });
 
-        // Update tab panels
         tabPanels.forEach(panel => {
           panel.classList.toggle('active', panel.id === tabId);
         });
 
-        // Always scroll to the top of the page when clicking sidebar menu
+        if (pageHeaderTitle && tabTitles[tabId]) {
+          pageHeaderTitle.textContent = tabTitles[tabId];
+        }
+
         window.scrollTo({ top: 0, behavior: 'smooth' });
-
-        // Close mobile drawer
         closeSidebar();
-        closeAllDropdowns();
+        closeNotifications();
 
-        // Refresh AOS after tab change
         if (typeof AOS !== 'undefined') {
-          setTimeout(() => AOS.refresh(), 100);
+          setTimeout(() => AOS.refresh(), 80);
         }
       }
 
-      menuButtons.forEach(btn => {
+      navButtons.forEach(btn => {
         btn.addEventListener('click', () => {
           const tabId = btn.dataset.tab;
           if (tabId) {
@@ -843,50 +1859,38 @@
         });
       });
 
-      // Handle dropdown links with # hash navigation
-      document.querySelectorAll('.dropdown-link-item').forEach(link => {
-        const href = link.getAttribute('href');
-        if (href && href.startsWith('#')) {
-          link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const tabId = href.replace('#', '');
-            if (document.getElementById(tabId)) {
-              switchTab(tabId);
-              if (history.replaceState) {
-                history.replaceState(null, '', '#' + tabId);
-              }
-            }
-          });
-        }
-      });
-
-      // Handle mobile drawer open / close
+      // 4. Mobile Drawer Handlers
       function openSidebar() {
-        if (sidebar) sidebar.classList.add('open');
-        if (backdrop) backdrop.classList.add('active');
+        if (portalSidebar) portalSidebar.classList.add('open');
+        if (portalBackdrop) portalBackdrop.classList.add('active');
       }
 
       function closeSidebar() {
-        if (sidebar) sidebar.classList.remove('open');
-        if (backdrop) backdrop.classList.remove('active');
+        if (portalSidebar) portalSidebar.classList.remove('open');
+        if (portalBackdrop) portalBackdrop.classList.remove('active');
       }
 
-      function toggleSidebar() {
-        if (window.innerWidth <= 992) {
-          if (sidebar && sidebar.classList.contains('open')) {
+      if (portalMenuToggle) {
+        portalMenuToggle.addEventListener('click', () => {
+          if (portalSidebar && portalSidebar.classList.contains('open')) {
             closeSidebar();
           } else {
             openSidebar();
           }
-        }
+        });
       }
 
-      if (sidebarToggle) sidebarToggle.addEventListener('click', toggleSidebar);
-      if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeSidebar);
-      if (backdrop) backdrop.addEventListener('click', closeSidebar);
+      if (portalBackdrop) {
+        portalBackdrop.addEventListener('click', closeSidebar);
+      }
 
-      // Dropdown handlers
-      function closeAllDropdowns() {
+      const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+      if (closeSidebarBtn) {
+        closeSidebarBtn.addEventListener('click', closeSidebar);
+      }
+
+      // 5. Notification Dropdown Toggle
+      function closeNotifications() {
         if (notifDropdown) notifDropdown.classList.remove('show');
         if (notifBtn) notifBtn.setAttribute('aria-expanded', 'false');
       }
@@ -895,8 +1899,9 @@
         notifBtn.addEventListener('click', (e) => {
           e.stopPropagation();
           const isOpen = notifDropdown.classList.contains('show');
-          closeAllDropdowns();
-          if (!isOpen) {
+          if (isOpen) {
+            closeNotifications();
+          } else {
             notifDropdown.classList.add('show');
             notifBtn.setAttribute('aria-expanded', 'true');
           }
@@ -905,24 +1910,24 @@
 
       document.addEventListener('click', (e) => {
         if (!e.target.closest('.dash-nav-dropdown-wrap')) {
-          closeAllDropdowns();
+          closeNotifications();
         }
       });
 
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-          closeAllDropdowns();
+          closeNotifications();
           closeSidebar();
         }
       });
 
-      // Support hash navigation on page load
+      // 6. Handle URL Hash Navigation on load
       const hash = window.location.hash.replace('#', '');
       if (hash && document.getElementById(hash)) {
         switchTab(hash);
       }
 
-      // Strict Admin Settings Form Validation
+      // 7. Strict Admin Settings Form Validation
       const adminSettingsForm = document.getElementById('adminSettingsForm');
       if (adminSettingsForm) {
         const cutoffInput = document.getElementById('adminCutoff');
@@ -1013,8 +2018,277 @@
               feedbackEl.style.display = 'none';
             }, 3000);
           }
+          showToast('Bakery deck settings saved successfully!', 'fa-circle-check');
         });
       }
+
+      // 8. Floating Toast Notification Utility
+      const portalToast = document.getElementById('portalToast');
+      const portalToastMsg = document.getElementById('portalToastMsg');
+      let toastTimer = null;
+
+      function showToast(message, iconClass = 'fa-circle-check') {
+        if (!portalToast || !portalToastMsg) return;
+        clearTimeout(toastTimer);
+        portalToastMsg.textContent = message;
+        const iconEl = portalToast.querySelector('i');
+        if (iconEl) {
+          iconEl.className = `fa-solid ${iconClass}`;
+        }
+        portalToast.classList.add('show');
+        toastTimer = setTimeout(() => {
+          portalToast.classList.remove('show');
+        }, 3500);
+      }
+
+      // 9. Real-Time Search & Filtering Utilities
+
+      // (a) Live Batches Filter
+      const batchSearch = document.getElementById('batchSearchInput');
+      const batchPills = document.querySelectorAll('#batchFilterPills .portal-pill-btn');
+      const batchCards = document.querySelectorAll('#batchCardsGrid .batch-manage-card');
+
+      function filterBatches() {
+        const query = (batchSearch ? batchSearch.value : '').toLowerCase().trim();
+        const activePill = document.querySelector('#batchFilterPills .portal-pill-btn.active');
+        const filterCategory = activePill ? activePill.dataset.filter : 'all';
+
+        batchCards.forEach(card => {
+          const cat = card.dataset.category || '';
+          const text = card.textContent.toLowerCase();
+          const matchesCategory = (filterCategory === 'all') || (cat === filterCategory);
+          const matchesQuery = !query || text.includes(query);
+
+          card.style.display = (matchesCategory && matchesQuery) ? '' : 'none';
+        });
+      }
+
+      if (batchPills.length > 0) {
+        batchPills.forEach(pill => {
+          pill.addEventListener('click', () => {
+            batchPills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            filterBatches();
+          });
+        });
+      }
+      if (batchSearch) batchSearch.addEventListener('input', filterBatches);
+
+      // (b) Orders & Preorders Filter
+      const orderSearch = document.getElementById('orderSearchInput');
+      const orderPills = document.querySelectorAll('#orderFilterPills .portal-pill-btn');
+      const orderRows = document.querySelectorAll('#ordersMasterTable tbody tr');
+
+      function filterOrders() {
+        const query = (orderSearch ? orderSearch.value : '').toLowerCase().trim();
+        const activePill = document.querySelector('#orderFilterPills .portal-pill-btn.active');
+        const filterStatus = activePill ? activePill.dataset.filter : 'all';
+
+        orderRows.forEach(row => {
+          const status = row.dataset.status || '';
+          const text = row.textContent.toLowerCase();
+          const matchesStatus = (filterStatus === 'all') || (status === filterStatus);
+          const matchesQuery = !query || text.includes(query);
+
+          row.style.display = (matchesStatus && matchesQuery) ? '' : 'none';
+        });
+      }
+
+      if (orderPills.length > 0) {
+        orderPills.forEach(pill => {
+          pill.addEventListener('click', () => {
+            orderPills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            filterOrders();
+          });
+        });
+      }
+      if (orderSearch) orderSearch.addEventListener('input', filterOrders);
+
+      // (c) Flour & Inventory Filter
+      const invSearch = document.getElementById('invSearchInput');
+      const invPills = document.querySelectorAll('#invFilterPills .portal-pill-btn');
+      const invCards = document.querySelectorAll('#invCardsGrid .inventory-card');
+
+      function filterInventory() {
+        const query = (invSearch ? invSearch.value : '').toLowerCase().trim();
+        const activePill = document.querySelector('#invFilterPills .portal-pill-btn.active');
+        const filterCategory = activePill ? activePill.dataset.filter : 'all';
+
+        invCards.forEach(card => {
+          const cat = card.dataset.category || '';
+          const text = card.textContent.toLowerCase();
+          const matchesCategory = (filterCategory === 'all') || (cat === filterCategory);
+          const matchesQuery = !query || text.includes(query);
+
+          card.style.display = (matchesCategory && matchesQuery) ? '' : 'none';
+        });
+      }
+
+      if (invPills.length > 0) {
+        invPills.forEach(pill => {
+          pill.addEventListener('click', () => {
+            invPills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            filterInventory();
+          });
+        });
+      }
+      if (invSearch) invSearch.addEventListener('input', filterInventory);
+
+      // (d) Baking Academy Filter
+      const workshopSearch = document.getElementById('workshopSearchInput');
+      const workshopPills = document.querySelectorAll('#workshopFilterPills .portal-pill-btn');
+      const workshopRows = document.querySelectorAll('#workshopsMasterTable tbody tr');
+
+      function filterWorkshops() {
+        const query = (workshopSearch ? workshopSearch.value : '').toLowerCase().trim();
+        const activePill = document.querySelector('#workshopFilterPills .portal-pill-btn.active');
+        const filterStatus = activePill ? activePill.dataset.filter : 'all';
+
+        workshopRows.forEach(row => {
+          const status = row.dataset.status || '';
+          const text = row.textContent.toLowerCase();
+          const matchesStatus = (filterStatus === 'all') || (status === filterStatus);
+          const matchesQuery = !query || text.includes(query);
+
+          row.style.display = (matchesStatus && matchesQuery) ? '' : 'none';
+        });
+      }
+
+      if (workshopPills.length > 0) {
+        workshopPills.forEach(pill => {
+          pill.addEventListener('click', () => {
+            workshopPills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            filterWorkshops();
+          });
+        });
+      }
+      if (workshopSearch) workshopSearch.addEventListener('input', filterWorkshops);
+
+      // 10. Interactive Admin Action Triggers
+      // Calibrate Decks
+      document.querySelectorAll('.btn-calibrate-deck').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Calibrated all stone hearth refractory decks to 240°C.', 'fa-temperature-half');
+        });
+      });
+
+      // Vent Steam
+      document.querySelectorAll('.btn-vent').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Steam injection solenoid vented for Chamber A.', 'fa-wind');
+        });
+      });
+
+      // Inspect Crust
+      document.querySelectorAll('.btn-pull-check, .btn-inspect-chamber').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Inspected Chamber A: Crust acoustic resonance score 9.8 / 10.', 'fa-bread-slice');
+        });
+      });
+
+      // Load Chamber
+      document.querySelectorAll('.btn-load-chamber').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Chamber B loaded: Batch #45 (60 wild levain boules) baking at 250°C.', 'fa-fire');
+        });
+      });
+
+      // Send to Counter
+      document.querySelectorAll('.btn-send-counter, .btn-counter-pull').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Batch dispatched to retail pickup counter.', 'fa-bell');
+        });
+      });
+
+      // Mark Order Picked Up
+      document.querySelectorAll('.btn-mark-picked').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Order marked as picked up by customer.', 'fa-circle-check');
+        });
+      });
+
+      // Send SMS
+      document.querySelectorAll('.btn-send-sms').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('SMS batch readiness alert sent to customer phone.', 'fa-comment-sms');
+        });
+      });
+
+      // Print Slips
+      document.querySelectorAll('.btn-print-slip, .btn-print-packing').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Printing thermal packing slip on Epson TM-T88VI...', 'fa-print');
+        });
+      });
+
+      // Export Actions
+      document.querySelectorAll('.btn-export-orders').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Exported today\'s 142 orders to CSV.', 'fa-file-excel');
+        });
+      });
+      document.querySelectorAll('.btn-export-audit').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Exported daily batch allocation audit to Excel.', 'fa-file-excel');
+        });
+      });
+      document.querySelectorAll('.btn-export-academy').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Exported Baking Academy monthly revenue summary.', 'fa-file-excel');
+        });
+      });
+
+      // Reorder Butter PO
+      document.querySelectorAll('.btn-reorder-butter').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Purchase Order PO-2026-905 for 250kg Normandy Butter submitted.', 'fa-truck-fast');
+        });
+      });
+
+      // Receive Stock
+      document.querySelectorAll('.btn-receive-stock').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Stock received & logged: 840kg T65 flour placed in Bin #A1.', 'fa-dolly');
+        });
+      });
+
+      // Print Roster
+      document.querySelectorAll('.btn-print-roster').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Student roster for Saturday Sourdough Masterclass printed.', 'fa-print');
+        });
+      });
+
+      // Email Students
+      document.querySelectorAll('.btn-email-students').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Welcome pack & sourdough formula emailed to 8 enrolled bakers.', 'fa-envelope-circle-check');
+        });
+      });
+
+      // Test Printer
+      document.querySelectorAll('.btn-test-printer').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Test print job sent to Epson TM-T88VI (IP: 192.168.1.140).', 'fa-print');
+        });
+      });
+
+      // Export Master Recipe JSON
+      document.querySelectorAll('.btn-export-recipe-json').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Master artisanal recipe formulae exported as JSON.', 'fa-file-code');
+        });
+      });
+
+      // Generic New Item Triggers
+      document.querySelectorAll('.btn-new-batch, .btn-add-stock, .btn-new-po, .btn-new-workshop').forEach(btn => {
+        btn.addEventListener('click', () => {
+          showToast('Operational modal opened. Staging new item in database.', 'fa-plus');
+        });
+      });
     });
   </script>
 </body>

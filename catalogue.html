@@ -24,13 +24,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
   <!-- Common Navbar Stylesheet -->
-  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/navbar.css?v=8">
 
   <!-- Preloader Stylesheet -->
   <link rel="stylesheet" href="assets/css/preloader.css">
 
   <!-- Catalogue Stylesheet -->
-  <link rel="stylesheet" href="assets/css/catalogue.css?v=4">
+  <link rel="stylesheet" href="assets/css/catalogue.css?v=8">
 
   <style>
     .newsletter-feedback {
@@ -109,17 +109,18 @@
           <li><a href="index.html" class="nav-link">Home</a></li>
           <li><a href="catalogue.html" class="nav-link active" aria-current="page">Catalogue</a></li>
           <li><a href="about.html" class="nav-link">About us</a></li>
-          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          
           <li><a href="blog.html" class="nav-link">Blog</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
       </nav>
 
       <!-- Right Header Actions: Shopping Bag + Login Button + Mobile Toggle -->
       <div class="header-actions">
         <!-- Shopping Bag Icon Button -->
-        <button class="action-btn-bag" id="cartToggle" aria-label="View shopping basket" title="Cart">
+        <button class="action-btn-bag" id="cartToggle" onclick="if(window.openStacklyCart){window.openStacklyCart(event);}else{const el=document.getElementById('cartModalOverlay');if(el){el.classList.add('open');document.body.style.overflow='hidden';}}" aria-label="View shopping basket" title="Cart">
           <i class="fa-solid fa-bag-shopping header-bag-icon" aria-hidden="true"></i>
-          <span class="cart-badge-dot active" id="cartDot"></span>
+          <span class="nav-cart-badge" id="cartBadge">0</span>
         </button>
 
         <!-- Login Button -->
@@ -140,11 +141,13 @@
         <li><a href="index.html" class="mobile-nav-link">Home</a></li>
         <li><a href="catalogue.html" class="mobile-nav-link active">Catalogue</a></li>
         <li><a href="about.html" class="mobile-nav-link">About us</a></li>
-        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+        
         <li><a href="blog.html" class="mobile-nav-link">Blog</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
       </ul>
       <div class="mobile-drawer-footer">
         <a href="login.html" class="btn-header-login btn-block text-center" style="display:block; text-align:center;">LOGIN</a>
+        <p class="mobile-drawer-hours">Open Daily: 7:00 AM – 6:00 PM</p>
       </div>
     </div>
   </header>
@@ -1220,7 +1223,7 @@
       <div class="footer-top-grid">
         <!-- Col 1: Brand & Bio -->
         <div class="footer-brand-wrap">
-          <a href="404.html" class="catalogue-brand">
+          <a href="index.html" class="catalogue-brand" aria-label="Stackly Home">
             <img src="assets/images/stackly_006.webp?v=2" alt="Stackly" class="footer-brand-logo-img" width="102" height="44">
           </a>
           <p class="footer-tagline">
@@ -1266,14 +1269,30 @@
         <!-- Col 4: Visit Us -->
         <div>
           <h4 class="footer-col-title">Visit Our Ovens</h4>
-          <p class="footer-address-text">
-            MMR Complex, Chinna Thirupathi,<br>
-            near Chinna Muniyappan Kovil,<br>
-            Salem, Tamil Nadu 636008<br><br>
-            <strong>Phone:</strong> <a href="404.html" style="color:var(--color-orange);">9876543210</a><br>
-            <strong>Email:</strong> <a href="404.html" style="color:var(--color-orange);">info@stackly.com</a><br>
-            <strong>Mon &ndash; Sun:</strong> 07:00 &ndash; 21:00
-          </p>
+          <div class="footer-address-block">
+            <div class="footer-contact-row" style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <i class="fa-solid fa-location-dot" style="color: var(--color-orange, #FB5022); width: 16px; text-align: center; margin-top: 0.25rem; font-size: 0.95rem; flex-shrink: 0;"></i>
+              <span class="footer-address-text" style="margin: 0; line-height: 1.55;">
+                MMR Complex, Chinna Thirupathi,<br>
+                near Chinna Muniyappan Kovil,<br>
+                Salem, Tamil Nadu 636008
+              </span>
+            </div>
+            <div class="footer-contact-details" style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem;">
+              <p style="display: flex; align-items: center; gap: 0.75rem; margin: 0;">
+                <i class="fa-solid fa-phone" style="color: var(--color-orange, #FB5022); width: 16px; text-align: center; font-size: 0.85rem; flex-shrink: 0;"></i>
+                <span><strong style="color:#FFFFFF;">Phone:</strong> <a href="404.html" style="color:var(--color-orange, #FB5022); text-decoration: none;">9876543210</a></span>
+              </p>
+              <p style="display: flex; align-items: center; gap: 0.75rem; margin: 0;">
+                <i class="fa-solid fa-envelope" style="color: var(--color-orange, #FB5022); width: 16px; text-align: center; font-size: 0.85rem; flex-shrink: 0;"></i>
+                <span><strong style="color:#FFFFFF;">Email:</strong> <a href="404.html" style="color:var(--color-orange, #FB5022); text-decoration: none;">info@stackly.com</a></span>
+              </p>
+              <p style="display: flex; align-items: center; gap: 0.75rem; margin: 0;">
+                <i class="fa-solid fa-clock" style="color: var(--color-orange, #FB5022); width: 16px; text-align: center; font-size: 0.85rem; flex-shrink: 0;"></i>
+                <span><strong style="color:#FFFFFF;">Mon &ndash; Sun:</strong> 07:00 &ndash; 21:00</span>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1292,13 +1311,13 @@
   <!-- ==============================================
        SHOPPING BAG SLIDE-OVER DRAWER MODAL
        ============================================== -->
-  <div class="cart-modal-overlay" id="cartModalOverlay" role="dialog" aria-modal="true" aria-labelledby="cartDrawerTitle">
+  <div class="cart-modal-overlay" id="cartModalOverlay" onclick="if(event.target===this){if(window.closeStacklyCart){window.closeStacklyCart(event);}else{this.classList.remove('open');document.body.style.overflow='';}}" role="dialog" aria-modal="true" aria-labelledby="cartDrawerTitle">
     <div class="cart-modal-drawer">
       <div class="cart-drawer-header">
         <h3 class="cart-drawer-title" id="cartDrawerTitle">
           <i class="fa-solid fa-bag-shopping" style="color: var(--color-orange); margin-right: 0.5rem;"></i> Your Bag
         </h3>
-        <button class="cart-close-btn" id="cartCloseBtn" aria-label="Close shopping bag" type="button">
+        <button class="cart-close-btn" id="cartCloseBtn" onclick="if(window.closeStacklyCart){window.closeStacklyCart(event);}else{const el=document.getElementById('cartModalOverlay');if(el){el.classList.remove('open');document.body.style.overflow='';}}" aria-label="Close shopping bag" type="button">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
@@ -1310,7 +1329,7 @@
       <div class="cart-drawer-footer">
         <div class="cart-summary-row">
           <span>Subtotal</span>
-          <span id="cartSubtotal">$13.00</span>
+          <span id="cartSubtotal">$0.00</span>
         </div>
         <div class="cart-summary-row">
           <span>Counter Pickup</span>
@@ -1318,7 +1337,7 @@
         </div>
         <div class="cart-total-row">
           <span>Total</span>
-          <span class="total-price" id="cartTotal">$13.00</span>
+          <span class="total-price" id="cartTotal">$0.00</span>
         </div>
         <a href="404.html" class="btn-orange-pill" style="width: 100%; justify-content: center; height: 50px;">
           <span>Proceed to Counter Hold</span>
@@ -1332,7 +1351,7 @@
   <script src="assets/js/preloader.js"></script>
   <!-- AOS (Animate On Scroll) via CDNJS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script src="assets/js/navbar.js?v=3"></script>
-  <script src="assets/js/catalogue.js?v=4"></script>
+  <script src="assets/js/navbar.js?v=8"></script>
+  <script src="assets/js/catalogue.js?v=8"></script>
 </body>
 </html>
