@@ -296,10 +296,33 @@ body.dashboard-page {
   letter-spacing: -0.025em;
 }
 
+.portal-header-brand {
+  display: none; /* Hidden on desktop view; sidebar already displays the brand logo */
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  line-height: 1;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.portal-header-brand:hover {
+  transform: scale(1.02);
+  opacity: 0.95;
+}
+
+.portal-header-logo-img {
+  height: 38px;
+  width: auto;
+  max-width: 145px;
+  object-fit: contain;
+  display: block;
+}
+
 .portal-header-right {
   display: flex;
   align-items: center;
   gap: 1.25rem;
+  margin-left: auto;
 }
 
 /* Date Pill Badge (Pure White Pill) */
@@ -883,6 +906,9 @@ body.dashboard-page {
   .portal-menu-toggle {
     display: flex;
   }
+  .portal-header-brand {
+    display: inline-flex;
+  }
   .portal-sidebar-close {
     display: block;
   }
@@ -1010,6 +1036,11 @@ body.dashboard-page {
     flex: 1;
     min-width: 0;
     max-width: none;
+  }
+
+  .portal-header-logo-img {
+    height: 32px;
+    max-width: 120px;
   }
 
   .portal-profile-info {
