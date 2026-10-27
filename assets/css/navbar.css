@@ -48,7 +48,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 76px;
+  height: 84px;
   box-sizing: border-box;
 }
 
@@ -62,9 +62,9 @@
 }
 
 .site-header .brand-logo-img {
-  height: 48px;
+  height: 64px;
   width: auto;
-  max-width: 180px;
+  max-width: 220px;
   object-fit: contain;
   display: block;
   background: transparent;
@@ -340,9 +340,9 @@ body.mobile-nav-open {
   .site-header.drawer-open .mobile-nav-drawer,
   .site-header:has(.mobile-nav-drawer.open) .mobile-nav-drawer,
   .site-header .mobile-nav-drawer.open {
-    top: 68px !important;
-    height: calc(100vh - 68px) !important;
-    height: calc(100dvh - 68px) !important;
+    top: 70px !important;
+    height: calc(100vh - 70px) !important;
+    height: calc(100dvh - 70px) !important;
     padding: 1.75rem 1.5rem 2.25rem !important;
   }
 }
@@ -409,6 +409,15 @@ body.mobile-nav-open {
 
 /* Responsive Breakpoints */
 @media (max-width: 860px) {
+  .site-header .header-container {
+    height: 76px;
+  }
+
+  .site-header .brand-logo-img {
+    height: 54px;
+    max-width: 190px;
+  }
+
   .site-header .desktop-nav {
     display: none;
   }
@@ -425,13 +434,14 @@ body.mobile-nav-open {
 
 @media (max-width: 480px) {
   .site-header .header-container {
-    height: 68px;
+    height: 70px;
     padding-left: 1rem;
     padding-right: 1rem;
   }
 
   .site-header .brand-logo-img {
-    height: 40px;
+    height: 48px;
+    max-width: 165px;
   }
 
   .site-header .header-actions {
